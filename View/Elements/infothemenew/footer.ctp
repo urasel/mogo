@@ -86,6 +86,17 @@
         	</div>
 			<div class="nino-copyright">Copyright &copy; 2016 <a target="_blank" href="http://www.ninodezign.com/" title="Ninodezign.com - Top quality open source resources for web developer and web designer">Ninodezign.com</a>. All Rights Reserved. <br/> MoGo free PSD template by <a href="https://www.behance.net/laaqiq">Laaqiq</a></div>
         </div>
+		<?php echo $this->Html->script('imageloader/echo.min'); ?>
+		  <script>
+		  echo.init({
+			offset: 100,
+			throttle: 250,
+			unload: false,
+			callback: function (element, op) {
+			  console.log(element, 'has been', op + 'ed')
+			}
+		  });
+		  </script>
     </footer><!--/#footer-->
 	
 	<!-- Search Form - Display when click magnify icon in menu

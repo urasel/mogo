@@ -156,17 +156,17 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 												if(!empty($imglink) && file_exists($fileExistPath)){
 													if($className == 'TopicData'){
 														
-														echo $this->Html->image("topics/medium/$imglink", array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'nearbymap'));
+														echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'nearbymap','data-echo' => "topics/medium/$imglink"));
 													}else{
 														
-															echo $this->Html->image("$foldername/photogallery/$file", array('url' => array('controller'=>'siteactions','action'=>'infos','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'id'=> $newID,'ext' => 'asp'),'class' =>'nearbymap','alt' =>$metaTag));
+															echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'infos','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'id'=> $newID,'ext' => 'asp'),'class' =>'nearbymap','alt' =>$metaTag,'data-echo' => "$foldername/photogallery/$file"));
 														
 													}
 												}else{
 													if($className == 'TopicData'){
-														echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'nearbymap'));
+														echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'nearbymap','data-echo' => ''));
 													}else{
-														echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'infos','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'id'=> $newID,'ext' => 'asp'),'class' =>'nearbymap','alt' =>$metaTag));
+														echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'infos','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'id'=> $newID,'ext' => 'asp'),'class' =>'nearbymap','alt' =>$metaTag,'data-echo' => ''));
 													}
 													
 												}
