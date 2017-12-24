@@ -1,0 +1,15 @@
+{
+	"name": "Information Upload plugin",
+	"description": "All Types of Information Upload Plugin",
+
+	"author": "Md. Rasel",
+	"authorEmail": "urasel@gmail.com",
+	"authorUrl": "http://www.infomap24.com",
+
+	"dependencies": {
+		"plugins": [
+			"acl",
+			"extensions"
+		]
+	}
+}

@@ -1,0 +1,175 @@
+<?php
+$this->viewVars['title_for_layout'] = __d('information', 'Home Posts');
+$this->extend('/Common/admin_edit');
+
+$this->Html
+	->addCrumb('', '/admin', array('icon' => 'home'))
+	->addCrumb(__d('information', 'Home Posts'), array('action' => 'index'));
+
+if ($this->action == 'admin_edit') {
+	$this->Html->addCrumb($this->request->data['HomePost']['id'], '/' . $this->request->url);
+	$this->viewVars['title_for_layout'] = __d('information', 'Home Posts') . ': ' . $this->request->data['HomePost']['id'];
+} else {
+	$this->Html->addCrumb(__d('croogo', 'Add'), '/' . $this->request->url);
+}
+
+$this->append('form-start', $this->Form->create('HomePost'));
+
+$this->append('tab-heading');
+	echo $this->Croogo->adminTab(__d('information', 'Home Post'), '#home-post');
+	echo $this->Croogo->adminTabs();
+$this->end();
+
+$this->append('tab-content');
+
+	echo $this->Html->tabStart('home-post');
+
+		echo $this->Form->input('id');
+
+		echo $this->Form->input('home_category_id', array(
+			'label' =>  __d('information', 'Home Category'),
+		));
+		echo $this->Form->input('pointid', array(
+			'label' =>  __d('information', 'Point Id'),
+			'type' => 'hidden',
+		));
+		echo $this->Form->input('pointname', array(
+			'label' =>  __d('information', 'Point Name'),
+		));
+		echo $this->Form->input('pointcreated', array(
+			'label' =>  __d('information', 'Point Create Date'),
+			'type' => 'text',
+			'id'=>"pointcreatedate",
+		));
+		echo $this->Form->input('point_seoname', array(
+			'label' =>  __d('information', 'Point Seoname'),
+		));
+		echo $this->Form->input('classid', array(
+			'label' =>  __d('information', 'Classid'),
+		));
+		echo $this->Form->input('class_bntitle', array(
+			'label' =>  __d('information', 'Class Bntitle'),
+		));
+		echo $this->Form->input('class_title', array(
+			'label' =>  __d('information', 'Class Title'),
+		));
+		echo $this->Form->input('class_metatag', array(
+			'label' =>  __d('information', 'Class Metatag'),
+		));
+		echo $this->Form->input('class_details', array(
+			'label' =>  __d('information', 'English Short Details'),
+		));
+		echo $this->Form->input('class_bn_details', array(
+			'label' =>  __d('information', 'Bangla Short Details'),
+		));
+		echo $this->Form->input('class_image', array(
+			'label' =>  __d('information', 'Class Image'),
+		));
+		echo $this->Form->input('placetype_icon', array(
+			'label' =>  __d('information', 'Placetype Icon'),
+		));
+		echo $this->Form->input('placetype_pluralname', array(
+			'label' =>  __d('information', 'Placetype Pluralname'),
+		));
+		echo $this->Form->input('placetype_seoname', array(
+			'label' =>  __d('information', 'Placetype Seoname'),
+		));
+		echo $this->Form->input('publishdate', array(
+			'label' =>  __d('information', 'Publish Date'),
+			'type' => 'text',
+			'id'=>"publishdate",
+		));
+		echo $this->Form->input('unpublishdate', array(
+			'label' =>  __d('information', 'Unpublish Date'),
+			'type' => 'text',
+			'id'=>"unpublishdate",
+		));
+		echo $this->Form->input('isactive', array(
+			'label' =>  __d('information', 'Isactive'),
+		));
+		?>
+		
+		<script type="text/javascript">
+		$(document).ready(function() {
+				
+				$("#HomePostPointname").autocomplete({
+					source: '<?php echo $this->base; ?>/information/home_posts/getPoint',
+					minLength: 1,
+					select: function(event, ui) {
+						var $spec = ui.item.id;
+						var $classname = ui.item.classname;
+						var pointID = $spec;
+						var className = $classname;
+						$.ajax({
+							dataType: "html",
+							type: "GET",
+							evalScripts: true,
+							url: '<?php echo $this->base; ?>/information/home_posts/getPointDetails',
+							data: ({pointid:pointID,classname:className}),
+							success: function (data, textStatus){
+								var obj = JSON.parse(data);
+								//alert(obj[0].point_seo_name);
+								$('#HomePostPointid').val(obj[0].point_id);
+								$('#HomePostPointname').val(obj[0].point_name);
+								$('#pointcreatedate').val(obj[0].point_created);
+								$('#HomePostPointSeoname').val(obj[0].point_seo_name);
+								$('#HomePostClassid').val(obj[0].class_id);
+								$('#HomePostClassBntitle').val(obj[0].class_bn_title);
+								$('#HomePostClassTitle').val(obj[0].class_title);
+								$('#HomePostClassDetails').val(obj[0].class_details);
+								$('#HomePostClassBnDetails').val(obj[0].class_bn_details);
+								$('#HomePostClassMetatag').val(obj[0].class_metatag);
+								$('#HomePostClassImage').val(obj[0].class_image);
+								$('#HomePostPlacetypeId').val(obj[0].placetype_id);
+								$('#HomePostPlacetypeIcon').val(obj[0].placetype_icon);
+								$('#HomePostPlacetypePluralname').val(obj[0].placetype_pluralname);
+								$('#HomePostPlacetypeSeoname').val(obj[0].placetype_seoname);
+						 
+							}
+						});
+					}
+				});
+		});
+		</script>
+		<script>
+		$(document).ready(function(){
+			$('#publishdate').datetimepicker({
+			dayOfWeekStart : 1,
+			format:'Y-m-d H:i:s',
+			lang:'en'
+			});
+			$('#unpublishdate').datetimepicker({
+			dayOfWeekStart : 1,
+			format:'Y-m-d H:i:s',
+			lang:'en'
+			});
+			$('#pointcreatedate').datetimepicker({
+			dayOfWeekStart : 1,
+			format:'Y-m-d H:i:s',
+			lang:'en'
+			});
+		});
+		</script>
+		<?php
+	
+	echo $this->Html->tabEnd();
+
+	echo $this->Croogo->adminTabs();
+
+$this->end();
+
+$this->append('panels');
+	echo $this->Html->beginBox(__d('croogo', 'Publishing')) .
+		$this->Form->button(__d('croogo', 'Apply'), array('name' => 'apply')) .
+		$this->Form->button(__d('croogo', 'Save'), array('button' => 'primary')) .
+		$this->Form->button(__d('croogo', 'Save & New'), array('button' => 'success', 'name' => 'save_and_new')) .
+		$this->Html->link(__d('croogo', 'Cancel'), array('action' => 'index'), array('button' => 'danger'));
+	echo $this->Html->endBox();
+
+	echo $this->Croogo->adminBoxes();
+$this->end();
+
+
+$this->append('form-end', $this->Form->end());
+
+

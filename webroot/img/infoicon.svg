@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="612px" height="612px" viewBox="0 0 612 612" enable-background="new 0 0 612 612" xml:space="preserve">
+<path id="path2386_1_" fill="#5A7FAF" d="M173.341,524.234c105.289,0,277.687-80.945,277.687-226.202
+	c0-63.179-47.603-114.849-116.834-114.849c-80.49,0-171.72,86.867-171.72,86.867s27.096-11.642,71.655-11.642
+	c0,0,90.283-3.994,90.283,80.436C324.411,444.098,196.716,517.964,173.341,524.234z"/>
+<linearGradient id="path2388_2_" gradientUnits="userSpaceOnUse" x1="53" y1="636.4229" x2="560.541" y2="636.4229" gradientTransform="matrix(1 0 0 1 0 -277.7178)">
+	<stop  offset="0" style="stop-color:#F89521"/>
+	<stop  offset="1" style="stop-color:#DF5C26"/>
+</linearGradient>
+<path id="path2388_1_" fill="url(#path2388_2_)" d="M156.519,273.655C139.888,278.477,53,316.489,53,357.734
+	c0,38.604,80.159,86.021,253.77,86.021c174.442,0,253.771-47.688,253.771-85.418c0-43.951-90.824-67.273-90.824-67.273
+	s20.678,12.661,20.678,29.784c0,63.838-210.818,69.258-210.818,69.258c-8.14,0-177.105,4.887-177.105-52.265
+	C102.47,313.204,156.519,273.655,156.519,273.655z"/>
+<path id="path2384_3_" fill="#FFFFFF" d="M383.938,159.82c0,34.696-28.155,62.821-62.887,62.821
+	c-34.734,0-62.891-28.125-62.891-62.821c0-34.695,28.156-62.82,62.891-62.82C355.782,97.001,383.938,125.126,383.938,159.82z"/>
+<linearGradient id="path2384_1_" gradientUnits="userSpaceOnUse" x1="269.228" y1="437.0625" x2="371.7695" y2="437.0625" gradientTransform="matrix(1 0 0 1 0 -277.7178)">
+	<stop  offset="0" style="stop-color:#F89521"/>
+	<stop  offset="1" style="stop-color:#DF5C26"/>
+</linearGradient>
+<path id="path2384_2_" fill="url(#path2384_1_)" d="M371.77,159.345c0,27.611-22.955,49.993-51.271,49.993
+	c-28.317,0-51.271-22.382-51.271-49.993c0-27.611,22.955-49.994,51.271-49.994C348.814,109.351,371.77,131.733,371.77,159.345z"/>
+</svg>

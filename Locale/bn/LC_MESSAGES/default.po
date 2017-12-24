@@ -1,0 +1,625 @@
+﻿# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wpy.me i18n\n"
+"POT-Creation-Date: 2014-10-09 14:29+0000\n"
+"PO-Revision-Date: 2014-10-09 17:50+0200\n"
+"Last-Translator: wappy <me@wpy.me>\n"
+"Language-Team: wpy.me <me@wpy.me>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.9\n"
+"Language: bn\n"
+
+#: Controller/PagesController.php:47
+msgid "The language has been changed to %s"
+msgstr "ভাষা পরিবর্তন করা হয়েছে %s"
+
+#: Controller/PagesController.php:49
+msgid "Language %s is not supported"
+msgstr "%s ভাষা সমর্থিত নয়"
+
+#: View/Pages/home.ctp:1
+msgid "Change language:"
+msgstr "ভাষা পরিবর্তন:"
+
+#: View/Pages/home.ctp:12
+msgid "Browse"
+msgstr "সাইটম্যাপ"
+
+#: View/Pages/home.ctp:12
+msgid "Contact Us"
+msgstr "যোগাযোগ করুন"
+
+#: View/Pages/home.ctp:12
+msgid "Login"
+msgstr "লগ ইন"
+
+#: View/Pages/home.ctp:12
+msgid "Logout"
+msgstr "লগ আউট"
+
+#: View/Pages/home.ctp:12
+msgid "Register"
+msgstr "রেজিস্ট্রেশন"
+
+
+#: View/Pages/home.ctp:12
+msgid "Admin Menu"
+msgstr "অ্যাডমিন মেনু"
+
+#: View/Pages/home.ctp:12
+msgid "Find Your Nearest !!"
+msgstr "আপনার চারপাশ সম্পর্কে জানুন"
+
+#: View/Pages/home.ctp:12
+msgid "I'm looking for..."
+msgstr "আমি খুজতেছি"
+
+#: View/Pages/home.ctp:12
+msgid "Dhaka.."
+msgstr "ঢাকার ভিতরে.."
+
+#: View/Pages/home.ctp:12
+msgid "Bangla"
+msgstr "বাংলা"
+
+#: View/Pages/home.ctp:12
+msgid "About"
+msgstr "আমাদের কথা"
+
+#: View/Pages/home.ctp:12
+msgid "About Us"
+msgstr "আমাদের কথা"
+
+#: View/Pages/home.ctp:12
+msgid "Site Directory"
+msgstr "সাইট নির্দেশিকা"
+
+#: View/Pages/home.ctp:12
+msgid "Terms & Condition"
+msgstr "শর্তাবলী এবং নীতিমালা"
+
+#: View/Pages/home.ctp:12
+msgid "Privacy & Policy"
+msgstr "গোপনীয়তার নীতিমালা"
+
+
+#: View/Pages/home.ctp:12
+msgid "Contact Us"
+msgstr "যোগাযোগ"
+
+#: View/Pages/home.ctp:12
+msgid "Showing {:start}-{:end} records out of {:count} Total"
+msgstr "{:count} উপাত্তের মধ্যে {:start}-{:end} টি দেখাচ্ছে "
+
+#: View/Pages/home.ctp:12
+msgid "&laquo;"
+msgstr "পূর্ববর্তী"
+
+#: View/Pages/home.ctp:12
+msgid "&raquo;"
+msgstr "পরবর্তী"
+
+#: View/Pages/home.ctp:12
+msgid "Home"
+msgstr "হোম"
+
+#: View/Pages/home.ctp:12
+msgid "Sitemap"
+msgstr "সাইটম্যাপ"
+
+#: View/Pages/home.ctp:12
+msgid "What You Want ?"
+msgstr "আপনি কি খুজছেন ?"
+
+#: View/Pages/home.ctp:12
+msgid " Informations"
+msgstr " বিষয়ক তথ্য"
+
+#: View/Pages/home.ctp:12
+msgid "Details"
+msgstr "বিস্তারিত"
+
+#: View/Pages/home.ctp:12
+msgid "Featured collection"
+msgstr "বৈশিষ্ট্যযুক্ত সংগ্রহ"
+
+#: View/Pages/home.ctp:12
+msgid "Browse Categories"
+msgstr "সকল ক্যাটাগরি"
+
+#: View/Pages/home.ctp:12
+msgid "Recent Post"
+msgstr "সাম্প্রতিক পোস্ট"
+
+#: View/Pages/home.ctp:12
+msgid " Blood Needed"
+msgstr " রক্তের প্রয়োজন"
+
+#: View/Pages/home.ctp:12
+msgid "Contact Info"
+msgstr "যোগাযোগের ঠিকানা"
+
+#: View/Pages/home.ctp:12
+msgid "Date"
+msgstr "তারিখ"
+
+#: View/Pages/home.ctp:12
+msgid "View All"
+msgstr "সকল এন্ট্রি"
+
+#: View/Pages/home.ctp:12
+msgid "Blood Group"
+msgstr "রক্তের গ্রুপ"
+
+#: View/Pages/home.ctp:12
+msgid "Quantity (Pound)"
+msgstr "পরিমাণ  (পাউন্ড)"
+
+#: View/Pages/home.ctp:12
+msgid "Mobile"
+msgstr "মোবাইল"
+
+#: View/Pages/home.ctp:12
+msgid "Bag"
+msgstr "ব্যাগ"
+
+#: View/Pages/home.ctp:12
+msgid "Type What You Want to Search, Fro language change press Ctrl+g and type Bangla"
+msgstr "আপনি কি খুজছেন লিখুন , বাংলা এবং ইংলিশ ভাষা পরিবর্তন করার জন্য Ctrl + g  চাপুন"
+
+#: View/Pages/home.ctp:12
+msgid "Your Search Results"
+msgstr "আপনার  অনুসন্দানের ফলাফল"
+
+#: View/Pages/home.ctp:12
+msgid "No Item Found"
+msgstr "কোন ডাটা খুঁজে পাওয়া যায়নি"
+
+#: View/Pages/home.ctp:12
+msgid "Others %s Information"
+msgstr "%s বিষয়ক অন্যান্য তথ্য"
+
+#: View/Pages/home.ctp:12
+msgid "%s in Map"
+msgstr "মানচিত্রে %s দেখুন"
+
+#: View/Pages/home.ctp:12
+msgid "Pictures of %s"
+msgstr "%s এর ছবি"
+
+#: View/Pages/home.ctp:12
+msgid "Yet No Review"
+msgstr "এখন পর্যন্ত কেহ মন্তব্য করেনি"
+
+#: View/Pages/home.ctp:12
+msgid "Reviews of %s"
+msgstr "%s এর সমস্ত পর্যালোচনা"
+
+#: View/Pages/home.ctp:12
+msgid "Location Details of %s"
+msgstr "%s এর বিস্তারিত ঠিকানা"
+
+#: View/Pages/home.ctp:12
+msgid "Place Type"
+msgstr "আইটেম ক্যাটাগরি"
+
+#: View/Pages/home.ctp:12
+msgid "Address"
+msgstr "ঠিকানা"
+
+#: View/Pages/home.ctp:12
+msgid "Latitute"
+msgstr "অক্ষাংশ"
+
+#: View/Pages/home.ctp:12
+msgid "Longitute"
+msgstr "দ্রাঘিমা"
+
+#: View/Pages/home.ctp:12
+msgid "General information of %s"
+msgstr "%s এর সাধারণ তথ্য"
+
+#: View/Pages/home.ctp:12
+msgid "Website"
+msgstr "ওয়েবসাইট"
+
+#: View/Pages/home.ctp:12
+msgid "Mobile"
+msgstr "মোবাইল"
+
+#: View/Pages/home.ctp:12
+msgid "Email"
+msgstr "ইমেইল"
+
+#: View/Pages/home.ctp:12
+msgid "Postal Address"
+msgstr "ডাক ঠিকানা"
+
+#: View/Pages/home.ctp:12
+msgid "Search Result"
+msgstr "অনুসন্ধানের ফলাফল"
+
+#: View/Pages/home.ctp:12
+msgid "Learn about your surroundings"
+msgstr "আপনার আশপাশ সম্পর্কে জানুন"
+
+#: View/Pages/home.ctp:12
+msgid "Blood Needed"
+msgstr "রক্ত প্রয়োজন"
+
+#: View/Pages/home.ctp:12
+msgid "InfoMap24"
+msgstr "ইনফোম্যাপ২৪"
+
+#: View/Pages/home.ctp:12
+msgid "Password"
+msgstr "পাসওয়ার্ড"
+
+#: View/Pages/home.ctp:12
+msgid "Login"
+msgstr "লগইন"
+
+#: View/Pages/home.ctp:12
+msgid "Your Name"
+msgstr "আপনার নাম"
+
+#: View/Pages/home.ctp:12
+msgid "Your Name"
+msgstr "আপনার নাম"
+
+#: View/Pages/home.ctp:12
+msgid "Your Email"
+msgstr "আপনার ইমেইল"
+
+#: View/Pages/home.ctp:12
+msgid "Mail Subject"
+msgstr "কি সম্পর্কে জানতে চান"
+
+#: View/Pages/home.ctp:12
+msgid "Message"
+msgstr "বিস্তারিত লিখুন"
+
+#: View/Pages/home.ctp:12
+msgid "Send Mail"
+msgstr "প্রেরণ করুন"
+
+#: View/Pages/home.ctp:12
+msgid "Copyright &copy; 2015"
+msgstr "সর্বস্বত্ব সংরক্ষিত &copy; 2015"
+
+#: View/Pages/home.ctp:12
+msgid "Other"
+msgstr "অন্যান্য"
+
+#: View/Pages/home.ctp:12
+msgid "Written By"
+msgstr "লিখেছেন"
+
+#: View/Pages/home.ctp:12
+msgid "PUBLISHED"
+msgstr "প্রকাশিত"
+
+#: View/Pages/home.ctp:12
+msgid "UPDATED"
+msgstr "আপডেট"
+
+#: View/Pages/home.ctp:12
+msgid "Username"
+msgstr "ইউজার নেম"
+
+#: View/Pages/home.ctp:12
+msgid "Search"
+msgstr "অনুসন্ধান"
+
+#: View/Pages/home.ctp:12
+msgid "Forgot password ?"
+msgstr "পাসওয়ার্ড ভুলে গেছেন ?"
+
+#: View/Pages/home.ctp:12
+msgid "Verifying Password"
+msgstr "পাসওয়ার্ড যাচাই করুন"
+
+#: View/Pages/home.ctp:12
+msgid "Video of %s"
+msgstr "ভিডিওতে %s দেখুন "
+
+#: View/Pages/home.ctp:12
+msgid "Please contact us for the latest information about InfoMap24. If you want to join InfoMap24 team or if you want to give us suggestions, please contact us."
+msgstr "ইনফোম্যাপ২৪ সম্পর্কে সর্বশেষ তথ্য জানার জন্য আমাদের সাথে যোগাযোগ করুন । আপনি যদি ইনফোম্যাপ২৪ টীম এ যোগদান করতে চান  অথবা আমাদেরকে সাজেশন দিতে চান তাহলে  আমাদের সাথে যোগাযোগ করুন।"
+
+#: View/Pages/home.ctp:12
+msgid "Flag of %s :"
+msgstr "%s এর পতাকা "
+
+#: View/Pages/home.ctp:12
+msgid "Time Zone of %s :"
+msgstr "%s এর  সময়-মান  :"
+
+#: View/Pages/home.ctp:12
+msgid "National Antheme of %s :"
+msgstr "%s এর  জাতীয় সংগীত : "
+
+#: View/Pages/home.ctp:12
+msgid "Writer of the Antheme"
+msgstr "জাতীয় সংগীত এর লেখক "
+
+#: View/Pages/home.ctp:12
+msgid "Singer of the Antheme"
+msgstr "জাতীয় সংগীত এর গায়ক "
+
+#: View/Pages/home.ctp:12
+msgid "Calling Code of %s :"
+msgstr "%s এর ফোন কোড :"
+
+#: View/Pages/home.ctp:12
+msgid "Capital of %s :"
+msgstr "%s এর রাজধানী :"
+
+#: View/Pages/home.ctp:12
+msgid "Currency of %s :"
+msgstr "%s এর মুদ্রা :"
+
+#: View/Pages/home.ctp:12
+msgid "Domain Extension of %s :"
+msgstr "%s এর ডোমেইন এক্সটেনশন :"
+
+#: View/Pages/home.ctp:12
+msgid "Language of %s :"
+msgstr "%s এর ভাষা :"
+
+#: View/Pages/home.ctp:12
+msgid "Name of Language"
+msgstr "ভাষার নাম"
+
+#: View/Pages/home.ctp:12
+msgid "Language Source"
+msgstr "ভাষার উৎপত্তি"
+
+#: View/Pages/home.ctp:12
+msgid "Currency of %s :"
+msgstr "%s এর মুদ্রা :"
+
+#: View/Pages/home.ctp:12
+msgid "UTC Time"
+msgstr "ইউটিসি সময়"
+
+#: View/Pages/home.ctp:12
+msgid "DST"
+msgstr "ডিএসটি "
+
+#: View/Pages/home.ctp:12
+msgid "DST Period Start End"
+msgstr "ডিএসটি সময়ের শুরু শেষ"
+
+#: View/Pages/home.ctp:12
+msgid "Calling Code"
+msgstr "ফোন কোড"
+
+#: View/Pages/home.ctp:12
+msgid "Calling Code"
+msgstr "ফোন কোড"
+
+#: View/Pages/home.ctp:12
+msgid "ISO Code"
+msgstr "ISO কোড"
+
+#: View/Pages/home.ctp:12
+msgid "Curreny Name"
+msgstr "মুদ্রার নাম"
+
+#: View/Pages/home.ctp:12
+msgid "Population of %s :"
+msgstr "%s এর জনসংখ্যা:"
+
+#: View/Pages/home.ctp:12
+msgid "Population Density in %s :"
+msgstr "%s এ জনসংখ্যার ঘনত্ব:"
+
+#: View/Pages/home.ctp:12
+msgid "Infant Mortality Rate in %s :"
+msgstr "%s এ শিশুমৃত্যুর হার:"
+
+#: View/Pages/home.ctp:12
+msgid "Per capita GDP of %s :"
+msgstr "%s এর মাথাপিছু জিডিপি:"
+
+#: View/Pages/home.ctp:12
+msgid "Literacy Rate in %s :"
+msgstr "%s এ স্বাক্ষরতার হার:"
+
+#: View/Pages/home.ctp:12
+msgid "Add New"
+msgstr "নতুন যোগ করুন"
+
+#: View/Pages/home.ctp:12
+msgid "Your Username"
+msgstr "আপনার ইউজারনেইম "
+
+#: View/Pages/home.ctp:12
+msgid "Submit"
+msgstr "প্রেরণ করুন "
+
+#: View/Pages/home.ctp:12
+msgid "An email has been sent with instructions for resetting your password."
+msgstr "পাসওয়ার্ড রিসেট করার জন্য নির্দেশাবলী সহ আপনাকে একটি ইমেল পাঠানো হয়েছে। "
+
+#: View/Pages/home.ctp:12
+msgid "Log out successful."
+msgstr "সফল ভাবে লগ আউট সম্পন্ন হয়েছে। "
+
+#: View/Pages/home.ctp:12
+msgid "An error occurred. Please try again."
+msgstr "একটি ত্রুটি ঘটেছে. অনুগ্রহ করে আবার চেষ্টা করুন। "
+
+#: View/Pages/home.ctp:12
+msgid "Your password has been reset successfully."
+msgstr "আপনার পাসওয়ার্ড সফলভাবে পরিবর্তিত হয়েছে।"
+
+#: View/Pages/home.ctp:12
+msgid "Reset Password"
+msgstr "পাসওয়ার্ড পরিবর্তন করুন"
+
+#: View/Pages/home.ctp:12
+msgid "New password"
+msgstr "নতুন পাসওয়ার্ড"
+
+#: View/Pages/home.ctp:12
+msgid "Verify Password"
+msgstr "পাসওয়ার্ড যাচাই করুন"
+
+#: View/Pages/home.ctp:12
+msgid "Required Date"
+msgstr "তারিখ"
+
+#: View/Pages/home.ctp:12
+msgid "Publish"
+msgstr "প্রকাশ করুন"
+
+
+#: View/Pages/home.ctp:12
+msgid "Add Blood News"
+msgstr "রক্ত প্রয়োজন সংযুক্ত করুন"
+
+#: View/Pages/home.ctp:12
+msgid "Edit Blood News"
+msgstr "রক্ত প্রয়োজন এ পরিবর্তন করুন"
+
+#: View/Pages/home.ctp:12
+msgid "List of Stadium in %s"
+msgstr "%s এর অন্যান্য স্টেডিয়ামের তালিকা"
+
+#: View/Pages/home.ctp:12
+msgid "List of Secondary School in %s"
+msgstr "%s এর অন্যান্য মাধ্যমিক বিদ্যালয়ের তালিকা"
+
+#: View/Pages/home.ctp:12
+msgid "List of Junior School in %s"
+msgstr "%s এর অন্যান্য  জুনিয়র স্কুলের তালিকা"
+
+#: View/Pages/home.ctp:12
+msgid "List of Madrasahs in %s"
+msgstr "%s এর অন্যান্য মাদ্রাসার তালিকা"
+
+#: View/Pages/home.ctp:12
+msgid "List of Intermediate Colleges in %s"
+msgstr "%s এর অন্যান্য ইন্টারমিডিয়েট কলেজের তালিকা
+
+#: View/Pages/home.ctp:12
+msgid "List of Notable Places in %s"
+msgstr "%s এর উল্লেখযোগ্য স্থানের তালিকা"
+
+#: View/Pages/home.ctp:12
+msgid "List of Post Offices in %s"
+msgstr "%s এর ডাকঘরগুলোর তালিকা"
+
+#: View/Pages/home.ctp:12
+msgid "List of Hotels and Restaurant in %s"
+msgstr "%s এর হোটেল ও রেষ্টুরেন্ট তালিকা"
+
+#: View/Pages/home.ctp:12
+msgid "List of Foreign Embassy in %s"
+msgstr "%s এর বিদেশী দূতাবাসের তালিকা"
+
+#: View/Pages/home.ctp:12
+msgid "List of Airports in %s"
+msgstr "%s এর বিমানবন্দরের তালিকা"
+
+#: View/Pages/home.ctp:12
+msgid "List of Heliport in %s"
+msgstr "%s এর হেলিপোর্ট সমুহের তালিকা"
+
+#: View/Pages/home.ctp:12
+msgid "List of Sea Plane Base in %s"
+msgstr "%s এর সীপ্লেন বেস এর তালিকা"
+
+#: View/Pages/home.ctp:12
+msgid "List of Large Airport in %s"
+msgstr "%s এর বড় এয়ারপোর্ট এর তালিকা"
+
+#: View/Pages/home.ctp:12
+msgid "Stadium of %s whose Capacity is Greater Than %s"
+msgstr "%s এর %s এর অধিক  ধারনক্ষমতা সম্পন্ন  স্টেডিয়ামগুলির তালিকা"
+
+#: View/Pages/home.ctp:12
+msgid "Email Newsletters"
+msgstr "ইমেইল নিউজলেটার"
+
+#: View/Pages/home.ctp:12
+msgid "Sign up for new InfoMap24 content, updates, surveys & offers."
+msgstr "InfoMap24 এর নতুন বিষয়বস্তু এবং আপডেটের জন্য সাইন আপ করুন"
+
+#: View/Pages/home.ctp:12
+msgid " distance and direction in map"
+msgstr " এর  দূরত্ব এবং দিক মানচিত্রে দেখুন"
+
+#: View/Pages/home.ctp:12
+msgid "Log In"
+msgstr "লগ ইন"
+
+#: View/Pages/home.ctp:12
+msgid "Help & Support"
+msgstr "হেল্প ও সাপোর্ট"
+
+#: View/Pages/home.ctp:12
+msgid "Social Media"
+msgstr "সামাজিক মাধ্যম"
+
+#: View/Pages/home.ctp:12
+msgid "Submit"
+msgstr "পাঠান"
+
+
+#: View/Pages/home.ctp:12
+msgid "Sign in"
+msgstr "লগ ইন"
+
+#: View/Pages/home.ctp:12
+msgid "InfoMap24 Login"
+msgstr "InfoMap24 লগ ইন"
+
+#: View/Pages/home.ctp:12
+msgid "Sign Up"
+msgstr "সাইন আপ"
+
+#: View/Pages/home.ctp:12
+msgid "You can log in using bellow method"
+msgstr "আপনি নিন্মোক্ত মাধ্যমে লগ ইন করতে পারেন"
+
+#: View/Pages/home.ctp:12
+msgid "<i class="fa fa-facebook modal-icons"></i> Signin with Facebook"
+msgstr "<i class="fa fa-facebook modal-icons"></i> ফেসবুকের সঙ্গে চলুন"
+
+#: View/Pages/home.ctp:12
+msgid "<i class="fa fa-google-plus modal-icons"></i> Signin with Google"
+msgstr "<i class="fa fa-facebook modal-icons"></i> গুগলের সঙ্গে চলুন"
+
+#: View/Pages/home.ctp:12
+msgid "Details of %s"
+msgstr "%s এর বিস্তারিত"
+
+#: View/Pages/home.ctp:12
+msgid "Write a Review"
+msgstr "পর্যালোচনা লিখুন"
+
+#: View/Pages/home.ctp:12
+msgid "How to go %s"
+msgstr "কিভাবে %s যেতে"
+
+#: View/Pages/home.ctp:12
+msgid "Where to stay at %s"
+msgstr "কিভাবে %s যেতে"
+
+#: View/Pages/home.ctp:12
+msgid "Travel tips of %s"
+msgstr "কিভাবে %s যেতে"
+
+#: View/Pages/home.ctp:12
+msgid "Where to eat at %s"
+msgstr "কিভাবে %s যেতে"
+
