@@ -1,71 +1,74 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<?php echo $this->Html->charset(); ?>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="<?php if(!empty($metadescription) && isset($metadescription)){ echo $metadescription;}?>">
-	<meta name="keyword" content="<?php if(!empty($keyword)){echo $keyword;}?>">
-	<meta name="author" content="">
-	<title><?php echo $title_for_layout; ?></title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-	<?php
+<?php echo $this->element('infothemenew/meta'); ?>
+<!-- css -->
+<?php
+	echo $this->Html->css('infothemenew/bootstrap.min');
+	echo $this->Html->css('infothemenew/materialdesignicons.min');
+	echo $this->Html->css('infothemenew/jquery.mCustomScrollbar.min');
+	echo $this->Html->css('font-awesome.min');
+	echo $this->Html->css('infothemenew/prettyPhoto');
+	echo $this->Html->css('infothemenew/unslider');
+	echo $this->Html->css('infothemenew/template');
+	echo $this->Html->css('infothemenew/theme');
+	
 		echo $this->Html->css('bootstrap/sprite-flags-64x64');
 		echo $this->Html->css('bootstrap/sprite-flags-48x48');
 		echo $this->Html->css('bootstrap/sprite-flags-32x32');
 		echo $this->Html->css('bootstrap/sprite-flags-24x24');
 		echo $this->Html->css('bootstrap/sprite-flags-16x16');
-		
-		// echo $this->Html->css('bootstrap/bootstrap.min');
-		// echo $this->Html->css('bootstrap/bootstrap-theme.min');
-		// echo $this->Html->css('bootstrap/theme');
-		// echo $this->Html->css('font-awesome.min');
-		// echo $this->Html->css('google-jquery-ui');
-		echo $this->Html->css('home-combined');
-		echo $this->Html->css('bootstrap/theme');
-		//echo $this->Html->script('jquery.min.js');
-		echo $this->Html->script('bootstrap.min');
-		echo $this->Html->script('jquery.datetimepicker.full.min'); 
-
-	?>
-	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><?php echo $this->Html->script('bootstrap/ie8-responsive-file-warning'); ?>
-	<?php echo $this->Html->script('bootstrap/ie-emulation-modes-warning');?>
-	<![endif]-->
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 	
-<link rel="icon" href="http://infomap24.com/favicon.ico" type="image/x-icon" />
-<link rel="shortcut icon" href="http://infomap24.com/favicon.ico" type="image/x-icon" />
-<meta property="fb:admins" content="1715859507"/>
+?>
 </head>
-<body role="document">
+<body data-target="#nino-navbar" data-spy="scroll">
 <?php if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); else ob_start(); ?>
-	<!-- Fixed navbar -->
-    <?php 
-	echo $this->element('infomap_top_menu');
-	?>
-	<div class="container theme-showcase" role="main">
-	<div class="breadcrumb">
-		<?php
-		echo $this->Html->getCrumbs(' > ', __('Home'));
-		?>
-	</div>
-				<?php echo $this->Session->flash(); echo $this->Session->flash('auth'); ?>
-				<?php echo $content_for_layout; ?>
-			
-	</div>
-
-	<?php
-	echo $scripts_for_layout;
-	?>
+    <!--/HEADER SECTION -->
+    <?php echo $this->element('infothemenew/header-common'); ?>
+	<!-- end header --> 
+			<div class="container">
+			<div class="breadcrumb">
+				<?php
+				echo $this->Html->getCrumbs(' > ', __('Home'));
+				?>
+			</div>
+			</div>
+			<?php echo $this->Session->flash(); echo $this->Session->flash('auth'); ?>
+			<?php echo $content_for_layout; ?>
 	
-	<?php echo $this->element('oximap_footer'); ?>
-	<?php echo $this->element('sql_dump'); ?>
-</body>
+        
+    <!--/ FOOTER SECTION-->  
+    <?php echo $this->element('infothemenew/footer'); ?>
+	<!--/ Footer  End --> 
+     
+    
+	<!-- Scroll to top
+    ================================================== -->
+	<a href="#" id="nino-scrollToTop">Go to Top</a>
+	<?php
+	echo $this->Html->script('infothemenew/jquery.min');
+	echo $this->Html->script('infothemenew/isotope.pkgd.min');
+	echo $this->Html->script('infothemenew/jquery.prettyPhoto');
+	echo $this->Html->script('infothemenew/bootstrap.min');
+	echo $this->Html->script('infothemenew/jquery.hoverdir');
+	echo $this->Html->script('infothemenew/modernizr.custom.97074');
+	echo $this->Html->script('infothemenew/jquery.mCustomScrollbar.concat.min');
+	echo $this->Html->script('infothemenew/unslider-min');
+	echo $this->Html->script('infothemenew/template');
+	?>
 
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<!-- css3-mediaqueries.js for IE less than 9 -->
+	<!--[if lt IE 9]>
+	    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+    
+
+    <?php echo $this->element('sql_dump'); ?>  
+    
+</body>
 </html>
+

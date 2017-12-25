@@ -28,12 +28,40 @@
 					<div class="nino-menuItem pull-right">
 						<div class="collapse navbar-collapse pull-left" id="nino-navbar-collapse">
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="#nino-header">Home <span class="sr-only">(current)</span></a></li>
-								<li><a href="#nino-story">About</a></li>
-								<li><a href="#nino-services">Service</a></li>
-								<li><a href="#nino-ourTeam">Our Team</a></li>
-								<li><a href="#nino-portfolio">Work</a></li>
-								<li><a href="#nino-latestBlog">Blog</a></li>
+								<li class="active"><a href="<?php echo $this->webroot;?>">Home</a></li>
+								<li>
+								<?php
+								if($queryCountry != 'all'){
+									echo $this->Html->link(__('Browse'),array('plugin'=>'information','controller' => 'siteactions', 'action' => 'sitemap','language' => $currentLng,'?' => array('country' => $queryCountry)));
+								}else{
+									echo $this->Html->link(__('Browse'),array('plugin'=>'information','controller' => 'siteactions', 'action' => 'world','language' => $currentLng));
+								}
+								?>
+								</li>
+								<li>
+								<?php 
+								if($currentLng == 'bn'){
+								echo $this->Html->link(__('English'),array('plugin'=>'information','controller' => 'siteactions', 'action' => 'changeLanguage', 'language' => 'en'));
+								}else{
+								echo $this->Html->link(__('বাংলা'),array('plugin'=>'information','controller' => 'siteactions', 'action' => 'changeLanguage', 'language' => 'bn'));
+								}
+								
+								?>
+								</li>
+								<?php
+									if(empty($userID)){
+									echo '<li>';
+									echo $this->Html->link(__('Register'),array('plugin'=>'users','controller'=>'users','action'=>'add','language' => $currentLng));
+									echo '</li>';
+									echo '<li>';
+									echo $this->Html->link(__('Login'),array('plugin'=>'users','controller'=>'users','action'=>'login'));
+									echo '</li>';
+									}else{
+									echo '<li>';
+									echo $this->Html->link(__('Logout'),array('plugin'=>'users','controller'=>'users','action'=>'logout'));
+									echo '</li>';
+									}
+								?>
 							</ul>
 						</div><!-- /.navbar-collapse -->
 						<ul class="nino-iconsGroup nav navbar-nav">

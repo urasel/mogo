@@ -1,15 +1,12 @@
 <!-- Footer
     ================================================== -->
-	<?php $currentLng = $this->Session->read('Config.language');?>
     <footer id="footer">
         <div class="container">
         	<div class="row">
         		<div class="col-md-4">
         			<div class="colInfo">
-	        			<div class="footerLogo row">
-							<div class="col-md-12">
-								<a class="navbar-brand" href="<?php echo $this->webroot;?>"></a>	
-							</div>
+	        			<div class="footerLogo">
+	        				<a href="#" >MoGo</a>	
 	        			</div>
 	        			<p>
 	        				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -18,7 +15,7 @@
 	        				<div class="totalFollow"><span>15k</span> followers</div>
 	        				<div class="socialNetwork">
 	        					<span class="text">Follow Us: </span>
-	        					<a href="https://www.facebook.com/infomap24" class="nino-icon"><i class="mdi mdi-facebook"></i></a>
+	        					<a href="" class="nino-icon"><i class="mdi mdi-facebook"></i></a>
 	        					<a href="" class="nino-icon"><i class="mdi mdi-twitter"></i></a>
 	        					<a href="" class="nino-icon"><i class="mdi mdi-instagram"></i></a>
 	        					<a href="" class="nino-icon"><i class="mdi mdi-pinterest"></i></a>
@@ -28,54 +25,42 @@
 	        					<a href="" class="nino-icon"><i class="mdi mdi-tumblr"></i></a>
 	        				</div>
 	        			</div>
-						<h4><?php echo __('Email Newsletters');?></h4>
-						<?php 
-						echo $this->Form->create('SubscriberList',array('url' => array('plugin' => 'information','controller' => 'subscriber_lists', 'action' => 'subscription','language' =>$currentLng),'class' =>'nino-subscribeForm'));
-						echo '<div class="input-group input-group-lg">';
-							echo $this->Form->input('email',array('placeholder'=>"Your Email",'label' =>false ,'div'=>false,'class' =>'form-control'));
-							echo '<span class="input-group-btn">';
-							echo $this->Form->button(__('Subscribe'),array('type'=>'submit','class'=>"btn btn-success"));
-							echo '</span>';
-						echo '</div>';
-						echo $this->Form->end();
-						?>
-						
+	        			<form action="" class="nino-subscribeForm">
+	        				<div class="input-group input-group-lg">
+								<input type="email" class="form-control" placeholder="Your Email" required>
+								<span class="input-group-btn">
+									<button class="btn btn-success" type="submit">Subscribe</button>
+								</span>
+							</div>
+	        			</form>
         			</div>
         		</div>
         		<div class="col-md-4 col-sm-6">
         			<div class="colInfo">
-	        			<h3 class="nino-colHeading">About Us</h3>
-						<div class="footer-link">
-							<ul class="listArticles">
-							<?php 
-							echo '<li layout="row" class="verticalCenter">';
-							echo $this->Html->link(__('About Us'),array('plugin'=>'nodes','controller' => 'nodes', 'action' => 'view','type'=>'page','slug'=> 'aboutus','language' =>$currentLng));
-							echo '</li>';
-							echo '<li layout="row" class="verticalCenter">';
-							echo $this->Html->link(__('Terms & Condition'),array('plugin'=>'nodes','controller' => 'nodes', 'action' => 'view','type'=>'page','slug'=> 'terms_condition','language' =>$currentLng));
-							echo '</li>';
-							echo '<li layout="row" class="verticalCenter">';
-							echo $this->Html->link(__('Privacy & Policy'),array('plugin'=>'nodes','controller' => 'nodes', 'action' => 'view','type'=>'page','slug'=> 'privacy_policy','language' =>$currentLng));
-							echo '</li>';
-							
-							?>
-							</ul>
-						</div>
-        			</div>
-					<div class="colInfo">
-	        			<h3 class="nino-colHeading">Help & Support</h3>
-						<div class="footer-link">
-							<ul class="listArticles">
-							<?php 
-							echo '<li layout="row" class="verticalCenter">';
-							echo $this->Html->link(__('Log In'),array('plugin'=>'users','controller' => 'users', 'action' => 'login'));
-							echo '</li>';
-							echo '<li layout="row" class="verticalCenter">';
-							echo $this->Html->link(__('Contact Us'),array('plugin'=>'information','controller' => 'siteactions', 'action' => 'contact','language' =>$currentLng));
-							echo '</li>';
-							?>
-							</ul>
-						</div>
+	        			<h3 class="nino-colHeading">Blogs</h3>
+	        			<ul class="listArticles">
+	        				<li layout="row" class="verticalCenter">
+	        					<a class="articleThumb fsr" href="#"><img src="images/our-blog/img-4.jpg" alt=""></a>
+	        					<div class="info">
+	        						<h3 class="articleTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing</a></h3>
+	        						<div class="date">Jan 9, 2016</div>
+	        					</div>
+	        				</li>
+	        				<li layout="row" class="verticalCenter">
+	        					<a class="articleThumb fsr" href="#"><img src="images/our-blog/img-5.jpg" alt=""></a>
+	        					<div class="info">
+	        						<h3 class="articleTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing</a></h3>
+	        						<div class="date">Jan 9, 2016</div>
+	        					</div>
+	        				</li>
+	        				<li layout="row" class="verticalCenter">
+	        					<a class="articleThumb fsr" href="#"><img src="images/our-blog/img-6.jpg" alt=""></a>
+	        					<div class="info">
+	        						<h3 class="articleTitle"><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing</a></h3>
+	        						<div class="date">Jan 9, 2016</div>
+	        					</div>
+	        				</li>
+	        			</ul>
         			</div>
         		</div>
         		<div class="col-md-4 col-sm-6">
@@ -99,14 +84,12 @@
         			</div>
         		</div>
         	</div>
-			<div class="nino-copyright">
-			<p class="text-muted"><?php echo __('Copyright &copy; 2017'); ?> <a href="http://www.infomap24.com" alt="<?php echo __('Learn about your surroundings');?>">InfoMap24</a></p>
-			</div>
+			<div class="nino-copyright">Copyright &copy; 2016 <a target="_blank" href="http://www.ninodezign.com/" title="Ninodezign.com - Top quality open source resources for web developer and web designer">Ninodezign.com</a>. All Rights Reserved. <br/> MoGo free PSD template by <a href="https://www.behance.net/laaqiq">Laaqiq</a></div>
         </div>
 		<?php echo $this->Html->script('imageloader/echo.min'); ?>
 		  <script>
 		  echo.init({
-			offset: 200,
+			offset: 100,
 			throttle: 250,
 			unload: false,
 			callback: function (element, op) {

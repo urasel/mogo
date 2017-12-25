@@ -67,10 +67,10 @@ $currentLng = $this->Session->read('Config.language');
 		<div class="title text-center" data-scroll-reveal="enter from the bottom after 0.2s">
 		   <div class="aligncenter">     
 			  
-			<!--<p>Designed by © 2015 <a href="http://www.createwebsite.net">Create Website</a></p>-->
-			<p class="text-muted"><?php echo __('Copyright &copy; 2017'); ?> <a href="http://www.infomap24.com" alt="<?php echo __('Learn about your surroundings');?>">InfoMap24</a></p>
-			<a data-scroll-reveal="enter from the bottom after 0.3s" href="#home"><i class="fa fa-angle-up"></i></a>
-		</div> 
+				<!--<p>Designed by © 2015 <a href="http://www.createwebsite.net">Create Website</a></p>-->
+				<p class="text-muted"><?php echo __('Copyright &copy; 2017'); ?> <a href="http://www.infomap24.com" alt="<?php echo __('Learn about your surroundings');?>">InfoMap24</a></p>
+				<a data-scroll-reveal="enter from the bottom after 0.3s" href="#home"><i class="fa fa-angle-up"></i></a>
+			</div> 
 	</div>  <!-- end container -->
 	</div>  <!-- end container -->
 </section>

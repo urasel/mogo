@@ -1,9 +1,7 @@
 <section id="nino-latestBlog">
 <div class="container">
 <?php
-
 echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['PlaceType']['name']).'</h2>';
-
 //debug($nearbies);		
 				$currentLng = $this->Session->read('Config.language');		
 				echo '<div class="sectionContent">';
@@ -154,19 +152,20 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 												}
 												
 												if(!empty($imglink) && file_exists($fileExistPath)){
+													
 													if($className == 'TopicData'){
 														
 														echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'nearbymap','data-echo' => "topics/medium/$imglink"));
 													}else{
 														
-															echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'infos','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'id'=> $newID,'ext' => 'asp'),'class' =>'nearbymap','alt' =>$metaTag,'data-echo' => "$foldername/photogallery/$file"));
+															echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'infos','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'id'=> $newID,'ext' => 'asp'),'class' =>'nearbymap','alt' =>$metaTag,'data-echo' => "$foldername/photogallery/$imglink"));
 														
 													}
 												}else{
 													if($className == 'TopicData'){
-														echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'nearbymap','data-echo' => ''));
+														echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'nearbymap','data-echo' => SITEIMAGE.'/img/sample.jpg'));
 													}else{
-														echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'infos','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'id'=> $newID,'ext' => 'asp'),'class' =>'nearbymap','alt' =>$metaTag,'data-echo' => ''));
+														echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'infos','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'id'=> $newID,'ext' => 'asp'),'class' =>'nearbymap','alt' =>$metaTag,'data-echo' => SITEIMAGE.'/img/sample.jpg'));
 													}
 													
 												}
@@ -180,9 +179,9 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 											
 											echo '<h3 class="articleTitle">';
 												if($className == 'TopicData'){
-													echo $this->Html->link(mb_substr($nearplacename,0,55), array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),array('alt' =>$nearplacename,'class' =>'topiclink '.$postSeo));
+													echo $this->Html->link(mb_substr($nearplacename,0,55), array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),array('alt' =>$nearplacename,'class' =>$postSeo));
 												}else{
-													echo $this->Html->link(mb_substr($nearplacename,0,55), array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$nearplacename,'class' =>'topiclink '.$postSeo));
+													echo $this->Html->link(mb_substr($nearplacename,0,55), array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$nearplacename,'class' =>$postSeo));
 												}
 											echo '</h3>';
 											if(!empty($shortDescription)){
