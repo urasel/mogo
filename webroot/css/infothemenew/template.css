@@ -62,7 +62,6 @@ a[class*="glyphicon-"] {
 h1, h2, h3, h4, h5, h6 {
 	margin: 0px 0 10px;
 	color: #333;
-	text-transform: uppercase;
 	font-family: 'Montserrat', sans-serif;
 }
 h1, h2 {
@@ -452,9 +451,10 @@ section {
 	line-height: 1;
 	position: relative;
 	padding-bottom: 20px;
-	margin-bottom: 30px;
+	margin-bottom: 15px;
 	text-align: center;
 	color: #333;
+	border-bottom:2px solid #e5e5e5;
 }
 .nino-sectionHeading .nino-subHeading {
 	display: block;
@@ -868,8 +868,9 @@ footer {
 	background: #f8f8f8;
 }
 footer .nino-colHeading {
-	margin: 0 0 25px;
-	font-size: 14px;
+	margin: 0 0 15px;
+	font-size: 16px;
+	font-weight:700px;
 }
 footer .colInfo {
 	margin-bottom: 30px;
@@ -931,7 +932,7 @@ footer .nino-subscribeForm .input-group .btn {
 }
 /* ----------- COL 2 ----------- */
 footer .listArticles > li {
-	margin-bottom: 20px;
+	margin-bottom: 7px;
 }
 footer .listArticles > li:last-child {
 	margin-bottom: 0;
@@ -972,7 +973,7 @@ footer .nino-copyright {
 	left: 0;
 	top: -100%;
 	width: 100%;
-	height: 100%;
+	height: 130px;
 	background: rgba(0,0,0,.9);
 	padding: 20px;
 	z-index: 10;
@@ -996,8 +997,8 @@ footer .nino-copyright {
     background: none;
     border: none;
     border-bottom: 1px solid #333;
-    font-weight: 700;
-    padding: 20px 0;
+    font-weight: 400;
+    padding: 10px 0;
     color: #fff;
     -webkit-transform: translateY(-50%);
 	   -moz-transform: translateY(-50%);
@@ -1365,4 +1366,11 @@ a.btn:hover {
 	font-weight:400px;
 	font-size:16px;
 	color:#444;
+}
+.navbar-inverse .navbar-brand, .navbar-brand {
+	background: rgba(0, 0, 0, 0) url("../../img/logo.png?88ee124") no-repeat scroll center 5px;
+	display: block;
+	height: 46px;
+	margin-left: 0;
+	width: 170px;
 }

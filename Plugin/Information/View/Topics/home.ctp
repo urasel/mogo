@@ -162,9 +162,9 @@
 										$imglink = $topics['class_image'];
 										$fileExistPath = WWW_ROOT.'img'.DS.$imglink;
 										if(!empty($imglink) && file_exists($fileExistPath)){
-											echo $this->Html->image($imglink, array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$topics['placetype_seoname'],'point'=> $topics['point_seoname'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'data-original' => $imglink,'alt' =>$placename.':'.$shortDescription));
+											echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$topics['placetype_seoname'],'point'=> $topics['point_seoname'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'data-original' => $imglink,'alt' =>$placename.':'.$shortDescription,'data-echo' => SITEIMAGE.'/img/'.$imglink));
 										}else{
-											echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$topics['placetype_seoname'],'point'=> $topics['point_seoname'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'alt' =>$placename.':'.$shortDescription));
+											echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$topics['placetype_seoname'],'point'=> $topics['point_seoname'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'alt' =>$placename.':'.$shortDescription, 'data-echo' => 'default.png'));
 										}
 										
 										echo '<div class="date">';

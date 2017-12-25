@@ -3656,7 +3656,7 @@ class SiteactionsController extends InformationAppController {
 				$mainPointLng = 0;
 				}
 				$options = array(
-								'limit' => 8,
+								'limit' => 6,
 								'conditions' => array(
 									"Point.id !=" => $pointDetails['Point']['id'],
 									"Point.place_type_id" => $pointDetails['PlaceType']['id'],
@@ -3675,6 +3675,7 @@ class SiteactionsController extends InformationAppController {
 									"PlaceType.$fieldName as name",
 									'PlaceType.icon',
 									'PlaceType.seo_name',
+									'PlaceType.pluralname',
 									 "$className.name",
 									 "$className.degree",
 									 "$className.metatag",
@@ -3699,6 +3700,7 @@ class SiteactionsController extends InformationAppController {
 						"PlaceType.$fieldName as name",
 						'PlaceType.icon',
 						'PlaceType.seo_name',
+						'PlaceType.pluralname',
 						"$className.*",
 						 
 						
@@ -3734,6 +3736,7 @@ class SiteactionsController extends InformationAppController {
 						"PlaceType.$fieldName as name",
 						'PlaceType.icon',
 						'PlaceType.seo_name',
+						'PlaceType.pluralname',
 						"$className.*",
 						 
 						
@@ -3852,7 +3855,7 @@ class SiteactionsController extends InformationAppController {
 				$mainPointLng = 0;
 				}
 				$options = array(
-								'limit' => 8,
+								'limit' => 6,
 								'conditions' => array(
 									"$className.id !=" => $pointDetails[$className]['id'],
 									"$className.place_type_id" => $pointDetails['PlaceType']['id'],
@@ -4018,6 +4021,7 @@ class SiteactionsController extends InformationAppController {
 									"PlaceType.$fieldName as name",
 									'PlaceType.icon',
 									'PlaceType.seo_name',
+									'PlaceType.pluralname',
 								),
 								'order' => array('distance ASC'),
 							);
@@ -4083,6 +4087,7 @@ class SiteactionsController extends InformationAppController {
 									"PlaceType.$fieldName as name",
 									'PlaceType.icon',
 									'PlaceType.seo_name',
+									'PlaceType.pluralname',
 								),
 								'order' => array('distance ASC'),
 							);
@@ -4124,6 +4129,7 @@ class SiteactionsController extends InformationAppController {
 									"PlaceType.$fieldName as name",
 									'PlaceType.icon',
 									'PlaceType.seo_name',
+									'PlaceType.pluralname',
 								)
 							);
 				

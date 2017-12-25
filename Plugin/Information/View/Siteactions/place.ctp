@@ -122,7 +122,7 @@
 				$adminLink = '';
 			}
 			
-			echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><h2>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h2></div>'; 
+			echo '<h2>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h2>'; 
 			?>
 			<?php 
 			echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><p>'.$place['BdThanas']['name'].', '.$place['BdDivision']['name'].','.$place['Country']['name'].' '.'</p></div></div>'; ?>
@@ -133,32 +133,7 @@
 			<?php 
 			echo $this->element('social_info_part');
 			$imageClass = $className.'Image';
-			if(is_array($place[$imageClass]) && sizeof($place[$imageClass]) > 0){
-				echo '<div class="row">';
-				echo '<div class="col-md-12">';
-				echo '<div class="panel panel-info">';
-				echo '<div class="panel-heading"><h4 class="panel-title">'.__('Pictures of %s',$title).'</h4></div>';
-				echo '<div class="panel-body" style="padding:0 15px">';
-				echo '<div class="row">';
-				$totalImage = sizeof($place[$imageClass]);
-				if($totalImage > 1){
-				echo '<div id="slideShowDiv">';
-				echo $this->element('jssorplaceslider',array("placeimage" => $place[$imageClass],'placename' => $title,'foldername' =>'places'));
-				echo '</div>';
-				echo '<div id="singleImageDiv">';
-				$imglink = "places/photogallery/".$place[$imageClass][0]['file'];
-				echo $this->Html->image($imglink,array('alt'=>"$title Snapshot"));
-				echo '</div>';
-				}else{
-				$imglink = "places/photogallery/".$place[$imageClass][0]['file'];
-				echo $this->Html->image($imglink,array('alt'=>"$title Snapshot",'class' =>'img-responsive'));
-				}
-				echo '</div>';
-				echo '</div>';
-				echo '</div>';
-				echo '</div>';
-				echo '</div>';
-			}
+			echo $this->element('image_slider',array('title'=> $title,'className' => $className,'place' => $place,'imagefolder' => 'places'));
 			
 			 
 			if(!empty($place[$className]['facilitydata']) || !empty($place[$className]['extrafacilitydata'])){
@@ -326,31 +301,11 @@
 		</div>
 		
 		<div class="col-md-4">
-			<div class="row">
+			<?php
+			echo $this->element('points-right-part', array('title' => $title,'nearbies' => $nearbies,'place' => $place,'className' => $className));
+
+			?>
 			
-				<div class="col-md-12" id="mapdiv">
-		
-					<?php
-					echo $this->element('parts/viewmap', array('title' => $title,'place'=>$place,'className' => $className));
-					
-					?>
-				</div>
-				<div id="canvas" style="display:none;"><p>Canvas:</p></div>
-				<div style="width:200px; float:left; display:none;" id="image"></div>
-				<div class="col-md-12">
-					<?php
-					echo '';
-					echo '<div class="panel panel-info" style="margin-top:0px;">';
-					echo '<div class="panel-heading"><h4 class="panel-title">'.__('Reviews of %s',$title).'</h4></div>';
-					echo '<div class="panel-body">';
-					echo '<div style="width: auto; max-height: 300px">'.__('Yet No Review').'</div>';
-					echo '</div>';
-					echo '</div>';
-					
-					?>
-				</div>
-			
-			</div>
 		</div>
 		
 		

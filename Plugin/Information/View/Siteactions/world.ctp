@@ -23,11 +23,10 @@
 	  
 	  //debug($aboutContinent);
 ?>
-<div class="row">
-	<div class="col-md-12">
-		<div class="col-md-12 sectionblock">
+<section>
+<div class="container">
+<div class="row placeview">
 			<?php 
-			echo '<div class="row">';
 				echo '<div class="col-md-12">';
 						echo '<h1 class="posttitle">'.$title_for_layout.'</h1>';
 						
@@ -78,9 +77,9 @@
 					echo '</div>';
 				}
 				echo '</div>';
-	echo '</div>';
-	echo '</div>';
 	
 echo '</div>';
 	
 	?>
+</div>
+</section>

@@ -972,12 +972,6 @@ td.placeaddress{
 	width: 100%;
 	color: #5f5f5f;
 }
-.placeview h3{
-	margin: 2px 2px;
-	font-size:17px;
-	font-weight:bold;
-	color:#ff6a00;
-}
 
 .placeview .nearPlace{
 	padding:0px;
@@ -1068,25 +1062,6 @@ td.placeaddress{
 	*/
 	background: rgba(0, 0, 0, 0) url("../../img/wrap.png") repeat-x scroll 0 0;
 	margin: 0 auto;
-}
-.sticky .navbar-header .top-navbar-brand {
-	background: rgba(0, 0, 0, 0) url("../../img/logo.png?88ee124") no-repeat scroll center 5px;
-	display: block;
-	height: 48px;
-	margin-left: 0;
-	width: 167px;
-}
-
-
-.navbar-inverse .navbar-brand, .navbar-brand{
-	background: rgba(0, 0, 0, 0) url("../../img/logo.png?88ee124") no-repeat scroll center 5px;
-	display: block;
-	height: 46px;
-	margin-left: 0;
-	width: 170px;
-}
-.navbar-inverse .navbar-brand:hover {
-	background: rgba(0, 0, 0, 0) url("../../img/logo.png?88ee124") no-repeat scroll center 5px;
 }
 
 .dropdown-menu {
@@ -1775,14 +1750,7 @@ h1, .h1 {
   margin-bottom: 15px;
   padding-bottom: 5px;
 }
-a {
-  color: #000;
-  text-decoration: none;
-}
-a:hover {
-  color: #ff6a00;
-  text-decoration: none;
-}
+
 table.innertabletd {
   background-color: transparent !important;
 }
@@ -2674,6 +2642,9 @@ blockquote p {
 }
 .panel-body {
   padding: 5px 10px 10px 15px;
+}
+.popular_article {
+    margin-top: 15px;
 }
 
 /***************** Tab Part CSS End****/

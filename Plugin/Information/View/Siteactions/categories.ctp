@@ -26,10 +26,13 @@
 	  
 	  $address = '';
 ?>
+<section>
+<div class="container">
+	<div class="row placeview">
 <?php
 
-echo '<div class="row"><div class="col-md-8 leftbody">';
-		echo '<h1 class="cattitle">'.$title_for_layout.'</h1>';
+echo '<div class="col-md-8 leftbody">';
+		echo '<h2>'.$title_for_layout.'</h2>';
 		echo '<div class="sortingblock">';
 			echo '<div class="row">';
 			echo '<div class="col-md-12">';
@@ -216,3 +219,5 @@ echo '<div class="row"><div class="col-md-8 leftbody">';
 echo '</div>';
 				
 ?>
+</div>
+</section>

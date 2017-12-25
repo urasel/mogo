@@ -1,11 +1,10 @@
 <?php
       $this->Html->addCrumb($title_for_layout ,  '' , array('class' => 'active'));
 ?>
+<section>
+<div class="container">
+<div class="row placeview">
 <?php
-echo '<div class="row">';
-echo '<div class="col-md-12">';
-echo '<div class="col-md-12">';
-echo '<div class="row">';
 	echo '<div class="col-md-12  sectionblock">';
 		
 			echo '<div class="row"><div class="col-md-6">';
@@ -23,9 +22,6 @@ echo '<div class="row">';
 	echo '</div>';
 echo '</div>';
 echo '</div>';
-
-
-echo '</div>';
-echo '</div>';
 	
 ?>
+</section>

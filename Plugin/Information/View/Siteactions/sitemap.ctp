@@ -17,9 +17,12 @@
 		  $this->loadHelpers(array('Language'));
 		  
 	 ?>
+<section>
+<div class="container">
+	<div class="row placeview">
 	<?php
-	echo '<h1>'.$title_for_layout.'</h1>';
-		echo '<div class="row"><div class="col-md-12">';
+		echo '<div class="col-md-12">';
+		echo '<h2>'.$title_for_layout.'</h2>'; 
 			//debug($categories);
 			echo '<div class="row">';
 			foreach($categories as $category):
@@ -75,7 +78,9 @@
 			endforeach;
 			echo '</div>';
 		echo '</div>';
-		echo '</div>';
 		echo '<div class="row"><div class="col-md-12">&nbsp;</div></div>';
 		
 	?>
+	</div>
+	</div>
+</section>
