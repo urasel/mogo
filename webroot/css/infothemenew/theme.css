@@ -25,10 +25,6 @@
 	padding-right: 15px;
 	width: 100%;
 }
-.infositelink{
-	font-weight:bold !important;
-	color: #0283df !important;
-}
 .infositelink:hover{
 	font-weight:bold !important;
 	color: #00adff !important;
@@ -899,11 +895,11 @@ margin-bottom: 3px;
   width: 100%;
 }
 td.placename{
-	padding-top:4px !important;
+	padding-top:0px !important;
 }
 td.placename a{
-	font-size:14px;
-	color:#474749;
+	font-size:18px;
+	color:#333;
 	font-weight:normal;
 	text-decoration:none;
 }

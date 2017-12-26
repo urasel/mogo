@@ -3,16 +3,15 @@
 	  $this->Html->addCrumb(__('Sitemap'), array('plugin'=>'information','controller' => 'siteactions','action' => 'sitemap')) ;
       $this->Html->addCrumb(__('Search Result'),  '', array('class' => 'active')) ;
 ?>
+<section>
+<div class="container">
+		<div class="row placeview">
 <?php
-echo '<div class="row"><div class="col-md-8 searchpage leftbody">';
-echo '<div class="panel panel-info" style="margin-top:0px;">';
-echo '<div class="panel-heading">';
-echo '<h1>'.$title_for_layout.'</h1>';
-echo '</div>';
+echo '<div class="col-md-8">';
+echo '<h2 class="nino-sectionHeading">'.$title_for_layout.'</h2>'; 
 	$language = $this->Session->read('Config.language');
 	//echo '<div class="panel panel-info" style="margin-top:0px;">';
-		echo '<div class="panel-body">';
-		echo '<div class="table-responsive">';
+		echo '<div class="table-responsive searchrow">';
 		echo "<table class='table'>";
 		echo "<tbody id='posts-list'>";
 		if(count($places) > 0){
@@ -33,7 +32,7 @@ echo '</div>';
 		 /* Field Select Language Wise End */
 		echo '<tr class="post-item">';
 		echo '<td>';
-		echo '<div class="table-responsive">';
+		echo '<div class="table-responsive searchrow">';
 		echo '<table class="table innertabletd">';
 		echo '<tr>';
 		echo '<td rowspan="2"><div class="searchiconblock">';
@@ -46,9 +45,9 @@ echo '</div>';
 		$newID = $stringlength.$place['Point']['id'];
 		//$placename = $place['Point']['name'];
 		if($place['PlaceType']['singlename'] == 'topic'){
-		echo $this->Html->link($placename, array('controller'=>'points','action'=>'topic','category'=>$place['PlaceType']['seo_name'],'point'=> $place['Point']['seo_name'],'language'=>$language,'id'=> $place['Point']['id'],'ext' => 'asp'),array('alt' =>$placename,'class' => 'infositelink'));
+			echo $this->Html->link($placename, array('controller'=>'points','action'=>'topic','category'=>$place['PlaceType']['seo_name'],'point'=> $place['Point']['seo_name'],'language'=>$language,'id'=> $place['Point']['id'],'ext' => 'asp'),array('alt' =>$placename,'class' => 'infositelink'));
 		}else{
-		echo $this->Html->link($placename, array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place['Point']['seo_name'],'country'=>$queryCountry,'language'=>$language,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'class' => 'infositelink'));
+			echo $this->Html->link($placename, array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place['Point']['seo_name'],'country'=>$queryCountry,'language'=>$language,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'class' => 'infositelink'));
 		}
 
 		
@@ -76,7 +75,6 @@ echo '</div>';
 		}
 		echo '</tbody>';
 		echo '</table>';
-		echo '</div>';
 		echo '</div>';
 		if(isset($matchTerm)){
 			$matchTerm = $matchTerm;
@@ -122,7 +120,8 @@ echo '</div>';
 	echo '<div class="col-md-4">';
 	
 	echo '</div>';
-echo '</div>';
-echo '</div>';
 				
 ?>
+</div>
+</div>
+</section>

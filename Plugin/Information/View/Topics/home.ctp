@@ -13,7 +13,7 @@
 											<div class="form-group col-md-12 col-xs-12 nopadding navbartwoforminput">
 										
 												<?php 
-												echo $this->Form->input('searchname',array('label'=>false,'class'=>"form-control searchcontent", 'id'=>"searchcontent1",'data-toggle'=>"tooltip", 'data-placement'=>"top",'title'=> __("Type What You Want to Search, Fro language change press Ctrl+g and type Bangla"),'placeholder'=> __("I'm looking for...")));
+												echo $this->Form->input('searchname',array('label'=>false,'class'=>"form-control searchcontent", 'id'=>"searchcontent1",'data-toggle'=>"tooltip", 'data-placement'=>"top",'title'=> __("Type What You Want to Search, For language change press Ctrl+g and type Bangla"),'placeholder'=> __("I'm looking for...")));
 												echo $this->Form->unlockField('Siteaction.place_id');
 												echo $this->Form->input('place_id', array('type'=>'hidden','class'=>'placeid','placeholder'=>__('Location'))); 
 												?>

@@ -118,10 +118,21 @@
 	
 	<!-- Search Form - Display when click magnify icon in menu
     ================================================== -->
-    <form action="" id="nino-searchForm">
-    	<input type="text" placeholder="Search..." class="form-control nino-searchInput">
-    	<i class="mdi mdi-close nino-close"></i>
-    </form><!--/#nino-searchForm-->
+		<?php 
+			$currentLng = $this->Session->read('Config.language');
+			echo $this->Form->create('Siteaction',array('name' =>'searchform','id' =>'nino-searchForm','url'=> array('plugin'=>'information','controller' => 'siteactions','action'=>'searchitem','language' => $currentLng))); ?>
+				
+						<?php 
+						echo $this->Form->input('searchname',array('label'=>false,'class'=>"form-control nino-searchInput", 'id'=>"searchcontent1",'data-toggle'=>"tooltip", 'data-placement'=>"top",'div'=>false,'title'=> __("Type What You Want to Search, For language change press Ctrl+g and type Bangla"),'placeholder'=> __("I'm looking for...")));
+						echo $this->Form->unlockField('Siteaction.place_id');
+						echo $this->Form->input('place_id', array('type'=>'hidden','class'=>'placeid','placeholder'=>__('Location'))); 
+						?>
+						<i class="mdi mdi-close nino-close"></i>
+						</button>
+					
+		<?php echo $this->Form->end(); ?>
+	
+	
 	
 	
 	<!-- Scroll to top

@@ -454,7 +454,7 @@ section {
 	margin-bottom: 15px;
 	text-align: center;
 	color: #333;
-	border-bottom:2px solid #e5e5e5;
+	/*border-bottom:2px solid #e5e5e5;*/
 }
 .nino-sectionHeading .nino-subHeading {
 	display: block;
@@ -1373,4 +1373,18 @@ a.btn:hover {
 	height: 46px;
 	margin-left: 0;
 	width: 170px;
+}
+.post-item td{
+	padding:0px !important;
+	border:none !important;
+}
+td.placeaddress{
+	padding:0px !important;
+}
+.searchrow{
+	margin-bottom:8px !important;
+}
+#nino-services .nino-serviceTitle {
+	font-weight: 500;
+	font-size: 14px;
 }
