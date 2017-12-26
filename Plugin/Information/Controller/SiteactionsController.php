@@ -3386,6 +3386,7 @@ class SiteactionsController extends InformationAppController {
 		}
 		$title_for_layout = __('Your Search Results');
 		$this->loadModel('Information.Point');
+		/*
 		$this->Point->bindModel(array(
 					'hasOne' => array(
 						'BdDivision' => array(
@@ -3395,6 +3396,7 @@ class SiteactionsController extends InformationAppController {
 					)
 				)
 		);
+		*/
 		//debug($searchString);exit;
 		$this->paginate = array(
 				'conditions' => $searchString,
