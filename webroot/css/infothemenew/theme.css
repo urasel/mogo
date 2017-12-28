@@ -1984,8 +1984,12 @@ label {
 	width:200px;
 }
 
-#flashMessage{
-	background:#333;
+#flashMessage, #authMessage {
+	background: #ff0000;
+	padding: 8px 10px;
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
 }
 .success{
 	color:#5cb85c;

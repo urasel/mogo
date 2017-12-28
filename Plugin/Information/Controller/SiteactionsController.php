@@ -355,9 +355,7 @@ class SiteactionsController extends InformationAppController {
 					'PlaceType.icon',
 					'PlaceType.seo_name',
 					'PlaceType.singlename',
-					"HospitalCategory.id",
-					"HospitalCategory.name",
-					"HospitalCategory.bn_name",
+					"HospitalCategory.*",
 					"Country.name",
 					"Country.bn_name",
 					"BdDivision.$fieldName as name",
@@ -3690,7 +3688,7 @@ class SiteactionsController extends InformationAppController {
 				$nearbies = $this->Point->find('all', $options);
 		}else if($className == 'Topic'){
 			$nearbyoptions = array(
-					'limit' => 8,
+					'limit' => 6,
 					'conditions' => array(
 						"Point.id !=" => $pointDetails['Point']['id'],
 						"Point.place_type_id" => $pointDetails['PlaceType']['id'],
@@ -3726,7 +3724,7 @@ class SiteactionsController extends InformationAppController {
 				$nearbies = $this->$classNam->find('all', $nearbyoptions);
 		}else if($className == 'YellowPage'){
 			$nearbyoptions = array(
-					'limit' => 8,
+					'limit' => 6,
 					'conditions' => array(
 						"Point.id !=" => $pointDetails['Point']['id'],
 						"Point.place_type_id" => $pointDetails['PlaceType']['id'],
@@ -3790,7 +3788,7 @@ class SiteactionsController extends InformationAppController {
 				$mainPointLng = 0;
 				}
 				$options = array(
-								'limit' => 8,
+								'limit' => 6,
 								'conditions' => array(
 									"$className.id !=" => $pointDetails[$className]['id'],
 									"$className.place_type_id" => $pointDetails['PlaceType']['id'],
@@ -3925,7 +3923,7 @@ class SiteactionsController extends InformationAppController {
 				$mainPointLng = 0;
 				}
 				$options = array(
-								'limit' => 8,
+								'limit' => 6,
 								'conditions' => array(
 									"$className.id !=" => $pointDetails[$className]['id'],
 									"$className.place_type_id" => $pointDetails['PlaceType']['id'],
@@ -3999,7 +3997,7 @@ class SiteactionsController extends InformationAppController {
 				$mainPointLng = 0;
 				}
 				$options = array(
-								'limit' => 8,
+								'limit' => 6,
 								'conditions' => array(
 									"$className.id !=" => $pointDetails[$className]['id'],
 									"$className.place_type_id" => $pointDetails['PlaceType']['id'],
@@ -4064,7 +4062,7 @@ class SiteactionsController extends InformationAppController {
 				$mainPointLng = 0;
 				}
 				$options = array(
-								'limit' => 8,
+								'limit' => 6,
 								'conditions' => array(
 									"$className.id !=" => $pointDetails[$className]['id'],
 									"$className.place_type_id" => $pointDetails['PlaceType']['id'],
@@ -4114,7 +4112,7 @@ class SiteactionsController extends InformationAppController {
 				);
 				
 				$options = array(
-								'limit' => 8,
+								'limit' => 6,
 								'conditions' => array(
 									"$className.id !=" => $pointDetails[$className]['id'],
 									"$className.family" => $pointDetails[$className]['family']
@@ -4169,7 +4167,7 @@ class SiteactionsController extends InformationAppController {
 				$mainPointLng = 0;
 				}
 				$options = array(
-								'limit' => 8,
+								'limit' => 6,
 								'conditions' => array(
 									"$className.id !=" => $pointDetails[$className]['id'],
 									"$className.place_type_id" => $pointDetails['PlaceType']['id'],

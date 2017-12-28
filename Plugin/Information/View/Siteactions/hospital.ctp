@@ -176,9 +176,11 @@
 				echo '<div class="col-xs-6 col-md-4 addrtitle"><i class="fa fa-tags"></i><span>'.__('Hospital Category').'</span></div>';
 				//debug($place);
 				echo '<div class="col-xs-6 col-md-8">';
-				foreach($hospitalSelectedCategories as $cat){
-					//debug($cat);
-					echo $cat['HospitalCategory']['name'].'<br>';
+				if(is_array($hospitalSelectedCategories) && count($hospitalSelectedCategories) > 0){
+					foreach($hospitalSelectedCategories as $cat){
+						//debug($cat);
+						echo $cat['HospitalCategory']['name'].'<br>';
+					}
 				}
 				echo '</div>';
 				echo '</div>';

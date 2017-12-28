@@ -27,7 +27,18 @@
 				?>
 			</div>
 			</div>
-			<?php echo $this->Session->flash(); echo $this->Session->flash('auth'); ?>
+			<?php if(!empty($this->Session->flash()) || !empty($this->Session->flash('auth'))) {?>
+			<section>
+			<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+						<?php echo $this->Session->flash(); echo $this->Session->flash('auth'); ?>
+						</div>
+					</div>
+			</div>
+			</section>
+			<?php } ?>
+			
 			<?php echo $content_for_layout; ?>
 	
         
