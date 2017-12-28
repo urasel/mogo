@@ -71,6 +71,11 @@
 			<?php echo h($recipe['Recipe']['passive_time']); ?>
 			&nbsp;
 		</dd>
+		<dt><?php echo __('Video Output'); ?></dt>
+		<dd>
+			<iframe width="420" height="315" src="https://www.youtube.com/embed/XGSy3_Czz8k?controls=0"></iframe> 
+			&nbsp;
+		</dd>
 		<dt><?php echo __('User'); ?></dt>
 		<dd>
 			<?php echo $this->Html->link($recipe['User']['name'], array('controller' => 'users', 'action' => 'view', $recipe['User']['id'])); ?>
