@@ -5,12 +5,16 @@
 			<div class="sectionContent">
 				<div class="row nino-hoverEffect">
 					<div class="col-md-12 col-sm-12">
+					<?php
+					$currentLng = $this->Session->read('Config.language');
+					echo $this->Html->link('Find Your Nearby Items!', array('controller'=>'siteactions','action'=>'locate','language'=>$currentLng,'ext' => 'asp'),array('alt' =>'Find Your Nearby Items!','class' =>'noticebutton '));
+					?>
 							<?php 
 								$currentLng = $this->Session->read('Config.language');
 								echo $this->Form->create('Siteaction',array('name' =>'searchform','class' =>'navbartwoform','url'=> array('plugin'=>'information','controller' => 'siteactions','action'=>'searchitem','language' => $currentLng))); ?>
 										
 										<div class="searchformblock">
-											<div class="form-group col-md-12 col-xs-12 nopadding navbartwoforminput">
+											<div class="form-group nopadding navbartwoforminput">
 										
 												<?php 
 												echo $this->Form->input('searchname',array('label'=>false,'class'=>"form-control searchcontent", 'id'=>"searchcontent1",'data-toggle'=>"tooltip", 'data-placement'=>"top",'title'=> __("Type What You Want to Search, For language change press Ctrl+g and type Bangla"),'placeholder'=> __("I'm looking for...")));
@@ -105,7 +109,7 @@
     <!-- Latest Blog
     ================================================== -->
 	<?php
-	$currentLng = $this->Session->read('Config.language');
+	
 	$visitSetCounter = 0;
 	//debug($visitData);
 	
@@ -162,7 +166,7 @@
 										$imglink = $topics['class_image'];
 										$fileExistPath = WWW_ROOT.'img'.DS.$imglink;
 										if(!empty($imglink) && file_exists($fileExistPath)){
-											echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$topics['placetype_seoname'],'point'=> $topics['point_seoname'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'data-original' => $imglink,'alt' =>$placename.':'.$shortDescription,'data-echo' => SITEIMAGE.'/img/'.$imglink));
+											echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$topics['placetype_seoname'],'point'=> $topics['point_seoname'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'data-original' => $imglink,'alt' =>$placename.':'.$shortDescription,'data-echo' => SITEIMAGE.$imglink));
 										}else{
 											echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$topics['placetype_seoname'],'point'=> $topics['point_seoname'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'alt' =>$placename.':'.$shortDescription, 'data-echo' => 'default.png'));
 										}

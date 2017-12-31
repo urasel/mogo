@@ -31,7 +31,7 @@
 	<div class="row placeview">
 <?php
 	echo '<div class="col-md-8 leftbody">';
-	echo '<h2>'.$title_for_layout.'</h2>';
+	echo '<h1>'.$title_for_layout.'</h1>';
 		if(count($categories) > 0){
 			echo '<div class="row">';
 			foreach($categories as $category):
@@ -196,11 +196,11 @@
 				echo '</div>';
 				
 			}else if($place['PlaceType']['singlename'] == 'continent'){
-			echo $this->Html->link('<h5>'.$placename.'</h5>', array('controller'=>'siteactions','action'=>'countries','category'=>$place['Continent']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $place[$modelName]['point_id'],'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+			echo $this->Html->link('<h3>'.$placename.'</h3>', array('controller'=>'siteactions','action'=>'countries','category'=>$place['Continent']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $place[$modelName]['point_id'],'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
 			}else if($modelName == 'Location'){
-			echo $this->Html->link('<h5>'.$placename.'</h5>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'country'=>$countryname,'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+			echo $this->Html->link('<h3>'.$placename.'</h3>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'country'=>$countryname,'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
 			}else if($modelName == 'Animal'){
-			echo $this->Html->link('<h5>'.$placename.'</h5>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+			echo $this->Html->link('<h3>'.$placename.'</h3>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
 			}else if(in_array($modelName,array('BabyName'))){
 				$genderId = $place[$modelName]['sex_id'];
 				if($genderId == 1){
@@ -208,10 +208,10 @@
 				}else{
 					$genderIcon = '<i class="fa fa-female" aria-hidden="true"></i>';
 				}
-				echo $this->Html->link('<h5>'.$genderIcon.' '.$placename.'</h5>', array('controller'=>'siteactions','action'=>'bucket','itemgroup'=>$modelName,'category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+				echo $this->Html->link('<h3>'.$genderIcon.' '.$placename.'</h3>', array('controller'=>'siteactions','action'=>'bucket','itemgroup'=>$modelName,'category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
 			}else{
 				$countryname = $place['Country']['seo_name'];
-				echo $this->Html->link('<h5>'.$placename.'</h5>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'country'=>$countryname,'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+				echo $this->Html->link('<h3>'.$placename.'</h3>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'country'=>$countryname,'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
 			}
 			echo '<p>';
 			

@@ -1574,7 +1574,7 @@ ul.browse_cat li{
 	color:#ff6a00;
 }
 img.nearbymap{
-	height: auto;
+	height: 280px;
     position: relative;
     top: 0px;
     width: 100%;
@@ -2644,7 +2644,9 @@ blockquote p {
   padding: 5px 10px 10px 15px;
 }
 .popular_article {
-    margin-top: 15px;
+	margin-top: 15px;
+	min-height: 400px;
 }
+
 
 /***************** Tab Part CSS End****/

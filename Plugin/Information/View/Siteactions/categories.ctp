@@ -32,7 +32,7 @@
 <?php
 
 echo '<div class="col-md-8 leftbody">';
-		echo '<h2>'.$title_for_layout.'</h2>';
+		echo '<h1>'.$title_for_layout.'</h1>';
 		echo '<div class="sortingblock">';
 			echo '<div class="row">';
 			echo '<div class="col-md-12">';
@@ -141,9 +141,9 @@ echo '<div class="col-md-8 leftbody">';
 			echo '</div>';
 		
 		}else if($place['PlaceType']['singlename'] == 'continent'){
-		echo $this->Html->link('<h5>'.$placename.'</h5>', array('controller'=>'siteactions','action'=>'countries','category'=>$place['Continent']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $place[$modelName]['point_id'],'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+		echo $this->Html->link('<h3>'.$placename.'</h3>', array('controller'=>'siteactions','action'=>'countries','category'=>$place['Continent']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $place[$modelName]['point_id'],'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
 		}else if($modelName == 'Location'){
-		echo $this->Html->link('<h5>'.$placename.'</h5>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'country'=>$countryname,'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+		echo $this->Html->link('<h3>'.$placename.'</h3>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'country'=>$countryname,'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
 		}else if(in_array($modelName,array('BabyName'))){
 			$genderId = $place[$modelName]['sex_id'];
 			if($genderId == 1){
@@ -151,11 +151,11 @@ echo '<div class="col-md-8 leftbody">';
 			}else{
 				$genderIcon = '<i class="fa fa-female" aria-hidden="true"></i>';
 			}
-		echo $this->Html->link('<h5>'.$genderIcon.' '.$placename.'</h5>', array('controller'=>'siteactions','action'=>'bucket','itemgroup'=>$modelName,'category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+		echo $this->Html->link('<h3>'.$genderIcon.' '.$placename.'</h3>', array('controller'=>'siteactions','action'=>'bucket','itemgroup'=>$modelName,'category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
 		}else if(in_array($modelName,array('Animal'))){
 		echo $this->Html->link('<h5>'.$placename.'</h5>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
 		}else{
-		echo $this->Html->link('<h5>'.$placename.'</h5>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'country'=>$countryname,'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+		echo $this->Html->link('<h3>'.$placename.'</h3>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'country'=>$countryname,'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
 		}
 		echo '<p>';
 		

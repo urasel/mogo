@@ -5083,4 +5083,8 @@ class SiteactionsController extends InformationAppController {
 		$this->set(compact('breadcumpArray','pointDetails','title_for_layout'));
 	}
 	
+	public function locate(){
+		$this->set('title_for_layout','Find Places In your Area');
+	}
+	
 }

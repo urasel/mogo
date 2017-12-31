@@ -106,7 +106,7 @@
 		<?php echo $this->Html->script('imageloader/echo.min'); ?>
 		  <script>
 		  echo.init({
-			offset: 200,
+			offset: 250,
 			throttle: 250,
 			unload: false,
 			callback: function (element, op) {
