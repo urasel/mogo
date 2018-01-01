@@ -14,6 +14,15 @@ class PlacesController extends InformationAppController {
  * @var array
  */
 	public $components = array('Paginator');
+	
+	public function beforeFilter() {
+	$this->Security->unlockedActions = array('findplace');
+		if ($this->action == 'findplace') {
+			$this->Security->csrfCheck = false;
+			$this->Security->validatePost = false;
+		}
+		
+	}
 
 /**
  * index method
@@ -249,5 +258,94 @@ class PlacesController extends InformationAppController {
 		}
 		$this->Session->setFlash(__d('croogo', '%s was not deleted', __d('information', 'Place')), 'default', array('class' => 'error'));
 		return $this->redirect(array('action' => 'index'));
+	}
+	
+	public function findplace(){
+		$this->layout = 'ajax';
+		//debug($this->request->data);exit;
+		$accessLat = $this->request->data['lat'];
+		$accessLng = $this->request->data['lng'];
+		$address = $this->request->data['address'];
+		//debug($this->request->data);
+		/* 
+		$places = "SELECT places.id,places.name,places.lat,places.lng,places.place_type_id,pt.name,pt.icon, ( 3959 * ACOS( COS( RADIANS($accessLat) ) * COS( RADIANS( lat ) ) * 
+						COS( RADIANS( lng ) - RADIANS($accessLng) ) + SIN( RADIANS($accessLat) ) *  
+						SIN( RADIANS( lat ) ) ) ) AS distance  FROM places places LEFT JOIN place_types pt ON places.place_type_id = pt.id 
+						WHERE (SELECT COUNT(*) FROM places b WHERE b.place_type_id = places.place_type_id AND b.lat < places.lat AND ( 3959 * ACOS( COS( RADIANS($accessLat) ) * COS( RADIANS( lat ) ) * COS( RADIANS( lng ) - RADIANS($accessLng) ) + SIN( RADIANS($accessLat) ) * SIN( RADIANS( lat ) ) ) ) < 4) <= 4
+						HAVING distance < 200  ORDER BY place_type_id,distance ASC
+					";
+		*/
+		/*
+		$places = "SELECT places.id,places.name,places.lat,places.lng,places.place_type_id,pt.name,pt.icon, ( 3959 * ACOS( COS( RADIANS($accessLat) ) * COS( RADIANS( places.lat ) ) * COS( RADIANS( places.lng ) - RADIANS($accessLng) ) + SIN( RADIANS($accessLat) ) * SIN( RADIANS( places.lat ) ) ) ) AS distance  FROM places places LEFT JOIN place_types pt ON places.place_type_id = pt.id 
+					WHERE (SELECT COUNT(*) FROM places b WHERE b.place_type_id = places.place_type_id AND b.id > places.id ORDER BY places.lat, places.lng ASC) <= 4
+					HAVING distance < 8  ORDER BY place_type_id, distance ASC		
+					";
+		
+		$places = "SELECT places.id,places.name,places.lat,places.lng,places.place_type_id,pt.name,pt.icon, ( 3959 * ACOS( COS( RADIANS($accessLat) ) * COS( RADIANS( places.lat ) ) * COS( RADIANS( places.lng ) - RADIANS($accessLng) ) + SIN( RADIANS($accessLat) ) * SIN( RADIANS( places.lat ) ) ) ) AS distance  FROM places places LEFT JOIN place_types pt ON places.place_type_id = pt.id 
+					WHERE (SELECT COUNT(*) FROM places b WHERE b.place_type_id = places.place_type_id AND b.id > places.id) <= 4
+					HAVING distance < 100 ORDER BY place_type_id, distance ASC		
+					";
+		*/
+		$places = "SELECT places.id,places.name,places.lat,places.lng,places.place_type_id,pt.name,pt.icon, ( 3959 * ACOS( COS( RADIANS($accessLat) ) * COS( RADIANS( lat ) ) * 
+		COS( RADIANS( lng ) - RADIANS($accessLng) ) + SIN( RADIANS($accessLat) ) *  
+		SIN( RADIANS( lat ) ) ) ) AS distance  FROM places places LEFT JOIN place_types pt ON places.place_type_id = pt.id 
+		WHERE (SELECT COUNT(*) FROM places b WHERE b.place_type_id = places.place_type_id AND b.id < places.id AND ( 3959 * ACOS( COS( RADIANS($accessLat) ) * COS( RADIANS( lat ) ) * COS( RADIANS( lng ) - RADIANS($accessLng) ) + SIN( RADIANS($accessLat) ) * SIN( RADIANS( lat ) ) ) ) < 4) <= 2
+		AND places.place_type_id IN (1,3,10,12,13,14,18,19)
+		HAVING distance < 10  ORDER BY place_type_id,distance ASC
+		
+		";
+			//debug($places);
+			$this->loadModel('Place');
+			$this->loadModel('Accesslog');
+			$places = $this->Place->query($places);
+			$userID = $this->Auth->user('id');
+			if(!empty($userID)){
+			  $this->request->data['Accesslog']['user_id'] = $userID;
+			}
+			$this->request->data['Accesslog']['address'] = $address;
+			$this->request->data['Accesslog']['ip'] = $this->request->clientIp();
+			$this->Accesslog->create();
+			$this->Accesslog->save($this->request->data['Accesslog']);
+			//debug($this->request->data['Accesslog']);
+		$this->set(compact('accessLat','accessLng','places','address'));
+	
+	}
+	
+	public function mappath(){
+		$this->layout = 'locate';
+		//debug($this->params->query);exit;
+		$title_for_layout = '';
+		$pageHeader = '';
+		$placeid = $this->params->query['rcord'];
+		$firstPointLat = $this->params->query['lat'];
+		$firstPointLng = $this->params->query['lng'];
+		if(!empty($this->params->query['plat'])){
+		$secondPointLat = $this->params->query['plat'];
+		}
+		else{
+		$secondPointLat = '23.729965';
+		}
+		if(!empty($this->params->query['plng'])){
+		$secondPointLng = $this->params->query['plng'];
+		}
+		else{
+		$startPointName = "Motijheel Thana";
+		$secondPointLng = '90.417267';
+		}
+		$this->loadModel('Place');
+		$placeDetails = $this->Place->find('first',array('conditions'=> array('Place.id' => $placeid )));
+		//debug($placeDetails);
+		if(!empty($this->params->query['addr'])){
+		$title = $this->params->query['addr'];
+		$title_for_layout = 'Direction From '.$title.' To '.$placeDetails['Place']['name'].', '.$placeDetails['BdThanas']['name'].','.$placeDetails['BdDistrict']['name'].' in OxiMap';
+		$pageHeader = 'From '.$title.' To '.$placeDetails['Place']['name'].', '.$placeDetails['BdThanas']['name'].','.$placeDetails['BdDistrict']['name'].' Map Direction in OxiMap';
+		}
+		else{
+		$title = "Motijheel Thana";
+		$title_for_layout = 'Direction From '.$title.' To '.$placeDetails['Place']['name'].', '.$placeDetails['BdThanas']['name'].','.$placeDetails['BdDistrict']['name'].' in OxiMap';
+		$pageHeader = 'From '.$title.' To '.$placeDetails['Place']['name'].', '.$placeDetails['BdThanas']['name'].','.$placeDetails['BdDistrict']['name'].' Map Direction in OxiMap';
+		}
+		
+		$this->set(compact('firstPointLat','firstPointLng','secondPointLat','secondPointLng','title_for_layout','pageHeader','placeDetails'));
 	}
 }

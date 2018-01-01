@@ -226,6 +226,8 @@ CroogoRouter::localize();
 
 	Router::connect('/likeplace', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'getPlaces'));
+	Router::connect('/locate', 
+                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'locate'));
 	Router::connect('/getlocation', 
                      array('plugin'=>'general','controller'=>'bd_thanas', 'action'=>'getLocation'));				 
 	Router::connect('/:language/info_contribution', 
