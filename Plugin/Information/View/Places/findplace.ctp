@@ -47,7 +47,7 @@ foreach($places as $place){
 				echo '<td>'.$place['places']['name'].'</td>';
 				echo '<td>';
 				//echo $this->Html->link('Direction',array('controller' =>'pages','action' =>'mappath',$accessLat,$accessLng,$place['places']['lat'],$place['places']['lng'],$address),array('target' =>'_blank'));
-				echo $this->Html->link('Direction',array('controller' =>'pages','action' =>'mappath','?' => array('lat'=>$accessLat,'lng'=>$accessLng,'plat'=> $place['places']['lat'],'plng'=> $place['places']['lng'],'rcord'=> $place['places']['id'],'addr'=>$address)),array('target' =>'_blank'));
+				echo $this->Html->link('Direction',array('controller' =>'places','action' =>'mappath','?' => array('lat'=>$accessLat,'lng'=>$accessLng,'plat'=> $place['places']['lat'],'plng'=> $place['places']['lng'],'rcord'=> $place['places']['id'],'addr'=>$address)),array('target' =>'_blank'));
 				echo '</td>';
 				echo '<td>'.round($place[0]['distance'],2).'Km</td>';
 				echo '</tr>';
@@ -91,7 +91,7 @@ foreach($places as $place){
 				echo '<tr>';
 				echo '<td>'.$place['places']['name'].'</td>';
 				echo '<td>';
-				echo $this->Html->link('Direction',array('controller' =>'pages','action' =>'mappath','?' => array('lat'=>$accessLat,'lng'=>$accessLng,'plat'=> $place['places']['lat'],'plng'=> $place['places']['lng'],'rcord'=> $place['places']['id'],'addr'=>$address)),array('target' =>'_blank'));
+				echo $this->Html->link('Direction',array('controller' =>'places','action' =>'mappath','?' => array('lat'=>$accessLat,'lng'=>$accessLng,'plat'=> $place['places']['lat'],'plng'=> $place['places']['lng'],'rcord'=> $place['places']['id'],'addr'=>$address)),array('target' =>'_blank'));
 				echo '</td>';
 				echo '<td>'.round($place[0]['distance'],2).'Km</td>';
 				echo '<tr>';

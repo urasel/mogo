@@ -337,13 +337,13 @@ class PlacesController extends InformationAppController {
 		//debug($placeDetails);
 		if(!empty($this->params->query['addr'])){
 		$title = $this->params->query['addr'];
-		$title_for_layout = 'Direction From '.$title.' To '.$placeDetails['Place']['name'].', '.$placeDetails['BdThanas']['name'].','.$placeDetails['BdDistrict']['name'].' in OxiMap';
-		$pageHeader = 'From '.$title.' To '.$placeDetails['Place']['name'].', '.$placeDetails['BdThanas']['name'].','.$placeDetails['BdDistrict']['name'].' Map Direction in OxiMap';
+		$title_for_layout = 'Direction From '.$title.' To '.$placeDetails['Place']['name'].', '.$placeDetails['BdThanas']['name'].','.$placeDetails['BdDistrict']['name'].' in InfoMap24';
+		$pageHeader = 'From '.$title.' To '.$placeDetails['Place']['name'].', '.$placeDetails['BdThanas']['name'].','.$placeDetails['BdDistrict']['name'].' Map Direction in InfoMap24';
 		}
 		else{
 		$title = "Motijheel Thana";
-		$title_for_layout = 'Direction From '.$title.' To '.$placeDetails['Place']['name'].', '.$placeDetails['BdThanas']['name'].','.$placeDetails['BdDistrict']['name'].' in OxiMap';
-		$pageHeader = 'From '.$title.' To '.$placeDetails['Place']['name'].', '.$placeDetails['BdThanas']['name'].','.$placeDetails['BdDistrict']['name'].' Map Direction in OxiMap';
+		$title_for_layout = 'Direction From '.$title.' To '.$placeDetails['Place']['name'].', '.$placeDetails['BdThanas']['name'].','.$placeDetails['BdDistrict']['name'].' in InfoMap24';
+		$pageHeader = 'From '.$title.' To '.$placeDetails['Place']['name'].', '.$placeDetails['BdThanas']['name'].','.$placeDetails['BdDistrict']['name'].' Map Direction in InfoMap24';
 		}
 		
 		$this->set(compact('firstPointLat','firstPointLng','secondPointLat','secondPointLng','title_for_layout','pageHeader','placeDetails'));

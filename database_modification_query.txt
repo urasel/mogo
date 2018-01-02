@@ -42,3 +42,87 @@ CREATE TABLE `mobiles` (
   `updated` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+----------------------------------------------------------------
+
+CREATE TABLE `motorcycles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `seo_name` varchar(255) DEFAULT NULL,
+  `point_id` int(11) NOT NULL,
+  `place_type_id` int(11) NOT NULL,
+  `engine` varchar(100) DEFAULT NULL,
+  `maximum_power` varchar(100) DEFAULT NULL,
+  `maximum_torque` varchar(100) DEFAULT NULL,
+  `top_speed` varchar(100) DEFAULT NULL,
+  `mileage` varchar(100) DEFAULT NULL,
+  `curb_weight` varchar(100) DEFAULT NULL,
+  `remarks` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+
+
+CREATE TABLE `motorcycle_specifications` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `motorcycle_id` int(11) NOT NULL,
+  `bike_category` enum('Cafe Racer','Cruisers','Dirt','Electric','Scooter','Sports','Standard') DEFAULT NULL,
+  `bike_origin` int(11) DEFAULT NULL,
+  `assemble` int(11) DEFAULT NULL,
+  `engine_type` varchar(100) DEFAULT NULL,
+  `engine_displacement` varchar(100) DEFAULT NULL,
+  `engine_maxpower` varchar(100) DEFAULT NULL,
+  `engine_maxtorque` varchar(100) DEFAULT NULL,
+  `engine_topspeed` varchar(100) DEFAULT NULL,
+  `engine_mileage` varchar(100) DEFAULT NULL,
+  `bore_stroke` varchar(100) DEFAULT NULL,
+  `cooling` varchar(100) DEFAULT NULL,
+  `starting_method` varchar(100) DEFAULT NULL,
+  `oil_grade` varchar(100) DEFAULT NULL,
+  `gears` varchar(100) DEFAULT NULL,
+  `clutch` varchar(100) DEFAULT NULL,
+  `body_dimension` varchar(100) DEFAULT NULL,
+  `wheel_base` varchar(100) DEFAULT NULL,
+  `ground_clearance` varchar(100) DEFAULT NULL,
+  `fuel_tank_capacity` varchar(100) DEFAULT NULL,
+  `kerb_weight` varchar(100) DEFAULT NULL,
+  `suspension_front` varchar(100) DEFAULT NULL,
+  `suspension_rear` varchar(100) DEFAULT NULL,
+  `brake_front` varchar(100) DEFAULT NULL,
+  `brake_rear` varchar(100) DEFAULT NULL,
+  `wheel_front` varchar(100) DEFAULT NULL,
+  `wheel_rear` varchar(100) DEFAULT NULL,
+  `tyre_front` varchar(100) DEFAULT NULL,
+  `tyre_rear` varchar(100) DEFAULT NULL,
+  `battery` varchar(100) DEFAULT NULL,
+  `head_lamp` varchar(100) DEFAULT NULL,
+  `tail_lamp` varchar(100) DEFAULT NULL,
+  `trun_lamp` varchar(100) DEFAULT NULL,
+  `speedometer` varchar(100) DEFAULT NULL,
+  `fuel_gauge` varchar(100) DEFAULT NULL,
+  `tachometer` varchar(100) DEFAULT NULL,
+  `digital_fuel_gauge` varchar(100) DEFAULT NULL,
+  `tripmeter` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+CREATE TABLE `motorcycle_prices` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `motorcycle_id` int(11) NOT NULL,
+  `price` double DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+
+CREATE TABLE `motorcycle_images` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `motorcycle_id` INT(11) NOT NULL,
+  `file` VARCHAR(255) NOT NULL,
+  `name` VARCHAR(255) DEFAULT NULL,
+  `source` VARCHAR(255) DEFAULT NULL,
+  `position` TINYINT(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8
+
+----------------------------------------------------------------
