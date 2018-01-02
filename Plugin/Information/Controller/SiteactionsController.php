@@ -5084,6 +5084,7 @@ class SiteactionsController extends InformationAppController {
 	}
 	
 	public function locate(){
+		$this->layout = 'locate';
 		$this->set('title_for_layout','Find Places In your Area');
 	}
 	
