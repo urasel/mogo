@@ -53,6 +53,8 @@ CroogoRouter::localize();
 	Router::connect('/currentplace', array('controller' => 'places', 'action' => 'myside'));
 	Router::connect('/savedplaces', array('controller' => 'places', 'action' => 'savedplaces'));
 	Router::connect('/changelanguage/:language', array('plugin'=>'information','controller' => 'siteactions', 'action' => 'changeLanguage'),array('pass'=> array('language')));
+	Router::connect('/locate', 
+                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'locate'));
 			 
 	Router::connect('/:language/point/:country/:category/:point/:id', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 

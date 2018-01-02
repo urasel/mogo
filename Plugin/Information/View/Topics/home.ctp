@@ -7,7 +7,7 @@
 					<div class="col-md-12 col-sm-12">
 					<?php
 					$currentLng = $this->Session->read('Config.language');
-					echo $this->Html->link('Find Your Nearby Items!', array('controller'=>'siteactions','action'=>'locate','language'=>$currentLng,'ext' => 'asp'),array('alt' =>'Find Your Nearby Items!','class' =>'noticebutton '));
+					echo $this->Html->link('Find Your Nearby Items!', array('controller'=>'siteactions','action'=>'locate'),array('alt' =>'Find Your Nearby Items!','class' =>'noticebutton '));
 					?>
 							<?php 
 								$currentLng = $this->Session->read('Config.language');
