@@ -230,6 +230,9 @@ CroogoRouter::localize();
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'getPlaces'));
 	Router::connect('/locate', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'locate'));
+	Router::connect('/path', 
+                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'direction')
+					 ,array('lat' => 'lat','lng' => 'lng','plat' => 'plat','plng' => 'plng','record' => 'record','addr' => 'addr'));
 	Router::connect('/getlocation', 
                      array('plugin'=>'general','controller'=>'bd_thanas', 'action'=>'getLocation'));				 
 	Router::connect('/:language/info_contribution', 

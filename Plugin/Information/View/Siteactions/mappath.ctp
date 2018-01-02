@@ -123,6 +123,9 @@
 	  }
 
     </style>
+<section>
+<div class="container">
+	<div class="row placeview">
 	<div class="controlItems">
 	<div class="row" id="mapcontrols">
 		<div class="col-md-7 col-sm-8 col-xs-12">
@@ -230,6 +233,10 @@
 		
 		</div>
     </div>
+</div>
+</div>
+</section>
+	
     <script>
       // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
