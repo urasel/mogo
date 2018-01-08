@@ -64,10 +64,13 @@
 .panel .checkbox .check_boxes{
 	margin-left:12px;
 }
-.panel .checkbox label{
-	padding-left:35px;
-}
 
+.panel .checkbox label {
+	padding-left: 5px;
+	padding-right: 30px;
+	width: auto;
+	/* display: block; */
+}
 .posttitle{
 	padding:0px;
 	margin:0px;
@@ -1962,7 +1965,7 @@ label {
 	letter-spacing: 1px;
 	line-height: 20px;
 	text-transform: uppercase;
-	margin-top:15px;
+	margin-top:0px;
 }
 .contact-info dt {
   color: #e8554e;

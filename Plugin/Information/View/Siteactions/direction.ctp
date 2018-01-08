@@ -44,6 +44,7 @@ directionsService.route(a,function(a,b){b==google.maps.DirectionsStatus.OK&&dire
 				echo '</div>';
 			
 	echo '</div>';
+	echo '</div>';
 		echo '<div class="col-md-4">';
 			echo '<div class="row">';
 				echo '<div class="col-md-12">';
