@@ -57,6 +57,8 @@ function initMap() {
 </script>
 <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByuSWnZVwYdM3glA1chO-NuY1z6qz-zBQ&callback=initMap"  type="text/javascript"></script>-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByuSWnZVwYdM3glA1chO-NuY1z6qz-zBQ&libraries=places&callback=initMap" async defer></script>
+<section>
+<div class="container">
 <div class="row placeview">
 <div class="col-md-8">
 			<?php echo '<div class="row"><div class="col-md-12">'; ?>
@@ -99,7 +101,8 @@ function initMap() {
 			$placeAddress = $place['BdThanas']['name'].', '.$place['BdDivision']['name'].','.$place['Country']['name'].' ';
 			}
 			
-			echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><h1>'.$placeName.'</h1></div>'; 
+			//echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><h1>'.$placeName.'</h1></div>'; 
+			echo '<h2>'.$placeName.'</h2>'; 
 			echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><p>'.$placeAddress.'</p></div></div>'; 
 			
 			?>
@@ -176,4 +179,6 @@ function initMap() {
 
 </div>
 </div>
+</div>
+</section>
 

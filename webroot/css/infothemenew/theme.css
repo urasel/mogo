@@ -1710,7 +1710,7 @@ h1, .h1 {
 	color: #ff6a00;
 	font-size: 32px;
 	font-weight: 300;
-	line-height: 40px;
+	line-height: 25px;
 	margin-bottom: 5px;
 	padding-bottom: 0;
 	text-align: justify;
@@ -1958,7 +1958,6 @@ h1.bannerhead{
 }
 label {
 	color: #4e4e4d;
-	display: block;
 	font-family: "brandon-grotesque",Helvetica,Arial,sans-serif;
 	font-size: 11px;
 	font-weight: 700;
@@ -2627,7 +2626,7 @@ blockquote p {
 	margin-top: 25px;
 	margin-bottom: 5px;
 	list-style: none;
-	background-color: #f5f5f5;
+	background: rgba(0,0,0,0.1);
 	border-radius: 4px;
 }
 .panel-info {
@@ -2637,7 +2636,7 @@ blockquote p {
 }
 .panel-info > .panel-heading {
 	color: #000;
-	background-color: #f8f8f8;
+	background: rgba(0,0,0,0.09);
 	border-color: #e5e5e5;
 	border-bottom:1px soid #e5e5e5;
 	border-radius:0px;

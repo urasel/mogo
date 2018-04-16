@@ -31,7 +31,7 @@
 	<div class="row placeview">
 <?php
 	echo '<div class="col-md-8 leftbody">';
-	echo '<h1>'.$title_for_layout.'</h1>';
+	echo '<h2>'.$title_for_layout.'</h2>';
 		if(count($categories) > 0){
 			echo '<div class="row">';
 			foreach($categories as $category):
@@ -115,6 +115,7 @@
 			//debug($place);
 			$controller = $place['PlaceType']['singlename'];
 			$modelName = ucfirst($controller);
+			//echo $modelName;exit;
 			echo '<div class="row">';
 			echo '<div class="col-md-12">';
 					if($currentLng == 'bn'){
@@ -146,6 +147,8 @@
 							}
 					}
 			if($place['PlaceType']['singlename'] == 'topicData'){
+				$address = '';
+			}else if($place['PlaceType']['singlename'] == 'motorcycle'){
 				$address = '';
 			}else if($place['PlaceType']['singlename'] == 'animal'){
 				$address = '';
@@ -200,6 +203,8 @@
 			}else if($modelName == 'Location'){
 			echo $this->Html->link('<h3>'.$placename.'</h3>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'country'=>$countryname,'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
 			}else if($modelName == 'Animal'){
+			echo $this->Html->link('<h3>'.$placename.'</h3>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+			}else if($modelName == 'Motorcycle'){
 			echo $this->Html->link('<h3>'.$placename.'</h3>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
 			}else if(in_array($modelName,array('BabyName'))){
 				$genderId = $place[$modelName]['sex_id'];

@@ -868,12 +868,23 @@ section {
 /* =============== LAYOUT - FOOTER AREA =============== */
 footer {
 	padding-top: 50px;
-	background: #f8f8f8;
+	background: #222;
+	color:#fff;
+}
+.listArticles li a{
+	color:#fff;
+}
+.listArticles li a:hover{
+	color:#f3f;
+}
+footer h4{
+	color:#fff;
 }
 footer .nino-colHeading {
 	margin: 0 0 15px;
 	font-size: 16px;
 	font-weight:700px;
+	color:#F75C4C;
 }
 footer .colInfo {
 	margin-bottom: 30px;
@@ -892,10 +903,10 @@ footer .nino-followUs {
 	margin: 25px 0;
 }
 footer .nino-followUs .totalFollow {
-	color: #333;
+	color: #F75C4C;
 	font-weight: 500;
 	font-family: 'Montserrat', sans-serif;
-	border-bottom: 1px solid #e5e5e5;
+	border-bottom: 1px solid #333;
 	padding-bottom: 5px;
 	margin-bottom: 10px;
 }
@@ -967,7 +978,7 @@ footer .morePhoto {
 /* ----------- COPYRIGHT ----------- */
 footer .nino-copyright {
 	text-align: center;
-	border-top: 1px solid #e5e5e5;
+	border-top: 1px solid #333;
 	padding: 20px 0;
 }
 /* =============== SEARCH FORM =============== */

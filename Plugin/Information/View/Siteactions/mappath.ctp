@@ -197,7 +197,8 @@
 			$placeAddress = $pointDetails['BdThanas']['name'].', '.$pointDetails['BdDivision']['name'].','.$pointDetails['Country']['name'].' ';
 			}
 			
-			echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><h1>'.$placeName.'</h1></div>'; 
+			//echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><h1>'.$placeName.'</h1></div>'; 
+			echo '<h2>'.$placeName.'</h2>'; 
 			echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><p>'.$placeAddress.'</p></div></div>'; 
 			
 			?>

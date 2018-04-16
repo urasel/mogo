@@ -13,7 +13,7 @@ directionsService.route(a,function(a,b){b==google.maps.DirectionsStatus.OK&&dire
 	<div class="row placeview">
 <?php
 	echo '<div class="col-md-12">';
-	echo '<h3>'.$pageHeader.'</h3>';
+	echo '<h2>'.$placeName.'</h2>'; 
 	echo '</div>';
 	
 	echo '<div class="col-md-8">';

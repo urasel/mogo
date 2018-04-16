@@ -122,7 +122,7 @@
 				$adminLink = '';
 			}
 			
-			echo '<h2>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h2>'; 
+			echo '<h1>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h1>'; 
 			?>
 			<?php 
 			echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><p>'.$place['BdThanas']['name'].', '.$place['BdDivision']['name'].','.$place['Country']['name'].' '.'</p></div></div>'; ?>

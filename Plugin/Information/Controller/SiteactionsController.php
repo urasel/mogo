@@ -915,6 +915,105 @@ class SiteactionsController extends InformationAppController {
 			$this->set('queryCountry', $queryCountry);
 			$this->layout = $layout;
 			$this -> render($singleName);
+		}else if($typeid == 'motorcycle'){
+			$layout = $pointDetails['PlaceType']['singlename'];
+			$className = ucfirst($pointDetails['PlaceType']['singlename']);
+			$singleName = $pointDetails['PlaceType']['singlename'];
+			$imageDB = $className.'Image';
+			
+			$this->Point->bindModel(array(
+					'hasOne' => array(
+						$className => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id")
+						),
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.place_type_id = PlaceType.id')
+						),
+						'Country' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.country_id = Country.id')
+						),
+					),
+					'hasMany' => array(
+						$imageDB => array(
+								'foreignKey' => false,
+								'fields' => array('file'),
+								'conditions' => array("$imageDB.motorcycle_id" => $id)
+						)
+					),
+				)
+			);
+			//debug($this->Point);
+			//exit;
+			$options = array(
+				'conditions' => array('Point.' . $this->Point->primaryKey => $id),
+				'fields' =>array(
+					'Point.*',
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.icon',
+					'PlaceType.seo_name',
+					'PlaceType.singlename',
+					'PlaceType.pluralname',
+					"Country.$fieldName as name",
+					'Country.seo_name',
+					'Country.seo_title',
+					'Country.id',
+					 "$className.*",
+					
+				)
+			);
+			//debug($options);exit;
+			$pointDetails = $this->Point->find('first', $options);
+			//debug($pointDetails);exit;
+			
+			
+			if(!empty($pointDetails[$className]['area1'])){
+			$area1 = $pointDetails[$className]['area1'].', ';
+			}else{
+			$area1 = '';
+			}
+			if(!empty($pointDetails[$className]['area2'])){
+			$area2 = $pointDetails[$className]['area2'].', ';
+			}else{
+			$area2 = '';
+			}
+			if(!empty($pointDetails[$className]['area3'])){
+			$area3 = $pointDetails[$className]['area3'].', ';
+			}else{
+			$area3 = '';
+			}
+			if(!empty($pointDetails['Point']['address'])){
+				$address = $pointDetails['Point']['address'];
+			}else{
+				$address = $area3.$area2.$area1;
+			}
+			
+			
+			if($currentLng == 'bn' && !empty($pointDetails[$className]['bn_name'])){
+				$title_for_layout = $pointDetails[$className]['bn_name'].' | Infomap24.com - Information Directory '.$pointDetails['Country']['name'];
+				
+			}else{
+				$title_for_layout = $pointDetails[$className]['name'].' | Infomap24.com - Information Directory '.$pointDetails['Country']['name'];
+			}
+			
+			$this->set('title_for_layout', $title_for_layout);
+			
+			
+			$name = $pointDetails[$className]['name'];
+			$placeType = $pointDetails['PlaceType']['name'];
+			//$motorCycleCat = $pointDetails[$className]['family'];
+			
+			$metadescription = "$name listed in $placeType category.";
+			
+			$this->set('metadescription', $metadescription);
+			$nearbies = $this->__nearbies($className,$pointDetails);	
+			//debug($nearbies);							
+			$this->set('place', $pointDetails);
+			$this->layout = $layout;
+			$this -> render($singleName);
 		}else if($typeid == 'yellowPage'){
 			$layout = $pointDetails['PlaceType']['singlename'];
 			$className = ucfirst($pointDetails['PlaceType']['singlename']);
@@ -1844,7 +1943,7 @@ class SiteactionsController extends InformationAppController {
 		$categories = '';
 		//$disableCache = $this->Session->read('Config.cachestate');
 		//debug($countryName);exit;
-		$disableCache = true;
+		$disableCache = false;
 		if($currentLng == 'bn'){
 			$fieldName = 'bn_name';
 			if(Cache::read('sitemapdatabn', 'long') == false || $disableCache == true){
@@ -1852,7 +1951,7 @@ class SiteactionsController extends InformationAppController {
 				$categories = $this->Point->query("
 				SELECT pl.id, pl.$fieldName as name,pl.seo_name,pl.icon
 				FROM place_types AS pl
-				WHERE pl.parentid = '0' AND
+				WHERE 
 				pl.topcat = 1 AND pl.isactive = 1
 				GROUP BY pl.id
 				ORDER BY pl.name ASC
@@ -1877,7 +1976,7 @@ class SiteactionsController extends InformationAppController {
 				$categories = $this->Point->query("
 				SELECT pl.id, pl.$fieldName as name,pl.seo_name,pl.icon
 				FROM place_types AS pl
-				WHERE pl.parentid = '0' AND
+				WHERE 
 				pl.topcat = 1 AND pl.isactive = 1
 				GROUP BY pl.id
 				ORDER BY pl.name ASC
@@ -1980,7 +2079,7 @@ class SiteactionsController extends InformationAppController {
 		$parent_seo_name = $pointDetails['PlaceType']['seo_name'];
 		$PlaceTypeID = $pointDetails['PlaceType']['id'];
 		$entries = $this->_allcatitems($id,$singleName,$childs,$character,$queryCountry);
-		
+		//debug($entries);exit;
 		$breadcumpArray = $this->generatebreadcump($parentID,$breadCumb);
 		$parentCats = '';
 		$disableCache = $this->Session->read('Config.cachestate');
@@ -2049,6 +2148,7 @@ class SiteactionsController extends InformationAppController {
 				ORDER BY pl.name ASC
 				");
 				*/
+				
 				$categories = $this->Point->query("
 				SELECT pl.id, pl.$fieldName as name,pl.seo_name,pl.icon
 				FROM place_types AS pl
@@ -2057,6 +2157,7 @@ class SiteactionsController extends InformationAppController {
 				GROUP BY pl.id, pl.name
 				ORDER BY pl.name ASC
 				");
+				//debug($categories);exit;
 				$hasChilds = $this->PlaceType->find('all',array('fields' => array('DISTINCT(PlaceType.parentid)'),'conditions' => array('PlaceType.parentid !=' => 0,'PlaceType.isactive' => 1)));
 				foreach($hasChilds as $pCat){
 					$parentCatId = $pCat['PlaceType']['parentid'];
@@ -2077,7 +2178,7 @@ class SiteactionsController extends InformationAppController {
 			}
 			$this->loadModel('Country');
 			$countries = $this->Country->find('list',array('fields'=> array('Country.id','Country.name')));
-			//debug($countries);
+			//debug($countries); exit;
 		$this->set(compact('title_for_layout','categories','parentCats','catname','passID','categoryName','breadcumpArray','entries','parent_seo_name','PlaceTypeID','character','countries','queryCountry','passCountryName','passCountryId'));
 	}
 	
@@ -2333,10 +2434,16 @@ class SiteactionsController extends InformationAppController {
 	public function _allcatitems($id,$singleName,$childs,$character,$queryCountry){
 		$this->loadModel('Information.PlaceType');
 		$currentLng = $this->Session->read('Config.language');
-		
+		//echo $singleName;exit;
 		if($currentLng == 'bn'){
-			$fieldName = 'bn_name';
-			$fieldAddress = 'bn_address';
+			if(!in_array($singleName ,array('motorcycle'))){
+				$fieldName = 'bn_name';
+				$fieldAddress = 'bn_address';
+			}
+			else{
+				$fieldName = 'name';
+			}
+			
 		}else{
 			$fieldName = 'name';
 			$fieldAddress = 'address';
@@ -2346,6 +2453,7 @@ class SiteactionsController extends InformationAppController {
 		//debug($character);exit;
 		$className = ucfirst($singleName);
 		$loadModelName = 'Information.'.ucfirst($singleName);
+		//debug($loadModelName);exit;
 		$this->loadModel($loadModelName);
 		$searchString = '';
 		if(!empty($character)){
@@ -2365,6 +2473,8 @@ class SiteactionsController extends InformationAppController {
 			$searchString[] = array("Continent.place_type_id" => $childs);
 			}else if($singleName == 'medicine'){
 			$searchString[] = array("Medicine.place_type_id" => $childs);
+			}else if($singleName == 'motorcycle'){
+			$searchString[] = array("Motorcycle.place_type_id" => $childs);
 			}else if($singleName == 'babyName'){
 			$searchString[] = array("BabyName.place_type_id" => $childs);
 			}else{
@@ -2770,6 +2880,54 @@ class SiteactionsController extends InformationAppController {
 					),
 					'limit' => 10,
 					'order' => "$className.name ASC",
+			);
+		
+		}else if(in_array($singleName,array('motorcycle'))){
+			
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+					/*
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id","Point.place_type_id = $PlaceTypeID")
+						),
+					*/
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					/*
+						'BdDivision' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = BdDivision.id')
+						),
+						'BdDistrict' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_district_id = BdDistrict.id')
+						),
+						'BdThanas' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
+						)
+					*/
+					)
+				)
+			);
+			
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					"$className.id",
+					"$className.point_id",
+					"$className.name",
+					"$className.seo_name",
+					),
+				'limit' => 10,
+				'order' => "$className.name ASC",
 			);
 		
 		}else{
@@ -3641,6 +3799,41 @@ class SiteactionsController extends InformationAppController {
 			
 				
 				$nearbies = $this->$classNam->find('all', $nearbyoptions);
+		}else if($className == 'Motorcycle'){
+			$nearbyoptions = array(
+					'limit' => 6,
+					'conditions' => array(
+						"Point.id !=" => $pointDetails['Point']['id'],
+						"Point.place_type_id" => $pointDetails['PlaceType']['id'],
+						),
+					'fields' => array(
+						'Point.*',
+						'PlaceType.id',
+						"PlaceType.$fieldName as name",
+						'PlaceType.icon',
+						'PlaceType.seo_name',
+						'PlaceType.pluralname',
+						"$className.*",
+						 
+						
+					)
+				);
+				$this->$className->bindModel(array(
+						'hasOne' => array(
+							'Point' => array(
+								'foreignKey' => false,
+								'conditions' => array("$className.point_id = Point.id")
+							),
+							'PlaceType' => array(
+								'foreignKey' => false,
+								'conditions' => array('Point.place_type_id = PlaceType.id')
+							)
+						)
+					)
+				);
+			
+				
+				$nearbies = $this->$className->find('all', $nearbyoptions);
 		}else if($className == 'YellowPage'){
 			$nearbyoptions = array(
 					'limit' => 6,

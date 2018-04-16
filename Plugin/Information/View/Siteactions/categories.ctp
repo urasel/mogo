@@ -32,7 +32,7 @@
 <?php
 
 echo '<div class="col-md-8 leftbody">';
-		echo '<h1>'.$title_for_layout.'</h1>';
+		echo '<h2>'.$title_for_layout.'</h2>';
 		echo '<div class="sortingblock">';
 			echo '<div class="row">';
 			echo '<div class="col-md-12">';
@@ -98,6 +98,8 @@ echo '<div class="col-md-8 leftbody">';
 						}
 				}
 		if($place['PlaceType']['singlename'] == 'topicData'){
+			$address = '';
+		}else if($place['PlaceType']['singlename'] == 'motorcycle'){
 			$address = '';
 		}else if($place['PlaceType']['singlename'] == 'animal'){
 			$address = '';
