@@ -927,6 +927,10 @@ class SiteactionsController extends InformationAppController {
 							'foreignKey' => false,
 							'conditions' => array("$className.point_id = Point.id")
 						),
+						'MotorcycleSpecification' => array(
+							'foreignKey' => false,
+							'conditions' => array("MotorcycleSpecification.motorcycle_id = $className.id")
+						),
 						'PlaceType' => array(
 							'foreignKey' => false,
 							'conditions' => array('Point.place_type_id = PlaceType.id')
@@ -961,8 +965,9 @@ class SiteactionsController extends InformationAppController {
 					'Country.seo_name',
 					'Country.seo_title',
 					'Country.id',
-					 "$className.*",
-					
+					"$className.*",
+					'MotorcycleSpecification.*',
+					 
 				)
 			);
 			//debug($options);exit;
@@ -3834,6 +3839,7 @@ class SiteactionsController extends InformationAppController {
 			
 				
 				$nearbies = $this->$className->find('all', $nearbyoptions);
+				
 		}else if($className == 'YellowPage'){
 			$nearbyoptions = array(
 					'limit' => 6,

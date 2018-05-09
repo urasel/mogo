@@ -14,7 +14,16 @@ class MotorcyclesController extends InformationAppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session');
+	public $components = array('Session');
+	
+	public function beforeFilter() {
+		$this->Security->unlockedActions = array('admin_index');
+		if ($this->action == 'admin_index') {
+			$this->Security->csrfCheck = false;
+			$this->Security->validatePost = false;
+		}
+		
+	}
 
 /**
  * index method
@@ -130,7 +139,43 @@ class MotorcyclesController extends InformationAppController {
  */
 	public function admin_index() {
 		$this->Motorcycle->recursive = 0;
+		$searchString = '';
+		if ($this->request->is('post')) {
+			//debug($this->params);exit;
+			if(!empty($this->request->data['Motorcycle']['name']) && empty($this->request->data['Motorcycle']['place_type_id'])){
+				$searchString[] = array('Motorcycle.name LIKE' => "%".$this->request->data['Motorcycle']['name']."%");
+			}
+			else if(empty($this->request->data['Motorcycle']['name']) && !empty($this->request->data['Motorcycle']['place_type_id'])){
+				$searchString[] = array('Motorcycle.place_type_id' => $this->request->data['Motorcycle']['place_type_id']);
+			}else if(!empty($this->request->data['Motorcycle']['name']) && !empty($this->request->data['Motorcycle']['place_type_id'])){
+				$searchString[] = array('Motorcycle.name LIKE' => "%".$this->request->data['Motorcycle']['name']."%");
+				$searchString[] = array('Motorcycle.place_type_id' => $this->request->data['Motorcycle']['place_type_id']);
+			}
+			
+			
+			$this->Session->write('motorindex',$searchString);
+			//debug($searchString);exit;
+			$this->paginate = array(
+					'conditions' => $searchString,
+					'limit' => 10
+			);
+		
+		}else{
+		$sessionSearch = $this->Session->read('motorindex');
+		
+			$this->paginate = array(
+				'conditions' => $sessionSearch,
+				'limit' => 10,
+				
+			);
+		}
+		
 		$this->set('motorcycles', $this->paginate());
+		
+		$searchFields = array('place_type_id', 'name');
+		$this->set('searchFields', $searchFields);
+		$placeTypes = $this->Motorcycle->PlaceType->find('list',array('conditions' => array('parentid' => 929),'order'=>array('PlaceType.name ASC')));
+		$this->set('placeTypes', $placeTypes);
 	}
 
 /**
@@ -201,8 +246,10 @@ class MotorcyclesController extends InformationAppController {
 				$this->Session->setFlash(__d('croogo', '%s could not be saved. Please, try again.', __d('information', 'motorcycle')), 'default', array('class' => 'error'));
 			}
 		} else {
+			$this->Motorcycle->recursive = 1;
 			$options = array('conditions' => array('Motorcycle.' . $this->Motorcycle->primaryKey => $id));
 			$this->request->data = $this->Motorcycle->find('first', $options);
+			//debug($this->request->data);exit;
 		}
 		//$points = $this->Motorcycle->Point->find('list');
 		$placeTypes = $this->Motorcycle->PlaceType->find('list');

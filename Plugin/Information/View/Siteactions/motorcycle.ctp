@@ -25,7 +25,9 @@ $className = 'Motorcycle';
 	background: url("http://localhost/skybazarcake2/img/check.png") no-repeat scroll left top rgba(0, 0, 0, 0);
 }
 </style>
-<div class="row">
+<section>
+<div class="container">
+	<div class="row placeview">
 	<div class="col-md-8">
 		<div class="col-md-12 sectionblock">
 			<?php 
@@ -34,26 +36,11 @@ $className = 'Motorcycle';
 			$shortDescription = '';
 			$detailDescription = '';
 			//debug($place['TopicData']);
-			if($place['TopicData'][1]['language_id'] == $languageID && !empty($place['TopicData'][1]['name'])){
 				
-				$title = $place['TopicData'][1]['name'];
-				$shortDescription = $place['TopicData'][1]['short_description'];
-				$detailDescription = $place['TopicData'][1]['details'];
-				
-			}else if($place['TopicData'][0]['language_id'] == $languageID && !empty($place['TopicData'][0]['name'])){
-				$title = $place['TopicData'][0]['name'];
-				$shortDescription = $place['TopicData'][0]['short_description'];
-				$detailDescription = $place['TopicData'][0]['details'];
-				
-			}else if(!empty($place['TopicData'][0]['name'])){
-				$title = $place['TopicData'][0]['name'];
-				$shortDescription = $place['TopicData'][0]['short_description'];
-				$detailDescription = $place['TopicData'][0]['details'];
-				
-			}else if(!empty($place['TopicData'][1]['name'])){
-				$title = $place['TopicData'][1]['name'];
-				$shortDescription = $place['TopicData'][1]['short_description'];
-				$detailDescription = $place['TopicData'][1]['details'];
+			if(!empty($place['Motorcycle'])){
+				$title = $place['Motorcycle']['name'];
+				$seo_name = $place['Motorcycle']['seo_name'];
+				$metatag = $place['Motorcycle']['metatag'];
 				
 			}
 			echo '<div class="row">';
@@ -72,22 +59,10 @@ $className = 'Motorcycle';
 					<div class="col-md-12 col-sm-12 col-xs-12" id="writer-block">
 					<div class="writer-container">
 						<div class="col-md-2  col-sm-2 col-xs-2" id="writer-img">
-						<?php
-						if(!empty($place['User']['firstname']) && !empty($place['User']['lastname'])){
-							$userName = $place['User']['firstname'].' '.$place['User']['lastname'];
-						}else{
-							$userName = 'InfoMap24';
-						}
-						if(empty($place['User']['image'])){
-						echo '<i class="fa fa-user writericon"></i>';
-						}else{
-						$imglink = 'users/small/'.$place['User']['image'];
-						echo $this->Html->image($imglink,array('alt'=>'','class'=>'writerprofileimg'));
-						}
-						?>
+						
 						</div>
 						<div class="col-md-10  col-sm-10 col-xs-10" class="writer-name">
-						<span><?php echo $userName;?></span>
+						<span></span>
 						</div>
 					</div>
 					</div>
@@ -116,6 +91,78 @@ $className = 'Motorcycle';
 						echo '<h4 class="topic-short targettext">'.$shortDescription.'</h4>';
 				echo '</div>';
 			echo '</div>';
+			
+			echo '<div class="row">';
+				echo '<div class="col-md-3 col-sm-6">';
+					echo '<div class="row">';
+						echo '<div class="col-md-12">';
+						echo 'Engine Capacity';
+						echo '</div>';
+						echo '<div class="col-md-12">';
+						echo '149.0 CC';
+						echo '</div>';
+					echo '</div>';
+				echo '</div>';
+				echo '<div class="col-md-3 col-sm-6">';
+					echo '<div class="row">';
+						echo '<div class="col-md-12">';
+						echo 'Max Power';
+						echo '</div>';
+						echo '<div class="col-md-12">';
+						echo '12.90 bhp @ 8000 rpm';
+						echo '</div>';
+					echo '</div>';
+				echo '</div>';
+				echo '<div class="col-md-3 col-sm-6">';
+					echo '<div class="row">';
+						echo '<div class="col-md-12">';
+						echo 'Mileage';
+						echo '</div>';
+						echo '<div class="col-md-12">';
+						echo '50.00 Kmpl';
+						echo '</div>';
+					echo '</div>';
+				echo '</div>';
+				echo '<div class="col-md-3 col-sm-6">';
+					echo '<div class="row">';
+						echo '<div class="col-md-12">';
+						echo 'Starting Mechanism';
+						echo '</div>';
+						echo '<div class="col-md-12">';
+						echo 'Self Start';
+						echo '</div>';
+					echo '</div>';
+				echo '</div>';
+			echo '</div>';
+			
+			echo '<h2>'.'Yamaha Fazer V2.0 FI Colors'.'</h2>';
+			echo '<div class="row">';
+			
+				echo '<div class="col-md-4 col-sm-4">';
+					echo 'Burning Red';
+				echo '</div>';
+				echo '<div class="col-md-4 col-sm-4">';
+					echo 'Midnight Black';
+				echo '</div>';
+				echo '<div class="col-md-4 col-sm-4">';
+					echo 'Marble White';
+				echo '</div>';
+			echo '</div>';
+			
+			echo '<h2>'.'Yamaha Fazer V2.0 FI Specifications'.'</h2>';
+			echo '<div class="row">';
+			
+				echo '<div class="col-md-4 col-sm-4">';
+					echo 'Burning Red';
+				echo '</div>';
+				echo '<div class="col-md-4 col-sm-4">';
+					echo 'Midnight Black';
+				echo '</div>';
+				echo '<div class="col-md-4 col-sm-4">';
+					echo 'Marble White';
+				echo '</div>';
+			echo '</div>';
+			
 			
 			echo '<div class="row targettext">';
 					echo '<div class="col-md-12">';
@@ -173,6 +220,8 @@ $className = 'Motorcycle';
 			echo '</div>';
 			
 	echo '</div>';
+echo '</div>';
+echo '</div>';
 echo '</div>';
 	
 	?>

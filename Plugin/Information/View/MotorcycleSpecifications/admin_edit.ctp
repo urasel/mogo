@@ -1,75 +1,29 @@
 <?php
-$this->viewVars['title_for_layout'] = __d('information', 'Motorcycles');
+$this->viewVars['title_for_layout'] = __d('information', 'Motorcycle Specifications');
 $this->extend('/Common/admin_edit');
 
 $this->Html
 	->addCrumb('', '/admin', array('icon' => 'home'))
-	->addCrumb(__d('information', 'Motorcycles'), array('action' => 'index'));
+	->addCrumb(__d('information', 'Motorcycle Specifications'), array('action' => 'index'));
 
 if ($this->action == 'admin_edit') {
-	$this->Html->addCrumb($this->request->data['Motorcycle']['name'], '/' . $this->request->url);
-	$this->viewVars['title_for_layout'] = __d('information', 'Motorcycles') . ': ' . $this->request->data['Motorcycle']['name'];
+	$this->Html->addCrumb($this->request->data['MotorcycleSpecification']['id'], '/' . $this->request->url);
+	$this->viewVars['title_for_layout'] = __d('information', 'Motorcycle Specifications') . ': ' . $this->request->data['MotorcycleSpecification']['id'];
 } else {
 	$this->Html->addCrumb(__d('croogo', 'Add'), '/' . $this->request->url);
 }
 
-$this->append('form-start', $this->Form->create('Motorcycle'));
+$this->append('form-start', $this->Form->create('MotorcycleSpecification'));
 
 $this->append('tab-heading');
-	echo $this->Croogo->adminTab(__d('information', 'Motorcycle'), '#motorcycle');
-	echo $this->Croogo->adminTab(__d('information', 'Motorcycle Details'), '#motorcycle-specification');
-	echo $this->Croogo->adminTab(__d('information', 'Motorcycle Image'), '#motorcycle-gallery');
+	echo $this->Croogo->adminTab(__d('information', 'Motorcycle Specification'), '#motorcycle-specification');
 	echo $this->Croogo->adminTabs();
 $this->end();
 
 $this->append('tab-content');
-
-	echo $this->Html->tabStart('motorcycle');
-
-		echo $this->Form->input('id');
-
-		echo $this->Form->input('name', array(
-			'label' =>  __d('information', 'Name'),
-		));
-		echo $this->Form->input('seo_name', array(
-			'label' =>  __d('information', 'Seo Name'),
-		));
-		echo $this->Form->input('point_id', array(
-			'label' =>  __d('information', 'Point'),
-		));
-		echo $this->Form->input('place_type_id', array(
-			'label' =>  __d('information', 'Place Type'),
-		));
-		echo $this->Form->input('engine', array(
-			'label' =>  __d('information', 'Engine'),
-		));
-		echo $this->Form->input('maximum_power', array(
-			'label' =>  __d('information', 'Maximum Power'),
-		));
-		echo $this->Form->input('maximum_torque', array(
-			'label' =>  __d('information', 'Maximum Torque'),
-		));
-		echo $this->Form->input('top_speed', array(
-			'label' =>  __d('information', 'Top Speed'),
-		));
-		echo $this->Form->input('mileage', array(
-			'label' =>  __d('information', 'Mileage'),
-		));
-		echo $this->Form->input('curb_weight', array(
-			'label' =>  __d('information', 'Curb Weight'),
-		));
-		echo $this->Form->input('remarks', array(
-			'label' =>  __d('information', 'Remarks'),
-		));
-		echo $this->Form->input('isactive', array(
-			'label' =>  __d('information', 'Isactive'),
-		));
-
-	echo $this->Html->tabEnd();
-	
 	
 	echo $this->Html->tabStart('motorcycle-specification');
-		
+		debug($this->request->data);exit;
 
 		echo $this->Form->input('MotorcycleSpecification.id');
 
@@ -260,123 +214,6 @@ $this->append('tab-content');
 			'label' =>  __d('information', 'Availability'),
 		));
 
-	echo $this->Html->tabEnd();
-	
-	echo $this->Html->tabStart('motorcycle-gallery');
-		
-		/************************************************/
-		//debug($this->request->data);
-		echo '<div class="trclasscontainer">';
-		foreach($this->request->data['TransportAccomodation'] as $key => $val){
-			//debug($val);
-			
-			echo '<div>';
-				echo $this->Form->input('transport_class_id', array('label' =>  __d('information', 'Transport Class'),'name' => 'data[accomodation][trclassname][]','selected' => $val['transport_class_id'],'empty' => 'Select Class'));
-				
-				echo $this->Form->input('id', array(
-					'name' => 'data[accomodation][trid][]',
-					'value'=> $val['id'],
-				));
-				echo $this->Form->input('fare', array(
-					'label' =>  __d('information', 'Fare'),
-					'name' => 'data[accomodation][trfare][]',
-					'value'=> $val['fare'],
-				));
-				//debug($this->data);
-				$dataClass = 'TransportRoute';
-				echo $this->Form->input('image', array('type'=>'file','label'=>'Add Image','name' =>"data[accomodation][images][]", 'accept'=>"image/*"));
-				echo $this->Form->button('Remove',array('type'=>'button','class' => 'blocremoveBtn pull-right'));
-				?>
-				<script>
-				$('.blocremoveBtn').click(function(){
-					$(this).parent('div').remove();
-				});
-				</script>
-				<?php
-				echo '<hr style="border:3px solid #333;"></hr>';
-			echo '</div>';
-			
-			
-		}
-		echo '</div>';
-		/************************************************/
-		
-		echo '<div class="accomodation">';
-		
-			echo '<div class="addMoreBlock">';
-				echo '<div class="trclasscontainer"><div>';
-					echo $this->Form->input('transport_class_id', array('label' =>  __d('information', 'Transport Class'),'name' => 'data[accomodation][trclassname][]','empty' => 'Select Class'));
-				
-					echo $this->Form->input('fare', array(
-						'label' =>  __d('information', 'Fare'),
-						'name' => 'data[accomodation][trfare][]',
-						'placeholder'=>'500 Tk.',
-					));
-	
-					$dataClass = 'TransportRoute';
-					echo $this->Form->input('image', array('type'=>'file','label'=>'Add Image','name' =>"data[accomodation][images][]", 'accept'=>"image/*"));
-					echo $this->Form->button('Remove',array('type'=>'button','class' => 'blocremoveBtn pull-right'));
-					?>
-					<script>
-					$('.blocremoveBtn').click(function(){
-						$(this).parent('div').remove();
-					});
-					</script>
-					<?php
-					echo '<hr style="border:3px solid #333;"></hr>';
-			echo '</div>';
-		echo '</div>';
-		
-		
-			echo '<div class="addMoreBlockfirst">';
-				echo '<div class="trclasscontainer"><div>';
-			echo '</div>';
-		echo '</div>';
-		echo '</div>';
-		echo '</div>';
-		echo '</div>';
-		
-		echo '<p class="accomodationmore"></p>';
-		echo '<p><a id="add_row" class="addmorebtn btn btn-default pull-left">Add More</a></p>';
-		$modelName = 'TransportRoute';
-		$imageDB = 'TransportGallery';
-		$imageFolder = 'transportService';
-		?>
-		<script>
-		$('.fulldelbtn').click(function(){
-				var delID = $(this).attr('id');
-				var modelname = "<?php echo $imageDB; ?>";
-				var foldername = "<?php echo $imageFolder; ?>";
-				var classname = "<?php echo $imageDB; ?>";
-				$.ajax({
-					dataType: "html",
-					type: "POST",
-					evalScripts: true,
-					url: '<?php echo $this->base; ?>/information/transport_routes/ajaxdelete',
-					data: ({imageid:delID,modelName:modelname,folder:foldername,classname:classname}),
-					success: function (data, textStatus){
-						$("#con"+delID).remove();
-				 
-					}
-			});
-		});
-		$('.addmorebtn').click(function(){
-			
-			var moreData = $('.accomodation').html();
-			$('.accomodationmore').append(moreData);
-		});
-		
-		$('.addmoreRoutebtn').click(function(){
-			
-			var moreData = $('.routePart').html();
-			$('.routeContainer').append(moreData);
-		});
-		
-		</script>
-		<?php
-		
-		
-	
 	echo $this->Html->tabEnd();
 
 	echo $this->Croogo->adminTabs();

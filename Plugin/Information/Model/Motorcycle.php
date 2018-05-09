@@ -119,5 +119,21 @@ class Motorcycle extends InformationAppModel {
 			'counterQuery' => ''
 		)
 	);
+	
+	public $hasOne = array(
+		'MotorcycleSpecification' => array(
+			'className' => 'MotorcycleSpecification',
+			'foreignKey' => 'motorcycle_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
 
 }
