@@ -222,7 +222,9 @@ class SiteactionsController extends InformationAppController {
 			$nearbies = $this->__nearbies($className,$pointDetails);							
 			$this->set('place', $pointDetails);
 			$this->set('nearbies', $nearbies);
-			$this->layout = $layout;
+			
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
 			$this -> render($singleName);
 			
 		}else if($typeid == 'topic'){
@@ -302,7 +304,8 @@ class SiteactionsController extends InformationAppController {
 			//debug($nearbies);exit;							
 			$this->set('place', $pointDetails);
 			$this->set('nearbies', $nearbies);
-			$this->layout = $layout;
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
 			$this -> render($singleName);
 		}else if($typeid == 'hospital'){
 			$layout = $pointDetails['PlaceType']['singlename'];
@@ -516,7 +519,8 @@ class SiteactionsController extends InformationAppController {
 			$this->set('nearbies', $nearbies);
 			$this->set('hospitalSelectedCategories', $hospitalSelectedCategories);
 			
-			$this->layout = $layout;
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
 			$this -> render($singleName);
 		}else if($typeid == 'institute'){
 			$layout = $pointDetails['PlaceType']['singlename'];
@@ -775,7 +779,8 @@ class SiteactionsController extends InformationAppController {
 			$this->set('place', $pointDetails);
 			$this->set('nearbies', $nearbies);
 			$this->set('queryCountry', $queryCountry);
-			$this->layout = $layout;
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
 			$this -> render($singleName);
 		}else if($typeid == 'location'){
 			$layout = $pointDetails['PlaceType']['singlename'];
@@ -913,7 +918,8 @@ class SiteactionsController extends InformationAppController {
 			$this->set('place', $pointDetails);
 			$this->set('nearbies', $nearbies);
 			$this->set('queryCountry', $queryCountry);
-			$this->layout = $layout;
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
 			$this -> render($singleName);
 		}else if($typeid == 'motorcycle'){
 			$layout = $pointDetails['PlaceType']['singlename'];
@@ -1017,7 +1023,8 @@ class SiteactionsController extends InformationAppController {
 			$nearbies = $this->__nearbies($className,$pointDetails);	
 			//debug($nearbies);							
 			$this->set('place', $pointDetails);
-			$this->layout = $layout;
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
 			$this -> render($singleName);
 		}else if($typeid == 'yellowPage'){
 			$layout = $pointDetails['PlaceType']['singlename'];
@@ -1170,7 +1177,8 @@ class SiteactionsController extends InformationAppController {
 				$infoDetails = '';
 			}
 			*/
-			$this->layout = $layout;
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
 			$this -> render($singleName);
 		}else if($typeid == 'airport'){
 			$layout = $pointDetails['PlaceType']['singlename'];
@@ -1327,7 +1335,8 @@ class SiteactionsController extends InformationAppController {
 			$this->set('place', $pointDetails);
 			$this->set('nearbies', $nearbies);
 			$this->set('queryCountry', $queryCountry);
-			$this->layout = $layout;
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
 			$this -> render($singleName);
 		}else if($typeid == 'stadium'){
 			$layout = $pointDetails['PlaceType']['singlename'];
@@ -1462,7 +1471,8 @@ class SiteactionsController extends InformationAppController {
 			$this->set('place', $pointDetails);
 			$this->set('nearbies', $nearbies);
 			$this->set('queryCountry', $queryCountry);
-			$this->layout = $layout;
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
 			$this -> render($singleName);
 		}else if($typeid == 'animal'){
 			$layout = $pointDetails['PlaceType']['singlename'];
@@ -1527,7 +1537,8 @@ class SiteactionsController extends InformationAppController {
 			//debug($nearbies);							
 			$this->set('place', $pointDetails);
 			$this->set('nearbies', $nearbies);
-			$this->layout = $layout;
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
 			$this -> render($singleName);
 		}else{
 			$layout = $pointDetails['PlaceType']['singlename'];
@@ -1623,7 +1634,8 @@ class SiteactionsController extends InformationAppController {
 			$this->set('place', $pointDetails);
 			$this->set('nearbies', $nearbies);
 			
-			$this->layout = $layout;
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
 			$this -> render($singleName);
 		}
 		
@@ -1770,7 +1782,8 @@ class SiteactionsController extends InformationAppController {
 			$this->set('nearbies', $nearbies);
 			$this->set('recentposts', $nearbies);
 			$this->set(compact('title_for_layout','short_description','details','keyword','metadescription'));
-			$this->layout = $layout;
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
 			$this ->render($singleName);
 	
 	}
@@ -1851,7 +1864,8 @@ class SiteactionsController extends InformationAppController {
 			$this->set('place', $pointDetails);
 			$this->set('nearbies', $nearbies);
 			$this->set('modelName', $modelName);
-			$this->layout = $layout;
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
 			$this->render($viewFileName);
 	
 	}
@@ -1859,7 +1873,8 @@ class SiteactionsController extends InformationAppController {
 	
 	public function getPlaces(){
 		$this->autoRender = false;
-		$this->layout = 'ajax';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'ajax';
 		$this->loadModel('Information.Point');
 		$this->Point->recursive = 1;
         if ($this->params['url']['term'] != '') {
@@ -1914,7 +1929,8 @@ class SiteactionsController extends InformationAppController {
 	}
 	
 	public function sitemap(){
-		$this->layout = 'bootstrap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		$this->loadModel('Information.Point');
 		$this->loadModel('Information.PlaceType');
 		unset($this->params['language']);
@@ -2012,7 +2028,8 @@ class SiteactionsController extends InformationAppController {
 		}
 		unset($this->params['language']);
 		$currentLng = $this->Session->read('Config.language');
-		$this->layout = 'bootstrap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		$this->loadModel('Information.Point');
 		$this->loadModel('Information.PlaceType');
 		if($currentLng == 'bn'){
@@ -2328,7 +2345,8 @@ class SiteactionsController extends InformationAppController {
 		if(isset($this->params['page'])){
 		$this->request->params['named']['page'] = $this->params['page']?$this->params['page']:1;
 		}
-		$this->layout = 'bootstrap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		unset($this->params['language']);
 		$currentLng = $this->Session->read('Config.language');
 		
@@ -3006,7 +3024,8 @@ class SiteactionsController extends InformationAppController {
 			return $entries;
 	}
 	public function categoryitem(){
-		$this->layout = 'bootstrap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		$metadescription = '';
 		$this->loadModel('Point');
 		$this->Point->recursive = -1;
@@ -3067,31 +3086,36 @@ class SiteactionsController extends InformationAppController {
 	
 	
 	public function areatype(){
-		$this->layout = 'locate';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'locate';
 		
 	}
 	
 	public function privacy_policy(){
-		$this->layout = 'bootstrap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		$title_for_layout = __('Privacy & Policy');
 		$this->set(compact('title_for_layout'));
 	
 	}
 	
 	public function terms_condition(){
-		$this->layout = 'bootstrap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		$title_for_layout = __('Terms & Condition');
 		$this->set(compact('title_for_layout'));
 	
 	}
 	public function contact(){
-		$this->layout = 'bootstrap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		$title_for_layout = __('Contact Us');
 		$this->set(compact('title_for_layout'));
 	
 	}
 	public function aboutus(){
-		$this->layout = 'bootstrap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		$title_for_layout = __('About Us');
 		$this->set(compact('title_for_layout'));
 	
@@ -3148,7 +3172,8 @@ class SiteactionsController extends InformationAppController {
 		   return ;
 	}
 	public function dashboard(){
-		$this->layout = 'dashboard';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'dashboard';
 		$this->loadModel('Point');
 		$this->Point->PlaceType->recursive = -1;
 		//$categories = $this->Point->query("SELECT COUNT(p.id) AS total, (SELECT COUNT(p.id) AS pl.id, pl.name,pl.seo_name,pl.icon FROM points p LEFT JOIN place_types pl ON p.place_type_id = pl.id WHERE p.private = 0 AND p.active = 0 GROUP BY p.place_type_id");
@@ -3385,7 +3410,8 @@ class SiteactionsController extends InformationAppController {
 	}
 	
 	public function searchitem(){
-		$this->layout = 'bootstrap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		unset($this->params['language']);
 		$currentLng = $this->Session->read('Config.language');
 		if(isset($this->params['page'])){
@@ -3688,7 +3714,8 @@ class SiteactionsController extends InformationAppController {
 			$this->set('place', $pointDetails);
 			$this->set('nearbies', $nearbies);
 			$this->set('breadcumpArray', $breadcumpArray);
-			$this->layout = $layout;
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
 			$this -> render('map');
 	
 		
@@ -4327,7 +4354,8 @@ class SiteactionsController extends InformationAppController {
 	}
 	
 	public function placesearch(){
-		$this->layout = 'bootstrap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		$searchString = '';
 		//debug($this->request->data);exit;
 			unset($this->params['language']);
@@ -4395,7 +4423,8 @@ class SiteactionsController extends InformationAppController {
 	
 	public function countries(){
 		//debug($this->params);exit;
-		$this->layout = 'continents';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'continents';
 		unset($this->params['language']);
 		$currentLng = $this->Session->read('Config.language');
 		$pointID = $this->params->pass[2];
@@ -4448,7 +4477,8 @@ class SiteactionsController extends InformationAppController {
 	
 	public function world(){
 		//debug($this->params);exit;
-		$this->layout = 'continents';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'continents';
 		unset($this->params['language']);
 		$currentLng = $this->Session->read('Config.language');
 		$this->loadModel('General.Country');	
@@ -4472,7 +4502,8 @@ class SiteactionsController extends InformationAppController {
 	
 	public function country_details(){
 		//debug($this->params);exit;
-		$this->layout = 'continents';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'continents';
 		unset($this->params['language']);
 		$currentLng = $this->Session->read('Config.language');
 		$stringlength = strlen($this->params->pass[1]);
@@ -4561,7 +4592,8 @@ class SiteactionsController extends InformationAppController {
 	}
 	
 	public function tags(){
-		$this->layout = 'bootstrap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		unset($this->params['language']);
 		$currentLng = $this->Session->read('Config.language');
 		if($currentLng == 'bn'){
@@ -5103,7 +5135,8 @@ class SiteactionsController extends InformationAppController {
 	}
 	
 	public function mappath(){
-		$this->layout = 'defaultmap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'defaultmap';
 		//debug($this->params);exit;
 		$stringlength = strlen($this->params->pass[1]);
 		$cutlength = strlen($stringlength);
@@ -5202,12 +5235,14 @@ class SiteactionsController extends InformationAppController {
 	}
 	
 	public function locate(){
-		$this->layout = 'locate';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'locate';
 		$this->set('title_for_layout','Find Places In your Area');
 	}
 	
 	public function findplace(){
-		$this->layout = 'ajax';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'ajax';
 		//debug($this->request->data);exit;
 		$accessLat = $this->request->data['lat'];
 		$accessLng = $this->request->data['lng'];
@@ -5258,7 +5293,8 @@ class SiteactionsController extends InformationAppController {
 	}
 	
 	public function direction(){
-		$this->layout = 'locate';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'locate';
 		//debug($this->params->query);exit;
 		$title_for_layout = '';
 		$pageHeader = '';
