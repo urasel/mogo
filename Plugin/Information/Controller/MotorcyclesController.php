@@ -215,9 +215,9 @@ class MotorcyclesController extends InformationAppController {
 				$this->Session->setFlash(__d('croogo', '%s could not be saved. Please, try again.', __d('information', 'motorcycle')), 'default', array('class' => 'error'));
 			}
 		}
-		$points = $this->Motorcycle->Point->find('list');
+		//$points = $this->Motorcycle->Point->find('list');
 		$placeTypes = $this->Motorcycle->PlaceType->find('list');
-		$this->set(compact('points', 'placeTypes'));
+		$this->set(compact('placeTypes'));
 	}
 
 /**

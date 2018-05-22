@@ -264,36 +264,72 @@ $this->append('tab-content');
 	
 	echo $this->Html->tabStart('motorcycle-gallery');
 		
+	//debug($this->data);
 		/************************************************/
-		//debug($this->request->data);
-		echo '<div class="trclasscontainer">';
-		foreach($this->request->data['TransportAccomodation'] as $key => $val){
+		//debug($this->request->data);exit;
+		echo '<div class="imageContainerPast">';
+		foreach($this->request->data['MotorcycleImage'] as $key => $val){
 			//debug($val);
 			
-			echo '<div>';
-				echo $this->Form->input('transport_class_id', array('label' =>  __d('information', 'Transport Class'),'name' => 'data[accomodation][trclassname][]','selected' => $val['transport_class_id'],'empty' => 'Select Class'));
-				
+			echo '<div class="addMoreBlock">';
 				echo $this->Form->input('id', array(
-					'name' => 'data[accomodation][trid][]',
+					'label' =>  __d('information', 'Name'),
+					'name' => 'data[postimage][id][]',
 					'value'=> $val['id'],
 				));
-				echo $this->Form->input('fare', array(
-					'label' =>  __d('information', 'Fare'),
-					'name' => 'data[accomodation][trfare][]',
-					'value'=> $val['fare'],
+				echo $this->Form->input('position', array(
+					'label' =>  __d('information', 'Position'),
+					'name' => 'data[postimage][position][]',
+					'options' => array('Others','Featured'),
+					'selected' => $val['position']
 				));
-				//debug($this->data);
-				$dataClass = 'TransportRoute';
-				echo $this->Form->input('image', array('type'=>'file','label'=>'Add Image','name' =>"data[accomodation][images][]", 'accept'=>"image/*"));
-				echo $this->Form->button('Remove',array('type'=>'button','class' => 'blocremoveBtn pull-right'));
+				echo $this->Form->input('name', array(
+					'label' =>  __d('information', 'Name'),
+					'name' => 'data[postimage][name][]',
+					'value'=> $val['name'],
+				));
+				echo $this->Form->input('source', array(
+					'label' =>  __d('information', 'Source'),
+					'name' => 'data[postimage][source][]',
+					'value'=> $val['source'],
+				));
+				echo $this->Form->input('oldimage', array(
+					'type' =>  'hidden',
+					'name' => 'data[postimage][oldimage][]',
+					'value'=> $val['file'],
+				));
+			//debug($this->data);
+				$imageLink = 'recipes/medium/'.$val['file'];
+				echo $this->Html->image($imageLink,array('class' =>'snapimageimg img-responsive'));
+				echo $this->Form->input('image', array('type'=>'file','label'=>'Add Image','name' =>"data[postimage][images][]", 'accept'=>"image/*"));
+				echo $this->Form->button('Remove',array('id' => $val['id'],'type'=>'button','class' => 'blocremoveBtn btn-danger pull-right'));
+				
 				?>
 				<script>
 				$('.blocremoveBtn').click(function(){
-					$(this).parent('div').remove();
+					
+					var delID = $(this).attr('id');
+					var modelname = "MotorcycleImage";
+					var foldername = "recipes";
+					var classname = "MotorcycleImage";
+					var classImageFile = "<?php echo $val['file']; ?>";
+					$.ajax({
+							dataType: "html",
+							type: "POST",
+							evalScripts: true,
+							url: '<?php echo $this->base; ?>/information/recipes/ajaximagedelete',
+							data: ({imageid:delID,modelName:modelname,folder:foldername,classname:classname,classImageFile:classImageFile}),
+							success: function (data, textStatus){
+								$(this).parent('div').remove();
+						 
+							}
+					});
+					
+					
+					
 				});
 				</script>
 				<?php
-				echo '<hr style="border:3px solid #333;"></hr>';
 			echo '</div>';
 			
 			
@@ -301,81 +337,50 @@ $this->append('tab-content');
 		echo '</div>';
 		/************************************************/
 		
-		echo '<div class="accomodation">';
-		
+		echo '<div class="accomodationmore">';
+			echo '<div class="imageContainer">';
 			echo '<div class="addMoreBlock">';
-				echo '<div class="trclasscontainer"><div>';
-					echo $this->Form->input('transport_class_id', array('label' =>  __d('information', 'Transport Class'),'name' => 'data[accomodation][trclassname][]','empty' => 'Select Class'));
-				
-					echo $this->Form->input('fare', array(
-						'label' =>  __d('information', 'Fare'),
-						'name' => 'data[accomodation][trfare][]',
-						'placeholder'=>'500 Tk.',
-					));
-	
-					$dataClass = 'TransportRoute';
-					echo $this->Form->input('image', array('type'=>'file','label'=>'Add Image','name' =>"data[accomodation][images][]", 'accept'=>"image/*"));
-					echo $this->Form->button('Remove',array('type'=>'button','class' => 'blocremoveBtn pull-right'));
-					?>
-					<script>
-					$('.blocremoveBtn').click(function(){
-						$(this).parent('div').remove();
-					});
-					</script>
-					<?php
-					echo '<hr style="border:3px solid #333;"></hr>';
+				echo $this->Form->input('position', array(
+					'label' =>  __d('information', 'Position'),
+					'name' => 'data[postimage][position][]',
+					'options' => array('Others','Featured'),
+				));
+				echo $this->Form->input('name', array(
+					'label' =>  __d('information', 'Name'),
+					'name' => 'data[postimage][name][]',
+				));
+				echo $this->Form->input('source', array(
+					'label' =>  __d('information', 'Source'),
+					'name' => 'data[postimage][source][]',
+				));
+			//debug($this->data);
+				$dataClass = 'TransportRoute';
+				echo $this->Form->input('image', array('type'=>'file','label'=>'Add Image','name' =>"data[postimage][images][]", 'accept'=>"image/*"));
+				echo $this->Form->button('Remove',array('type'=>'button','class' => 'blocremoveBtn btn-danger pull-right'));
+				?>
+				<script>
+				$('.blocremoveBtn').click(function(){
+					$(this).parent('div').remove();
+					
+				});
+				</script>
+				<?php
 			echo '</div>';
-		echo '</div>';
-		
-		
-			echo '<div class="addMoreBlockfirst">';
-				echo '<div class="trclasscontainer"><div>';
 			echo '</div>';
-		echo '</div>';
-		echo '</div>';
-		echo '</div>';
-		echo '</div>';
 		
-		echo '<p class="accomodationmore"></p>';
-		echo '<p><a id="add_row" class="addmorebtn btn btn-default pull-left">Add More</a></p>';
-		$modelName = 'TransportRoute';
-		$imageDB = 'TransportGallery';
-		$imageFolder = 'transportService';
+		
+		echo '</div>';
+		echo '<p><a id="add_row" class="addmorebtn btn btn-success pull-left">Add More</a></p>';
+		
 		?>
 		<script>
-		$('.fulldelbtn').click(function(){
-				var delID = $(this).attr('id');
-				var modelname = "<?php echo $imageDB; ?>";
-				var foldername = "<?php echo $imageFolder; ?>";
-				var classname = "<?php echo $imageDB; ?>";
-				$.ajax({
-					dataType: "html",
-					type: "POST",
-					evalScripts: true,
-					url: '<?php echo $this->base; ?>/information/transport_routes/ajaxdelete',
-					data: ({imageid:delID,modelName:modelname,folder:foldername,classname:classname}),
-					success: function (data, textStatus){
-						$("#con"+delID).remove();
-				 
-					}
-			});
-		});
 		$('.addmorebtn').click(function(){
 			
-			var moreData = $('.accomodation').html();
+			var moreData = $('.imageContainer').html();
 			$('.accomodationmore').append(moreData);
 		});
-		
-		$('.addmoreRoutebtn').click(function(){
-			
-			var moreData = $('.routePart').html();
-			$('.routeContainer').append(moreData);
-		});
-		
 		</script>
 		<?php
-		
-		
 	
 	echo $this->Html->tabEnd();
 
