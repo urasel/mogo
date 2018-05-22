@@ -72,9 +72,6 @@ $this->append('tab-content');
 
 		echo $this->Form->input('MotorcycleSpecification.id');
 
-		echo $this->Form->input('MotorcycleSpecification.motorcycle_id', array(
-			'label' =>  __d('information', 'Motorcycle'),
-		));
 		echo $this->Form->input('MotorcycleSpecification.bike_category', array(
 			'label' =>  __d('information', 'Bike Category'),
 		));
