@@ -6,8 +6,6 @@
 <!--[endif]-->
 
 
-<!-- Design  by Amirul/3.x [XR&CO'2014], Mon, 14 May 2018 06:46:36 GMT -->
-<!-- Added by Amirul --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by Amirul -->
 <head>
     <meta charset="utf-8" />
     <title>IMEDICO - Hospital and Health HTML Template </title>
@@ -15,6 +13,7 @@
     <meta name="description" content="IMEDICO" />
     <meta name="keywords" content="medical/IMEDICO/hospital" />
     <meta name="author" content="" />
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <meta name="MobileOptimized" content="320" />
     <!-- style -->
     <?php
@@ -28,6 +27,7 @@
 		echo $this->Html->css('themeinfo/fonts');
 		echo $this->Html->css('themeinfo/style');
 		echo $this->Html->css('themeinfo/responsive');
+		echo $this->Html->css('themeinfo/template');
 		echo $this->Html->css('font-awesome.min');
 		
 	?>

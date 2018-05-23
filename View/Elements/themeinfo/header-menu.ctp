@@ -4,7 +4,9 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-2 col-xs-12 wow bounceInDown" data-wow-delay="0.6s">
                     <div class="header_logo">
-                        <a href="index-2.html" class="hidden-xs"><img src="images/logo.png" alt="logo" title="logo" class="img-responsive"></a>
+                        <a href="index-2.html" class="hidden-xs"><?php //echo $this->Html->image('logo.png',array(class="img-responsive")); ?></a>
+						
+						<?php //echo $this->Html->image('logo.png', array('url' => array('controller'=>'topics','action'=>'home','class' =>'hidden-xs')); ?>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-10 col-xs-12">
@@ -84,7 +86,7 @@
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="gc_logo logo_hidn">
-                                    <h1><a href="#">IMED<span>ICO</span></a></h1>
+                                    <h1><a class="navbar-brand" href="<?php echo $this->webroot;?>">&nbsp;</a></h1>
                                 </div>
                             </div>
                             <div class="col-xs-6">
