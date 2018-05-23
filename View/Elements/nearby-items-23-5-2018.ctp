@@ -138,77 +138,63 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 								$metaTag = "$nearplacename : $nearplacename is a $nearplaceType listed in $nearplaceType category. ".$countryTag.' '.$latLngTag;
 								
 							}
-						
-						echo '<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">';
-							echo '<div class="blog_about">';
-								//echo '<div class="about-border"> <i class="fa fa-tablet aligncenter"></i></div>';
-									echo "<div class='blog_img $postSeo'>";
-										echo '<figure>';
-										$imglink = $nearplace[$className]['image'];
-										if($className == 'TopicData'){
-											$fileExistPath = WWW_ROOT.'img'.DS.'topics'.'medium'.DS.$imglink;
-										}else{
-											$foldername = $nearplace['PlaceType']['pluralname'];
-											$fileExistPath = WWW_ROOT.'img'.DS.$foldername.DS.'photogallery'.DS.$imglink;
-										}
-										
-										if(!empty($imglink) && file_exists($fileExistPath)){
-											if($className == 'TopicData'){
-												echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'img-responsive','data-echo' => SITEIMAGE."topics/medium/$imglink"));
+							
+							echo "<div class='col-md-4 col-sm-4 popular_article $class'>";
+								echo '<article>';
+							
+											echo "<div class='articleThumb $postSeo'>";
+												$imglink = $nearplace[$className]['image'];
+												if($className == 'TopicData'){
+													$fileExistPath = WWW_ROOT.'img'.DS.'topics'.'medium'.DS.$imglink;
+												}else{
+													$foldername = $nearplace['PlaceType']['pluralname'];
+													$fileExistPath = WWW_ROOT.'img'.DS.$foldername.DS.'photogallery'.DS.$imglink;
+												}
 												
-											}else{
-												echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'class' =>'img-responsive','alt' =>$metaTag,'data-echo' => SITEIMAGE."$foldername/photogallery/$imglink"));
+												if(!empty($imglink) && file_exists($fileExistPath)){
+													
+													if($className == 'TopicData'){
+														
+														echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'nearbymap','data-echo' => SITEIMAGE."topics/medium/$imglink"));
+														
+														
+													}else{
+														echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'class' =>'nearbymap','alt' =>$metaTag,'data-echo' => SITEIMAGE."$foldername/photogallery/$imglink"));
+														
+														
+													}
+												}else{
+													if($className == 'TopicData'){
+														echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'nearbymap','data-echo' => SITEIMAGE.'default.png'));
+													}else{
+														echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'class' =>'nearbymap','alt' =>$metaTag,'data-echo' => SITEIMAGE.'default.png'));
+													}
+													
+												}
 												
-											}
+												echo '<div class="date">';
+													$topicIcon = $nearplace['PlaceType']['icon'];
+													echo "<span class='number'><i class='$topicIcon' aria-hidden='true'></i></span>";
+													echo "<span class='text'></span>";
+												echo '</div>';
+											echo '</div>';
 											
-											
-										}else{
-											if($className == 'TopicData'){
-												echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'img-responsive','data-echo' => SITEIMAGE.'default.png'));
-											}else{
-												echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'class' =>'img-responsive','alt' =>$metaTag,'data-echo' => SITEIMAGE.'default.png'));
+											echo '<h3 class="articleTitle">';
+												if($className == 'TopicData'){
+													echo $this->Html->link(mb_substr($nearplacename,0,55), array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),array('alt' =>$nearplacename,'class' =>$postSeo));
+												}else{
+													echo $this->Html->link(mb_substr($nearplacename,0,55), array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$nearplacename,'class' =>$postSeo));
+												}
+											echo '</h3>';
+											if(!empty($shortDescription)){
+												echo '<p class="articleDesc">'.mb_substr($shortDescription,0,80).'</p>';
 											}
-										}
-										
-										echo '<div class="date">';
-											$topicIcon = $nearplace['PlaceType']['icon'];
-											echo "<span class='number'><i class='$topicIcon' aria-hidden='true'></i></span>";
-											echo "<span class='text'></span>";
-										echo '</div>';
-										echo '</figure>';
-									echo '</div>';
-									
-									echo '<div class="blog_comment">';
-										echo '<ul>';
-											echo '<li><a href="#"><i class="fa fa-comment" aria-hidden="true"></i>50</a></li>';
-											echo '<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i>98</a></li>';
-										echo '</ul>';
-									echo '</div>';
-									
-									echo '<div class="blog_txt">';
-										echo '<h1>';
-										if($className == 'TopicData'){
-											echo $this->Html->link(mb_substr($nearplacename,0,55), array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),array('alt' =>$nearplacename,'class' =>$postSeo));
-										}else{
-											echo $this->Html->link(mb_substr($nearplacename,0,55), array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$nearplacename,'class' =>$postSeo));
-										}
-										
-										echo '</h1>';
-										echo '<div class="blog_txt_info">';
-											echo '<ul>';
-												echo '<li>BY ADMIN</li>';
-												echo '<li>SEPT.29,2016</li>';
-											echo '</ul>';
-										echo '</div>';
-										if(!empty($shortDescription)){
-											echo '<p class="articleDesc">'.mb_substr($shortDescription,0,80).'</p>';
-										}
-										//echo '<a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>';
-									echo '</div>';
-									
-									
+											echo '<div class="articleMeta">';
+												echo '<a href="#"><i class="mdi mdi-eye nino-icon"></i> 995</a>';
+												echo '<a href="#"><i class="mdi mdi-comment-multiple-outline nino-icon"></i> 42</a>';
+											echo '</div>';
+								echo '</article>';
 							echo '</div>';
-						echo '</div>';	
 											
 								//debug($visitData);
 								

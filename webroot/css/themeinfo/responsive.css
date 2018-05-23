@@ -319,7 +319,7 @@
 	top:-42%;
 }
 .blog_img figure img{
-	width:50%;
+	width:100%;
 }
 .blog_comment{
 	float:left;
@@ -673,7 +673,7 @@ button span{
 	margin-top:-80px;
 }
 .blog_img figure img{
-	width:50%;
+	width:100%;
 }
 .med_tittle_cont{
 	text-align:center;

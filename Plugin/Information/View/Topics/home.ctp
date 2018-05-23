@@ -132,7 +132,7 @@
 					}
 					
 					//debug($interval);
-						echo '<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">';
+						echo '<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">';
 							echo '<div class="blog_about">';
 								$postSeo = $topics['point_seoname'];
 								//echo '<div class="about-border"> <i class="fa fa-tablet aligncenter"></i></div>';
