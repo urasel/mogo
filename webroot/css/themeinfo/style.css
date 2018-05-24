@@ -242,8 +242,8 @@ textarea:focus {
 }
 .rp_mobail_menu_main_wrapper{
 	float:none;
-	padding-top:20px;
-	padding-bottom:20px;
+	padding-top:10px;
+	padding-bottom:5px;
 	width:100%;
 }
 #sidebar {

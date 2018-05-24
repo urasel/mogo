@@ -86,7 +86,8 @@
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="gc_logo logo_hidn">
-                                    <h1><a class="navbar-brand" href="<?php echo $this->webroot;?>">&nbsp;</a></h1>
+                                    <!--<h1><a class="navbar-brand" href="<?php echo $this->webroot;?>">&nbsp;</a></h1>-->
+                                    <a class="navbar-brand" href="<?php echo $this->webroot;?>">&nbsp;</a>
                                 </div>
                             </div>
                             <div class="col-xs-6">

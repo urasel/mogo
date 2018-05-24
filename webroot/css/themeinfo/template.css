@@ -358,6 +358,16 @@ img.img-full-width {
 	height: 46px;
 	width: 198px;
 }
+.logo_hidn .navbar-brand {
+	background: rgba(0, 0, 0, 0) url("../../img/logo.png?88ee124") no-repeat scroll center 5px;
+	color: #fff;
+	font-weight: 700;
+	font-size: 20px;
+	display: block;
+	height: 46px;
+	width: 170px;
+	margin-top:-10px;
+}
 #nino-navbar .navbar-nav > li > a {
 	color: #fff;
 	font-weight: 500;
@@ -1387,6 +1397,7 @@ a.btn:hover {
 	height: 46px;
 	margin-left: 0;
 	width: 170px;
+	
 }
 .post-item td{
 	padding:0px !important;
