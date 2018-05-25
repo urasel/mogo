@@ -139,7 +139,7 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 								
 							}
 						
-						echo '<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">';
+						echo '<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 minheightblock">';
 							echo '<div class="blog_about">';
 								//echo '<div class="about-border"> <i class="fa fa-tablet aligncenter"></i></div>';
 									echo "<div class='blog_img $postSeo'>";
@@ -172,7 +172,7 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 										
 										echo '<div class="date">';
 											$topicIcon = $nearplace['PlaceType']['icon'];
-											echo "<span class='number'><i class='$topicIcon' aria-hidden='true'></i></span>";
+											//echo "<span class='number'><i class='$topicIcon' aria-hidden='true'></i></span>";
 											echo "<span class='text'></span>";
 										echo '</div>';
 										echo '</figure>';

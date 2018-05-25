@@ -88,7 +88,7 @@
 	  //debug($place);
 ?>
 
-<section>
+<div class="blog_section med_toppadder100 med_bottompadder100">
 <div class="container">
 		<div class="row placeview">
 		<style>
@@ -99,8 +99,8 @@
 		
 		<div class="col-md-8">
 			<?php echo '<div class="row"><div class="col-md-12">'; ?>
-			<div class="col-md-12 posttitleblock">
-			<div class="col-sm-1 col-xs-2 col-md-1" style="padding:0px;">
+			<div class="col-md-12 posttitleblock zeropadding">
+			<div class="col-sm-1 col-xs-2 col-md-1 zeropadding">
 			<div class="viewcaticon">
 			<?php
 			if(!empty($place[$className]['logo'])){
@@ -312,7 +312,7 @@
 		
 	</div>
 	</div>
-</section><!--/Page Body-->
+</div><!--/Page Body-->
 <?php
 		echo $this->element('nearby-items', array('nearbies' => $nearbies,'place' => $place,'className' => $className));
 

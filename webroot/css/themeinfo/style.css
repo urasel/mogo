@@ -61,8 +61,8 @@ a:focus {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 	font-family: 'Montserrat', sans-serif;
 	font-size:16px;
-	color:#ffffff;
-	line-height:24px;
+	color:#333;
+	line-height:25px;
 	font-weight:400;
 	margin:0;
 	padding:0;
@@ -109,7 +109,7 @@ textarea:focus {
 	padding-top:90px;
 }
 .med_toppadder100{
-	padding-top:100px;
+	/*padding-top:100px;*/
 }
 .med_bottompadder10{
 	padding-bottom:10px;
@@ -375,7 +375,8 @@ textarea:focus {
 	font-weight:bold;
 	text-transform:uppercase;
 	padding-bottom: 15px;
-    margin-top: 15px;
+    margin-top: 5px;
+	height:36px;
 }
 #sidebar h1 span{
 	margin:0;
@@ -396,7 +397,7 @@ textarea:focus {
 	width:100%;
 	position: absolute;
 	z-index:10;
-	top:-20px;
+	top:15px;
 }
 .logo_hidn h1{
 	float:left; width:100%;
@@ -2030,7 +2031,7 @@ color: #777777;
 	text-align:left;
 	width:100%;
 }
-.blog_txt h1{margin-top:30px;}
+.blog_txt h1{margin-top:15px;}
 .blog_txt h1 a{
 	font-size:18px;
 	font-weight:600;
@@ -2845,7 +2846,7 @@ color: #777777;
 	position:relative;
 	text-align:center;
 	padding-top: 110px;
-	padding-bottom:40px;
+	padding-bottom:0px;
 	margin-top:-95px;
 }
 .med_img_overlay{
@@ -2861,8 +2862,8 @@ color: #777777;
 	display:inline-block;
 }
 .med_tittle_cont{
-	text-align:right;
-	margin-top:45px;
+	text-align:left;
+	margin-top:10px;
 }
 .med_tittle_cont h1{
 	font-size:32px;

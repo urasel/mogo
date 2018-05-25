@@ -61,30 +61,6 @@ a img {
 a[class*="glyphicon-"] {
 	text-decoration: none;
 }
-/* =============== DEFAULT HTML - HEADING STYLES =============== */
-h1, h2, h3, h4, h5, h6 {
-	margin: 0px 0 10px;
-	color: #333;
-	font-family: 'Montserrat', sans-serif;
-}
-h1, h2 {
-	font-weight: 300;
-}
-h1 {
-	font-size: 2.2em;
-}
-h2 {
-	font-size: 1.8em;
-}
-h3 {
-	font-size: 22px;
-}
-h4 {
-	font-size: 18px;
-}
-h5, h6 {
-	font-size: 1em;
-}
 /* =============== DEFAULT HTML - LIST STYLES =============== */
 ul, ul li,
 ol, ol li,
@@ -1463,4 +1439,50 @@ td.placeaddress{
 .noticebutton:hover {
   color:#fff;
 }
+
+
 /*******************************Animated Button**********************/
+
+.panel-info > .panel-heading {
+	font-size:18px;
+	font-weight:600;
+	color:#333;
+}
+.blog_section{
+	font-size: 16px;
+	line-height: 26px;
+	font-weight:300;
+	color: #707070;
+	margin-top: 10px;
+	padding-bottom: 8px;
+	text-align:justify;
+}
+
+.panel-title, .panel-heading {
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 18px;
+	color: #333;
+	font-weight:500;
+}
+.posttitleblock{
+	margin-top:10px;
+}
+
+.zeropadding{
+	padding:0px;
+}
+.minheightblock{
+	min-height:365px;
+}
+.panel-body i{
+	margin-right:15px;
+}
+.aboutPlace div.row:nth-child(even) {background: #FFF}
+.aboutPlace div.row:nth-child(odd) {background: #FFF}
+.carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	width: 100%;
+}
