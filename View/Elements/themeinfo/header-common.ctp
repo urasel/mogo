@@ -5,15 +5,15 @@
 <html lang="en">
 <!--[endif]-->
 
-
 <head>
-    <meta charset="utf-8" />
-    <title>IMEDICO - Hospital and Health HTML Template </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title><?php echo $title_for_layout; ?></title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta name="description" content="IMEDICO" />
-    <meta name="keywords" content="medical/IMEDICO/hospital" />
-    <meta name="author" content="" />
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<meta name="description" content="<?php if(!empty($metadescription) && isset($metadescription)){ echo $metadescription;}?>">
+	<meta name="author" content="urasel@gmail.com">
+	<meta name="copyright" content="infoMap24.com"> 
+	<meta name="keyword" content="<?php if(!empty($keyword)){echo $keyword;}else{echo $title_for_layout;}?>">
+    <meta name="description" content="Infomap24 Information" />
     <meta name="MobileOptimized" content="320" />
     <!-- style -->
     <?php

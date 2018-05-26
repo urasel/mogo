@@ -7,25 +7,7 @@
 @import 'https://fonts.googleapis.com/css?family=Montserrat:400,700';
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700';
 @import 'https://fonts.googleapis.com/css?family=Kaushan+Script';
-html, body {
-	line-height: 1.7;
-	margin: 0;
-	padding: 0;
-}
-body {
-	color: #999;
-	font-size: 14px;
-	font-weight: 400;
-	overflow-x: hidden;
-	position: relative;
-	font-family: 'Roboto', sans-serif;
-}
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,main { 
-    display: block;
-}
-article{
-	min-height:300px;
-}
+
 hr {
 	border-left: none;
 	border-right: none;
@@ -1485,4 +1467,14 @@ td.placeaddress{
 	max-width: 100%;
 	height: auto;
 	width: 100%;
+}
+.margin8px{
+	margin-left:8px;
+}
+.sortlink {
+	padding: 4px 6.49px;
+	border: 1px solid #ccc;
+	float: left;
+	color: #000;
+	font-weight: bold;
 }

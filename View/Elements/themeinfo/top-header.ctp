@@ -1,7 +1,7 @@
 <!-- preloader Start -->
     <div id="preloader">
-        <div id="status"><img src="images/preloader.gif" id="preloader_image" alt="loader">
-        </div>
+        <div id="status"><img src="/preloader.gif" id="preloader_image" alt="loader"></div>
+        <div id="status"><?php echo $this->Html->image('preloader.gif');?></div>
     </div>
     <!--top header start-->
     <div class="top_header_wrapper">

@@ -26,12 +26,18 @@
 	   }
 	  $this->loadHelpers(array('Language','Theme'));
  ?>
-<section>
 <div class="container">
 	<div class="row placeview">
+		<div class="col-md-12 posttitleblock zeropadding">
+			<div class="col-md-12">
+			<?php 
+					echo '<h1>'.$title_for_layout.'</h1><br/>'; 
+					
+			?>
+			</div>
+		</div>
 <?php
 	echo '<div class="col-md-8 leftbody">';
-	echo '<h2>'.$title_for_layout.'</h2>';
 		if(count($categories) > 0){
 			echo '<div class="row">';
 			foreach($categories as $category):
@@ -269,5 +275,4 @@
 	
 ?>
 </div>
-</section>
 

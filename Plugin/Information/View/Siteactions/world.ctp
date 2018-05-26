@@ -23,12 +23,12 @@
 	  
 	  //debug($aboutContinent);
 ?>
-<section>
 <div class="container">
 <div class="row placeview">
-			<?php 
-				echo '<div class="col-md-12">';
-						echo '<h1 class="posttitle">'.$title_for_layout.'</h1>';
+				<div class="col-md-12 posttitleblock zeropadding">
+				<div class="col-md-12">
+				<?php 
+						echo '<h1>'.$title_for_layout.'</h1><br/>'; 
 						
 				?>
 				</div>
@@ -41,7 +41,7 @@
 				echo '<div class="row">';
 				echo '<div class="col-md-4">';
 				echo '<div class=" countryflagcontainer">';
-				echo '<table class="table innertabletd">';
+				echo '<table class="table innertabletd margin8px">';
 				echo '<tr>';
 				echo '<td width="10%" class="placename">';
 				echo "<i class='fa fa-globe'></i>";
@@ -59,7 +59,7 @@
 					//debug($country);
 					echo '<div class="col-md-4">';
 					echo '<div class=" countryflagcontainer">';
-					echo '<table class="table innertabletd">';
+					echo '<table class="table innertabletd margin8px">';
 					echo '<tr>';
 					echo '<td width="10%" class="placename">';
 					$flag = $country['Country']['flag'];
@@ -77,9 +77,7 @@
 					echo '</div>';
 				}
 				echo '</div>';
-	
-echo '</div>';
-	
+
 	?>
 </div>
-</section>
+</div>

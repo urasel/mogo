@@ -37,10 +37,10 @@ $currentLng = $this->Session->read('Config.language');
 	background: url("http://localhost/skybazarcake2/img/check.png") no-repeat scroll left top rgba(0, 0, 0, 0);
 }
 </style>
-
-<div class="row">
+<div class="container">
+	<div class="row placeview">
 	<div class="col-md-8">
-		<div class="col-md-12 sectionblock">
+		<div class="sectionblock">
 			<?php 
 			//debug($place);
 			$title = '';
@@ -49,52 +49,19 @@ $currentLng = $this->Session->read('Config.language');
 			
 			echo '<div class="row">';
 				echo '<div class="col-md-12">';
-						echo '<h1 class="posttitle">'.$title.'</h1>';
-						echo '<p>';
-						echo '&nbsp;&nbsp;<b>'.__('PUBLISHED').'</b>&nbsp;&nbsp;'.$publishdate.'&nbsp;|&nbsp;<b>'.__('UPDATED').'</b>&nbsp;&nbsp;'.$updatedate;
-						echo '</p>';
-				?>
-				</div>
-				</div>
-				<div class="col-md-12">
-				<div class="row">
-				<div class="col-md-4 col-sm-4 col-xs-12">
-					<div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12" id="writer-block">
-					<div class="writer-container">
-						<div class="col-md-12  col-sm-12 col-xs-12" id="writer-img">
-						<?php
-						if(!empty($place['User']['firstname']) && !empty($place['User']['lastname'])){
-							$userName = $place['User']['firstname'].' '.$place['User']['lastname'];
-						}else{
-							$userName = 'InfoMap24';
-						}
-						if(empty($place['User']['image'])){
-						echo '<i class="fa fa-user writericon"></i>';
-						}else{
-						$imglink = 'users/small/'.$place['User']['image'];
-						echo $this->Html->image($imglink,array('alt'=>'','class'=>'writerprofileimg'));
-						}
+						?>
+						<div class="col-md-12 posttitleblock zeropadding">
+						<?php 
+							echo '<h1>'.$place['PlaceType']['name'].' '.$place[$modelName]['name'].' '.__('Details').'</h1><br/>';
+								
 						?>
 						</div>
-						<div class="col-md-10  col-sm-10 col-xs-10 zeropadding" class="writer-name">
-						<span><?php echo $userName;?></span>
-						</div>
-					</div>
-					</div>
-					</div>
-				</div>
-				<div class="col-md-8 col-sm-8 col-xs-12">
-					<div class="row">
-					<div class="col-md-12 col-sm-12  col-xs-12 " id="social-block">
-					
-					<div class="fb-like" data-href="<?php echo 'http://www.infomap24.com/'.$this->params->url;?>" data-width="300" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-					<div class="zoominbutton"></div>
-					<div class="zoomoutbutton"></div>
-					</div>
-				</div>
-				
-				</div>
+						<?php
+						
+						echo '<p>';
+						echo '<b>'.__('PUBLISHED').'</b>&nbsp;&nbsp;'.$publishdate.'&nbsp;|&nbsp;<b>'.__('UPDATED').'</b>&nbsp;&nbsp;'.$updatedate;
+						echo '</p>';
+				?>
 				</div>
 				</div>
 				
@@ -102,7 +69,7 @@ $currentLng = $this->Session->read('Config.language');
 				<?php
 			echo '<div class="row">';
 				echo '<div class="col-md-12">';
-				echo '<h1>'.$place['PlaceType']['name'].' '.$place[$modelName]['name'].' '.__('Details').'</h1>';
+				
 				?>
 				<table class="table table-bordered"> 
 				<tbody> 
@@ -154,32 +121,100 @@ $currentLng = $this->Session->read('Config.language');
 echo '</div>';
 	
 	?>
-<div class="row top-buffer">
-	<div class="col-md-12">
-		<div class="col-md-12 sectionblock otherblock">
+
+<div class="row">
 		<?php
 		//debug($nearbies);
-				echo '<h3>'.__('Other').' '.$place['PlaceType']['name'].__(' Informations').'</h3>';
-				echo '<div class="row nearPlace">';
+				echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['PlaceType']['name']).'</h2>';
+				echo '<div class="nearPlace">';
 				foreach($nearbies as $nearby){
 				//debug($nearby);
 				$placename = $nearby[$modelName]['name'];
 				$stringlength = strlen($nearby[$modelName]['seo_name']);
 				$newID = $stringlength.$nearby[$modelName]['id'];
 				$formatAlt = $nearby['PlaceType']['name'].' '.$placename.' '.__('Details');
-				echo '<div class="col-xs-12 col-sm-6 col-md-3 contenttitle">';
-					//echo $this->Html->link($nearby[$modelName]['name'],array('controller'=>'siteactions','action'=>$modelName,'category'=>$nearby['PlaceType']['seo_name'],$modelName=> $nearby[$modelName]['seo_name'],'id'=> $nearby[$modelName]['id'],'ext' => 'asp'),array('class'=>'placename','alt'=>$nearby[$modelName]['name']));
-					echo $this->Html->link('<h5>'.$placename.'</h5>', array('controller'=>'siteactions','action'=>'bucket','itemgroup'=>$modelName,'category'=>$nearby['PlaceType']['seo_name'],'point'=> $nearby[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$formatAlt,'escape'=>false));
-				echo '</div>';
+				$shortDescription = '';
 				
 				//debug($nearby);
+				
+				echo '<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">';
+					echo '<div class="blog_about">';
+						//echo '<div class="about-border"> <i class="fa fa-tablet aligncenter"></i></div>';
+						/*
+							echo "<div class='blog_img $postSeo'>";
+								echo '<figure>';
+								$imglink = $nearplace[$className]['image'];
+								if($className == 'TopicData'){
+									$fileExistPath = WWW_ROOT.'img'.DS.'topics'.'medium'.DS.$imglink;
+								}else{
+									$foldername = $nearplace['PlaceType']['pluralname'];
+									$fileExistPath = WWW_ROOT.'img'.DS.$foldername.DS.'photogallery'.DS.$imglink;
+								}
+								
+								if(!empty($imglink) && file_exists($fileExistPath)){
+									if($className == 'TopicData'){
+										echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'img-responsive','data-echo' => SITEIMAGE."topics/medium/$imglink"));
+										
+									}else{
+										echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'class' =>'img-responsive','alt' =>$metaTag,'data-echo' => SITEIMAGE."$foldername/photogallery/$imglink"));
+										
+									}
+									
+									
+								}else{
+									if($className == 'TopicData'){
+										echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'img-responsive','data-echo' => SITEIMAGE.'default.png'));
+									}else{
+										echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'class' =>'img-responsive','alt' =>$metaTag,'data-echo' => SITEIMAGE.'default.png'));
+									}
+								}
+								
+								echo '<div class="date">';
+									$topicIcon = $nearplace['PlaceType']['icon'];
+									//echo "<span class='number'><i class='$topicIcon' aria-hidden='true'></i></span>";
+									echo "<span class='text'></span>";
+								echo '</div>';
+								echo '</figure>';
+							echo '</div>';
+							*/
+							
+							
+							echo '<div class="blog_txt">';
+								echo '<h1>';
+								
+								echo $this->Html->link(mb_substr($placename,0,55), array('controller'=>'siteactions','action'=>'bucket','itemgroup'=>$modelName,'category'=>$nearby['PlaceType']['seo_name'],'point'=> $nearby[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$formatAlt,'escape'=>false));
+								
+								echo '</h1>';
+								/*
+								echo '<div class="blog_comment">';
+									echo '<ul>';
+										echo '<li><a href="#"><i class="fa fa-comment" aria-hidden="true"></i>50</a></li>';
+										echo '<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i>98</a></li>';
+									echo '</ul>';
+								echo '</div>';
+								*/
+								echo '<div class="blog_txt_info">';
+									echo '<ul>';
+										echo '<li>BY ADMIN</li>';
+										echo '<li>SEPT.29,2016</li>';
+									echo '</ul>';
+								echo '</div>';
+								if(!empty($shortDescription)){
+									echo '<p class="articleDesc">'.mb_substr($shortDescription,0,80).'</p>';
+								}
+								//echo '<a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>';
+							echo '</div>';
+							
+							
+					echo '</div>';
+				echo '</div>';	
+				
 				}
 				echo '</div>';
 				
 		?>
 		
-	</div>
-</div>	
+	</div>	
 </div>	
 <script>
 $(document).ready(function(){

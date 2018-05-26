@@ -26,13 +26,19 @@
 	  
 	  $address = '';
 ?>
-<section>
 <div class="container">
 	<div class="row placeview">
+		<div class="col-md-12 posttitleblock zeropadding">
+			<div class="col-md-12">
+			<?php 
+					echo '<h1>'.$title_for_layout.'</h1><br/>'; 
+					
+			?>
+			</div>
+		</div>
 <?php
 
 echo '<div class="col-md-8 leftbody">';
-		echo '<h2>'.$title_for_layout.'</h2>';
 		echo '<div class="sortingblock">';
 			echo '<div class="row">';
 			echo '<div class="col-md-12">';
@@ -222,4 +228,3 @@ echo '</div>';
 				
 ?>
 </div>
-</section>

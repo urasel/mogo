@@ -8,9 +8,7 @@
     <?php echo $this->element('themeinfo/top-header'); ?>
     <?php echo $this->element('themeinfo/header-menu'); ?>
 	<!-- end header --> 
-				<div class="med_tittle_section">
-					<div class="med_img_overlay"></div>
-					<div class="container">
+				<div class="container">
 						<div class="row">
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class="med_tittle_cont_wrapper">
@@ -23,10 +21,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
 				</div>
-				
 			<?php if(!empty($this->Session->flash()) || !empty($this->Session->flash('auth'))) {?>
 			<section>
 			<div class="container">

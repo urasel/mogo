@@ -20,10 +20,18 @@
 <section>
 <div class="container">
 	<div class="row placeview">
-	<?php
-		echo '<div class="col-md-12">';
-		echo '<h2>'.$title_for_layout.'</h2>'; 
+	
+		<div class="col-md-12 posttitleblock zeropadding">
+		<div class="col-md-12">
+		<?php 
+				echo '<h1>'.$title_for_layout.'</h1><br/>'; 
+				
+		?>
+		</div>
+		</div>
+		<?php
 			//debug($categories);
+			echo '<div class="col-md-12">';
 			echo '<div class="row">';
 			foreach($categories as $category):
 			//debug($category);

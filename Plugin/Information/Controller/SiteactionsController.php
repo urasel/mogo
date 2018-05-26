@@ -1832,7 +1832,7 @@ class SiteactionsController extends InformationAppController {
 			//debug($pointDetails);exit;
 			if(in_array($modelName,array('BabyName'))){
 				$layout = 'generalview';
-				$title_for_layout = $pointDetails[$modelName]['name'];
+				$title_for_layout = $pointDetails['PlaceType']['name'].' '.$pointDetails[$modelName]['name'].' '.__('Details');
 				$viewFileName = 'bucket';
 			}else{
 				$layout = $pointDetails['PlaceType']['singlename'];
@@ -1859,7 +1859,8 @@ class SiteactionsController extends InformationAppController {
 			);
 			
 			$nearbies = $this->$modelName->find('all', $nearbyoptions);
-			//debug($nearbies);exit;			
+			//debug($nearbies);exit;	
+			
 			$this->set('title_for_layout', $title_for_layout);
 			$this->set('place', $pointDetails);
 			$this->set('nearbies', $nearbies);
