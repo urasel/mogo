@@ -127,7 +127,7 @@ class SiteactionsController extends InformationAppController {
 		
 		$this->set(compact('queryCountry','passCountryName','passCountryId'));
 		$pointDetails = $this->Point->find('first', $options);
-		
+		debug($pointDetails);exit;
 		$breadcumpArray = $this->generatebreadcump($pointDetails['PlaceType']['id'],$breadCumb);
 		
 		$this->set('breadcumpArray', $breadcumpArray);
@@ -140,7 +140,7 @@ class SiteactionsController extends InformationAppController {
 			$this->Point->saveField('totalvisit',$currentCount+1);
 		}
 		$id = $pointDetails['Point']['id'];
-		$typeid = $pointDetails['PlaceType']['singlename'];
+		echo $typeid = $pointDetails['PlaceType']['singlename'];exit;
 		$PlaceTypeID = $pointDetails['PlaceType']['id'];
 		$className = ucfirst($pointDetails['PlaceType']['singlename']);
 		$singleName = $pointDetails['PlaceType']['singlename'];
@@ -1215,8 +1215,7 @@ class SiteactionsController extends InformationAppController {
 					),
 				)
 			);
-			//debug($this->Point);
-			//exit;
+			debug($this->Point);exit;
 			$options = array(
 				'conditions' => array('Point.' . $this->Point->primaryKey => $id),
 				'fields' =>array(
@@ -1238,7 +1237,7 @@ class SiteactionsController extends InformationAppController {
 			);
 			//debug($options);exit;
 			$pointDetails = $this->Point->find('first', $options);
-			//debug($pointDetails);exit;
+			debug($pointDetails);exit;
 			
 			
 			if(empty($pointDetails['Point']['lat']) || empty($pointDetails['Point']['lng']) || empty($pointDetails['Point']['map'])){
