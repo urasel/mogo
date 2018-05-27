@@ -1478,3 +1478,27 @@ td.placeaddress{
 	color: #000;
 	font-weight: bold;
 }
+.pagination > li > a, .pagination > li > span {
+	position: relative;
+	float: left;
+	width: auto;
+	height: 35px;
+	color: #000000;
+	text-decoration: none;
+	background-color: #f3f0f0;
+	border: none;
+	font-size: 18px;
+	font-weight: 600;
+	margin-right: 3px;
+	line-height: 0;
+	padding: 17px 10px;
+}
+.innertabletd{
+	margin-bottom:5px;
+}
+.blog_txt a  h1{
+	font-size: 18px;
+	font-weight: 600;
+	text-transform: capitalize;
+	color: black;
+}

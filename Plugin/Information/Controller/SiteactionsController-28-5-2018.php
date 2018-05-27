@@ -2054,8 +2054,7 @@ class SiteactionsController extends InformationAppController {
 			$this->loadModel('Country');
 			$countryName = $this->Country->find('first',array('conditions'=>array('Country.seo_name' => $queryCountry),'fields'=>array("Country.$fieldName as name","Country.id")));
 			$passCountryName = $countryName['Country']['name'];
-			$countryId = $countryName['Country']['id'];
-			
+			$passCountryId = $countryName['Country']['id'];
 		}
 		
 		if(isset($this->params['character'])){
@@ -2101,7 +2100,7 @@ class SiteactionsController extends InformationAppController {
 		$singleName = $pointDetails['PlaceType']['singlename'];
 		$parent_seo_name = $pointDetails['PlaceType']['seo_name'];
 		$PlaceTypeID = $pointDetails['PlaceType']['id'];
-		$entries = $this->_allcatitems($id,$singleName,$childs,$character,$queryCountry,$countryId);
+		$entries = $this->_allcatitems($id,$singleName,$childs,$character,$queryCountry);
 		//debug($entries);exit;
 		$breadcumpArray = $this->generatebreadcump($parentID,$breadCumb);
 		$parentCats = '';
@@ -2405,10 +2404,8 @@ class SiteactionsController extends InformationAppController {
 			$countryName = '';
 		}else{
 			$this->loadModel('Country');
-			$countryName = $this->Country->find('first',array('conditions'=>array('Country.seo_name' => $queryCountry),'fields'=>array("Country.id","Country.$fieldName as name")));
-			$countryId = $countryName['Country']['id'];
+			$countryName = $this->Country->find('first',array('conditions'=>array('Country.seo_name' => $queryCountry),'fields'=>array("Country.$fieldName as name")));
 			$countryName = $countryName['Country']['name'];
-			
 		}
 		
 		$cutlength = strlen($stringlength);
@@ -2446,7 +2443,7 @@ class SiteactionsController extends InformationAppController {
 		$PlaceTypeID = $pointDetails['PlaceType']['id'];
 		
 		
-		$entries = $this->_allcatitems($id,$singleName,$childs,$character,$queryCountry,$countryId);
+		$entries = $this->_allcatitems($id,$singleName,$childs,$character,$queryCountry);
 		//debug($entries);exit;
 		$breadcumpArray = $this->generatebreadcump($PlaceTypeID,$breadCumb);
 		
@@ -2455,9 +2452,9 @@ class SiteactionsController extends InformationAppController {
 				$title_for_layout = $categoryName. __(' Informations');
 			}
 		//debug($entries);exit;
-		$this->set(compact('title_for_layout','entries','passID','catname','categoryName','breadcumpArray','parent_seo_name','PlaceTypeID','character','queryCountry','countryId','passCountryName','countryName'));
+		$this->set(compact('title_for_layout','entries','passID','catname','categoryName','breadcumpArray','parent_seo_name','PlaceTypeID','character','queryCountry','passCountryName','countryName'));
 	}
-	public function _allcatitems($id,$singleName,$childs,$character,$queryCountry,$countryId){
+	public function _allcatitems($id,$singleName,$childs,$character,$queryCountry){
 		$this->loadModel('Information.PlaceType');
 		$currentLng = $this->Session->read('Config.language');
 		//echo $singleName;exit;
@@ -2512,9 +2509,8 @@ class SiteactionsController extends InformationAppController {
 				}else{
 					
 					$this->loadModel('Country');
-					//$countryId = $this->Country->find('first',array('conditions'=>array('Country.seo_name' => $queryCountry),'fields'=>array('Country.id')));
-					//$countryId = $countryId['Country']['id'];
-					$countryId = $countryId;
+					$countryId = $this->Country->find('first',array('conditions'=>array('Country.seo_name' => $queryCountry),'fields'=>array('Country.id')));
+					$countryId = $countryId['Country']['id'];
 					$searchString[] = array("$className.place_type_id" => $childs,"$className.country_id" => $countryId);
 				}
 			
@@ -2526,6 +2522,11 @@ class SiteactionsController extends InformationAppController {
 			$this->loadModel($className);
 			$this->$className->bindModel(array(
 					'hasOne' => array(
+					
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id")
+						),
 					
 						'PlaceType' => array(
 							'foreignKey' => false,
@@ -2561,6 +2562,11 @@ class SiteactionsController extends InformationAppController {
 					"$className.details",
 					"$className.bn_details",
 					"$className.image",
+					"Point.id",
+					"Point.name",
+					"Point.seo_name",
+					"Point.bn_name",
+					"Point.image",
 					"Country.$fieldName as name",
 					"Country.seo_name",
 					"Country.id",

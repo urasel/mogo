@@ -11,9 +11,8 @@
 								<a class="navbar-brand" href="<?php echo $this->webroot;?>"></a>	
 							</div>
 	        			</div>
-	        			<p>
-	        				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-	        			</p>
+	        			<p>Infomap24 , is your daily online reference guide where you can get information starting from education ,history , lifestyle & places to health , banking , fooding , travelling and what not. Starting from the very basic info , Infomap24 offers adequate knowledge about any given topic for regular day to day needs. In short Infomap is here to replace your yellow pages.
+						</p>
 	        			<div class="nino-followUs">
 	        				<div class="totalFollow"><span>15k</span> followers</div>
 	        				<div class="socialNetwork">
