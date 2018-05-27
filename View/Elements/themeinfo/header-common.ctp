@@ -34,4 +34,5 @@
     <!-- favicon link-->
     <link rel="shortcut icon" type="image/icon" href="images/Iconpic.png" />
 <script src='../../google_analytics_auto.js'></script>
+<script src='https://cdn.rawgit.com/OpenShare/openshare/master/dist/openshare.js'></script>
 
