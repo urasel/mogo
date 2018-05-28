@@ -728,7 +728,10 @@ class NodesController extends NodesAppController {
  * @access public
  */
 	public function view($id = null) {
+		//debug($this->request->params);exit;
 		$Node = $this->{$this->modelClass};
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		if (isset($this->request->params['named']['slug']) && isset($this->request->params['named']['type'])) {
 			$Node->type = $this->request->params['named']['type'];
 			$type = $Node->Taxonomy->Vocabulary->Type->find('first', array(
