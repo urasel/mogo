@@ -195,6 +195,11 @@
 		$('#search_open').slideToggle();
 		e.stopPropagation(); 
 	});
+	
+	$('#search_button_second').on("click", function(e) {
+		$('#search_open_second').slideToggle();
+		e.stopPropagation(); 
+	});
 
 	$(document).on("click", function(e){
 		if(!(e.target.closest('#search_open'))){	

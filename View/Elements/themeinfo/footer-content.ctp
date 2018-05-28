@@ -7,7 +7,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="address_main">
                             <div class="footer_widget_add">
-								<a href="<?php echo $this->webroot;?>"><img src="images/footer_logo.png" class="img-responsive" alt="footer_logo" />
+								<!--<a href="<?php echo $this->webroot;?>"><img src="images/footer_logo.png" class="img-responsive" alt="footer_logo" />-->
+								<?php echo $this->Html->image('logo.png',array('url' => '/','class' => 'img-responsive')); ?>
                                 <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor.</p>
                                 <a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>
                             </div>

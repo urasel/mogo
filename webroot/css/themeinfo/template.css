@@ -1502,3 +1502,13 @@ td.placeaddress{
 	text-transform: capitalize;
 	color: black;
 }
+.footer_widget_add img{
+	width:auto;
+}
+#search_button_second {
+	display: block;
+	clear: left;
+	width: 20px;
+	float: right;
+	margin-right: 25px;
+}

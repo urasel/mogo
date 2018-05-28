@@ -3,7 +3,6 @@ Config/croogo.php
 Config/database.php
 Config/settings.json
 webroot/uploads/
-Vendor/
 *.bak
 *.swp
 

@@ -79,7 +79,7 @@
 									  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">contact</a>
 									  <ul class="dropdown-menu hovr_nav_tab">
 										<li><a href="contact_us.html">contact us</a></li>
-										<li><a href="appointment.html">appointment </a></li>
+										<li><a href="appointment.html">Social Media</a></li>
 									  </ul>
 									</li>
                                 </ul>
@@ -116,7 +116,15 @@
                                         </g>
                                     </svg>
                                 </div>
+								<div class="et_search_bar_2" id="search_button_second">
+									 <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
+								</div>
+								
                             </div>
+							<div id="search_open_second" class="et_search_box">
+								<input type="text" placeholder="Search here">
+								<button><i class="fa fa-search" aria-hidden="true"></i></button>
+							</div>
                         </div>
 
                         <div id="sidebar">
