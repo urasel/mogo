@@ -12,9 +12,20 @@
 	  $currentLng = $this->Session->read('Config.language');
 	  //debug($this->Session);
 ?>
+<div class="container">
+<div class="row placeview">
+			<div class="col-md-12">			
+				<div class="col-md-12 posttitleblock zeropadding">
+					<div class="col-sm-112 col-xs-12 col-md-12 zeropadding">
+					<?php 
+							echo '<h1>'.$title_for_layout.'</h1>'; 
+							
+					?>
+					</div>
+				</div>
+			</div>
 <?php
-echo '<h1>'.$title_for_layout.'</h1>';
-echo '<div class="row"><div class="col-md-8">';
+echo '<div class="col-md-8">';
 		$userData = $this->Session->read('Auth.User');
 		$userID = $userData['id'];
 		
@@ -126,6 +137,7 @@ echo '<div class="row"><div class="col-md-8">';
 	echo '<div class="col-md-4">';
 	
 	echo '</div>';
-echo '</div>';
 				
 ?>
+</div>
+</div>

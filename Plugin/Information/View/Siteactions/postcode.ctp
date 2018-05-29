@@ -80,7 +80,7 @@
 	  //debug($place);
 ?>
 
-<section>
+
 <div class="container">
 		<div class="row placeview">
 		<style>
@@ -90,8 +90,8 @@
 		</style>
 		<div class="col-md-8">
 			<?php echo '<div class="row"><div class="col-md-12">'; ?>
-			<div class="col-md-12 posttitleblock">
-			<div class="col-sm-1 col-xs-2 col-md-1" style="padding:0px;">
+			<div class="col-md-12 posttitleblock zeropadding">
+			<div class="col-sm-1 col-xs-2 col-md-1 zeropadding">
 			<div class="viewcaticon">
 			<?php
 			if(!empty($place['Place']['image'])){
@@ -113,7 +113,7 @@
 				$adminLink = '';
 			}
 			
-			echo '<h2>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h2>';  
+			echo '<h1>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h1>';  
 			?>
 			<?php 
 			echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><p>'.$place['BdThanas']['name'].', '.$place['BdDivision']['name'].','.$place['Country']['name'].' '.'</p></div></div>'; ?>
@@ -186,22 +186,22 @@
 				echo '<div class="panel-body aboutPlace">';
 				echo '<div class="row">';
 				echo '<div class="col-xs-6 col-md-4 addrtitle"><i class="fa fa-tags"></i><span>'.__('Place Type').'</span></div>';
-				echo '<div class="col-xs-6 col-md-8">'.$place['PlaceType']['name'].'</div>';
+				echo '<div class="col-xs-6 col-md-8">:&nbsp;'.$place['PlaceType']['name'].'</div>';
 				echo '</div>';
 				echo '<div class="row">';
-				echo '<div class="col-xs-12 col-md-4 addrtitle"><i class="fa fa-taxi"></i><span>'.__('Address').'</span></div>';
-				echo '<div class="col-xs-12 col-md-8"><b>'.__('Postal Address').':</b><br/>';
+				echo '<div class="col-xs-6 col-md-4 addrtitle"><i class="fa fa-taxi"></i><span>'.__('Address').'</span></div>';
+				echo '<div class="col-xs-6 col-md-8">:&nbsp;<b>'.__('Postal Address').':</b><br/>';
 				echo '<h2 style="font-size:18px">'.$title.'</h2>';
 				echo $address.'<br/>'.$place['BdThanas']['name'].','.$place['BdDistrict']['name'].','.$place['BdDivision']['name'].','.$place['Country']['name'];
 				echo '</div>';
 				echo '</div>';
 				echo '<div class="row">';
 				echo '<div class="col-xs-6 col-md-4 addrtitle"><i class="fa fa-dot-circle-o"></i><span>'.__('Latitute').'</span></div>';
-				echo '<div class="col-xs-6 col-md-8">'.$lat.'</div>';
+				echo '<div class="col-xs-6 col-md-8">:&nbsp;'.$lat.'</div>';
 				echo '</div>';
 				echo '<div class="row">';
 				echo '<div class="col-xs-6 col-md-4 addrtitle"><i class="fa fa-dot-circle-o"></i><span>'.__('Longitute').'</span></div>';
-				echo '<div class="col-xs-6 col-md-8">'.$lng.'</div>';
+				echo '<div class="col-xs-6 col-md-8">:&nbsp;'.$lng.'</div>';
 				echo '</div>';
 				
 				echo '</div>';
@@ -223,36 +223,36 @@
 				echo '</div>';
 				//if(!empty($place[$className]['web'])){
 				echo '<div class="row">';
-				echo '<div class="col-xs-12 col-md-4 col-sm-4 addrtitle"><i class="fa fa-link"></i><span>'.__('Website').'</span></div>';
-				echo '<div class="col-xs-12 col-md-8 col-sm-8"><span class="topicseperator">:</span> '.$place[$className]['web'].'</div>';
+				echo '<div class="col-xs-6 col-md-4 addrtitle"><i class="fa fa-link"></i><span>'.__('Website').'</span></div>';
+				echo '<div class="col-xs-6 col-md-8"><span class="topicseperator">:</span> '.$place[$className]['web'].'</div>';
 				echo '</div>';
 				//}
 				//if(!empty($place[$className]['phone'])){
 				echo '<div class="row">';
-				echo '<div class="col-xs-12 col-md-4 col-sm-4 addrtitle"><i class="fa fa-phone"></i><span>'.__('Mobile').'</span></div>';
-				echo '<div class="col-xs-12 col-md-8 col-sm-8"><span class="topicseperator">:</span> '.$mobile.'</div>';
+				echo '<div class="col-xs-6 col-md-4 addrtitle"><i class="fa fa-phone"></i><span>'.__('Mobile').'</span></div>';
+				echo '<div class="col-xs-6 col-md-8"><span class="topicseperator">:</span> '.$mobile.'</div>';
 				echo '</div>';
 				//}
 				//if(!empty($place[$className]['email'])){
 				echo '<div class="row">';
-				echo '<div class="col-xs-12 col-md-4 col-sm-4 addrtitle"><i class="fa fa-at"></i><span>'.__('Email').'</span></div>';
-				echo '<div class="col-xs-12 col-md-8 col-sm-8"><span class="topicseperator">:</span> '.$place[$className]['email'].'</div>';
+				echo '<div class="col-xs-6 col-md-4 addrtitle"><i class="fa fa-at"></i><span>'.__('Email').'</span></div>';
+				echo '<div class="col-xs-6 col-md-8"><span class="topicseperator">:</span> '.$place[$className]['email'].'</div>';
 				echo '</div>';
 				//}
 				
 				
 				if(!empty($place[$className]['fax'])){
 				echo '<div class="row">';
-				echo '<div class="col-xs-12 col-md-4 col-sm-4 addrtitle"><i class="fa fa-fax"></i><span>Fax :</span></div>';
-				echo '<div class="col-xs-12 col-md-8 col-sm-8"><span class="topicseperator">:</span> '.$place[$className]['fax'].'</div>';
+				echo '<div class="col-xs-6 col-md-4 addrtitle"><i class="fa fa-fax"></i><span>Fax :</span></div>';
+				echo '<div class="col-xs-6 col-md-8"><span class="topicseperator">:</span> '.$place[$className]['fax'].'</div>';
 				echo '</div>';
 				}
 				if(!empty($place[$className]['hours'])){
 				echo '<div class="row">';
-				echo '<div class="col-xs-12 col-md-4 col-sm-4 addrtitle"><i class="fa fa-times-circle-o"></i><span>Opening Hours</span></div>';
+				echo '<div class="col-xs-6 col-md-4 addrtitle"><i class="fa fa-times-circle-o"></i><span>Opening Hours</span></div>';
 				$opening_hours = json_decode($place[$className]['hours'],true);
 				$this->loadHelpers(array('MyHtml'));
-				echo '<div class="col-xs-12 col-md-8 col-sm-8"><span class="topicseperator">:</span> '.$this->MyHtml->opening_hours_table($opening_hours, '', false).'</div>';
+				echo '<div class="col-xs-6 col-md-8"><span class="topicseperator">:</span> '.$this->MyHtml->opening_hours_table($opening_hours, '', false).'</div>';
 				echo '</div>';
 				}
 				echo '</p>';
@@ -296,7 +296,6 @@
 	</div>	
 	
 </div>
-</section>
 <?php
 		echo $this->element('nearby-items', array('nearbies' => $nearbies,'place' => $place,'className' => $className));
 

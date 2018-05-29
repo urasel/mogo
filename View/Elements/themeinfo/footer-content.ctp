@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="footer_main_wrapper">
-                           <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 gallary_response hidden-sm">
+                           <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 gallary_response">
                                 <div class="footer_heading">
                                     <h1 class="med_bottompadder10"><?php echo __('Popular Categories');?></h1>
                                 </div>
@@ -59,7 +59,7 @@
 								</div>
 							</div>
                             <!--footer_2-->
-                            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 gallary_response hidden-sm">
+                            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 gallary_response">
                                 <div class="footer_heading">
                                     <h1 class="med_bottompadder10"><?php echo __('Userful Links');?></h1>
                                 </div>

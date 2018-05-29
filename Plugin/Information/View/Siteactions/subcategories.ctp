@@ -28,12 +28,14 @@
  ?>
 <div class="container">
 	<div class="row placeview">
-		<div class="col-md-12 posttitleblock zeropadding">
-			<div class="col-md-12">
-			<?php 
-					echo '<h1>'.$title_for_layout.'</h1><br/>'; 
-					
-			?>
+		<div class="col-md-12">			
+			<div class="col-md-12 posttitleblock zeropadding">
+				<div class="col-sm-112 col-xs-12 col-md-12 zeropadding">
+				<?php 
+						echo '<h1>'.$title_for_layout.'</h1>'; 
+						
+				?>
+				</div>
 			</div>
 		</div>
 <?php
