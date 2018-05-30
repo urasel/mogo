@@ -132,47 +132,49 @@
 							
                             <div id="toggle_close">&times;</div>
                             <div id='cssmenu' class="wd_single_index_menu">
-                                <ul>
-                                    <li class='has-sub'><a href='#'>index</a>
-                                       <ul>
-                                           <li><a href="index-2.html">index 1</a></li>
-                                           <li><a href="index_2.html">index 2</a></li>
-                                        </ul>
-                                     </li>
-									 <li><a href="about_us.html">about us</a></li>
-									 <li class='has-sub'><a href='#'>services</a>
-                                       <ul>
-                                           <li><a href="services.html">services</a></li>
-                                           <li><a href="event.html">events</a></li>
-                                           <li><a href="pricing.html">pricing</a></li>
-                                        </ul>
-                                     </li>
-									  <li class='has-sub'><a href='#'>doctors</a>
-                                       <ul>
-                                           <li><a href="doctor.html">doctor single</a></li>
-                                           <li><a href="our_doctors.html">our doctors</a></li>
-                                        </ul>
-                                     </li>
-									 <li class='has-sub'><a href='#'>gallery</a>
-                                       <ul>
-                                           <li><a href="gallery_2.html">gallery 2</a></li>
-                                           <li><a href="gallery_3.html">gallery 3</a></li>
-                                           <li><a href="gallery_4.html">gallery 4</a></li>
-                                        </ul>
-                                     </li>
-                                    <li class='has-sub'><a href='#'>blog</a>
-                                       <ul>
-                                           <li><a href="blog_category.html">blog category</a></li>
-                                           <li><a href="blog_single.html">blog single</a></li>
-                                        </ul>
-                                     </li>
-                                    <li class='has-sub'><a href='#'>contact</a>
-                                       <ul>
-                                           <li><a href="contact_us.html">contact us</a></li>
-                                           <li><a href="appointment.html">appointment </a></li>
-                                        </ul>
-                                     </li>
-                                    <li><a href="#">Log In / Sign Up</a></li>
+                               
+								 <ul>
+									<li><a href="<?php echo $this->webroot;?>">Home</a></li>
+									<li>
+										<?php
+										if($queryCountry != 'all'){
+											echo $this->Html->link(__('Browse'),array('plugin'=>'information','controller' => 'siteactions', 'action' => 'sitemap','language' => $currentLng,'?' => array('country' => $queryCountry)));
+										}else{
+											echo $this->Html->link(__('Browse'),array('plugin'=>'information','controller' => 'siteactions', 'action' => 'world','language' => $currentLng));
+										}
+										?>
+									</li>
+									<li>
+										<?php 
+										if($currentLng == 'bn'){
+										echo $this->Html->link(__('English'),array('plugin'=>'information','controller' => 'siteactions', 'action' => 'changeLanguage', 'language' => 'en'));
+										}else{
+										echo $this->Html->link(__('বাংলা'),array('plugin'=>'information','controller' => 'siteactions', 'action' => 'changeLanguage', 'language' => 'bn'));
+										}
+										
+										?>
+									</li>
+									<?php
+										if(empty($userID)){
+										echo '<li>';
+										echo $this->Html->link(__('Register'),array('plugin'=>'users','controller'=>'users','action'=>'add','language' => $currentLng));
+										echo '</li>';
+										echo '<li>';
+										echo $this->Html->link(__('Login'),array('plugin'=>'users','controller'=>'users','action'=>'login'));
+										echo '</li>';
+										}else{
+										echo '<li>';
+										echo $this->Html->link(__('Logout'),array('plugin'=>'users','controller'=>'users','action'=>'logout'));
+										echo '</li>';
+										}
+									?>
+                                    <li class='has-sub'>
+									  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">contact</a>
+									  <ul>
+										<li><a href="contact_us.html">contact us</a></li>
+										<li><a href="appointment.html">Social Media</a></li>
+									  </ul>
+									</li>
                                 </ul>
                             </div>
                         </div>

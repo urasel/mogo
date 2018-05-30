@@ -144,7 +144,7 @@ class SiteactionsController extends InformationAppController {
 		$PlaceTypeID = $pointDetails['PlaceType']['id'];
 		$className = ucfirst($pointDetails['PlaceType']['singlename']);
 		$singleName = $pointDetails['PlaceType']['singlename'];
-		
+		//echo $typeid;exit;
 		if($typeid == 'service'){
 			$this->loadModel('Doctor');
 			$expertises = $this->Doctor->find('first',array('conditions' => array('Doctor.point_id' => $id),'fields'=> array('Doctor.expertiseids')));
@@ -1541,6 +1541,7 @@ class SiteactionsController extends InformationAppController {
 			$this -> render($singleName);
 		}else{
 			$layout = $pointDetails['PlaceType']['singlename'];
+			//echo $layout = $pointDetails['PlaceType']['singlename'];exit;
 			$className = ucfirst($pointDetails['PlaceType']['singlename']);
 			$singleName = $pointDetails['PlaceType']['singlename'];
 			$imageDB = $className.'Image';
@@ -2041,6 +2042,7 @@ class SiteactionsController extends InformationAppController {
 		$catname = $this->params['category'];
 		$passID = $this->params['id'];
 		$queryCountry = $this->params['country'];
+		$countryId = $this->params['country'];
 		if($queryCountry == 'all'){
 			$passCountryName = '';
 			$passCountryId = '';
@@ -2399,10 +2401,13 @@ class SiteactionsController extends InformationAppController {
 		
 		if($queryCountry == 'all'){
 			$countryName = '';
+			$countryId = 18;
 		}else if($queryCountry == ''){
 			$countryName = '';
+			$countryId = 18;
 		}else if(is_numeric($queryCountry)){
 			$countryName = '';
+			$countryId = $queryCountry;
 		}else{
 			$this->loadModel('Country');
 			$countryName = $this->Country->find('first',array('conditions'=>array('Country.seo_name' => $queryCountry),'fields'=>array("Country.id","Country.$fieldName as name")));

@@ -1430,13 +1430,13 @@ h4.panel-title {
 
 .panel-info > .panel-heading, .panel-heading h4.panel-title {
 	font-size: 22px;
-	font-weight: normal;
+	font-weight: 500;
 	color: #333;
-	line-height: 35px;
+	line-height: 28px;
 	margin-top: 15px;
-	letter-spacing: -1.2px;
+	letter-spacing: -1.0px;
 	word-wrap: normal;
-	word-spacing: 3px;
+	word-spacing: 0px;
 
 }
 .blog_section{
@@ -1612,4 +1612,7 @@ h4.panel-title {
 	font-weight:bold;
 	line-height:33px;
 	color:#000;
+}
+.breadcrumb{
+	font-weight:bold;
 }

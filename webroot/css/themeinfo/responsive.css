@@ -140,7 +140,14 @@
 .about_us_wrapper{
 	padding-bottom:50px;
 }
-.posttitleblock i, .posttitleblock h1 {
+.posttitleblock i{
+	font-size: 27px;
+	font-weight: 600;
+	line-height: 1em;
+	letter-spacing: -1.2px;
+	margin-bottom: 10px;
+}
+.posttitleblock h1 {
 	font-size: 34px;
 	font-weight: 600;
 	line-height: 1em;
