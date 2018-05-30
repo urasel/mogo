@@ -25,7 +25,6 @@ $className = 'Motorcycle';
 	background: url("http://localhost/skybazarcake2/img/check.png") no-repeat scroll left top rgba(0, 0, 0, 0);
 }
 </style>
-<section>
 <div class="container">
 	<div class="row placeview">
 	<div class="col-md-8">
@@ -220,7 +219,6 @@ $className = 'Motorcycle';
 			echo '</div>';
 			
 	echo '</div>';
-echo '</div>';
 echo '</div>';
 echo '</div>';
 	

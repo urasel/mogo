@@ -101,7 +101,6 @@
 	  
 ?>
 
-<section>
 <div class="container">
 		<div class="row placeview">
 <?php
@@ -123,8 +122,8 @@
 		</style>
 		<div class="col-md-8">
 			<?php echo '<div class="row"><div class="col-md-12">'; ?>
-			<div class="col-md-12 posttitleblock">
-			<div class="col-sm-1 col-xs-2 col-md-1" style="padding:0px;">
+			<div class="col-md-12 posttitleblock zeropadding">
+			<div class="col-sm-1 col-xs-2 col-md-1 zeropadding hidden-xs">
 			<div class="viewcaticon">
 			<?php
 			if(!empty($place[$className]['logo'])){
@@ -136,7 +135,7 @@
 			?>
 			</div>
 			</div>
-			<div class="col-sm-11 col-xs-10 col-md-11">
+			<div class="col-sm-11 col-xs-12 col-md-11 zeropadding">
 			<?php
 			$userData = $this->Session->read('Auth.User');
 			//debug($userData);
@@ -146,7 +145,7 @@
 				$adminLink = '';
 			}
 			
-			echo '<h2>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h2>';
+			echo '<h1>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h1>';
 			?>
 			<?php 
 			//debug($place);
@@ -361,7 +360,6 @@
 	</div>	
 	
 </div>
-</section>
 <?php
 		echo $this->element('nearby-items', array('nearbies' => $nearbies,'place' => $place,'className' => $className));
 

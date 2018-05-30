@@ -57,13 +57,13 @@ function initMap() {
 </script>
 <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByuSWnZVwYdM3glA1chO-NuY1z6qz-zBQ&callback=initMap"  type="text/javascript"></script>-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByuSWnZVwYdM3glA1chO-NuY1z6qz-zBQ&libraries=places&callback=initMap" async defer></script>
-<section>
+
 <div class="container">
 <div class="row placeview">
 <div class="col-md-8">
 			<?php echo '<div class="row"><div class="col-md-12">'; ?>
 			<div class="col-md-12 zeropadding posttitleblock">
-			<div class="col-sm-1 col-xs-2 col-md-1" style="padding:0px;">
+			<div class="col-sm-1 col-xs-2 col-md-1 zeropadding hidden-xs">
 			<div class="viewcaticon">
 			<?php
 			if(!empty($place[$className]['image'])){
@@ -75,7 +75,7 @@ function initMap() {
 			?>
 			</div>
 			</div>
-			<div class="col-sm-11 col-xs-10 col-md-11">
+			<div class="col-sm-11 col-xs-12 col-md-11 zeropadding">
 			<?php 
 			
 			if($place['Point']['place_type_id'] == 102){
@@ -180,5 +180,4 @@ function initMap() {
 </div>
 </div>
 </div>
-</section>
 
