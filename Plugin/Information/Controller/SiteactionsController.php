@@ -2389,6 +2389,7 @@ class SiteactionsController extends InformationAppController {
 				$character = '';
 			}
 			$combindedID = $this->params['id'];
+			//echo $combindedID = $this->params['id'];exit;
 			$stringlength = strlen($this->params->pass[1]);
 			$passCountryName  = $this->params['country'];
 			$catname = $this->params['category'];
@@ -2398,7 +2399,7 @@ class SiteactionsController extends InformationAppController {
 			}
 		}
 		
-		
+		//echo $queryCountry;exit;
 		if($queryCountry == 'all'){
 			$countryName = '';
 			$countryId = 18;
@@ -2416,13 +2417,16 @@ class SiteactionsController extends InformationAppController {
 			
 		}
 		
+		//echo $cutlength = strlen($stringlength);exit;
 		$cutlength = strlen($stringlength);
 		$passcounter = substr($combindedID,0,$cutlength);
+		//echo 'strlen: '.$stringlength. 'passcnt: '.$passcounter;exit;
 		if($passcounter != $stringlength){
 			throw new NotFoundException(__('Invalid Item'));
 		}
 		$id = substr($combindedID,$cutlength);
 		$id = substr($id,0,-4);
+		//debug($array);exit;
 		$childs = $this->getchilds($id,$array);
 		//debug($childs); exit;
 		if($childs == null){
@@ -2496,6 +2500,8 @@ class SiteactionsController extends InformationAppController {
 			if($singleName == 'topicData'){
 			$searchString[] = array("TopicData.place_type_id" => $childs);
 			$searchString[] = array("Point.active " => 1);
+			}else if($singleName == 'recipe'){
+			$searchString[] = array("Recipe.place_type_id" => $childs);
 			}else if($singleName == 'animal'){
 			$searchString[] = array("Animal.place_type_id" => $childs);
 			}else if($singleName == 'doctor'){
@@ -2575,6 +2581,32 @@ class SiteactionsController extends InformationAppController {
 					),
 					'limit' => 10,
 					'order' => "Point.name ASC",
+			);
+		
+		}else if($singleName == 'recipe'){
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					)
+				)
+			);
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					"$className.id",
+					"$className.point_id",
+					"$className.title as name",
+					"$className.seo_name",
+					),
+					'limit' => 10,
+					'order' => "$className.title ASC",
 			);
 		
 		}else if($singleName == 'animal'){

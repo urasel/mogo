@@ -1461,7 +1461,7 @@ h4.panel-title {
 	border-bottom: 1px solid rgb(230, 231, 230);
 	float: left;
 	width: 100%;
-	margin-bottom:35px;
+	margin-bottom:10px;
 }
 
 .zeropadding{
@@ -1615,4 +1615,7 @@ h4.panel-title {
 }
 .breadcrumb{
 	font-weight:bold;
+}
+.categorytitle a{
+	font-size:19px;
 }
