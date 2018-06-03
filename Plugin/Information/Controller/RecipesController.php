@@ -180,11 +180,11 @@ class RecipesController extends InformationAppController {
 		if ($this->request->is('post')) {
 			//debug($this->request);exit;
 			/* [2]************************************Point Part*************************/
-			$this->request->data['Point']['place_type_id'] = 927;
+			$this->request->data['Point']['place_type_id'] = $this->request->data['Recipe']['place_type_id'];
 			$this->request->data['Point']['name'] = $this->request->data['Recipe']['title'];
 			$this->request->data['Point']['seo_name'] = $this->Seotext->formaturi(trim($this->request->data['Recipe']['title']),'_');
 			/*************************************Point Part*************************/
-			$this->request->data['Recipe']['place_type_id'] = 927;
+			$this->request->data['Recipe']['place_type_id'] = $this->request->data['Recipe']['place_type_id'];
 			$this->request->data['Recipe']['seo_name'] = $this->request->data['Point']['seo_name'];
 			$this->Recipe->create();
 			//debug($this->request->data);exit;
@@ -238,8 +238,10 @@ class RecipesController extends InformationAppController {
 			}
 		}
 		$recipeCuisines = $this->Recipe->RecipeCuisine->find('list');
+		$placeTypes = $this->Recipe->PlaceType->find('list',array('conditions'=>array('PlaceType.parentid' => 927)));
+		//debug($recipeCategories);exit;
 		$users = $this->Recipe->User->find('list');
-		$this->set(compact('recipeCuisines', 'users'));
+		$this->set(compact('recipeCuisines', 'users','placeTypes'));
 	}
 
 /**
@@ -265,11 +267,11 @@ class RecipesController extends InformationAppController {
 			if($userData['role_id'] == 1 && $this->request->data['Recipe']['publish'] != 1){
 				
 				/* [2]************************************Point Part*************************/
-				$this->request->data['Point']['place_type_id'] = 927;
+				$this->request->data['Point']['place_type_id'] = $this->request->data['Recipe']['place_type_id'];
 				$this->request->data['Point']['name'] = $this->request->data['Recipe']['title'];
 				$this->request->data['Point']['seo_name'] = $this->Seotext->formaturi(trim($this->request->data['Recipe']['title']),'_');
 				/*************************************Point Part*************************/
-				$this->request->data['Recipe']['place_type_id'] = 927;
+				$this->request->data['Recipe']['place_type_id'] = $this->request->data['Recipe']['place_type_id'];
 				$this->request->data['Recipe']['seo_name'] = $this->request->data['Point']['seo_name'];
 				$this->request->data['Recipe']['user_id'] = $userID;
 				if($this->request->data['Recipe']['publish'] == 1){
@@ -280,7 +282,9 @@ class RecipesController extends InformationAppController {
 					$galleryImages = $this->request->data['postimage']['images'];
 					$imgCount = 0;
 					foreach($galleryImages as $imagefile){
+						//debug($imagefile);exit;
 						if(!empty($imagefile['tmp_name'])){
+							//echo $this->request->data['postimage']['position'][$imgCount];exit;
 							if($this->request->data['postimage']['position'][$imgCount] == 1){
 								if(isset($this->request->data['postimage']['oldimage'][$imgCount])){
 									$oldImageLink = $this->request->data['postimage']['oldimage'][$imgCount];
@@ -294,6 +298,7 @@ class RecipesController extends InformationAppController {
 								$newFilename = "InfoMap24_recipe_".$this->request->data[$modelName]['seo_name'].'_'.rand(5, 15)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
 								$type = $imagefile['type'];
 								if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
+									//debug($imagefile);exit;
 									$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'recipes'.DS.'large'.DS.$newFilename,570,380,false,false,100);
 									$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'recipes'.DS.'medium'.DS.$newFilename,380,240,false,false,100);
 									if(isset($this->request->data['postimage']['id'][$imgCount])){
@@ -304,6 +309,7 @@ class RecipesController extends InformationAppController {
 									$this->request->data[$imageDB][$imgCount]['source'] = $this->request->data['postimage']['source'][$imgCount];
 								}
 							}else{
+								debug($this->request->data);exit;
 								if(isset($this->request->data['postimage']['oldimage'][$imgCount])){
 									$oldImageLink = $this->request->data['postimage']['oldimage'][$imgCount];
 									if(file_exists(WWW_ROOT.'img'.DS.'recipes'.DS.'medium'.DS.$oldImageLink)){
@@ -323,6 +329,7 @@ class RecipesController extends InformationAppController {
 									$this->request->data[$imageDB][$imgCount]['file'] = $newFilename;
 									$this->request->data[$imageDB][$imgCount]['name'] = $this->request->data['postimage']['name'][$imgCount];
 									$this->request->data[$imageDB][$imgCount]['source'] = $this->request->data['postimage']['source'][$imgCount];
+									debug($this->request->data);exit;
 								}
 							}
 							
@@ -340,9 +347,10 @@ class RecipesController extends InformationAppController {
 					}
 				
 				}
-				unset($this->request->data['postimage']);
 				
-				//debug($this->request->data);exit;
+				
+				debug($this->request->data);exit;
+				unset($this->request->data['postimage']);
 				if ($this->Recipe->saveAssociated($this->request->data)) {
 					$this->Session->setFlash(__d('croogo', '%s has been saved', __d('information', 'recipe')), 'default', array('class' => 'success'));
 					$redirectTo = array('action' => 'index');
@@ -365,8 +373,9 @@ class RecipesController extends InformationAppController {
 			$this->request->data = $this->Recipe->find('first', $options);
 		}
 		$recipeCuisines = $this->Recipe->RecipeCuisine->find('list');
+		$placeTypes = $this->Recipe->PlaceType->find('list',array('conditions'=>array('PlaceType.parentid' => 927)));
 		$users = $this->Recipe->User->find('list');
-		$this->set(compact('recipeCuisines', 'users'));
+		$this->set(compact('recipeCuisines', 'users', 'placeTypes'));
 	}
 	
 	

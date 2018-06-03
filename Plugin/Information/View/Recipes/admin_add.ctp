@@ -27,6 +27,10 @@ $this->append('tab-content');
 	echo $this->Html->tabStart('recipe');
 
 		echo $this->Form->input('id');
+		
+		echo $this->Form->input('place_type_id', array(
+			'label' => __d('information', 'Recipe Category'),
+		));
 
 		echo $this->Form->input('title', array(
 			'label' =>  __d('information', 'Title'),

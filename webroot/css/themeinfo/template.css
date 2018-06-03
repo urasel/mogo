@@ -1619,3 +1619,9 @@ h4.panel-title {
 .categorytitle a{
 	font-size:19px;
 }
+.innertabletd tbody tr{
+	border: 1px solid #ccc !important;
+}
+.innertabletd tbody tr td{
+	vertical-align:bottom;
+}

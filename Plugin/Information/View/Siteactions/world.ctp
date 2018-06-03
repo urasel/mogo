@@ -39,9 +39,9 @@
 				<?php
 				//debug($countries);exit;
 				echo '<div class="row">';
-				echo '<div class="col-md-4">';
+				echo '<div class="col-xs-12 col-md-4 col-sm-6">';
 				echo '<div class=" countryflagcontainer">';
-				echo '<table class="table innertabletd margin8px">';
+				echo '<table class="table innertabletd">';
 				echo '<tr>';
 				echo '<td width="10%" class="placename">';
 				echo "<i class='fa fa-globe'></i>";
@@ -57,9 +57,9 @@
 				
 				foreach($countries as $country){
 					//debug($country);
-					echo '<div class="col-md-4">';
+					echo '<div class="col-xs-12 col-md-4 col-sm-6">';
 					echo '<div class=" countryflagcontainer">';
-					echo '<table class="table innertabletd margin8px">';
+					echo '<table class="table innertabletd">';
 					echo '<tr>';
 					echo '<td width="10%" class="placename">';
 					$flag = $country['Country']['flag'];
