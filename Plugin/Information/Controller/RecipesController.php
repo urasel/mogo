@@ -203,6 +203,7 @@ class RecipesController extends InformationAppController {
 								$this->request->data[$imageDB][$imgCount]['file'] = $newFilename;
 								$this->request->data[$imageDB][$imgCount]['name'] = $this->request->data['postimage']['name'][$imgCount];
 								$this->request->data[$imageDB][$imgCount]['source'] = $this->request->data['postimage']['source'][$imgCount];
+								//debug($this->request->data);exit;
 							}
 						}else{
 							$newFilename = "InfoMap24_recipe_".$this->request->data[$modelName]['seo_name'].'_'.rand(5, 15)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
@@ -309,7 +310,7 @@ class RecipesController extends InformationAppController {
 									$this->request->data[$imageDB][$imgCount]['source'] = $this->request->data['postimage']['source'][$imgCount];
 								}
 							}else{
-								debug($this->request->data);exit;
+								//debug($this->request->data);exit;
 								if(isset($this->request->data['postimage']['oldimage'][$imgCount])){
 									$oldImageLink = $this->request->data['postimage']['oldimage'][$imgCount];
 									if(file_exists(WWW_ROOT.'img'.DS.'recipes'.DS.'medium'.DS.$oldImageLink)){
@@ -329,7 +330,8 @@ class RecipesController extends InformationAppController {
 									$this->request->data[$imageDB][$imgCount]['file'] = $newFilename;
 									$this->request->data[$imageDB][$imgCount]['name'] = $this->request->data['postimage']['name'][$imgCount];
 									$this->request->data[$imageDB][$imgCount]['source'] = $this->request->data['postimage']['source'][$imgCount];
-									debug($this->request->data);exit;
+									$this->request->data[$imageDB][$imgCount]['position'] = $this->request->data['postimage']['position'][$imgCount];
+									//debug($this->request->data);exit;
 								}
 							}
 							
@@ -341,6 +343,7 @@ class RecipesController extends InformationAppController {
 									$this->request->data[$imageDB][$imgCount]['file'] = $this->request->data['postimage']['oldimage'][$imgCount];
 									$this->request->data[$imageDB][$imgCount]['name'] = $this->request->data['postimage']['name'][$imgCount];
 									$this->request->data[$imageDB][$imgCount]['source'] = $this->request->data['postimage']['source'][$imgCount];
+									$this->request->data[$imageDB][$imgCount]['position'] = $this->request->data['postimage']['position'][$imgCount];
 								}
 						}
 					$imgCount++;
@@ -349,7 +352,7 @@ class RecipesController extends InformationAppController {
 				}
 				
 				
-				debug($this->request->data);exit;
+				//debug($this->request->data);exit;
 				unset($this->request->data['postimage']);
 				if ($this->Recipe->saveAssociated($this->request->data)) {
 					$this->Session->setFlash(__d('croogo', '%s has been saved', __d('information', 'recipe')), 'default', array('class' => 'success'));
