@@ -235,11 +235,13 @@ class MotorcyclesController extends InformationAppController {
 								$this->request->data[$imageDB][$imgCount]['file'] = $newFilename;
 								$this->request->data[$imageDB][$imgCount]['name'] = $this->request->data['postimage']['name'][$imgCount];
 								$this->request->data[$imageDB][$imgCount]['source'] = $this->request->data['postimage']['source'][$imgCount];
+								//debug($this->request->data);exit;
 							}
 						}else{
-							$newFilename = "InfoMap24_Motorcycle_".$this->request->data[$modelName]['seo_name'].'_'.rand(5, 15)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
+							$newFilename = "InfoMap24_recipe_".$this->request->data[$modelName]['seo_name'].'_'.rand(5, 15)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
 							$type = $imagefile['type'];
 							if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
+								$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'motorcycles'.DS.'large'.DS.$newFilename,570,380,false,false,100);
 								$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'motorcycles'.DS.'medium'.DS.$newFilename,380,240,false,false,100);
 								$this->request->data[$imageDB][$imgCount]['file'] = $newFilename;
 								$this->request->data[$imageDB][$imgCount]['name'] = $this->request->data['postimage']['name'][$imgCount];
@@ -308,30 +310,10 @@ class MotorcyclesController extends InformationAppController {
 					$galleryImages = $this->request->data['postimage']['images'];
 					$imgCount = 0;
 					foreach($galleryImages as $imagefile){
+						//debug($imagefile);exit;
 						if(!empty($imagefile['tmp_name'])){
+							//echo $this->request->data['postimage']['position'][$imgCount];exit;
 							if($this->request->data['postimage']['position'][$imgCount] == 1){
-								if(isset($this->request->data['postimage']['oldimage'][$imgCount])){
-									$oldImageLink = $this->request->data['postimage']['oldimage'][$imgCount];
-									if(file_exists(WWW_ROOT.'img'.DS.'recipes'.DS.'medium'.DS.$oldImageLink)){
-										unlink(WWW_ROOT.'img'.DS.'recipes'.DS.'medium'.DS.$oldImageLink);
-									}
-									if(file_exists(WWW_ROOT.'img'.DS.'recipes'.DS.'large'.DS.$oldImageLink)){
-										unlink(WWW_ROOT.'img'.DS.'recipes'.DS.'large'.DS.$oldImageLink);
-									}
-								}
-								$newFilename = "InfoMap24_recipe_".$this->request->data[$modelName]['seo_name'].'_'.rand(5, 15)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
-								$type = $imagefile['type'];
-								if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
-									$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'recipes'.DS.'large'.DS.$newFilename,570,380,false,false,100);
-									$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'recipes'.DS.'medium'.DS.$newFilename,380,240,false,false,100);
-									if(isset($this->request->data['postimage']['id'][$imgCount])){
-										$this->request->data[$imageDB][$imgCount]['id'] = $this->request->data['postimage']['id'][$imgCount];
-									}
-									$this->request->data[$imageDB][$imgCount]['file'] = $newFilename;
-									$this->request->data[$imageDB][$imgCount]['name'] = $this->request->data['postimage']['name'][$imgCount];
-									$this->request->data[$imageDB][$imgCount]['source'] = $this->request->data['postimage']['source'][$imgCount];
-								}
-							}else{
 								if(isset($this->request->data['postimage']['oldimage'][$imgCount])){
 									$oldImageLink = $this->request->data['postimage']['oldimage'][$imgCount];
 									if(file_exists(WWW_ROOT.'img'.DS.'motorcycles'.DS.'medium'.DS.$oldImageLink)){
@@ -341,9 +323,11 @@ class MotorcyclesController extends InformationAppController {
 										unlink(WWW_ROOT.'img'.DS.'motorcycles'.DS.'large'.DS.$oldImageLink);
 									}
 								}
-								$newFilename = "InfoMap24_Motorcycle_".$this->request->data[$modelName]['seo_name'].'_'.rand(5, 15)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
+								$newFilename = "InfoMap24_recipe_".$this->request->data[$modelName]['seo_name'].'_'.rand(5, 15)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
 								$type = $imagefile['type'];
 								if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
+									//debug($imagefile);exit;
+									$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'motorcycles'.DS.'large'.DS.$newFilename,570,380,false,false,100);
 									$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'motorcycles'.DS.'medium'.DS.$newFilename,380,240,false,false,100);
 									if(isset($this->request->data['postimage']['id'][$imgCount])){
 										$this->request->data[$imageDB][$imgCount]['id'] = $this->request->data['postimage']['id'][$imgCount];
@@ -351,6 +335,31 @@ class MotorcyclesController extends InformationAppController {
 									$this->request->data[$imageDB][$imgCount]['file'] = $newFilename;
 									$this->request->data[$imageDB][$imgCount]['name'] = $this->request->data['postimage']['name'][$imgCount];
 									$this->request->data[$imageDB][$imgCount]['source'] = $this->request->data['postimage']['source'][$imgCount];
+								}
+							}else{
+								//debug($this->request->data);exit;
+								if(isset($this->request->data['postimage']['oldimage'][$imgCount])){
+									$oldImageLink = $this->request->data['postimage']['oldimage'][$imgCount];
+									if(file_exists(WWW_ROOT.'img'.DS.'motorcycles'.DS.'medium'.DS.$oldImageLink)){
+										unlink(WWW_ROOT.'img'.DS.'motorcycles'.DS.'medium'.DS.$oldImageLink);
+									}
+									if(file_exists(WWW_ROOT.'img'.DS.'motorcycles'.DS.'large'.DS.$oldImageLink)){
+										unlink(WWW_ROOT.'img'.DS.'motorcycles'.DS.'large'.DS.$oldImageLink);
+									}
+								}
+								$newFilename = "InfoMap24_recipe_".$this->request->data[$modelName]['seo_name'].'_'.rand(5, 15)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
+								$type = $imagefile['type'];
+								if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
+									$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'motorcycles'.DS.'large'.DS.$newFilename,570,380,false,false,100);
+									$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'motorcycles'.DS.'medium'.DS.$newFilename,380,240,false,false,100);
+									if(isset($this->request->data['postimage']['id'][$imgCount])){
+										$this->request->data[$imageDB][$imgCount]['id'] = $this->request->data['postimage']['id'][$imgCount];
+									}
+									$this->request->data[$imageDB][$imgCount]['file'] = $newFilename;
+									$this->request->data[$imageDB][$imgCount]['name'] = $this->request->data['postimage']['name'][$imgCount];
+									$this->request->data[$imageDB][$imgCount]['source'] = $this->request->data['postimage']['source'][$imgCount];
+									$this->request->data[$imageDB][$imgCount]['position'] = $this->request->data['postimage']['position'][$imgCount];
+									//debug($this->request->data);exit;
 								}
 							}
 							
@@ -362,6 +371,7 @@ class MotorcyclesController extends InformationAppController {
 									$this->request->data[$imageDB][$imgCount]['file'] = $this->request->data['postimage']['oldimage'][$imgCount];
 									$this->request->data[$imageDB][$imgCount]['name'] = $this->request->data['postimage']['name'][$imgCount];
 									$this->request->data[$imageDB][$imgCount]['source'] = $this->request->data['postimage']['source'][$imgCount];
+									$this->request->data[$imageDB][$imgCount]['position'] = $this->request->data['postimage']['position'][$imgCount];
 								}
 						}
 					$imgCount++;
@@ -402,6 +412,39 @@ class MotorcyclesController extends InformationAppController {
  * @param string $id
  * @return void
  */
+ 
+	public function ajaximagedelete($id = null) {
+		$this->layout = 'ajax';
+		$this->autoRender = false;
+		//debug($this->request->data);exit;
+		$modelName = $this->request->data['modelName'];
+		$folderName = $this->request->data['folder'];
+		$classname = $this->request->data['classname'];
+		$classImageFile = $this->request->data['classImageFile'];
+		$imageid = $this->request->data['imageid'];
+		$this->loadModel('Information.'.$modelName);
+		$id = $this->request->data['imageid'];
+		
+		$this->$modelName->id = $id;
+		$this->request->onlyAllow('post', 'delete');
+		$this->$modelName->recursive = -1;
+		$imagename = $this->$modelName->find('first',array('conditions' => array("$modelName.id" => $id)));
+		//debug($imagename);exit;
+		if($this->$modelName->delete()) {
+			if(file_exists(WWW_ROOT.'img'.DS.$folderName.DS.'large'.DS.$classImageFile)){
+				unlink(WWW_ROOT.'img'.DS.$folderName.DS.'large'.DS.$classImageFile);
+			}
+			if(file_exists(WWW_ROOT.'img'.DS.$folderName.DS.'medium'.DS.$classImageFile)){
+				unlink(WWW_ROOT.'img'.DS.$folderName.DS.'medium'.DS.$classImageFile);
+			}
+			$this->Session->setFlash(__('The image has been deleted.'));
+		}else {
+			echo 'outer';exit;
+			$this->Session->setFlash(__('The image could not be deleted. Please, try again.'));
+		}
+		return $this->redirect(array('action' => 'index'));
+	}
+	
 	public function admin_delete($id = null) {
 		$this->Motorcycle->id = $id;
 		if (!$this->Motorcycle->exists()) {

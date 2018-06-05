@@ -209,6 +209,7 @@ class RecipesController extends InformationAppController {
 							$newFilename = "InfoMap24_recipe_".$this->request->data[$modelName]['seo_name'].'_'.rand(5, 15)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
 							$type = $imagefile['type'];
 							if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
+								$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'recipes'.DS.'large'.DS.$newFilename,570,380,false,false,100);
 								$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'recipes'.DS.'medium'.DS.$newFilename,380,240,false,false,100);
 								$this->request->data[$imageDB][$imgCount]['file'] = $newFilename;
 								$this->request->data[$imageDB][$imgCount]['name'] = $this->request->data['postimage']['name'][$imgCount];
@@ -323,6 +324,7 @@ class RecipesController extends InformationAppController {
 								$newFilename = "InfoMap24_recipe_".$this->request->data[$modelName]['seo_name'].'_'.rand(5, 15)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
 								$type = $imagefile['type'];
 								if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
+									$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'recipes'.DS.'large'.DS.$newFilename,570,380,false,false,100);
 									$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'recipes'.DS.'medium'.DS.$newFilename,380,240,false,false,100);
 									if(isset($this->request->data['postimage']['id'][$imgCount])){
 										$this->request->data[$imageDB][$imgCount]['id'] = $this->request->data['postimage']['id'][$imgCount];

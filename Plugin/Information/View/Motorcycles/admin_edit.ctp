@@ -12,8 +12,8 @@ if ($this->action == 'admin_edit') {
 } else {
 	$this->Html->addCrumb(__d('croogo', 'Add'), '/' . $this->request->url);
 }
-
-$this->append('form-start', $this->Form->create('Motorcycle'));
+//debug($this->data);exit;
+$this->append('form-start', $this->Form->create('Motorcycle',array('type'=>'file')));
 
 $this->append('tab-heading');
 	echo $this->Croogo->adminTab(__d('information', 'Motorcycle'), '#motorcycle');
@@ -27,15 +27,13 @@ $this->append('tab-content');
 	echo $this->Html->tabStart('motorcycle');
 
 		echo $this->Form->input('id');
+		echo $this->Form->input('Point.id');
 
 		echo $this->Form->input('name', array(
 			'label' =>  __d('information', 'Name'),
 		));
 		echo $this->Form->input('seo_name', array(
 			'label' =>  __d('information', 'Seo Name'),
-		));
-		echo $this->Form->input('point_id', array(
-			'label' =>  __d('information', 'Point'),
 		));
 		echo $this->Form->input('place_type_id', array(
 			'label' =>  __d('information', 'Place Type'),
@@ -73,9 +71,6 @@ $this->append('tab-content');
 
 		echo $this->Form->input('MotorcycleSpecification.id');
 
-		echo $this->Form->input('MotorcycleSpecification.motorcycle_id', array(
-			'label' =>  __d('information', 'Motorcycle'),
-		));
 		echo $this->Form->input('MotorcycleSpecification.bike_category', array(
 			'label' =>  __d('information', 'Bike Category'),
 		));
@@ -310,14 +305,14 @@ $this->append('tab-content');
 					
 					var delID = $(this).attr('id');
 					var modelname = "MotorcycleImage";
-					var foldername = "recipes";
+					var foldername = "motorcycles";
 					var classname = "MotorcycleImage";
 					var classImageFile = "<?php echo $val['file']; ?>";
 					$.ajax({
 							dataType: "html",
 							type: "POST",
 							evalScripts: true,
-							url: '<?php echo $this->base; ?>/information/recipes/ajaximagedelete',
+							url: '<?php echo $this->base; ?>/information/motorcycles/ajaximagedelete',
 							data: ({imageid:delID,modelName:modelname,folder:foldername,classname:classname,classImageFile:classImageFile}),
 							success: function (data, textStatus){
 								$(this).parent('div').remove();
