@@ -14,7 +14,7 @@ class MotorcyclesController extends InformationAppController {
  *
  * @var array
  */
-	public $components = array('Paginator', 'Session','Imageresizer','Seotext');
+	public $components = array('Session','Imageresizer','Seotext');
 	
 	public function beforeFilter() {
 		parent::beforeFilter();

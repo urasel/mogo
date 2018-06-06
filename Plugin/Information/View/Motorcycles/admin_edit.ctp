@@ -12,7 +12,7 @@ if ($this->action == 'admin_edit') {
 } else {
 	$this->Html->addCrumb(__d('croogo', 'Add'), '/' . $this->request->url);
 }
-//debug($this->data);exit;
+debug($this->data);exit;
 $this->append('form-start', $this->Form->create('Motorcycle',array('type'=>'file')));
 
 $this->append('tab-heading');
