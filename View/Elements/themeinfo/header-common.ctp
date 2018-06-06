@@ -33,6 +33,7 @@
 	?>
     <!-- favicon link-->
 	<link rel="shortcut icon" type="image/icon" href="http://infomap24.com/favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Lora|Montserrat:400,700,900" rel="stylesheet">
 <script src='../../google_analytics_auto.js'></script>
 <script src='https://cdn.rawgit.com/OpenShare/openshare/master/dist/openshare.js'></script>
 
