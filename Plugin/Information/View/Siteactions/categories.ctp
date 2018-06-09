@@ -113,6 +113,8 @@ echo '<div class="col-md-8 leftbody">';
 			$address = '';
 		}else if($place['PlaceType']['singlename'] == 'continent'){
 			$address = '';
+		}else if($place['PlaceType']['singlename'] == 'recipe'){
+			$address = '';
 		}else if($place['PlaceType']['singlename'] == 'babyName'){
 			$address = $place[$modelName]['meaning'];
 		}else{

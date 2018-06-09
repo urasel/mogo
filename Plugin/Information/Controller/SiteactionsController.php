@@ -307,6 +307,93 @@ class SiteactionsController extends InformationAppController {
 			$selectedTemplate = Configure::read('selectedTemplate');
 			$this->layout = $selectedTemplate.$layout;
 			$this -> render($singleName);
+		}else if($typeid == 'recipe'){
+			$layout = $pointDetails['PlaceType']['singlename'];
+			$className = ucfirst($pointDetails['PlaceType']['singlename']);
+			$singleName = $pointDetails['PlaceType']['singlename'];
+			$imageDB = $className.'Image';
+			$this->loadModel('Recipe');
+			$this->Recipe->recursive = 1;
+			//debug($this->Point); exit;
+			$options = array(
+				'conditions' => array('Recipe.point_id' => $id),
+				'fields' =>array(
+					'Recipe.*',
+					'Point.*',
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					"User.firstname",
+					"User.lastname",
+					'PlaceType.icon',
+					'PlaceType.seo_name',
+					'PlaceType.singlename',
+					'Country.name',
+					'BdDivision.name',
+					'BdDistrict.name',
+					"BdThanas.$fieldName as name ",
+					 "$className.*",
+					 "$imageDB.*",
+					
+					
+				)
+			);
+			$this->Recipe->bindModel(array(
+					'hasOne' => array(
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("Recipe.point_id = Point.id")
+						),
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.place_type_id = PlaceType.id')
+						),
+						'Country' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.country_id = Country.id')
+						),
+						'BdDivision' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = BdDivision.id')
+						),
+						'BdDistrict' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_district_id = BdDistrict.id')
+						),
+						'BdThanas' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
+						),
+						'User' => array(
+							'foreignKey' => false,
+							'conditions' => array('Recipe.user_id = User.id')
+						),
+					),
+					'hasMany' => array(
+						'RecipeImage' => array(
+								'foreignKey' => false,
+								'fields' => array('file','name','source','position'),
+								'conditions' => array("RecipeImage.recipe_id" => 1)
+						)
+					),
+				)
+			);
+			//debug($options);exit;
+			$pointDetails = $this->Recipe->find('first', $options);
+			debug($pointDetails);exit;
+			//$title_for_layout = $pointDetails['Point']['name'];
+			if($currentLng == 'bn' && !empty($pointDetails[$className]['title'])){
+				$title_for_layout = $pointDetails[$className]['title'];
+			}else{
+				$title_for_layout = $pointDetails[$className]['title'];
+			}
+			$this->set('title_for_layout', $title_for_layout);
+			$nearbies = $this->__nearbies($className,$pointDetails);	
+			//debug($nearbies);exit;							
+			$this->set('place', $pointDetails);
+			$this->set('nearbies', $nearbies);
+			$selectedTemplate = Configure::read('selectedTemplate');
+			$this->layout = $selectedTemplate.$layout;
+			$this->render($singleName);
 		}else if($typeid == 'hospital'){
 			$layout = $pointDetails['PlaceType']['singlename'];
 			$className = ucfirst($pointDetails['PlaceType']['singlename']);
@@ -3826,6 +3913,51 @@ class SiteactionsController extends InformationAppController {
 							);
 				
 				$nearbies = $this->Point->find('all', $options);
+		}else if($className == 'Recipe'){
+			$imageDB = $className.'Image';
+			$nearbyoptions = array(
+					'limit' => 6,
+					'conditions' => array(
+						"Point.id !=" => $pointDetails['Point']['id'],
+						"Point.place_type_id" => $pointDetails['PlaceType']['id'],
+						"Point.country_id" => $pointDetails['Point']['country_id'],
+						),
+					'fields' => array(
+						'Point.*',
+						'PlaceType.id',
+						"PlaceType.$fieldName as name",
+						'PlaceType.icon',
+						'PlaceType.seo_name',
+						'PlaceType.pluralname',
+						"$className.*",
+						"$imageDB.*",
+						 
+						
+					)
+				);
+				$this->$className->bindModel(array(
+						'hasOne' => array(
+							'Point' => array(
+								'foreignKey' => false,
+								'conditions' => array("$className.point_id = Point.id")
+							),
+							'PlaceType' => array(
+								'foreignKey' => false,
+								'conditions' => array('Point.place_type_id = PlaceType.id')
+							)
+						),
+						'hasMany' => array(
+							$imageDB => array(
+									'foreignKey' => false,
+									'fields' => array('file','name','source','position'),
+									'conditions' => array("$imageDB.recipe_id" => 1)
+							)
+						),
+					)
+				);
+			
+				
+				$nearbies = $this->$className->find('all', $nearbyoptions);
 		}else if($className == 'Topic'){
 			$nearbyoptions = array(
 					'limit' => 6,
@@ -3861,7 +3993,7 @@ class SiteactionsController extends InformationAppController {
 				);
 			
 				
-				$nearbies = $this->$classNam->find('all', $nearbyoptions);
+				$nearbies = $this->$className->find('all', $nearbyoptions);
 		}else if($className == 'Motorcycle'){
 			$nearbyoptions = array(
 					'limit' => 6,

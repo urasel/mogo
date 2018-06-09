@@ -182,6 +182,7 @@ class RecipesController extends InformationAppController {
 			/* [2]************************************Point Part*************************/
 			$this->request->data['Point']['place_type_id'] = $this->request->data['Recipe']['place_type_id'];
 			$this->request->data['Point']['name'] = $this->request->data['Recipe']['title'];
+			$this->request->data['Point']['bn_name'] = $this->request->data['Recipe']['title'];
 			$this->request->data['Point']['seo_name'] = $this->Seotext->formaturi(trim($this->request->data['Recipe']['title']),'_');
 			/*************************************Point Part*************************/
 			$this->request->data['Recipe']['place_type_id'] = $this->request->data['Recipe']['place_type_id'];
@@ -271,6 +272,7 @@ class RecipesController extends InformationAppController {
 				/* [2]************************************Point Part*************************/
 				$this->request->data['Point']['place_type_id'] = $this->request->data['Recipe']['place_type_id'];
 				$this->request->data['Point']['name'] = $this->request->data['Recipe']['title'];
+				$this->request->data['Point']['bn_name'] = $this->request->data['Recipe']['title'];
 				$this->request->data['Point']['seo_name'] = $this->Seotext->formaturi(trim($this->request->data['Recipe']['title']),'_');
 				/*************************************Point Part*************************/
 				$this->request->data['Recipe']['place_type_id'] = $this->request->data['Recipe']['place_type_id'];
