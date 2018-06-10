@@ -313,7 +313,7 @@ class SiteactionsController extends InformationAppController {
 			$singleName = $pointDetails['PlaceType']['singlename'];
 			$imageDB = $className.'Image';
 			$this->loadModel('Recipe');
-			$this->Recipe->recursive = 1;
+			$this->Recipe->recursive = 2;
 			//debug($this->Point); exit;
 			$options = array(
 				'conditions' => array('Recipe.point_id' => $id),
@@ -331,8 +331,9 @@ class SiteactionsController extends InformationAppController {
 					'BdDivision.name',
 					'BdDistrict.name',
 					"BdThanas.$fieldName as name ",
+					"RecipeCuisine.*",
 					 "$className.*",
-					 "$imageDB.*",
+					 
 					
 					
 				)
@@ -346,6 +347,10 @@ class SiteactionsController extends InformationAppController {
 						'PlaceType' => array(
 							'foreignKey' => false,
 							'conditions' => array('Point.place_type_id = PlaceType.id')
+						),
+						'RecipeCuisine' => array(
+							'foreignKey' => false,
+							'conditions' => array('Recipe.recipe_cuisine_id = RecipeCuisine.id')
 						),
 						'Country' => array(
 							'foreignKey' => false,
@@ -369,17 +374,19 @@ class SiteactionsController extends InformationAppController {
 						),
 					),
 					'hasMany' => array(
-						'RecipeImage' => array(
+						$imageDB => array(
 								'foreignKey' => false,
-								'fields' => array('file','name','source','position'),
-								'conditions' => array("RecipeImage.recipe_id" => 1)
+								'fields' => array('file'),
+								'conditions' => array("$imageDB.recipe_id" => $id)
 						)
 					),
+					
 				)
 			);
 			//debug($options);exit;
+			//debug($this->Recipe);exit;
 			$pointDetails = $this->Recipe->find('first', $options);
-			debug($pointDetails);exit;
+			//debug($pointDetails);exit;
 			//$title_for_layout = $pointDetails['Point']['name'];
 			if($currentLng == 'bn' && !empty($pointDetails[$className]['title'])){
 				$title_for_layout = $pointDetails[$className]['title'];
@@ -442,7 +449,7 @@ class SiteactionsController extends InformationAppController {
 			
 			
 			
-			//debug($this->Point); exit;
+			debug($this->Point); exit;
 			$options = array(
 				'conditions' => array('Point.' . $this->Point->primaryKey => $id),
 				'fields' =>array(
@@ -3915,6 +3922,8 @@ class SiteactionsController extends InformationAppController {
 				$nearbies = $this->Point->find('all', $options);
 		}else if($className == 'Recipe'){
 			$imageDB = $className.'Image';
+			//debug($pointDetails);exit;
+			$id = $pointDetails['Recipe']['id'];
 			$nearbyoptions = array(
 					'limit' => 6,
 					'conditions' => array(
@@ -3930,7 +3939,6 @@ class SiteactionsController extends InformationAppController {
 						'PlaceType.seo_name',
 						'PlaceType.pluralname',
 						"$className.*",
-						"$imageDB.*",
 						 
 						
 					)
@@ -3949,8 +3957,8 @@ class SiteactionsController extends InformationAppController {
 						'hasMany' => array(
 							$imageDB => array(
 									'foreignKey' => false,
-									'fields' => array('file','name','source','position'),
-									'conditions' => array("$imageDB.recipe_id" => 1)
+									'fields' => array('file'),
+									'conditions' => array("$imageDB.recipe_id" => $id)
 							)
 						),
 					)
@@ -3958,6 +3966,7 @@ class SiteactionsController extends InformationAppController {
 			
 				
 				$nearbies = $this->$className->find('all', $nearbyoptions);
+				//debug($nearbies);exit;
 		}else if($className == 'Topic'){
 			$nearbyoptions = array(
 					'limit' => 6,

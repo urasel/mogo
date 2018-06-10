@@ -49,6 +49,7 @@ class Recipe extends InformationAppModel {
 		)
 	);
 	
+	
 	public $hasMany = array(
 		'RecipeImage' => array(
 			'className' => 'RecipeImage',
@@ -63,6 +64,5 @@ class Recipe extends InformationAppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		)
-		
 	);
 }
