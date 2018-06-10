@@ -332,12 +332,14 @@ class SiteactionsController extends InformationAppController {
 					'BdDistrict.name',
 					"BdThanas.$fieldName as name ",
 					"RecipeCuisine.*",
-					 "$className.*",
+					"$className.*",
+					"$imageDB.*",
 					 
 					
 					
 				)
 			);
+			
 			$this->Recipe->bindModel(array(
 					'hasOne' => array(
 						'Point' => array(
