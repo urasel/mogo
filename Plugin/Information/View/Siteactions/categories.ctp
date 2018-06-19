@@ -237,4 +237,5 @@ echo '<div class="col-md-8 leftbody">';
 echo '</div>';
 				
 ?>
+<div class="row"><div class="col-md-12">&nbsp;</div></div>
 </div>

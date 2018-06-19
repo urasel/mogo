@@ -3,78 +3,146 @@
 	  $this->Html->addCrumb(__('Sitemap'), array('plugin'=>'information','controller' => 'siteactions','action' => 'sitemap')) ;
       $this->Html->addCrumb(__('Search Result'),  '', array('class' => 'active')) ;
 ?>
-<section>
 <div class="container">
 		<div class="row placeview">
+		<div class="col-md-12 posttitleblock zeropadding">
+		<div class="col-md-12">
+		<?php 
+				echo '<h1>'.$title_for_layout.'</h1>'; 
+				
+		?>
+		</div>
+		</div>
 <?php
 echo '<div class="col-md-8">';
-echo '<h2 class="nino-sectionHeading">'.$title_for_layout.'</h2>'; 
 	$language = $this->Session->read('Config.language');
 	//echo '<div class="panel panel-info" style="margin-top:0px;">';
 		echo '<div class="table-responsive searchrow">';
-		echo "<table class='table'>";
-		echo "<tbody id='posts-list'>";
 		if(count($places) > 0){
 		
 		foreach($places as $place):
-		//debug($place);
-		/* Field Select Language Wise Start */
-			if($currentLng == 'bn' && !empty($place['Point']['bn_name'])){
-				$placename = $place['Point']['bn_name'];
-			}else{
-				$placename = $place['Point']['name'];
-			}
-			if($currentLng == 'bn' && !empty($place['Point']['bn_address'])){
-				$address = $place['Point']['bn_address'];
-			}else{
-				$address = $place['Point']['address'];
-			}
-		 /* Field Select Language Wise End */
-		echo '<tr class="post-item">';
-		echo '<td>';
-		echo '<div class="table-responsive searchrow">';
-		echo '<table class="table innertabletd">';
-		echo '<tr>';
-		echo '<td rowspan="2"><div class="searchiconblock">';
-		echo "<i class='".$place['PlaceType']['icon']."'></i>";
-		echo '</div></td>';
-		echo '<td width="90%" class="placename">';
-		
-		
-		$stringlength = strlen($place['Point']['seo_name']);
-		$newID = $stringlength.$place['Point']['id'];
-		//$placename = $place['Point']['name'];
-		if($place['PlaceType']['singlename'] == 'topic'){
-			echo $this->Html->link($placename, array('controller'=>'points','action'=>'topic','category'=>$place['PlaceType']['seo_name'],'point'=> $place['Point']['seo_name'],'language'=>$language,'id'=> $place['Point']['id'],'ext' => 'asp'),array('alt' =>$placename,'class' => 'infositelink'));
+		//debug($place);exit;
+		if(isset($place['Country']['seo_name']) && !empty($place['Country']['seo_name'])){
+			$countryname = $place['Country']['seo_name'];
 		}else{
-			echo $this->Html->link($placename, array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place['Point']['seo_name'],'country'=>$queryCountry,'language'=>$language,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'class' => 'infositelink'));
+			$countryname = '';
 		}
-
+		$modelName = 'Point';
 		
-		echo '</td>';
-		echo '<td rowspan="2" width="9%">';
-		echo '</td>';
-		echo '</tr>';
-		echo '<tr>';
-		echo '<td class="placeaddress">';
-		//echo $place['BdThanas']['name'].', '.$place['BdDistrict']['name'].', '.$place['BdDivision']['name'];
-		echo $place['Point']['address'];
-		echo '</td>';
-		echo '</tr>';
-		echo '</table>';
+				if($currentLng == 'bn'){
+					$languageID = 2;
+				}else{
+					$languageID = 1;
+				}
+				if($modelName == 'Location'){
+					$placename = $place[$modelName]['name'].' details facts';
+				}else if($modelName == 'TopicData'){
+					if($currentLng == 'bn' && !empty($place[$modelName]['bn_name'])){
+						$placename = $place[$modelName]['bn_name'];
+						$shortContent = '';
+					}else if($currentLng == 'en' && empty($place[$modelName]['bn_name'])){
+						$placename = $place[$modelName]['name'];
+						$shortContent = '';
+					}else if($currentLng == 'en' && empty($place[$modelName]['name'])){
+						$placename = $place[$modelName]['bn_name'];
+						$shortContent = '';
+					}else{
+						$placename = $place[$modelName]['name'];
+						$shortContent = '';
+					}
+				}else{
+						if($currentLng == 'bn' && !empty($place[$modelName]['bn_name'])){
+						$placename = $place[$modelName]['bn_name'];	
+						}else{
+						$placename = $place[$modelName]['name'];
+						}
+				}
+				
+		if($place['PlaceType']['singlename'] == 'topicData'){
+			$address = '';
+		}else if($place['PlaceType']['singlename'] == 'motorcycle'){
+			$address = '';
+		}else if($place['PlaceType']['singlename'] == 'animal'){
+			$address = '';
+		}else if($place['PlaceType']['singlename'] == 'continent'){
+			$address = '';
+		}else if($place['PlaceType']['singlename'] == 'recipe'){
+			$address = '';
+		}else if($place['PlaceType']['singlename'] == 'babyName'){
+			$address = $place[$modelName]['meaning'];
+		}else{
+			if($currentLng == 'bn' && !empty($place[$modelName]['bn_address'])){
+				$address = $place[$modelName]['bn_address'];	
+			}else{
+				$address = $place[$modelName]['address'];
+			}
+		}
+		if(in_array($modelName,array('BabyName'))){
+			$stringlength = strlen($place[$modelName]['seo_name']);
+			$newID = $stringlength.$place[$modelName]['id'];
+		}else if(in_array($modelName,array('TopicData'))){
+			$stringlength = strlen($place['Point']['seo_name']);
+			$newID = $stringlength.$place['Point']['id'];
+		}else{
+			$stringlength = strlen($place[$modelName]['seo_name']);
+			$newID = $stringlength.$place[$modelName]['id'];
+		}
+		
+		echo '<div class="blog_txt">';
+		if($place['PlaceType']['singlename'] == 'topicData'){
+			echo '<div class="row">';
+			echo '<div class="col-md-3">';
+				if(!empty($place[$modelName]['image'])){
+					$imglink = "topics/medium/".$place[$modelName]['image'];
+					echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+				}else{
+					$icon = $category['pl']['icon'];
+					echo "<i class='fontsitemap $icon'></i>";
+				}
+			echo '</div>';
+			echo '<div class="col-md-9">';
+				echo $this->Html->link('<h1><span>'.$placename.'</span></h1>', array('controller'=>'siteactions','action'=>'topic','category'=>$place['PlaceType']['seo_name'],'point'=> $place['Point']['seo_name'],'language'=>$currentLng,'id'=> $place[$modelName]['point_id'],'ext' => 'asp'),array('alt' =>$placename,'escape'=>false));
+				echo '<p>'.mb_substr($shortContent,0,120).'..</p>';
+			echo '</div>';
+			echo '</div>';
+			
+		}else if($place['PlaceType']['singlename'] == 'continent'){
+		echo $this->Html->link('<h1>'.$placename.'</h1>', array('controller'=>'siteactions','action'=>'countries','category'=>$place['Continent']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $place[$modelName]['point_id'],'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+		}else if($modelName == 'Location'){
+		echo $this->Html->link('<h1>'.$placename.'</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'country'=>$countryname,'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+		}else if(in_array($modelName,array('BabyName'))){
+			$genderId = $place[$modelName]['sex_id'];
+			if($genderId == 1){
+				$genderIcon = '<i class="fa fa-male" aria-hidden="true"></i>';
+			}else{
+				$genderIcon = '<i class="fa fa-female" aria-hidden="true"></i>';
+			}
+		echo $this->Html->link('<h1>'.$genderIcon.' '.$placename.'</h1>', array('controller'=>'siteactions','action'=>'bucket','itemgroup'=>$modelName,'category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+		}else if(in_array($modelName,array('Animal'))){
+		echo $this->Html->link('<h1>'.$placename.'</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+		}else{
+		echo $this->Html->link('<h1>'.$placename.'</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'country'=>$countryname,'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+		}
+		
 		echo '</div>';
-		echo '</td>';
-		echo '</tr>';
+		echo '<p>';
+		
+		if(!empty($address)){
+			echo $address;
+		}
+		
+		echo '</p>';
+		
+		
+		
+		
+		
+		
+		
 		endforeach;
 		}else{
-		echo '<tr class="post-item">';
-		echo '<td>';
 		echo '<p>No Item Found</p>';
-		echo '</td>';
-		echo '</tr>';
 		}
-		echo '</tbody>';
-		echo '</table>';
 		echo '</div>';
 		if(isset($matchTerm)){
 			$matchTerm = $matchTerm;
@@ -124,4 +192,3 @@ echo '<h2 class="nino-sectionHeading">'.$title_for_layout.'</h2>';
 ?>
 </div>
 </div>
-</section>

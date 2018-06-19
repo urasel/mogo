@@ -16,15 +16,39 @@ $className = 'Recipe';
 	  $newID = $stringlength.$place['PlaceType']['id'];
 	  $language = $this->Session->read('Config.language');
       $className = ucfirst($place['PlaceType']['singlename']);
-      $this->Html->addCrumb(__('Sitemap'), array('plugin'=>'information','controller' => 'siteactions','action' => 'sitemap')) ;
-      $this->Html->addCrumb($place['PlaceType']['name'],array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$place['PlaceType']['seo_name'],'id'=> $newID,'page'=>1,'ext' => 'asp') ,array('alt' =>$place['PlaceType']['name']));
-	  $this->Html->addCrumb($place['Point']['name'] ,  '' , array('class' => 'active'));
+	  $imageTable = $className.'Image';
 	  
+	  $stringlength = strlen($place['PlaceType']['seo_name']);
+	  $newID = $stringlength.$place['PlaceType']['id'];
+	  $className = ucfirst($place['PlaceType']['singlename']);
+      $this->Html->addCrumb(__('World'), array('plugin'=>'information','controller' => 'siteactions', 'action' => 'world','language' => $currentLng)) ;
+	  if($passCountryName == ''){
+		  $this->Html->addCrumb(__('All'), array('plugin'=>'information','controller' => 'siteactions', 'action' => 'sitemap','language' => $currentLng)) ;
+	  }else{
+		  $this->Html->addCrumb($passCountryName, array('plugin'=>'information','controller' => 'siteactions', 'action' => 'sitemap','language' => $currentLng,'?' => array('country' => $queryCountry))) ;
+	  }
+      $breadcumpArray = array_reverse($breadcumpArray);
+	  //debug($breadcumpArray);exit;
+	  foreach($breadcumpArray as $breadcumb){
+			//debug($breadcumb);exit;
+			 $stringlength = strlen($breadcumb['PlaceType']['seo_name']);
+			$newID = $stringlength.$breadcumb['PlaceType']['id'];
+			if($breadcumb['hasChild'] == true){
+				$this->Html->addCrumb($breadcumb['PlaceType']['name'],array('plugin'=>'information','controller' => 'siteactions','action'=>'subcategories','country'=>$queryCountry,'category'=>$breadcumb['PlaceType']['seo_name'],'id'=> $newID,'language'=>$currentLng,'page'=>1,'ext' => 'asp') ,array('alt' =>$breadcumb['PlaceType']['name']));
+			}else{
+				$this->Html->addCrumb($breadcumb['PlaceType']['name'],array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=>$queryCountry,'category'=>$breadcumb['PlaceType']['seo_name'],'id'=> $newID,'language'=>$currentLng,'page'=>1,'ext' => 'asp') ,array('alt' =>$breadcumb['PlaceType']['name']));
+			}
+			 
+		  
+	  }
+	  
+	  $this->Html->addCrumb($place['Point']['name'] ,  '' , array('class' => 'active'));
+	  $userName = $place['User']['firstname'].' '.$place['User']['lastname'];
 	  
 		$title = '';
 		$shortDescription = '';
 		$detailDescription = '';
-		debug($place);exit;
+		//debug($place);exit;
 			
 			$title = $place[$className]['title'];
 			$shortDescription = $place[$className]['short_note'];
@@ -45,52 +69,89 @@ $className = 'Recipe';
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="blog_about">
+					
 					<div class="blog_img blog_post_img">
+						<?php if(isset($place[$imageTable][0]['file'])){ ?>
 						<figure>
 							<?php
-								$link = 'recipes/large/'.$place[$className]['image'];
-								echo $this->Html->image($link,array('alt'=>$shortDescription,'class'=>"img-responsive"));
+								$feature_image = $place[$imageTable][0]['file'];
+								$link = SITEIMAGE."recipes/large/".$feature_image;
+								//echo $this->Html->image($link,array('alt'=>$shortDescription,'class'=>"img-responsive"));
+								echo $this->Html->image('default.png',array('data-echo' => $link,'alt'=>"$shortDescription",'class' =>'img-responsive'));
 							?>
-							<img src="images/blog_bg_1.jpg" alt="img" class="img-responsive">
 						</figure>
+						<?php } ?>
 					</div>
+					
 					<div class="blog_comment">
 						<ul>
-							<li><a href="#"><i class="fa fa-comment" aria-hidden="true"></i>50</a>
+							<li><a href="#"><i class="fa fa-share" aria-hidden="true"></i>
+							<span data-open-share-count="facebook,pinterest,reddit" data-open-share-count-url="http://www.digitalsurgeons.com"></span>
+							</a>
 							</li>
-							<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i>98</a>
+							<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+							</li>
+							<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+							</li>
+							<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
 							</li>
 						</ul>
 					</div>
-					<div class="blog_txt">
-						<h1><a href="#">Very popular during</a></h1>
-						<div class="blog_txt_info">
-							<ul>
-								<li>BY ADMIN</li>
-								<li>SEPT.29,2016</li>
-							</ul>
+					<div class="row">
+						<div class="blog_txt col-lg-8 col-md-8 col-sm-12 col-xs-12">
+							<div class="topposition">
+								<div class="col-md-12 zeropadding">			
+									<div class="col-md-12 posttitleblock zeropadding">
+										<div class="col-sm-112 col-xs-12 col-md-12 zeropadding">
+										<?php 
+												echo '<h1>'.$title.'</h1>'; 
+												
+										?>
+										</div>
+										<div class="blog_txt_info">
+											<ul>
+												<li>BY <?php echo $userName;?></li>
+												<li><?php echo $publishdate; ?></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								
+								
+								
+								<div class="articlebody">
+									<?php if(!empty($shortDescription)){ ?>
+									<div class="med_toppadder20">
+										<h2><?php echo $shortDescription;?></h2>
+									</div>
+									<?php } ?>
+									<?php if(!empty($ingredients)){ ?>
+									<div class="med_toppadder20">
+										<h2>Ingredients:</h2>
+										<p><?php echo $ingredients;?></p>
+									</div>
+									<?php } ?>
+									<?php if(!empty($instructions)){ ?>
+									<div class="med_toppadder20">
+										<h2>Instructions:</h2>
+										<p><?php echo $instructions;?></p>
+									</div>
+									<?php } ?>
+									<?php if(!empty($recipe_notes)){ ?>
+									<div class="med_toppadder20">
+										<h2>Recipe Notes:</h2>
+										<p><?php echo $recipe_notes;?></p>
+									</div>
+									<?php } ?>
+									
+									<p class="reference-txt">ফিচার ইমেজ- Steemit</p>
+								</div>
+							</div>
 						</div>
-						<p>Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor.</p>
-						<p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora.</p>
-						<a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>
+						<div class="col-lg-4 col-md-8 col-sm-12 col-xs-12">
+						</div>
+						
 					</div>
-				</div>
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="team_heading_wrapper med_bottompadder40">
-					<h1 class="med_bottompadder20"><?php echo $title;?></h1>
-				</div>
-			</div>
-			
-			
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<div class="abt_txt abt_txt_resp">
-				
-					<h2><?php echo $shortDescription;?></h2>
-					<p class="med_toppadder20"><?php echo $ingredients;?></p>
-					<p class="med_toppadder20"><?php echo $instructions;?></p>
-					<p class="med_toppadder20"><?php echo $recipe_notes;?></p>
-				</div>
 			</div>
 			
 			 
@@ -98,57 +159,11 @@ $className = 'Recipe';
 </div>
 </div>
     <!--service section end-->
+	
+<?php
+		echo $this->element('nearby-items', array('nearbies' => $nearbies,'place' => $place,'className' => $className));
 
-<div class="row top-buffer">
-	<div class="col-md-12">
-		<div class="col-md-12 sectionblock otherblock">
-		<?php
-		//debug($nearbies);
-				echo '<h3>'.__('Other').' '.$place['PlaceType']['name'].__(' Informations').'</h3>';
-				echo '<div class="row nearPlace">';
-				foreach($nearbies as $nearby){
-				//debug($nearby);
-				echo '<div class="col-xs-12 col-sm-6 col-md-3 placecontianer">';
-				echo '<div class="relatedblock">';
-					echo '<div class="row">';
-					echo '<div class="col-md-12">';
-					//debug($place[$className]);
-					if($nearby[$className][1]['language_id'] == $languageID && !empty($nearby[$className][1]['name'])){
-						$placename = $nearby[$className][1]['name'];
-					}else if($nearby[$className][0]['language_id'] == $languageID && !empty($nearby[$className][0]['name'])){
-						$placename = $nearby[$className][0]['name'];
-					}else if(!empty($nearby[$className][0]['name'])){
-						$placename = $nearby[$className][0]['name'];
-					}else if(!empty($nearby[$className][1]['name'])){
-						$placename = $nearby[$className][1]['name'];
-					}
-					
-					$placeSeoName = $nearby['PlaceType']['seo_name'];
-					$pointSeoName = $nearby['Point']['seo_name'];
-					if(isset($nearby['Topic']['image'])){
-					$file = $nearby['Topic']['image'];
-					echo $this->Html->image("topics/medium/$file",array('url'=> array('controller'=>'siteactions','action'=>'topic','category'=>$nearby['PlaceType']['seo_name'],'point'=> $nearby['Point']['seo_name'],'id'=> $nearby['Point']['id'],'ext' => 'asp')),array('alt'=>"$placename napshot"));
-					}else{
-					echo $this->Html->link('<div class="defaultcaticon"><span><i class="inn '.$nearby['PlaceType']['icon'].'"></i></span></div>', array('controller'=>'siteactions','action'=>'topic','category'=>$nearby['PlaceType']['seo_name'],'point'=> $nearby['Point']['seo_name'],'id'=> $nearby['Point']['id'],'ext' => 'asp'),array('escape'=>false,'alt' =>$placename));
-					
-					}
-					echo '</div>';
-					echo '<div class="col-md-12">';
-					echo $this->Html->link(mb_substr($placename,0,24).'..',array('controller'=>'siteactions','action'=>'topic','category'=>$nearby['PlaceType']['seo_name'],'point'=> $nearby['Point']['seo_name'],'id'=> $nearby['Point']['id'],'ext' => 'asp'),array('class'=>'placename','alt'=>"$placename"));
-					echo '</div>';
-					echo '</div>';
-				echo '</div>';
-				echo '</div>';
-				
-				//debug($nearby);
-				}
-				echo '</div>';
-				
-		?>
-		
-	</div>
-</div>	
-</div>	
+?>
 <script>
 $(document).ready(function(){
     $(".zoominbutton").click(function() {

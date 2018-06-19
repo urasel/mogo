@@ -14,7 +14,6 @@ CroogoRouter::localize();
 	Router::connect('/forgot-password', array('plugin'=>'users','controller' => 'users', 'action' => 'forgot'),array('pass' => 'language'));
 	Router::connect('/reset-password', array('plugin'=>'users','controller' => 'users', 'action' => 'reset'),array('pass' => 'language'));
 	Router::connect('/logout', array('plugin'=>'users','controller' => 'users', 'action' => 'logout'));
-	Router::connect('/:language/login', array('plugin'=>'information','controller' => 'users', 'action' => 'login'));
 	Router::connect('/fbcallback', array('controller' => 'users', 'action' => 'fbcallback'));
 	
 	Router::connect('/:language/sitemap.asp', array('plugin'=>'information','controller' => 'siteactions', 'action' => 'sitemap'),array('pass' => 'language'));
@@ -53,9 +52,10 @@ CroogoRouter::localize();
 	Router::connect('/currentplace', array('controller' => 'places', 'action' => 'myside'));
 	Router::connect('/savedplaces', array('controller' => 'places', 'action' => 'savedplaces'));
 	Router::connect('/changelanguage/:language', array('plugin'=>'information','controller' => 'siteactions', 'action' => 'changeLanguage'),array('pass'=> array('language')));
-	Router::connect('/locate', 
-                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'locate'));
-			 
+	Router::connect('/locate/:catname', 
+                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'locate'),
+					 array('pass' => array('catname')));
+	
 	Router::connect('/:language/point/:country/:category/:point/:id', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
                      array('pass' => array('category', 'point','id','language','couontry')));
@@ -65,6 +65,12 @@ CroogoRouter::localize();
 	Router::connect('/:language/point/:category/:point/:id', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
                      array('pass' => array('category', 'point','id','language','couontry')));
+					 
+	/*
+	Router::connect('/:language/:category/:point/:id', 
+                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
+                     array('pass' => array('category', 'point','id','language','couontry')));
+	*/
 	Router::connect('/:language/section/:category/:itemgroup/:point/:id', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'bucket'), 
                      array('pass' => array('category', 'point','id','language','itemgroup')));
@@ -244,6 +250,6 @@ CroogoRouter::localize();
 	CroogoRouter::connect('/logout', array('plugin' => 'users', 'controller' => 'users', 'action' => 'logout'),array('pass' => 'language'));
 	CroogoRouter::connect('/admin_login', array('admin' => true,'plugin' => 'users', 'controller' => 'users', 'action' => 'login'));
 	CroogoRouter::connect('/admin_logout', array('admin' => true,'plugin' => 'users', 'controller' => 'users', 'action' => 'logout'),array('pass' => 'language'));
-CroogoRouter::connect('/:language/register', array('plugin' => 'users', 'controller' => 'users', 'action' => 'add'),array('pass' => 'language'));
+CroogoRouter::connect('/register', array('plugin' => 'users', 'controller' => 'users', 'action' => 'add'));
 CroogoRouter::connect('/:language/reset', array('plugin' => 'users', 'controller' => 'users', 'action' => 'reset'),array('pass' => 'language'));
 require CAKE . 'Config' . DS . 'routes.php';

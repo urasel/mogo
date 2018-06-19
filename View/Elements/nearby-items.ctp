@@ -2,7 +2,7 @@
 <div class="container">
 <?php
 echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['PlaceType']['name']).'</h2>';
-//debug($nearbies);		
+//debug($nearbies);exit;		
 				$currentLng = $this->Session->read('Config.language');		
 				echo '<div class="sectionContent">';
 					echo '<div class="row">';
@@ -32,6 +32,19 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 								}
 								
 								
+							}else if($className == 'Recipe'){
+								$class = $nearplace[$className]['seo_name'];
+								$publishBefore = $this->Language->datediff($nearplace['Point']['created']);
+								$stringlength = strlen($nearplace[$className]['seo_name']);
+								$newID = $stringlength.$nearplace[$className]['point_id'];
+								$metaTag = '';
+								$placeType = $nearplace['PlaceType']['name'];
+								
+									$placename = $nearplace[$className]['title'];
+									$shortContent = $nearplace[$className]['short_note'];
+									$nearplacename = $nearplace[$className]['title'];
+								
+								
 							}else{
 								$class = $nearplace['Point']['seo_name'];
 								$publishBefore = $this->Language->datediff($nearplace['Point']['created']);
@@ -41,6 +54,8 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 								$nearplacename = $nearplace[$className]['name'];
 								$nearplaceType = $nearplace['PlaceType']['name'];
 							}
+							
+							
 							
 							if($className == 'Stadium'){
 								$postSeo = $nearplace['Point']['seo_name'];
@@ -84,6 +99,22 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 								
 							}else if($className == 'Hospital'){
 								$countryname = $nearplace['Country']['seo_name'];
+								$metaTag = $nearplace[$className]['metatag'];
+								$postSeo = $nearplace['Point']['seo_name'];
+								$shortDescription = @$nearplace['Point']['address'];
+								$actionName = 'infos';
+								$totalvisit = $nearplace['Point']['totalvisit'];
+								
+							}else if($className == 'Recipe'){
+								$countryname = '';
+								$metaTag = $nearplace[$className]['metatag'];
+								$postSeo = $nearplace['Point']['seo_name'];
+								$shortDescription = @$nearplace['Point']['address'];
+								$actionName = 'infos';
+								$totalvisit = $nearplace['Point']['totalvisit'];
+								
+							}else if($className == 'Animal'){
+								$countryname = '';
 								$metaTag = $nearplace[$className]['metatag'];
 								$postSeo = $nearplace['Point']['seo_name'];
 								$shortDescription = @$nearplace['Point']['address'];
@@ -138,15 +169,24 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 								$metaTag = "$nearplacename : $nearplacename is a $nearplaceType listed in $nearplaceType category. ".$countryTag.' '.$latLngTag;
 								
 							}
-						
+						//debug($nearplace);exit;
 						echo '<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 minheightblock">';
 							echo '<div class="blog_about">';
+							
 								//echo '<div class="about-border"> <i class="fa fa-tablet aligncenter"></i></div>';
 									echo "<div class='blog_img $postSeo'>";
 										echo '<figure>';
-										$imglink = $nearplace[$className]['image'];
+										if($className == 'Recipe'){
+											$imglink = $nearplace['RecipeImage'][0]['file'];
+										}else{
+											$imglink = $nearplace[$className]['image'];
+										}
+										
 										if($className == 'TopicData'){
-											$fileExistPath = WWW_ROOT.'img'.DS.'topics'.'medium'.DS.$imglink;
+											$fileExistPath = WWW_ROOT.'img'.DS.'topics'.DS.'medium'.DS.$imglink;
+										}else if($className == 'Recipe'){
+											$foldername = $nearplace['PlaceType']['pluralname'];
+											$fileExistPath = WWW_ROOT.'img'.DS.$foldername.DS.'medium'.DS.$imglink;
 										}else{
 											$foldername = $nearplace['PlaceType']['pluralname'];
 											$fileExistPath = WWW_ROOT.'img'.DS.$foldername.DS.'photogallery'.DS.$imglink;
@@ -155,6 +195,9 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 										if(!empty($imglink) && file_exists($fileExistPath)){
 											if($className == 'TopicData'){
 												echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'img-responsive','data-echo' => SITEIMAGE."topics/medium/$imglink"));
+												
+											}else if($className == 'Recipe'){
+												echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'class' =>'img-responsive','alt' =>$metaTag,'data-echo' => SITEIMAGE."$foldername/medium/$imglink"));
 												
 											}else{
 												echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'class' =>'img-responsive','alt' =>$metaTag,'data-echo' => SITEIMAGE."$foldername/photogallery/$imglink"));

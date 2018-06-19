@@ -27,7 +27,7 @@ class TopicsController extends InformationAppController {
 	public function home(){
 		$Node = $this->{$this->modelClass};
 		$selectedTemplate = Configure::read('selectedTemplate');
-		$this->layout = $selectedTemplate.'default';
+		$this->layout = $selectedTemplate.'home';
 		$this->loadModel('PlaceType');
 		$this->PlaceType->recursive = -1;
 		//debug($this->params);

@@ -78,36 +78,7 @@ $this->append('tab-content');
 	
 	echo $this->Html->tabStart('photogallery');
 	//debug($this->data);
-		/*
-		echo '<div class="accomodation">';
-		echo '<div class="addMoreBlock">';
-		echo $this->Form->input('position', array(
-			'label' =>  __d('information', 'Position'),
-			'name' => 'data[postimage][position][]',
-			'options' => array('Featured','Others'),
-		));
-		echo $this->Form->input('name', array(
-			'label' =>  __d('information', 'Name'),
-			'name' => 'data[postimage][name][]',
-		));
-		echo $this->Form->input('source', array(
-			'label' =>  __d('information', 'Source'),
-			'name' => 'data[postimage][source][]',
-		));
-	//debug($this->data);
-		$dataClass = 'TransportRoute';
-		echo $this->Form->input('image', array('type'=>'file','label'=>'Add Image','name' =>"data[postimage][images][]", 'accept'=>"image/*"));
-		echo $this->Form->button('Remove',array('type'=>'button','class' => 'blocremoveBtn btn-danger pull-right'));
-		?>
-		<script>
-		$('.blocremoveBtn').click(function(){
-			$(this).parent('div').remove();
-		});
-		</script>
-		<?php
-		echo '</div>';
-		echo '</div>';
-		*/
+	
 		echo '<div class="accomodationmore">';
 			echo '<div class="imageContainer">';
 			echo '<div class="addMoreBlock">';

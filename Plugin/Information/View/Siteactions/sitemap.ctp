@@ -17,14 +17,13 @@
 		  $this->loadHelpers(array('Language'));
 		  
 	 ?>
-<section>
 <div class="container">
 	<div class="row placeview">
 	
 		<div class="col-md-12 posttitleblock zeropadding">
 		<div class="col-md-12">
 		<?php 
-				echo '<h1>'.$title_for_layout.'</h1><br/>'; 
+				echo '<h1>'.$title_for_layout.'</h1>'; 
 				
 		?>
 		</div>
@@ -91,4 +90,3 @@
 	?>
 	</div>
 	</div>
-</section>

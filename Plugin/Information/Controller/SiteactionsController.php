@@ -308,7 +308,7 @@ class SiteactionsController extends InformationAppController {
 			$this->layout = $selectedTemplate.$layout;
 			$this -> render($singleName);
 		}else if($typeid == 'recipe'){
-			debug($pointDetails);exit;
+			//debug($pointDetails);exit;
 			$layout = $pointDetails['PlaceType']['singlename'];
 			$className = ucfirst($pointDetails['PlaceType']['singlename']);
 			$singleName = $pointDetails['PlaceType']['singlename'];
@@ -379,7 +379,7 @@ class SiteactionsController extends InformationAppController {
 						$imageDB => array(
 								'foreignKey' => false,
 								'fields' => array('file'),
-								'conditions' => array("$imageDB.recipe_id" => 1)
+								'conditions' => array("$imageDB.recipe_id" => 1, "$imageDB.position" => '1')
 						)
 					),
 					
@@ -473,7 +473,7 @@ class SiteactionsController extends InformationAppController {
 			);
 			//debug($options);exit;
 			$pointDetails = $this->Point->find('first', $options);
-			debug($pointDetails);exit;
+			//debug($pointDetails);exit;
 			
 			if(empty($pointDetails['Point']['lat']) || empty($pointDetails['Point']['lng']) || empty($pointDetails['Point']['map'])){
 				/********************************/
@@ -1311,7 +1311,7 @@ class SiteactionsController extends InformationAppController {
 					),
 				)
 			);
-			debug($this->Point);exit;
+			//debug($this->Point);exit;
 			$options = array(
 				'conditions' => array('Point.' . $this->Point->primaryKey => $id),
 				'fields' =>array(
@@ -1333,7 +1333,7 @@ class SiteactionsController extends InformationAppController {
 			);
 			//debug($options);exit;
 			$pointDetails = $this->Point->find('first', $options);
-			debug($pointDetails);exit;
+			//debug($pointDetails);exit;
 			
 			
 			if(empty($pointDetails['Point']['lat']) || empty($pointDetails['Point']['lng']) || empty($pointDetails['Point']['map'])){
@@ -1583,7 +1583,7 @@ class SiteactionsController extends InformationAppController {
 						),
 						'PlaceType' => array(
 							'foreignKey' => false,
-							'conditions' => array('Point.place_type_id = PlaceType.id')
+							'conditions' => array("Point.place_type_id = PlaceType.id")
 						),
 					),
 					'hasMany' => array(
@@ -1595,8 +1595,7 @@ class SiteactionsController extends InformationAppController {
 					),
 				)
 			);
-			//debug($this->Point);
-			//exit;
+			//debug($this->Point);exit;
 			$options = array(
 				'conditions' => array('Point.' . $this->Point->primaryKey => $id),
 				'fields' =>array(
@@ -3931,7 +3930,6 @@ class SiteactionsController extends InformationAppController {
 					'conditions' => array(
 						"Point.id !=" => $pointDetails['Point']['id'],
 						"Point.place_type_id" => $pointDetails['PlaceType']['id'],
-						"Point.country_id" => $pointDetails['Point']['country_id'],
 						),
 					'fields' => array(
 						'Point.*',
@@ -4454,6 +4452,7 @@ class SiteactionsController extends InformationAppController {
 				
 				
 				$nearbies = $this->$className->find('all', $options);
+				//debug($nearbies);exit;
 			
 		}else{
 			

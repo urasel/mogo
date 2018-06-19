@@ -35,6 +35,7 @@
 		echo $this->Html->css('themeinfo/style');
 		echo $this->Html->css('themeinfo/responsive');
 		echo $this->Html->css('themeinfo/template');
+		echo $this->Html->css('themeinfo/jCircle');
 		echo $this->Html->css('font-awesome.min');
 		
 	?>

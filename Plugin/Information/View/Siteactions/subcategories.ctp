@@ -57,16 +57,16 @@
 			
 			if(in_array($category['pl']['id'],$parentCats)){
 				if(!empty($queryCountry)){
-					echo $this->Html->link($category['pl']['name'], array('plugin'=>'information','controller' => 'siteactions','action'=>'subcategories','country'=>$queryCountry,'category'=>$category['pl']['seo_name'],'id'=> $newID,'language'=>$currentLng,'ext' => 'asp'),array('alt' =>$category['pl']['name'],'class' => 'categorypagecat'));
+					echo $this->Html->link(mb_substr($category['pl']['name'],0,28), array('plugin'=>'information','controller' => 'siteactions','action'=>'subcategories','country'=>$queryCountry,'category'=>$category['pl']['seo_name'],'id'=> $newID,'language'=>$currentLng,'ext' => 'asp'),array('alt' =>$category['pl']['name'],'class' => 'categorypagecat'));
 				}else{
-					echo $this->Html->link($category['pl']['name'], array('plugin'=>'information','controller' => 'siteactions','action'=>'subcategories','category'=>$category['pl']['seo_name'],'id'=> $newID,'language'=>$currentLng,'ext' => 'asp'),array('alt' =>$category['pl']['name'],'class' => 'categorypagecat'));
+					echo $this->Html->link(mb_substr($category['pl']['name'],0,28), array('plugin'=>'information','controller' => 'siteactions','action'=>'subcategories','category'=>$category['pl']['seo_name'],'id'=> $newID,'language'=>$currentLng,'ext' => 'asp'),array('alt' =>$category['pl']['name'],'class' => 'categorypagecat'));
 				}
 				
 			}else{
 				if(!empty($queryCountry)){
-					echo $this->Html->link($category['pl']['name'], array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=>$queryCountry,'category'=>$category['pl']['seo_name'],'id'=> $newID,'language'=>$currentLng,'page'=>1,'ext' => 'asp'),array('alt' =>$category['pl']['name'],'class' => 'categorypagecat'));
+					echo $this->Html->link(mb_substr($category['pl']['name'],0,28), array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=>$queryCountry,'category'=>$category['pl']['seo_name'],'id'=> $newID,'language'=>$currentLng,'page'=>1,'ext' => 'asp'),array('alt' =>$category['pl']['name'],'class' => 'categorypagecat'));
 				}else{
-					echo $this->Html->link($category['pl']['name'], array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$category['pl']['seo_name'],'id'=> $newID,'language'=>$currentLng,'page'=>1,'ext' => 'asp'),array('alt' =>$category['pl']['name'],'class' => 'categorypagecat'));
+					echo $this->Html->link(mb_substr($category['pl']['name'],0,28), array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$category['pl']['seo_name'],'id'=> $newID,'language'=>$currentLng,'page'=>1,'ext' => 'asp'),array('alt' =>$category['pl']['name'],'class' => 'categorypagecat'));
 				}
 				
 			}
@@ -282,5 +282,6 @@
 	
 	
 ?>
+<div class="row"><div class="col-md-12">&nbsp;</div></div>
 </div>
 

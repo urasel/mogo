@@ -434,7 +434,8 @@ class UsersController extends UsersAppController {
  * @access public
  */
 	public function add() {
-		$this->layout = 'bootstrap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		$this->set('title_for_layout', __('Register'));
 		if (!empty($this->request->data)) {
 			$this->User->create();
@@ -540,13 +541,16 @@ class UsersController extends UsersAppController {
  * @access public
  */
 	public function forgot() {
-		$this->layout = 'bootstrap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		$this->set('title_for_layout',__('Forgot password ?'));
 
 		if (!empty($this->request->data) && isset($this->request->data['User']['username'])) {
+			//echo $this->request->data['User']['username'];exit;
 			$user = $this->User->findByUsername($this->request->data['User']['username']);
 			if (!isset($user['User']['id'])) {
 				$this->Session->setFlash(__d('croogo', 'Invalid username.'), 'flash', array('class' => 'error'));
+				
 				return $this->redirect(array('action' => 'login'));
 			}
 
@@ -583,7 +587,8 @@ class UsersController extends UsersAppController {
  * @access public
  */
 	public function reset($username = null, $key = null) {
-		$this->layout = 'bootstrap';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'bootstrap';
 		$this->set('title_for_layout', __('Reset Password'));
 
 		if ($username == null || $key == null) {
@@ -626,7 +631,8 @@ class UsersController extends UsersAppController {
  * @access public
  */
 	public function login() {
-		$this->layout = 'login';
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = $selectedTemplate.'login';
 		$this->set('title_for_layout', __('InfoMap24 Login'));
 		//debug($this->referer());exit;
 		$this->Session->write('permitRedirect',$this->referer());

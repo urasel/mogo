@@ -8,7 +8,6 @@
 	echo $this->Html->script('themeinfo/jquery.magnific-popup'); 
 	echo $this->Html->script('themeinfo/echo.min'); 
 	echo $this->Html->script('themeinfo/custom'); 
-	echo $this->Html->script('themeinfo/jCircle.min'); 
 	?>
 	<script>
 		echo.init({
@@ -20,19 +19,4 @@
 		}
 		});
 	</script>
-	
-	<script>
-	  var textCircle=new jCircle({
-		'container': 'circles-container-text',
-		'circle': 'circle-text',
-		'mainContent':'main-circle-content-text',
-		'animateCircles':true,
-		'speed':3,
-		'mainViewStyle':'normal',
-		'minCirclesEffectOver':'rotate',
-		'contentType':'text',
-		'stopOnOverMain':true
-	  });
-	  textCircle.create();
-    </script>
 <!--js code-->

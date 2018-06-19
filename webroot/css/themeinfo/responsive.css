@@ -1,9 +1,9 @@
 /********--------responsive css of main index-----**********/
 /**********************991 & 1199 start******************/
 
-@media (min-width: 992px) and (max-width: 1499px){
+@media (min-width: 992px) and (max-width: 2499px){
 	.address_main:after{
-		height:595px;
+		height:470px;
 	}
 	
 	.posttitleblock i, .posttitleblock h1{
@@ -15,8 +15,43 @@
 		padding:10px;
 		border:1px solid #ccc;
 	}
+	.minheightblock{
+		min-height:435px;
+	}
+	
+	
 }
 @media (min-width: 991px) and (max-width: 1499px){
+.topposition {
+	margin-top: -75px;
+	border-top: 1px solid #f4f4f4;
+	border-right: 1px solid #f4f4f4;
+	background: #fff;
+	margin: -75px 0px 0px 30px;
+	padding-left: 20px;
+	padding-right: 10px;
+	float:left;
+}
+.minheightblock{
+	min-height:435px;
+}
+#circle-text .min-circle a i{
+	font-size:1.6em;
+}
+.enlarge-main-circle-content i{
+	margin-top:10px;
+	font-size:2em;
+}
+.enlarge-main-circle-content h2{
+	font-size:14px;
+	line-height:10px;
+	
+}
+.enlarge-main-circle-content a{
+	font-size:11px;
+	line-height:10px;
+	
+}
 .header_logo{
 	top:15px;
 }
@@ -150,7 +185,7 @@
 .posttitleblock h1 {
 	font-size: 34px;
 	font-weight: 600;
-	line-height: 1em;
+	line-height: 1.4em;
 	letter-spacing: -1.2px;
 	margin-bottom: 10px;
 }
@@ -161,6 +196,25 @@
 }
 /************----------991 css-----------***********/
 @media (max-width: 991px){
+#circle-text .min-circle a i{
+	font-size:1.6em;
+}
+.enlarge-main-circle-content i{
+	margin-top:10px;
+	font-size:2em;
+}
+.enlarge-main-circle-content h2{
+	font-size:16px;
+	
+}
+.enlarge-main-circle-content a{
+	font-size:12px;
+	
+}	
+.minheightblock{
+	min-height:305px;
+}
+
 	.doc_img_top{
 		float:left;
 		width:100% !important;
@@ -225,6 +279,21 @@
 }
 /*******************-----------------**********************/
 @media (min-width: 768px) and (max-width: 991px){
+#circle-text .min-circle a i{
+	font-size:1.6em;
+}
+.enlarge-main-circle-content i{
+	margin-top:10px;
+	font-size:2em;
+}
+.enlarge-main-circle-content h2{
+	font-size:14px;
+	
+}
+.enlarge-main-circle-content a{
+	font-size:11px;
+	
+}
 	
 .top_header_add{
 	font-size:12px;
@@ -506,9 +575,9 @@
 	margin-bottom:50px;
 }
 .posttitleblock i, .posttitleblock h1{
-		font-size: 1.5em;
+		font-size: 2em;
 		font-weight: 600;
-		line-height: 1.2;
+		line-height: 1.5em;
 	}
 	.posttitleblock i{
 		padding:10px;
@@ -517,6 +586,21 @@
 }
 /*********------------767 responsive css---------***********/
 @media (max-width: 767px){
+#circle-text .min-circle a i{
+	font-size:1.6em;
+}
+.enlarge-main-circle-content i{
+	margin-top:10px;
+	font-size:2em;
+}
+.enlarge-main-circle-content h2{
+	font-size:14px;
+	
+}
+.enlarge-main-circle-content a{
+	font-size:11px;
+	
+}
 	
 .top_header_wrapper{
 	display:none;
@@ -815,9 +899,9 @@ button span{
 	margin-bottom:50px;
 }
 .posttitleblock i, .posttitleblock h1{
-		font-size: 1.3em;
+		font-size: 1.5em;
 		font-weight: 600;
-		line-height: 1.2;
+		line-height: 1.5em;
 	}
 	.posttitleblock i{
 		padding:10px;
@@ -827,6 +911,21 @@ button span{
 
 /**********--------480 responsivecss--------********/
 @media (max-width: 480px){
+#circle-text .min-circle a i{
+	font-size:1.6em;
+}
+.enlarge-main-circle-content i{
+	margin-top:10px;
+	font-size:2em;
+}
+.enlarge-main-circle-content h2{
+	font-size:14px;
+	
+}
+.enlarge-main-circle-content a{
+	font-size:11px;
+	
+}
 
 .cc_slider_cont1 h2, .cc_slider_cont1 h2, .cc_slider_cont1 h2{
 	margin-left: 55px;
@@ -1043,9 +1142,9 @@ button span{
 	border-right: 2px solid #d7d7d7;
 }
 .posttitleblock i, .posttitleblock h1{
-		font-size: 1.2em;
+		font-size: 1.5em;
 		font-weight: 600;
-		line-height: 1.2;
+		line-height: 1.5em;
 	}
 	.posttitleblock i{
 		padding:10px;
@@ -1054,7 +1153,22 @@ button span{
 }
 /***********---------320 responsive css-------**********/
 @media (max-width: 320px){
-
+#circle-text .min-circle a i{
+	font-size:1.2em;
+}
+.enlarge-main-circle-content i{
+	margin-top:10px;
+	font-size:1em;
+}
+.enlarge-main-circle-content h2{
+	font-size:11px;
+	line-height:7px;
+}
+.enlarge-main-circle-content a{
+	font-size:10px;
+	line-height:7px;
+	
+}
 .cc_slider_cont1 h2, .cc_slider_cont1 h2, .cc_slider_cont1 h2{
     font-size: 22px;
 }
@@ -1364,8 +1478,8 @@ button span{
 	margin-left:0;
 }
 .posttitleblock i, .posttitleblock h1{
-		font-size: 1.1em;
-		font-weight: 500;
+		font-size: 1.4em;
+		font-weight: 600;
 		line-height: 1.2;
 	}
 	.posttitleblock i{
@@ -1376,6 +1490,23 @@ button span{
 
 /********--------320 & 480 responsivecss-----*********/
 @media (min-width: 321px) and (max-width: 480px){
+#circle-text .min-circle a i{
+	font-size:1.3em;
+}
+.enlarge-main-circle-content i{
+	margin-top:10px;
+	font-size:1.5em;
+}
+.enlarge-main-circle-content h2{
+	font-size:12px;
+	line-height:8px;
+	
+}
+.enlarge-main-circle-content a{
+	font-size:10px;
+	line-height:8px;
+	
+}
 	.cc_slider_cont1 h2, .cc_slider_cont1 h2, .cc_slider_cont1 h2{
 	margin-left: 50px;
     font-size: 26px;
@@ -1605,6 +1736,21 @@ button span{
 
 /*******----------480 & 767 responsive css-------********/
 @media (min-width: 481px) and (max-width: 766px){
+#circle-text .min-circle a i{
+	font-size:1.6em;
+}
+.enlarge-main-circle-content i{
+	margin-top:10px;
+	font-size:2em;
+}
+.enlarge-main-circle-content h2{
+	font-size:14px;
+	
+}
+.enlarge-main-circle-content a{
+	font-size:11px;
+	
+}
 	
 .cc_slider_cont1 h2, .cc_slider_cont1 h2, .cc_slider_cont1 h2{
 	margin-left: 50px;
@@ -1735,6 +1881,21 @@ button span{
 }
 /********---------580 css responsive-------**********/
 @media (min-width: 481px) and (max-width: 580px){
+#circle-text .min-circle a i{
+	font-size:1.6em;
+}
+.enlarge-main-circle-content i{
+	margin-top:10px;
+	font-size:2em;
+}
+.enlarge-main-circle-content h2{
+	font-size:14px;
+	
+}
+.enlarge-main-circle-content a{
+	font-size:11px;
+	
+}
 .resp_div_img{
 	width:100% !important;
 }
@@ -1780,6 +1941,21 @@ button span{
 /*******----------medium width css-------************/
 
 @media (min-width: 580px) and (max-width: 630px){
+#circle-text .min-circle a i{
+	font-size:1.6em;
+}
+.enlarge-main-circle-content i{
+	margin-top:10px;
+	font-size:2em;
+}
+.enlarge-main-circle-content h2{
+	font-size:14px;
+	
+}
+.enlarge-main-circle-content a{
+	font-size:11px;
+	
+}
 	.team_icon_hover ul li{
 		margin-left:10px;
 	}
@@ -1790,6 +1966,21 @@ button span{
 	}
 }
 @media (min-width: 580px) and (max-width: 650px){
+#circle-text .min-circle a i{
+	font-size:1.6em;
+}
+.enlarge-main-circle-content i{
+	margin-top:10px;
+	font-size:2em;
+}
+.enlarge-main-circle-content h2{
+	font-size:14px;
+	
+}
+.enlarge-main-circle-content a{
+	font-size:11px;
+	
+}
 	.our_doc_icn_hovr ul li{
 		margin-left:20px;
 	}
@@ -1806,12 +1997,45 @@ button span{
 	}
 }
 @media (min-width: 481px) and (max-width: 580px){
+#circle-text .min-circle a i{
+	font-size:1.6em;
+}
+.enlarge-main-circle-content i{
+	margin-top:10px;
+	font-size:2em;
+}
+.enlarge-main-circle-content h2{
+	font-size:14px;
+	
+}
+.enlarge-main-circle-content a{
+	font-size:11px;
+	
+}
 	.our_doc_icn_hovr ul{
 		margin-left:0px;
 	}
 }
 @media (min-width: 481px) and (max-width: 580px){
+#circle-text .min-circle a i{
+	font-size:1.3em;
+}
+.enlarge-main-circle-content i{
+	margin-top:10px;
+	font-size:2em;
+}
+.enlarge-main-circle-content h2{
+	font-size:14px;
+	line-height:10px;
+	
+}
+.enlarge-main-circle-content a{
+	font-size:11px;
+	line-height:10px;
+	
+}
 	.spcl_icon_hvr ul{
 		margin-left:0px;
 	}
+
 }

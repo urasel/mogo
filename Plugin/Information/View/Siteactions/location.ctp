@@ -64,51 +64,41 @@
 		}
 		</style>
 		<div class="col-md-8">
-			<?php echo '<div class="row"><div class="col-md-12">'; ?>
-			<div class="col-md-12 posttitleblock zeropadding">
-			<div class="col-sm-1 col-xs-2 col-md-1 zeropadding hidden-xs">
-			<div class="viewcaticon">
-			<?php
-			
-			$icon = $place['PlaceType']['icon'];
-			echo "<i class='$icon'></i>";
-			
-			?>
-			</div>
-			</div>
-			<div class="col-sm-11 col-xs-12 col-md-11 zeropadding">
-			<?php
-			$userData = $this->Session->read('Auth.User');
-			//debug($userData);
-			if(isset($userData['Role']['alias']) && $userData['Role']['alias'] == 'admin'){
-				$adminLink = $this->Html->link('Edit',array('admin'=>true,'plugin' =>'information','controller' =>'points','action' => $place['PlaceType']['singlename'].'edit',$place['Point']['id']),array('target' => '_blank'));
-			}else{
-				$adminLink = '';
-			}
-			
-			echo '<h2>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h2>'; 
-			?>
-			<?php 
-			if(!empty($place[$className]['area1'])){
-			$area1 = $place[$className]['area1'].', ';
-			}else{
-			$area1 = '';
-			}
-			if(!empty($place[$className]['area2'])){
-			$area2 = $place[$className]['area2'].', ';
-			}else{
-			$area2 = '';
-			}
-			if(!empty($place[$className]['area3'])){
-			$area3 = $place[$className]['area3'].', ';
-			}else{
-			$area3 = '';
-			}
-			$address = $area3.$area2.$area1;
-			echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><p>'.$address.$place['Country']['name'].' '.'</p></div></div>'; ?>
-			
-			</div>
-			</div>
+		<div class="left_part">
+			<div class="row">
+				<div class="col-sm-12 col-xs-12 col-md-12">
+				<div class="viewcaticon">
+				<?php
+				if(!empty($place[$className]['logo'])){
+				echo $this->Html->image('institutes/logo/small/'.$place[$className]['logo']);
+				}else{
+				$icon = $place['PlaceType']['icon'];
+				echo "<i class='$icon'></i>";
+				}
+				?>
+				</div>
+				</div>
+				<div class="col-sm-12 col-xs-12 col-md-12 posttitleblock">
+					<?php
+					$userData = $this->Session->read('Auth.User');
+					//debug($userData);
+					if(isset($userData['Role']['alias']) && $userData['Role']['alias'] == 'admin'){
+						$adminLink = $this->Html->link('Edit',array('admin'=>true,'plugin' =>'information','controller' =>'points','action' => $place['PlaceType']['singlename'].'edit',$place['Point']['id']),array('target' => '_blank'));
+					}else{
+						$adminLink = '';
+					}
+					
+					echo '<h1>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h1>'; 
+					?>
+					<?php 
+					if(!empty($address)){
+						echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><p>'.$address.'</p></div>'; 
+					}else{
+						echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><p>'.$place['BdThanas']['name'].', '.$place['BdDivision']['name'].','.$place['Country']['name'].' '.'</p></div>'; 
+					}
+					?>
+				
+				</div>
 			</div>
 			<?php 
 			echo $this->element('social_info_part');
@@ -217,6 +207,7 @@
 			
 			
 			?>
+		</div>
 		</div>
 		
 		<div class="col-md-4">

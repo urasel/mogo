@@ -36,8 +36,21 @@
                                          <a href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
                                     </div>
                                     <div id="search_open" class="et_search_box">
-                                        <input type="text" placeholder="Search here">
-                                        <button><i class="fa fa-search" aria-hidden="true"></i></button>
+										
+										<?php 
+											$currentLng = $this->Session->read('Config.language');
+											echo $this->Form->create('Siteaction',array('name' =>'searchform','url'=> array('plugin'=>'information','controller' => 'siteactions','action'=>'searchitem','language' => $currentLng))); ?>
+											
+													
+															<?php 
+															echo $this->Form->input('searchname',array('label'=>false, 'id'=>"searchcontent",'data-toggle'=>"tooltip", 'data-placement'=>"top",'title'=> __("Type What You Want to Search"),'placeholder'=> __("I'm looking for...")));
+															echo $this->Form->unlockField('Siteaction.place_id');
+															echo $this->Form->input('place_id', array('type'=>'hidden','placeholder'=>__('Location'))); 
+															?>
+															<button><i class="fa fa-search" aria-hidden="true"></i></button>
+													
+										<?php echo $this->Form->end(); ?>
+										
                                     </div>
                                 </div>
                                 <ul class="nav navbar-nav" id="nav_filter">
@@ -64,10 +77,10 @@
 									<?php
 										if(empty($userID)){
 										echo '<li>';
-										echo $this->Html->link(__('Register'),array('plugin'=>'users','controller'=>'users','action'=>'add','language' => $currentLng));
+										echo $this->Html->link(__('Sign Up'),array('plugin'=>'users','controller'=>'users','action'=>'add'));
 										echo '</li>';
 										echo '<li>';
-										echo $this->Html->link(__('Login'),array('plugin'=>'users','controller'=>'users','action'=>'login'));
+										echo $this->Html->link(__('Log In'),array('plugin'=>'users','controller'=>'users','action'=>'login'));
 										echo '</li>';
 										}else{
 										echo '<li>';
@@ -75,13 +88,7 @@
 										echo '</li>';
 										}
 									?>
-                                    <li class="dropdown">
-									  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">contact</a>
-									  <ul class="dropdown-menu hovr_nav_tab">
-										<li><a href="contact_us.html">contact us</a></li>
-										<li><a href="appointment.html">Social Media</a></li>
-									  </ul>
-									</li>
+                                    
                                 </ul>
                             </div>
                             <!-- /.navbar-collapse -->
@@ -157,7 +164,7 @@
 									<?php
 										if(empty($userID)){
 										echo '<li>';
-										echo $this->Html->link(__('Register'),array('plugin'=>'users','controller'=>'users','action'=>'add','language' => $currentLng));
+										echo $this->Html->link(__('Register'),array('plugin'=>'users','controller'=>'users','action'=>'add'));
 										echo '</li>';
 										echo '<li>';
 										echo $this->Html->link(__('Login'),array('plugin'=>'users','controller'=>'users','action'=>'login'));
@@ -168,13 +175,7 @@
 										echo '</li>';
 										}
 									?>
-                                    <li class='has-sub'>
-									  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">contact</a>
-									  <ul>
-										<li><a href="contact_us.html">contact us</a></li>
-										<li><a href="appointment.html">Social Media</a></li>
-									  </ul>
-									</li>
+                                    
                                 </ul>
                             </div>
                         </div>

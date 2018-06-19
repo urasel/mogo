@@ -6,6 +6,13 @@
 	}else{
 		$languageID = 1;
 	}
+		$className = 'Point';
+	
+		if($currentLng == 'bn' && !empty($place[$className]['bn_name'])){
+			$title = $place[$className]['bn_name'];
+		}else{
+			$title = $place[$className]['name'];
+		}
 	  $stringlength = strlen($place['PlaceType']['seo_name']);
 	  $newID = $stringlength.$place['PlaceType']['id'];
 	  $className = ucfirst($place['PlaceType']['singlename']);
@@ -25,40 +32,41 @@
 		}
 		</style>
 		<div class="col-md-8">
-			<?php echo '<div class="row"><div class="col-md-12">'; ?>
-			<div class="col-md-12 posttitleblock zeropadding">
-			<div class="col-sm-1 col-xs-2 col-md-1 zeropadding hidden-xs">
-			<div class="viewcaticon">
-			<?php
-			if(!empty($place[$className]['logo'])){
-			echo $this->Html->image("$foldername/logo/small/".$place[$className]['logo']);
-			}else{
-			$icon = $place['PlaceType']['icon'];
-			echo "<i class='$icon'></i>";
-			}
-			?>
-			</div>
-			</div>
-			<div class="col-sm-11 col-xs-12 col-md-11 zeropadding">
-			<?php
-			$userData = $this->Session->read('Auth.User');
-			//debug($userData);
-			if(isset($userData['Role']['alias']) && $userData['Role']['alias'] == 'admin'){
-				$adminLink = $this->Html->link('Edit',array('admin'=>true,'plugin' =>'information','controller' =>'points','action' => $place['PlaceType']['singlename'].'edit',$place['Point']['id']),array('target' => '_blank'));
-			}else{
-				$adminLink = '';
-			}
-			
-			echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><h1 class="posttitle">'.$place['Point']['name'].'<span class="admin_edit_link">'.$adminLink.'</span></h1></div>'; 
-			?>
-			<?php 
-			echo $place['Point']['address'];
-			//echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><p>'.$place['BdThanas']['name'].', '.$place['BdDivision']['name'].','.$place['Country']['name'].' '.'</p></div>'; 
-			echo '</div>';
-			?>
-			
-			</div>
-			</div>
+		<div class="left_part">
+			<div class="row">
+				<div class="col-sm-12 col-xs-12 col-md-12">
+				<div class="viewcaticon">
+				<?php
+				if(!empty($place[$className]['logo'])){
+				echo $this->Html->image("$foldername/logo/small/".$place[$className]['logo']);
+				}else{
+				$icon = $place['PlaceType']['icon'];
+				echo "<i class='$icon'></i>";
+				}
+				?>
+				</div>
+				</div>
+				<div class="col-sm-12 col-xs-12 col-md-12 posttitleblock">
+					<?php
+					$userData = $this->Session->read('Auth.User');
+					//debug($userData);
+					if(isset($userData['Role']['alias']) && $userData['Role']['alias'] == 'admin'){
+						$adminLink = $this->Html->link('Edit',array('admin'=>true,'plugin' =>'information','controller' =>'points','action' => $place['PlaceType']['singlename'].'edit',$place['Point']['id']),array('target' => '_blank'));
+					}else{
+						$adminLink = '';
+					}
+					
+					echo '<h1>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h1>'; 
+					?>
+					<?php 
+					if(!empty($address)){
+						echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><p>'.$address.'</p></div>'; 
+					}else{
+						echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><p>'.$place['Country']['name'].' '.'</p></div>'; 
+					}
+					?>
+				
+				</div>
 			</div>
 			<?php 
 			echo $this->element('social_info_part');
@@ -234,6 +242,7 @@
 			?>
 			
 		</div>
+		</div>
 		
 		<div class="col-md-4" id="mapdiv">
 		
@@ -270,112 +279,13 @@
 		</div>
 
 		</div>
-	<div class="row">
-		<?php
-		//debug($nearbies);
-				echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['PlaceType']['name']).'</h2>';
-				echo '<div class="nearPlace">';
-				$actionName = 'infos';
-				foreach($nearbies as $nearplace){
-				//debug($nearby);
-				$placename = $nearplace[$className]['name'];
-				$stringlength = strlen($nearplace[$className]['seo_name']);
-				$newID = $stringlength.$nearplace[$className]['id'];
-				
-				
-				$placename = $nearplace[$className]['name'];
-				$placeType = $nearplace['PlaceType']['name'];
-				$family = $nearplace[$className]['family'];
-				$species = $nearplace[$className]['species'];
-				$genus = $nearplace[$className]['genus'];
-				$formatAlt = $nearplace['PlaceType']['name'].' '.$placename.' '.__('Details');
-				$metaTag = "$placename listed in $placeType category. $placename is a member of $family Family. The species of $placename is  $species and genus is $genus.";
-				$shortDescription = "$placename listed in $placeType category. $placename is a member of $family Family. The species of $placename is  $species and genus is $genus.";
-				$postSeo = $nearplace[$className]['seo_name'];
-				
-				//debug($nearplace);
-				
-				echo '<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">';
-					echo '<div class="blog_about">';
-						//echo '<div class="about-border"> <i class="fa fa-tablet aligncenter"></i></div>';
-						
-							echo "<div class='blog_img $postSeo'>";
-								echo '<figure>';
-								$imglink = $nearplace[$className]['image'];
-								if($className == 'TopicData'){
-									$fileExistPath = WWW_ROOT.'img'.DS.'topics'.'medium'.DS.$imglink;
-								}else{
-									$foldername = $nearplace['PlaceType']['pluralname'];
-									$fileExistPath = WWW_ROOT.'img'.DS.$foldername.DS.'photogallery'.DS.$imglink;
-								}
-								
-								if(!empty($imglink) && file_exists($fileExistPath)){
-									if($className == 'TopicData'){
-										echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'img-responsive','data-echo' => SITEIMAGE."topics/medium/$imglink"));
-										
-									}else{
-										echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'class' =>'img-responsive','alt' =>$metaTag,'data-echo' => SITEIMAGE."$foldername/photogallery/$imglink"));
-										
-									}
-									
-									
-								}else{
-									if($className == 'TopicData'){
-										echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),'alt' =>$metaTag,'class' => 'img-responsive','data-echo' => SITEIMAGE.'default.png'));
-									}else{
-										echo $this->Html->image('default.png', array('url' => array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),'class' =>'img-responsive','alt' =>$metaTag,'data-echo' => SITEIMAGE.'default.png'));
-									}
-								}
-								
-								echo '<div class="date">';
-									$topicIcon = $nearplace['PlaceType']['icon'];
-									//echo "<span class='number'><i class='$topicIcon' aria-hidden='true'></i></span>";
-									echo "<span class='text'></span>";
-								echo '</div>';
-								echo '</figure>';
-							echo '</div>';
-							
-							
-							
-							echo '<div class="blog_txt">';
-								echo '<h1>';
-								
-								echo $this->Html->link(mb_substr($placename,0,55), array('controller'=>'siteactions','action'=>'bucket','itemgroup'=>$className,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $nearplace[$className]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$formatAlt,'escape'=>false));
-								
-								echo '</h1>';
-								/*
-								echo '<div class="blog_comment">';
-									echo '<ul>';
-										echo '<li><a href="#"><i class="fa fa-comment" aria-hidden="true"></i>50</a></li>';
-										echo '<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i>98</a></li>';
-									echo '</ul>';
-								echo '</div>';
-								*/
-								echo '<div class="blog_txt_info">';
-									echo '<ul>';
-										echo '<li>BY ADMIN</li>';
-										echo '<li>SEPT.29,2016</li>';
-									echo '</ul>';
-								echo '</div>';
-								if(!empty($shortDescription)){
-									//echo '<p class="articleDesc">'.mb_substr($shortDescription,0,80).'</p>';
-								}
-								//echo '<a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>';
-							echo '</div>';
-							
-							
-					echo '</div>';
-				echo '</div>';	
-				
-				}
-				echo '</div>';
-				
-		?>
-		
-	</div>	
-		
-		
-	</div>	
 	
-</div>
+		
+		
+	</div>	
+	<?php
+			echo $this->element('nearby-items', array('nearbies' => $nearbies,'place' => $place,'className' => $className));
+
+	?>
+
 

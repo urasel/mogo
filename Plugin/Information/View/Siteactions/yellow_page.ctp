@@ -47,7 +47,6 @@
 	  $language = $this->Session->read('Config.language');
 	  //debug($place);
 ?>
-<section>
 <div class="container">
 	<div class="row placeview">
 <?php
@@ -62,64 +61,49 @@
 		$mobile = '';
 	}
 	//debug($place);exit;
+	$foldername = $place['PlaceType']['pluralname'];
 ?>
-	<div class="row placeview">
 		<style>
 		#map img{
 			width:100%;
 		}
 		</style>
 		<div class="col-md-8">
-			<?php echo '<div class="row"><div class="col-md-12">'; ?>
-			<div class="col-md-12 posttitleblock">
-			<div class="col-sm-1 col-xs-2 col-md-1" style="padding:0px;">
-			<div class="viewcaticon">
-			<?php
-			
-			$icon = $place['PlaceType']['icon'];
-			echo "<i class='$icon'></i>";
-			
-			?>
-			</div>
-			</div>
-			<div class="col-sm-11 col-xs-10 col-md-11">
-			<?php
-			$userData = $this->Session->read('Auth.User');
-			//debug($userData);
-			if(isset($userData['Role']['alias']) && $userData['Role']['alias'] == 'admin'){
-				$adminLink = $this->Html->link('Edit',array('admin'=>true,'plugin' =>'information','controller' =>'points','action' => $place['PlaceType']['singlename'].'edit',$place['Point']['id']),array('target' => '_blank'));
-			}else{
-				$adminLink = '';
-			}
-			 
-			echo '<h2>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h2>'; 
-			?>
-			<?php 
-			if(!empty($place[$className]['address'])){
-				$address = $place[$className]['address'];
-			}else{
-				if(!empty($place[$className]['area1'])){
-				$area1 = $place[$className]['area1'].', ';
-				}else{
-				$area1 = '';
-				}
-				if(!empty($place[$className]['area2'])){
-				$area2 = $place[$className]['area2'].', ';
-				}else{
-				$area2 = '';
-				}
-				if(!empty($place[$className]['area3'])){
-				$area3 = $place[$className]['area3'].', ';
-				}else{
-				$area3 = '';
-				}
-				$address = $area3.$area2.$area1;
-			}
-			
-			echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><p>'.$address.' '.'</p></div></div>'; ?>
-			
-			</div>
-			</div>
+		<div class="left_part">
+			<div class="row">
+					<div class="col-sm-12 col-xs-12 col-md-12">
+					<div class="viewcaticon">
+					<?php
+					if(!empty($place[$className]['logo'])){
+					echo $this->Html->image("$foldername/logo/small/".$place[$className]['logo']);
+					}else{
+					$icon = $place['PlaceType']['icon'];
+					echo "<i class='$icon'></i>";
+					}
+					?>
+					</div>
+					</div>
+					<div class="col-sm-12 col-xs-12 col-md-12 posttitleblock">
+						<?php
+						$userData = $this->Session->read('Auth.User');
+						//debug($userData);
+						if(isset($userData['Role']['alias']) && $userData['Role']['alias'] == 'admin'){
+							$adminLink = $this->Html->link('Edit',array('admin'=>true,'plugin' =>'information','controller' =>'points','action' => $place['PlaceType']['singlename'].'edit',$place['Point']['id']),array('target' => '_blank'));
+						}else{
+							$adminLink = '';
+						}
+						
+						echo '<h1>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h1>'; 
+						?>
+						<?php 
+						if(!empty($address)){
+							echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><p>'.$address.'</p></div>'; 
+						}else{
+							echo '<div class="col-sm-12 col-md-12 col-xs-12 zeropadding"><p>'.$place['BdThanas']['name'].', '.$place['BdDivision']['name'].','.$place['Country']['name'].' '.'</p></div>'; 
+						}
+						?>
+					
+					</div>
 			</div>
 			<?php 
 			echo $this->element('social_info_part');
@@ -295,6 +279,7 @@
 			
 			?>
 		</div>
+		</div>
 		<div class="col-md-4">
 			<?php
 			echo $this->element('points-right-part', array('title' => $title,'nearbies' => $nearbies,'place' => $place,'className' => $className));
@@ -304,11 +289,9 @@
 		</div>
 		<div id="canvas" style="display:none;"><p>Canvas:</p></div>
 		<div style="width:200px; float:left; display:none;" id="image"></div>
-	</div>	
 	
 </div>
 </div>
-</section>
 <?php
 		echo $this->element('nearby-items', array('nearbies' => $nearbies,'place' => $place,'className' => $className));
 

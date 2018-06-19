@@ -2,12 +2,11 @@
       $this->Html->addCrumb($title_for_layout ,  '' , array('class' => 'active'));
 ?>
 <?php
+echo '<div class="container">';
 echo '<div class="row">';
+
 echo '<div class="col-md-12">';
-echo '<div class="col-md-12">';
-echo '<div class="row">';
-	echo '<div class="col-md-12  sectionblock">';
-		
+			echo '<div class="blog_about">';
 			echo '<div class="row"><div class="col-md-6">';
 			echo $this->Form->create('User');
 			echo $this->Form->input('name', array('class'=>'form-control ','label'=>__('Your Name'),'placeholder'=>__('Your Name'),'tabindex'=> "1"));
@@ -20,8 +19,8 @@ echo '<div class="row">';
 			echo $this->Form->end($options); 
 			echo '</div>';
 			echo '</div>';
-	echo '</div>';
-echo '</div>';
+			echo '</div>';
+			
 echo '</div>';
 
 

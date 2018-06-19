@@ -31,18 +31,13 @@ echo '<div class="col-md-8">';
 		echo "<table class='table'>";
 		echo "<tbody id='posts-list'>";
 		foreach($entries as $place):
-		
-		
-		
-		//debug($place);exit;
-		if(isset($place['Country']['seo_name']) && !empty($place['Country']['seo_name'])){
-			$countryname = $place['Country']['seo_name'];
-		}else{
-			$countryname = '';
-		}
+		//debug($place);
 		$controller = $place['PlaceType']['singlename'];
 		$modelName = ucfirst($controller);
-		
+		echo '<tr class="post-item">';
+		echo '<td>';
+		echo '<div class="row">';
+		echo '<div class="col-md-10">';
 				if($currentLng == 'bn'){
 					$languageID = 2;
 				}else{
@@ -50,20 +45,6 @@ echo '<div class="col-md-8">';
 				}
 				if($modelName == 'Location'){
 					$placename = $place[$modelName]['name'].' details facts';
-				}else if($modelName == 'TopicData'){
-					if($currentLng == 'bn' && !empty($place[$modelName]['bn_name'])){
-						$placename = $place[$modelName]['bn_name'];
-						$shortContent = '';
-					}else if($currentLng == 'en' && empty($place[$modelName]['bn_name'])){
-						$placename = $place[$modelName]['name'];
-						$shortContent = '';
-					}else if($currentLng == 'en' && empty($place[$modelName]['name'])){
-						$placename = $place[$modelName]['bn_name'];
-						$shortContent = '';
-					}else{
-						$placename = $place[$modelName]['name'];
-						$shortContent = '';
-					}
 				}else{
 						if($currentLng == 'bn' && !empty($place[$modelName]['bn_name'])){
 						$placename = $place[$modelName]['bn_name'];	
@@ -71,19 +52,12 @@ echo '<div class="col-md-8">';
 						$placename = $place[$modelName]['name'];
 						}
 				}
-				
-		if($place['PlaceType']['singlename'] == 'topicData'){
-			$address = '';
-		}else if($place['PlaceType']['singlename'] == 'motorcycle'){
+		if($place['PlaceType']['singlename'] == 'topic'){
 			$address = '';
 		}else if($place['PlaceType']['singlename'] == 'animal'){
 			$address = '';
 		}else if($place['PlaceType']['singlename'] == 'continent'){
 			$address = '';
-		}else if($place['PlaceType']['singlename'] == 'recipe'){
-			$address = '';
-		}else if($place['PlaceType']['singlename'] == 'babyName'){
-			$address = $place[$modelName]['meaning'];
 		}else{
 			if($currentLng == 'bn' && !empty($place[$modelName]['bn_address'])){
 				$address = $place[$modelName]['bn_address'];	
@@ -91,71 +65,34 @@ echo '<div class="col-md-8">';
 				$address = $place[$modelName]['address'];
 			}
 		}
-		if(in_array($modelName,array('BabyName'))){
-			$stringlength = strlen($place[$modelName]['seo_name']);
-			$newID = $stringlength.$place[$modelName]['id'];
-		}else if(in_array($modelName,array('TopicData'))){
-			$stringlength = strlen($place['Point']['seo_name']);
-			$newID = $stringlength.$place['Point']['id'];
-		}else{
-			$stringlength = strlen($place[$modelName]['seo_name']);
-			$newID = $stringlength.$place[$modelName]['id'];
-		}
 		
-		echo '<div class="blog_txt">';
-		if($place['PlaceType']['singlename'] == 'topicData'){
-			echo '<div class="row">';
-			echo '<div class="col-md-3">';
-				if(!empty($place[$modelName]['image'])){
-					$imglink = "topics/medium/".$place[$modelName]['image'];
-					echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
-				}else{
-					$icon = $category['pl']['icon'];
-					echo "<i class='fontsitemap $icon'></i>";
-				}
-			echo '</div>';
-			echo '<div class="col-md-9">';
-				echo $this->Html->link('<h1><span>'.$placename.'</span></h1>', array('controller'=>'siteactions','action'=>'topic','category'=>$place['PlaceType']['seo_name'],'point'=> $place['Point']['seo_name'],'language'=>$currentLng,'id'=> $place[$modelName]['point_id'],'ext' => 'asp'),array('alt' =>$placename,'escape'=>false));
-				echo '<p>'.mb_substr($shortContent,0,120).'..</p>';
-			echo '</div>';
-			echo '</div>';
-			
+		$stringlength = strlen($place[$modelName]['seo_name']);
+		$newID = $stringlength.$place[$modelName]['point_id'];
+		if($place['PlaceType']['singlename'] == 'topic'){
+		echo $this->Html->link('<h5>'.$placename.'</h5>', array('controller'=>'siteactions','action'=>'topic','category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $place[$modelName]['point_id'],'ext' => 'asp'),array('alt' =>$placename,'escape'=>false));
 		}else if($place['PlaceType']['singlename'] == 'continent'){
-		echo $this->Html->link('<h1>'.$placename.'</h1>', array('controller'=>'siteactions','action'=>'countries','category'=>$place['Continent']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $place[$modelName]['point_id'],'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+		echo $this->Html->link('<h5>'.$placename.'</h5>', array('controller'=>'siteactions','action'=>'countries','category'=>$place['Continent']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $place[$modelName]['point_id'],'ext' => 'asp'),array('alt' =>$placename,'escape'=>false));
 		}else if($modelName == 'Location'){
-		echo $this->Html->link('<h1>'.$placename.'</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'country'=>$countryname,'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
-		}else if(in_array($modelName,array('BabyName'))){
-			$genderId = $place[$modelName]['sex_id'];
-			if($genderId == 1){
-				$genderIcon = '<i class="fa fa-male" aria-hidden="true"></i>';
-			}else{
-				$genderIcon = '<i class="fa fa-female" aria-hidden="true"></i>';
-			}
-		echo $this->Html->link('<h1>'.$genderIcon.' '.$placename.'</h1>', array('controller'=>'siteactions','action'=>'bucket','itemgroup'=>$modelName,'category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
-		}else if(in_array($modelName,array('Animal'))){
-		echo $this->Html->link('<h1>'.$placename.'</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+		echo $this->Html->link('<h5>'.$placename.'</h5>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false));
 		}else{
-		echo $this->Html->link('<h1>'.$placename.'</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'country'=>$countryname,'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+		echo $this->Html->link('<h5>'.$placename.'</h5>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false));
 		}
-		
-		echo '</div>';
 		echo '<p>';
 		
 		if(!empty($address)){
 			echo $address;
 		}
 		
-		echo '</p>';
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		echo '</p>';			
+		if(in_array($userID,array('1'))){
+		echo $this->Html->link(' [Edit]',array('controller'=>'points','action'=>$controller.'edit',$place[$modelName]['point_id']));
+		}
+		echo '</div>';
+		echo '<div class="col-md-2">';
+		echo '</div>';
+		echo '</div>';
+		echo '</td>';
+		echo '</tr>';
 		endforeach;
 		echo '</tbody>';
 		echo '</table>';

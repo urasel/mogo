@@ -27,7 +27,8 @@
 				?>
 			</div>
 			</div>
-			<?php if(!empty($this->Session->flash()) || !empty($this->Session->flash('auth'))) {?>
+			<?php 
+			if(!empty($this->Session->flash()) || !empty($this->Session->flash('auth'))) {?>
 			<section>
 			<div class="container">
 					<div class="row">

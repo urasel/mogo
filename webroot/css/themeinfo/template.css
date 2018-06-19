@@ -198,7 +198,7 @@ img.img-full-width {
 	padding: 10px;
 	width: 85%;
 	float: left;
-	border-radius: 20px 0px 0px 20px;
+	border-radius: 0px !important;
 }
 #searchbtnhome{
 	background: #f7c221 none repeat scroll 0 0;
@@ -208,7 +208,7 @@ img.img-full-width {
 	height: 54px;
 	margin: 0;
 	width: 15%;
-	border-radius: 0px 20px 20px 0px;
+	border-radius: 0px !important;
 	padding:0px !important;
 	
 }
@@ -1330,7 +1330,7 @@ a.btn {
 	font-size: 15px;
 	line-height: 15px;
 	line-height: .9375rem;
-	width: 227px;
+	width: 100%;
 	text-align: center;
 	display: inline-block;
 	margin: 10px 0;
@@ -1350,12 +1350,11 @@ a.btn:hover {
 	color:#444;
 }
 .navbar-inverse .navbar-brand, .navbar-brand {
-	background: rgba(0, 0, 0, 0) url("../../img/logo.png?88ee124") no-repeat scroll center 5px;
+	background: rgba(0, 0, 0, 0) url("../../img/logo.png?88ee124") no-repeat scroll center 0px;
 	display: block;
-	height: 46px;
+	height: 42px;
 	margin-left: 0;
-	width: 170px;
-	
+	width: 168px;
 }
 .post-item td{
 	padding:0px !important;
@@ -1429,15 +1428,14 @@ h4.panel-title {
 }
 
 .panel-info > .panel-heading, .panel-heading h4.panel-title {
-	font-size: 22px;
-	font-weight: 500;
+	font-size: 18px;
+	font-weight: 600;
 	color: #333;
 	line-height: 28px;
-	margin-top: 15px;
-	letter-spacing: -1.0px;
+	margin-top: 0px;
+	letter-spacing: 0px;
 	word-wrap: normal;
 	word-spacing: 0px;
-
 }
 .blog_section{
 	font-size: 21px;
@@ -1458,7 +1456,6 @@ h4.panel-title {
 }
 .posttitleblock{
 	margin-top:10px;
-	border-bottom: 1px solid rgb(230, 231, 230);
 	float: left;
 	width: 100%;
 	margin-bottom:10px;
@@ -1467,9 +1464,7 @@ h4.panel-title {
 .zeropadding{
 	padding:0px;
 }
-.minheightblock{
-	min-height:365px;
-}
+
 .panel-body i{
 	margin-right:15px;
 }
@@ -1479,7 +1474,7 @@ h4.panel-title {
 	display: block;
 	max-width: 100%;
 	height: auto;
-	width: 100%;
+	width: auto;
 }
 .margin8px{
 	margin-left:8px;
@@ -1603,9 +1598,13 @@ h4.panel-title {
     transition: all 0.5s;
 }
 .panel-body {
-    font-size:19px;
-	line-height:33px;
-	color:#000;
+	font-size: 17px;
+	line-height: 29px;
+	color: #000;
+	font-weight: 400;
+}
+.panel-body i{
+	color: #777;
 }
 .panel-body h3{
     font-size:20px;
@@ -1623,5 +1622,40 @@ h4.panel-title {
 	border: 1px solid #ccc !important;
 }
 .innertabletd tbody tr td{
-	vertical-align:bottom;
+	vertical-align:top;
+}
+.btn-default {
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
+	margin-top: 20px;
+}
+
+.infocontentblock{
+	margin-top:50px;
+	float:leftt;
+}
+.viewcaticon{
+	text-align:center;
+	max-height:80px;
+	background:#efefef;
+	
+}
+.viewcaticon i{
+	font-size:3em;
+	
+}
+blockquote {
+	padding: 10px 20px;
+	margin: 0 0 20px;
+	font-size: 17px;
+	border-left: 5px solid #eee;
+	font-weight: bold;
+	color: #333;
+}
+.catitemtotal{
+	vertical-align:top;
+}
+.node-body{
+	text-align:left;
 }
