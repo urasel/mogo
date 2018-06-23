@@ -10,21 +10,23 @@ if(is_array($place[$imageClass]) && sizeof($place[$imageClass]) > 0){
 	$totalImage = sizeof($place[$imageClass]);
 	$placename = $place[$className]['name'];
 	if($totalImage > 1){
-	echo '<div id="slideShowDiv blog_img blog_post_img">';
-	echo $this->element('jssorplaceslider',array("placeimage" => $place[$imageClass],'placename' => $placename,'foldername' =>'institutes'));
-	echo '</div>';
-	echo '<div id="singleImageDiv blog_img blog_post_img">';
-	$imglink = SITEIMAGE."$imagefolder/photogallery/".$place[$imageClass][0]['file'];
-	echo $this->Html->image('default.png',array('data-echo' => $imglink,'alt'=>"$placename Snapshot"));
-	echo '</div>';
+		echo '<div id="slideShowDiv blog_img blog_post_img">';
+		echo $this->element('jssorplaceslider',array("placeimage" => $place[$imageClass],'placename' => $placename,'foldername' => $imagefolder));
+		echo '</div>';
+		/*
+		echo '<div id="singleImageDiv blog_img blog_post_img">';
+		$imglink = SITEIMAGE."$imagefolder/photogallery/".$place[$imageClass][0]['file'];
+		echo $this->Html->image('default.png',array('data-echo' => $imglink,'alt'=>"$placename Snapshot"));
+		echo '</div>';
+		*/
 	}else{
-	$imglink = SITEIMAGE."$imagefolder/photogallery/".$place[$imageClass][0]['file'];
-	echo '<div class="blog_img blog_post_img">';
-	echo '<figure>';
-	echo $this->Html->image('default.png',array('data-echo' => $imglink,'alt'=>"$placename Snapshot",'class' =>'img-responsive'));
-	
-	echo '</figure>';
-	echo '</div>';
+		$imglink = SITEIMAGE."$imagefolder/photogallery/".$place[$imageClass][0]['file'];
+		echo '<div class="blog_img blog_post_img">';
+		echo '<figure>';
+		echo $this->Html->image('default.png',array('data-echo' => $imglink,'alt'=>"$placename Snapshot",'class' =>'img-responsive'));
+		
+		echo '</figure>';
+		echo '</div>';
 	}
 	echo '</div>';
 	echo '</div>';

@@ -31,8 +31,7 @@ b(window).bind("resize",a)});
         <div u="slides" style="cursor: move; position: relative; left: 0px; top: 0px; width: 749px; height: 356px; overflow: hidden;">
             
 			<?php 
-				//debug($placeimage);exit;
-				
+				//debug($placeimage);
 				$filepath = $foldername;
 				foreach ($placeimage as $image){
 				echo '<div>';
