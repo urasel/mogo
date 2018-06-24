@@ -6,8 +6,17 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 				$currentLng = $this->Session->read('Config.language');		
 				echo '<div class="sectionContent">';
 					echo '<div class="row">';
+					
 						foreach($nearbies as $nearplace){
 							//debug($nearplace);
+							if($currentLng == 'bn'){
+								$userName = $nearplace['User']['bn_name'];
+								$this->loadHelpers(array('Language'));
+								$created = $this->Language->bangladate(date('d F Y',strtotime($nearplace['Point']['created'])));
+							}else{
+								$userName = $nearplace['User']['name'];
+								$created = date('d F Y',strtotime($nearplace['Point']['created']));
+							}
 							if($className == 'TopicData'){
 								$class = $nearplace[$className]['seo_name'];
 								$publishBefore = $this->Language->datediff($nearplace[$className]['created']);
@@ -223,8 +232,9 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 									
 									echo '<div class="blog_comment">';
 										echo '<ul>';
-											echo '<li><a href="#"><i class="fa fa-comment" aria-hidden="true"></i>50</a></li>';
-											echo '<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i>98</a></li>';
+											$totalView = $nearplace['Point']['totalvisit'];
+											echo "<li><a href='#'><i class='fa fa-eye' aria-hidden='true'></i>".$totalView."</a></li>";
+											echo '<li><a href="#"><i class="fa fa-share-square" aria-hidden="true"></i>98</a></li>';
 										echo '</ul>';
 									echo '</div>';
 									
@@ -239,8 +249,8 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 										echo '</h1>';
 										echo '<div class="blog_txt_info">';
 											echo '<ul>';
-												echo '<li>BY ADMIN</li>';
-												echo '<li>SEPT.29,2016</li>';
+												echo '<li>BY '.$userName.'</li>';
+												echo '<li>'.$created.'</li>';
 											echo '</ul>';
 										echo '</div>';
 										if(!empty($shortDescription)){
@@ -248,7 +258,6 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 										}
 										//echo '<a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>';
 									echo '</div>';
-									
 									
 							echo '</div>';
 						echo '</div>';	

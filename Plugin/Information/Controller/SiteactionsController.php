@@ -3876,6 +3876,10 @@ class SiteactionsController extends InformationAppController {
 								'foreignKey' => false,
 								'conditions' => array('Point.bd_division_id = BdDivision.id')
 							),
+							'User' => array(
+								'foreignKey' => false,
+								'conditions' => array("User.id = $className.user_id")
+							),
 						)
 					)
 				);
@@ -3906,6 +3910,13 @@ class SiteactionsController extends InformationAppController {
 									'Point.totalvisit',
 									'Point.created',
 									"( 9459 * ACOS( COS( RADIANS($mainPointLat) ) * COS( RADIANS(Point.lat) ) * COS( RADIANS(Point.lng) - RADIANS($mainPointLng) ) + SIN( RADIANS($mainPointLat) ) * SIN( RADIANS(Point.lat) ) ) ) AS distance",
+									'User.id',
+									'User.name',
+									'User.firstname',
+									'User.lastname',
+									'User.bn_name',
+									'User.bn_firstname',
+									'User.bn_lastname',
 									'PlaceType.id',
 									"PlaceType.$fieldName as name",
 									'PlaceType.icon',
@@ -3933,6 +3944,13 @@ class SiteactionsController extends InformationAppController {
 						),
 					'fields' => array(
 						'Point.*',
+						'User.id',
+						'User.name',
+						'User.firstname',
+						'User.lastname',
+						'User.bn_name',
+						'User.bn_firstname',
+						'User.bn_lastname',
 						'PlaceType.id',
 						"PlaceType.$fieldName as name",
 						'PlaceType.icon',
@@ -3948,6 +3966,10 @@ class SiteactionsController extends InformationAppController {
 							'Point' => array(
 								'foreignKey' => false,
 								'conditions' => array("$className.point_id = Point.id")
+							),
+							'User' => array(
+								'foreignKey' => false,
+								'conditions' => array("User.id = $className.user_id")
 							),
 							'PlaceType' => array(
 								'foreignKey' => false,
@@ -3977,6 +3999,13 @@ class SiteactionsController extends InformationAppController {
 						),
 					'fields' => array(
 						'Point.*',
+						'User.id',
+						'User.name',
+						'User.firstname',
+						'User.lastname',
+						'User.bn_name',
+						'User.bn_firstname',
+						'User.bn_lastname',
 						'PlaceType.id',
 						"PlaceType.$fieldName as name",
 						'PlaceType.icon',
@@ -3992,6 +4021,10 @@ class SiteactionsController extends InformationAppController {
 							'Point' => array(
 								'foreignKey' => false,
 								'conditions' => array("$className.point_id = Point.id")
+							),
+							'User' => array(
+								'foreignKey' => false,
+								'conditions' => array("User.id = $className.user_id")
 							),
 							'PlaceType' => array(
 								'foreignKey' => false,
@@ -4012,6 +4045,13 @@ class SiteactionsController extends InformationAppController {
 						),
 					'fields' => array(
 						'Point.*',
+						'User.id',
+						'User.name',
+						'User.firstname',
+						'User.lastname',
+						'User.bn_name',
+						'User.bn_firstname',
+						'User.bn_lastname',
 						'PlaceType.id',
 						"PlaceType.$fieldName as name",
 						'PlaceType.icon',
@@ -4027,6 +4067,10 @@ class SiteactionsController extends InformationAppController {
 							'Point' => array(
 								'foreignKey' => false,
 								'conditions' => array("$className.point_id = Point.id")
+							),
+							'User' => array(
+								'foreignKey' => false,
+								'conditions' => array("User.id = $className.user_id")
 							),
 							'PlaceType' => array(
 								'foreignKey' => false,
@@ -4049,6 +4093,13 @@ class SiteactionsController extends InformationAppController {
 						),
 					'fields' => array(
 						'Point.*',
+						'User.id',
+						'User.name',
+						'User.firstname',
+						'User.lastname',
+						'User.bn_name',
+						'User.bn_firstname',
+						'User.bn_lastname',
 						'PlaceType.id',
 						"PlaceType.$fieldName as name",
 						'PlaceType.icon',
@@ -4064,6 +4115,10 @@ class SiteactionsController extends InformationAppController {
 							'Point' => array(
 								'foreignKey' => false,
 								'conditions' => array("$className.point_id = Point.id")
+							),
+							'User' => array(
+								'foreignKey' => false,
+								'conditions' => array("User.id = $className.user_id")
 							),
 							'PlaceType' => array(
 								'foreignKey' => false,
@@ -4081,6 +4136,10 @@ class SiteactionsController extends InformationAppController {
 							'Point' => array(
 								'foreignKey' => false,
 								'conditions' => array("$className.point_id = Point.id")
+							),
+							'User' => array(
+								'foreignKey' => false,
+								'conditions' => array("User.id = $className.user_id")
 							),
 							'PlaceType' => array(
 								'foreignKey' => false,
@@ -4127,6 +4186,13 @@ class SiteactionsController extends InformationAppController {
 									'Point.map',
 									'Point.totalvisit',
 									'Point.created',
+									'User.id',
+									'User.name',
+									'User.firstname',
+									'User.lastname',
+									'User.bn_name',
+									'User.bn_firstname',
+									'User.bn_lastname',
 									'Country.seo_name',
 									"( 9459 * ACOS( COS( RADIANS($mainPointLat) ) * COS( RADIANS(Point.lat) ) * COS( RADIANS(Point.lng) - RADIANS($mainPointLng) ) + SIN( RADIANS($mainPointLat) ) * SIN( RADIANS(Point.lat) ) ) ) AS distance",
 									'PlaceType.id',
@@ -4148,6 +4214,10 @@ class SiteactionsController extends InformationAppController {
 							'Point' => array(
 								'foreignKey' => false,
 								'conditions' => array("$className.point_id = Point.id")
+							),
+							'User' => array(
+								'foreignKey' => false,
+								'conditions' => array("User.id = $className.user_id")
 							),
 							'PlaceType' => array(
 								'foreignKey' => false,
@@ -4195,6 +4265,13 @@ class SiteactionsController extends InformationAppController {
 									'Point.map',
 									'Point.totalvisit',
 									'Point.created',
+									'User.id',
+									'User.name',
+									'User.firstname',
+									'User.lastname',
+									'User.bn_name',
+									'User.bn_firstname',
+									'User.bn_lastname',
 									'Country.seo_name',
 									"( 9459 * ACOS( COS( RADIANS($mainPointLat) ) * COS( RADIANS(Point.lat) ) * COS( RADIANS(Point.lng) - RADIANS($mainPointLng) ) + SIN( RADIANS($mainPointLat) ) * SIN( RADIANS(Point.lat) ) ) ) AS distance",
 									'PlaceType.id',
@@ -4216,6 +4293,10 @@ class SiteactionsController extends InformationAppController {
 							'Point' => array(
 								'foreignKey' => false,
 								'conditions' => array("$className.point_id = Point.id")
+							),
+							'User' => array(
+								'foreignKey' => false,
+								'conditions' => array("User.id = $className.user_id")
 							),
 							'PlaceType' => array(
 								'foreignKey' => false,
@@ -4264,6 +4345,13 @@ class SiteactionsController extends InformationAppController {
 									'Point.map',
 									'Point.totalvisit',
 									'Point.created',
+									'User.id',
+									'User.name',
+									'User.firstname',
+									'User.lastname',
+									'User.bn_name',
+									'User.bn_firstname',
+									'User.bn_lastname',
 									'Country.seo_name',
 									"( 9459 * ACOS( COS( RADIANS($mainPointLat) ) * COS( RADIANS(Point.lat) ) * COS( RADIANS(Point.lng) - RADIANS($mainPointLng) ) + SIN( RADIANS($mainPointLat) ) * SIN( RADIANS(Point.lat) ) ) ) AS distance",
 									'PlaceType.id',
@@ -4285,6 +4373,10 @@ class SiteactionsController extends InformationAppController {
 							'Point' => array(
 								'foreignKey' => false,
 								'conditions' => array("$className.point_id = Point.id")
+							),
+							'User' => array(
+								'foreignKey' => false,
+								'conditions' => array("User.id = $className.user_id")
 							),
 							'PlaceType' => array(
 								'foreignKey' => false,
@@ -4332,6 +4424,13 @@ class SiteactionsController extends InformationAppController {
 									'Point.map',
 									'Point.totalvisit',
 									'Point.created',
+									'User.id',
+									'User.name',
+									'User.firstname',
+									'User.lastname',
+									'User.bn_name',
+									'User.bn_firstname',
+									'User.bn_lastname',
 									'Country.seo_name',
 									"( 9459 * ACOS( COS( RADIANS($mainPointLat) ) * COS( RADIANS(Point.lat) ) * COS( RADIANS(Point.lng) - RADIANS($mainPointLng) ) + SIN( RADIANS($mainPointLat) ) * SIN( RADIANS(Point.lat) ) ) ) AS distance",
 									'PlaceType.id',
@@ -4353,6 +4452,10 @@ class SiteactionsController extends InformationAppController {
 							'Point' => array(
 								'foreignKey' => false,
 								'conditions' => array("$className.point_id = Point.id")
+							),
+							'User' => array(
+								'foreignKey' => false,
+								'conditions' => array("User.id = $className.user_id")
 							),
 							'PlaceType' => array(
 								'foreignKey' => false,
@@ -4398,6 +4501,13 @@ class SiteactionsController extends InformationAppController {
 									'Point.lng',
 									'Point.totalvisit',
 									'Point.created',
+									'User.id',
+									'User.name',
+									'User.firstname',
+									'User.lastname',
+									'User.bn_name',
+									'User.bn_firstname',
+									'User.bn_lastname',
 									'Country.seo_name',
 									"( 9459 * ACOS( COS( RADIANS($mainPointLat) ) * COS( RADIANS(Point.lat) ) * COS( RADIANS(Point.lng) - RADIANS($mainPointLng) ) + SIN( RADIANS($mainPointLat) ) * SIN( RADIANS(Point.lat) ) ) ) AS distance",
 									'PlaceType.id',
@@ -4419,6 +4529,10 @@ class SiteactionsController extends InformationAppController {
 							'Point' => array(
 								'foreignKey' => false,
 								'conditions' => array("$className.point_id = Point.id")
+							),
+							'User' => array(
+								'foreignKey' => false,
+								'conditions' => array("User.id = $className.user_id")
 							),
 							'PlaceType' => array(
 								'foreignKey' => false,
@@ -4442,6 +4556,13 @@ class SiteactionsController extends InformationAppController {
 									'Point.map',
 									'Point.totalvisit',
 									'Point.created',
+									'User.id',
+									'User.name',
+									'User.firstname',
+									'User.lastname',
+									'User.bn_name',
+									'User.bn_firstname',
+									'User.bn_lastname',
 									'PlaceType.id',
 									"PlaceType.$fieldName as name",
 									'PlaceType.icon',
@@ -4461,6 +4582,10 @@ class SiteactionsController extends InformationAppController {
 							'Point' => array(
 								'foreignKey' => false,
 								'conditions' => array("$className.point_id = Point.id")
+							),
+							'User' => array(
+								'foreignKey' => false,
+								'conditions' => array("User.id = $className.user_id")
 							),
 							'PlaceType' => array(
 								'foreignKey' => false,
@@ -4509,6 +4634,13 @@ class SiteactionsController extends InformationAppController {
 									'Point.map',
 									'Point.lat',
 									'Point.lng',
+									'User.id',
+									'User.name',
+									'User.firstname',
+									'User.lastname',
+									'User.bn_name',
+									'User.bn_firstname',
+									'User.bn_lastname',
 									'Country.seo_name',
 									"( 9459 * ACOS( COS( RADIANS($mainPointLat) ) * COS( RADIANS(Point.lat) ) * COS( RADIANS(Point.lng) - RADIANS($mainPointLng) ) + SIN( RADIANS($mainPointLat) ) * SIN( RADIANS(Point.lat) ) ) ) AS distance",
 									'PlaceType.id',
