@@ -518,8 +518,8 @@ class PointsController extends InformationAppController {
 				$imagefile = $this->request->data[$modelName]['image'];
 				
 				/*Image Crop Function Start */
-				$iWidth = 580;
-				$iHeight = 400; // desired image result dimensions
+				$iWidth = 670;
+				$iHeight = 570; // desired image result dimensions
 				$iJpgQuality = 100;
 				$sTempFileName = WWW_ROOT.'img'.DS.'cache'.DS. md5(time().rand());
 				@chmod($sTempFileName, 0644);
@@ -581,8 +581,8 @@ class PointsController extends InformationAppController {
 						$largewaterimage = WWW_ROOT.'img'.DS.'watermarklarge.png';
 						
 						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'small'.DS.$newFilename,120,80,false,false,100);
-						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'medium'.DS.$newFilename,380,240,true,$largewaterimage,100);
-						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'large'.DS.$newFilename,507,350,true,$largewaterimage,90);
+						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'medium'.DS.$newFilename,370,270,true,$largewaterimage,100);
+						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'large'.DS.$newFilename,570,470,true,$largewaterimage,90);
 						$this->request->data[$modelName]['image'] = $newFilename;
 						unset($this->request->data['Crop']);
 						@unlink($sResultFileName);
@@ -775,8 +775,8 @@ class PointsController extends InformationAppController {
 						$largewaterimage = WWW_ROOT.'img'.DS.'watermarklarge.png';
 						
 						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'small'.DS.$newFilename,120,80,false,false,100);
-						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'medium'.DS.$newFilename,380,240,true,$largewaterimage,100);
-						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'large'.DS.$newFilename,507,350,true,$largewaterimage,90);
+						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'medium'.DS.$newFilename,370,270,true,$largewaterimage,100);
+						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'large'.DS.$newFilename,570,470,true,$largewaterimage,90);
 						$this->request->data['Point']['image'] = $newFilename;
 						$this->request->data['TopicData']['image'] = $newFilename;
 						unset($this->request->data['Crop']);
@@ -1008,8 +1008,8 @@ class PointsController extends InformationAppController {
 						$largewaterimage = WWW_ROOT.'img'.DS.'watermarklarge.png';
 						
 						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'small'.DS.$newFilename,120,80,false,false,100);
-						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'medium'.DS.$newFilename,380,240,true,$largewaterimage,100);
-						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'large'.DS.$newFilename,507,350,true,$largewaterimage,90);
+						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'medium'.DS.$newFilename,370,270,true,$largewaterimage,100);
+						$this->Imageresizer->resize($sResultFileName, WWW_ROOT.'img'.DS.'topics'.DS.'large'.DS.$newFilename,570,270,true,$largewaterimage,90);
 						$this->request->data['Point']['image'] = $newFilename;
 						$this->request->data['TopicData']['image'] = $newFilename;
 						unset($this->request->data['Crop']);
@@ -1148,7 +1148,7 @@ class PointsController extends InformationAppController {
 					$type = $imagefile['type'];
 					if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
 					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'doctors'.DS.'thumbs'.DS.$newFilename,50,50,false,false,100);
-					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'doctors'.DS.$newFilename,380,240,false,false,90);
+					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'doctors'.DS.$newFilename,370,270,false,false,90);
 					$this->request->data[$modelName]['image'] = $newFilename;
 					}
 				}else{
@@ -1308,7 +1308,7 @@ class PointsController extends InformationAppController {
 					$type = $imagefile['type'];
 					if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
 					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'small'.DS.$newFilename,50,50,false,false,100);
-					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,380,240,false,false,100);
+					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,370,270,false,false,100);
 					$this->request->data[$modelName]['logo'] = $newFilename;
 					}
 				}else{
@@ -1329,7 +1329,7 @@ class PointsController extends InformationAppController {
 					$type = $imagefile['type'];
 					if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
 					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'small'.DS.$newFilename,50,50,false,false,100);
-					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,380,240,false,false,100);
+					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,370,270,false,false,100);
 					$this->request->data[$modelName]['logo'] = $newFilename;
 					}
 				}else{
@@ -1346,9 +1346,9 @@ class PointsController extends InformationAppController {
 						$newFilename = "InfoMap24_".$imageFolder."_".rand(5, 215)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
 						$type = $imagefile['type'];
 						if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.$newFilename,749,356,false,false,80);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.$newFilename,570,470,false,false,80);
 						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'thumbs'.DS.$newFilename,75,75,false,false,100);
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'small'.DS.$newFilename,380,240,false,false,100);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'small'.DS.$newFilename,370,270,false,false,100);
 						if($imgCount == 0){
 						$this->request->data[$modelName]['image'] = $newFilename;
 						}
@@ -1599,7 +1599,7 @@ class PointsController extends InformationAppController {
 					$type = $imagefile['type'];
 					if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
 					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'small'.DS.$newFilename,50,50,false,false,100);
-					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,250,250,false,false,100);
+					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,370,270,false,false,100);
 					$this->request->data[$modelName]['logo'] = $newFilename;
 					}
 				}else{
@@ -1620,7 +1620,7 @@ class PointsController extends InformationAppController {
 					$type = $imagefile['type'];
 					if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
 					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'small'.DS.$newFilename,50,50,false,false,100);
-					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,250,250,false,false,100);
+					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,370,270,false,false,100);
 					$this->request->data[$modelName]['logo'] = $newFilename;
 					}
 				}else{
@@ -1637,9 +1637,9 @@ class PointsController extends InformationAppController {
 						$newFilename = "InfoMap24_".$imageFolder."_".rand(5, 215)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
 						$type = $imagefile['type'];
 						if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.$newFilename,749,356,false,false,80);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.$newFilename,570,470,false,false,80);
 						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'thumbs'.DS.$newFilename,120,80,false,false,100);
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'small'.DS.$newFilename,380,240,false,false,100);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'small'.DS.$newFilename,370,270,false,false,100);
 						if($imgCount == 0){
 						$this->request->data[$modelName]['image'] = $newFilename;
 						}
@@ -1847,9 +1847,9 @@ class PointsController extends InformationAppController {
 						$newFilename = "InfoMap24_".$imageFolder."_".rand(5, 215)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
 						$type = $imagefile['type'];
 						if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.$newFilename,749,356,false,false,80);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.$newFilename,570,470,false,false,80);
 						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'thumbs'.DS.$newFilename,120,80,false,false,100);
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'small'.DS.$newFilename,380,240,false,false,100);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'small'.DS.$newFilename,370,270,false,false,100);
 						if($imgCount == 0){
 						$this->request->data[$modelName]['image'] = $newFilename;
 						}
@@ -2064,9 +2064,9 @@ class PointsController extends InformationAppController {
 						$newFilename = "InfoMap24_place_".$this->request->data[$modelName]['seo_name'].'_'.rand(5, 15)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
 						$type = $imagefile['type'];
 						if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'hospitals'.DS.'photogallery'.DS.$newFilename,400,300,false,false,80);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'hospitals'.DS.'photogallery'.DS.$newFilename,570,470,false,false,80);
 						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'hospitals'.DS.'photogallery'.DS.'thumbs'.DS.$newFilename,120,80,false,false,100);
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'hospitals'.DS.'photogallery'.DS.'small'.DS.$newFilename,380,240,false,false,100);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'hospitals'.DS.'photogallery'.DS.'small'.DS.$newFilename,370,270,false,false,100);
 						$this->request->data[$imageDB][$imgCount]['point_id'] = $id;
 						$this->request->data[$imageDB][$imgCount]['file'] = $newFilename;
 						if($imgCount == 0){
@@ -2298,7 +2298,7 @@ class PointsController extends InformationAppController {
 					$type = $imagefile['type'];
 					if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
 					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'postcodes'.DS.'logo'.DS.'small'.DS.$newFilename,50,50,false,false,100);
-					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'postcodes'.DS.'logo'.DS.'medium'.DS.$newFilename,250,250,false,false,100);
+					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'postcodes'.DS.'logo'.DS.'medium'.DS.$newFilename,370,270,false,false,100);
 					$this->request->data[$modelName]['logo'] = $newFilename;
 					}
 				}else{
@@ -2314,9 +2314,9 @@ class PointsController extends InformationAppController {
 						$newFilename = "InfoMap24_place_".rand(5, 215)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
 						$type = $imagefile['type'];
 						if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'postcodes'.DS.'photogallery'.DS.$newFilename,749,356,false,false,80);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'postcodes'.DS.'photogallery'.DS.$newFilename,570,470,false,false,80);
 						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'postcodes'.DS.'photogallery'.DS.'thumbs'.DS.$newFilename,120,80,false,false,100);
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'postcodes'.DS.'photogallery'.DS.'small'.DS.$newFilename,380,240,false,false,100);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.'postcodes'.DS.'photogallery'.DS.'small'.DS.$newFilename,370,270,false,false,100);
 						$this->request->data[$imageDB][$imgCount]['point_id'] = $id;
 						$this->request->data[$imageDB][$imgCount]['file'] = $newFilename;
 						if($imgCount == 0){
@@ -2785,7 +2785,7 @@ class PointsController extends InformationAppController {
 					$type = $imagefile['type'];
 					if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
 					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'small'.DS.$newFilename,50,50,false,false,100);
-					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,250,250,false,false,100);
+					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,370,270,false,false,100);
 					$this->request->data[$modelName]['logo'] = $newFilename;
 					}
 				}else{
@@ -2801,9 +2801,9 @@ class PointsController extends InformationAppController {
 						$newFilename = "InfoMap24_".$imageFolder."_".rand(5, 215)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
 						$type = $imagefile['type'];
 						if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.$newFilename,749,356,false,false,80);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.$newFilename,570,470,false,false,80);
 						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'thumbs'.DS.$newFilename,120,80,false,false,100);
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'small'.DS.$newFilename,380,240,false,false,100);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'small'.DS.$newFilename,370,270,false,false,100);
 						if($imgCount == 0){
 						$this->request->data[$modelName]['image'] = $newFilename;
 						}
@@ -3011,7 +3011,7 @@ class PointsController extends InformationAppController {
 					$type = $imagefile['type'];
 					if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
 					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'small'.DS.$newFilename,50,50,false,false,100);
-					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,250,250,false,false,100);
+					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,370,270,false,false,100);
 					
 					$this->request->data[$modelName]['logo'] = $newFilename;
 					}
@@ -3028,9 +3028,9 @@ class PointsController extends InformationAppController {
 						$newFilename = "InfoMap24_".$imageFolder."_".rand(5, 215)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
 						$type = $imagefile['type'];
 						if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.$newFilename,749,356,false,false,80);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.$newFilename,570,470,false,false,80);
 						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'thumbs'.DS.$newFilename,120,80,false,false,100);
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'small'.DS.$newFilename,380,240,false,false,100);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'small'.DS.$newFilename,370,270,false,false,100);
 						if($imgCount == 0){
 						$this->request->data[$modelName]['image'] = $newFilename;
 						}
@@ -3236,7 +3236,7 @@ class PointsController extends InformationAppController {
 					$type = $imagefile['type'];
 					if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
 					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'small'.DS.$newFilename,50,50,false,false,100);
-					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,250,250,false,false,100);
+					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,370,270,false,false,100);
 					
 					$this->request->data[$modelName]['logo'] = $newFilename;
 					}
@@ -3417,7 +3417,7 @@ class PointsController extends InformationAppController {
 					$type = $imagefile['type'];
 					if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
 					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'small'.DS.$newFilename,50,50,false,false,100);
-					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,250,250,false,false,100);
+					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,370,270,false,false,100);
 					
 					$this->request->data[$modelName]['logo'] = $newFilename;
 					}
@@ -3598,7 +3598,7 @@ class PointsController extends InformationAppController {
 					$type = $imagefile['type'];
 					if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
 					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'small'.DS.$newFilename,50,50,false,false,100);
-					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,250,250,false,false,100);
+					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,370,270,false,false,100);
 					
 					$this->request->data[$modelName]['logo'] = $newFilename;
 					}
@@ -3786,7 +3786,7 @@ class PointsController extends InformationAppController {
 					$type = $imagefile['type'];
 					if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
 					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'small'.DS.$newFilename,50,50,false,false,100);
-					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,250,250,false,false,100);
+					$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'logo'.DS.'medium'.DS.$newFilename,370,270,false,false,100);
 					$this->request->data[$modelName]['logo'] = $newFilename;
 					}
 				}else{
@@ -3802,9 +3802,9 @@ class PointsController extends InformationAppController {
 						$newFilename = "InfoMap24_".$imageFolder."_".rand(5, 215)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
 						$type = $imagefile['type'];
 						if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.$newFilename,749,356,false,false,80);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.$newFilename,570,470,false,false,80);
 						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'thumbs'.DS.$newFilename,120,80,false,false,100);
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'small'.DS.$newFilename,380,240,false,false,100);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'small'.DS.$newFilename,370,270,false,false,100);
 						if($imgCount == 0){
 						$this->request->data[$modelName]['image'] = $newFilename;
 						}
@@ -4031,9 +4031,9 @@ class PointsController extends InformationAppController {
 						$newFilename = "InfoMap24_".$imageFolder."_".rand(35, 245)."_".date("y_m_d_h_m_s").'_'.$imagefile['name'];
 						$type = $imagefile['type'];
 						if(($type == 'image/gif') || ($type == 'image/jpeg') || ($type == 'image/png') || ($type == 'image/jpg')){
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.$newFilename,749,356,false,false,80);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.$newFilename,570,470,false,false,80);
 						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'thumbs'.DS.$newFilename,120,80,false,false,100);
-						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'small'.DS.$newFilename,380,240,false,false,100);
+						$this->Imageresizer->resize($imagefile['tmp_name'], WWW_ROOT.'img'.DS.$imageFolder.DS.'photogallery'.DS.'small'.DS.$newFilename,370,270,false,false,100);
 						if($imgCount == 0){
 						$this->request->data[$modelName]['image'] = $newFilename;
 						}

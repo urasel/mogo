@@ -1520,48 +1520,7 @@ h4.panel-title {
 	float: right;
 	margin-right: 25px;
 }
-.content_share_div{
-	float:left;
-	margin-top:10px;
-}
-.content_share_div ul {
-	margin: 0px;
-	padding: 0px;
-	width: 100%;
-	float: right;
-	font-size: 16px;
-}
-.content_share_div ul li {
-	float: right;
-	width: auto;
-	color: white;
-	list-style: none;
-	
-}
-.content_share_div ul li:not(:last-child) {
-    margin-left: 10px;
-}
-.content_share_div ul li i{
-	line-height:33px;
-	color:#373636;
-	background-color:transparent;
-	border:2px solid #373636;
-	width:34px; height:34px;
-	text-align:center;
-}
-.content_share_div ul li a{
-	color:#373636;
-}
-.content_share_div ul li a i:hover{
-	background-color:#2ec8a6;
-	color:white;
-	border:2px solid transparent;
-	-webkit-transition: all 0.5s;
-    -o-transition: all 0.5s;
-    -ms-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    transition: all 0.5s;
-}
+
 .footer_widget_add p {
 	font-size: 16px;
 	color: #757575;

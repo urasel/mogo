@@ -297,7 +297,9 @@
 			$stringlength = strlen($place['Point']['seo_name']);
 			$newID = $stringlength.$place['Point']['id'];
 			$paramdata = 'a='.$place['PlaceType']['singlename'].'&b='.$place['Point']['seo_name'].'&c='.$newID;
-			echo $this->element('content-section-ten',array('paramdata' => $paramdata));
+			//debug($place);exit;
+			$userdata = $place['User'];
+			echo $this->element('content-section-ten',array('paramdata' => $paramdata, 'userdata' => $userdata));
 			
 			
 			?>

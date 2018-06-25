@@ -1705,6 +1705,7 @@ class SiteactionsController extends InformationAppController {
 					"BdThanas.$fieldName as name",
 					"BdThanas.seo_name",
 					 "$className.*",
+					"User.*",
 					
 				)
 			);
