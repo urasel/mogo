@@ -70,7 +70,7 @@ class HomePostsController extends InformationAppController {
 	public function getPointDetails($id = null) {
 		$this->autoRender = false;
 		$this->layout = 'ajax';
-		//debug($this->params);exit;
+		debug($this->params);exit;
 		$id = $this->params->query['pointid'];
 		$className =  ucfirst($this->params->query['classname']);
 		$referenceID = $this->params->query['classname'].'_id';

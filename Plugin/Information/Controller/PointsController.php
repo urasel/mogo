@@ -2174,7 +2174,7 @@ class PointsController extends InformationAppController {
 		$bdThanas = $this->BdThanas->find('list');
 		$this->loadModel('General.HospitalCategory');
 		$hospitalCategories = $this->HospitalCategory->find('list');
-		$placeTypes = $this->Point->PlaceType->find('list',array('conditions'=>array('PlaceType.singlename' => array('place','hospital')),'order' => array('PlaceType.name ASC')));
+		$placeTypes = $this->Point->PlaceType->find('list',array('order' => array('PlaceType.name ASC')));
 		$this->set(compact('countries', 'zones','bdDivisions', 'bdDistricts', 'bdThanas','points', 'modelName','placeTypes','hospitalCategories'));
 		
 	}

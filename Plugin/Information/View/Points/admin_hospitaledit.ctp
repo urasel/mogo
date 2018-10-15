@@ -43,7 +43,7 @@ $this->append('tab-content');
 		echo $this->Form->input('selectLat', array('type'=>'hidden'));
 		echo $this->Form->input('selectLng', array('type'=>'hidden'));
 		echo $this->Form->input('placeTypeName', array('type'=>'hidden'));
-		echo $this->Form->input('Location.address', array('label'=>'Address','tabindex'=> "6"));
+		echo $this->Form->input('Location.address', array('label'=>'Address','tabindex'=> "6"));//
 		
 		?>
 		
