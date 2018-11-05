@@ -105,9 +105,10 @@
 					</div>
 				</div>
 				<?php 
-				echo $this->element('social_info_part');
+				
 				$imageClass = $className.'Image';
 				echo $this->element('image_slider',array('title'=> $title,'className' => $className,'place' => $place,'imagefolder' => 'hospitals'));
+				echo $this->element('social_info_part');
 				
 				 
 				if(!empty($place[$className]['facilitydata']) || !empty($place[$className]['extrafacilitydata'])){

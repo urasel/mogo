@@ -9,6 +9,7 @@ if(is_array($place[$imageClass]) && sizeof($place[$imageClass]) > 0){
 	echo '<div class="row">';
 	$totalImage = sizeof($place[$imageClass]);
 	$placename = $place[$className]['name'];
+	//debug($place);
 	if($totalImage > 1){
 		echo '<div id="slideShowDiv blog_img blog_post_img">';
 		echo $this->element('jssorplaceslider',array("placeimage" => $place[$imageClass],'placename' => $placename,'foldername' => $imagefolder));

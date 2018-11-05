@@ -24,7 +24,7 @@ b(window).bind("resize",a)});
             <div style="filter: alpha(opacity=70); opacity:0.7; position: absolute; display: block;
                 background-color: #fff; top: 0px; left: 0px;width: 100%;height:100%;">
             </div>
-            <div style="position: absolute; display: block; background: url(/infocroogo/img/sliderimage/loading.gif) no-repeat center center;
+            <div style="position: absolute; display: block; background: url(/mogo/img/sliderimage/loading.gif) no-repeat center center;
                 top: 0px; left: 0px;width: 100%;height:100%;">
             </div>
         </div>
