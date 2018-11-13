@@ -172,10 +172,10 @@
 				</div>
 			</div>
 			<?php 
-			echo $this->element('social_info_part');
+			
 			$imageClass = $className.'Image';
 			echo $this->element('image_slider',array('title'=> $title,'className' => $className,'place' => $place,'imagefolder' => 'institutes'));
-			 
+			echo $this->element('social_info_part');
 			if(!empty($place[$className]['facilitydata']) || !empty($place[$className]['extrafacilitydata'])){
 			echo '<div class="row">';
 				echo '<div class="col-md-12">';

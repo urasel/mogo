@@ -1,6 +1,7 @@
 <?php
 $currentLng = $this->Session->read('Config.language');
 ?>
+<!--
 <div class="infocontentblock">
 <div class="container">
 <div class="row nino-hoverEffect">
@@ -105,7 +106,7 @@ $currentLng = $this->Session->read('Config.language');
 </div>
 </div>
 
-
+-->
 
 
 <div class="infocontentblock">
@@ -155,10 +156,23 @@ $currentLng = $this->Session->read('Config.language');
 				<div class="col-md-6">
 					<div class="text-left">
 					<p>
-					Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it
+					<!--Enlist your business in infoMap24 to promote it wordwide. We will maketing your business information without any charges from you.-->
+					Infomap24 , is your online promoter and daily reference guide where you can get information starting from education ,history , lifestyle & places to health , banking , fooding , travelling and what not
 					</p>
 					<span class="input-group-btn">
-						<a class="btn" href="#">Get Your Free Listing!</a>
+					<?php
+						$userData = $this->Session->read('Auth.User');
+						$userID = $userData['id'];
+						if(empty($userID)){
+						echo '<li>';
+						echo $this->Html->link(__('Get Your Free Listing!'),array('plugin'=>'users','controller'=>'users','action'=>'add'),array('class'=> 'btn'));
+						echo '</li>';
+						}else{
+						echo '<li>';
+						echo $this->Html->link(__('Get Your Free Listing!'),array('plugin'=>'users','controller'=>'users','action'=>'login'),array('class'=> 'btn'));
+						echo '</li>';
+						}
+					?>
 					</span>
 					</div>
 				</div>
@@ -309,24 +323,24 @@ $currentLng = $this->Session->read('Config.language');
 										echo '</figure>';
 									echo '</div>';
 									
-									echo '<div class="blog_comment">';
+									/*echo '<div class="blog_comment">';
 										echo '<ul>';
 											echo '<li><a href="#"><i class="fa fa-comment" aria-hidden="true"></i>50</a></li>';
 											echo '<li><a href="#"><i class="fa fa-thumbs-up" aria-hidden="true"></i>98</a></li>';
 										echo '</ul>';
-									echo '</div>';
+									echo '</div>';*/
 									
 									echo '<div class="blog_txt">';
 										echo '<h1>';
 										echo $this->Html->link(mb_substr($placename,0,55), array('controller'=>'siteactions','action'=>$actionName,'category'=>$topics['placetype_seoname'],'point'=> $topics['point_seoname'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'class' =>'topiclink '.$topics['point_seoname']));
 									
 										echo '</h1>';
-										echo '<div class="blog_txt_info">';
+										/*echo '<div class="blog_txt_info">';
 											echo '<ul>';
 												echo '<li>BY ADMIN</li>';
 												echo '<li>SEPT.29,2016</li>';
 											echo '</ul>';
-										echo '</div>';
+										echo '</div>';*/
 										if(!empty($shortDescription)){
 											echo '<p class="articleDesc">'.mb_substr($shortDescription,0,80).'</p>';
 										}

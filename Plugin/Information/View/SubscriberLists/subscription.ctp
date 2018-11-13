@@ -2,9 +2,9 @@
       $this->Html->addCrumb($title_for_layout ,  '' , array('class' => 'active'));
 	  $currentLng = $this->Session->read('Config.language');
 ?>
+<div class="container">
+<div class="row placeview">
 <?php
-echo '<div class="row">';
-echo '<div class="col-md-12">';
 echo '<div class="col-md-12">';
 echo '<div class="row">';
 	echo '<div class="col-md-12  sectionblock">';
@@ -39,9 +39,9 @@ echo '</div>';
 
 
 echo '</div>';
-echo '</div>';
 	
 ?>
+</div>
 <script>
 $(document).ready(function(){
 	$('#SubscriberListDob').datetimepicker({
