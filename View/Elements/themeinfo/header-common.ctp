@@ -16,11 +16,12 @@
     <meta name="description" content="Infomap24 Information" />
     <meta name="MobileOptimized" content="320" />
 	
-	<meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
-	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content="Your Website Title" />
-	<meta property="og:description"   content="Your description" />
-	<meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
+	<meta property="fb:app_id"          content="1615601348750396" /> 
+	<meta property="og:type"            content="article" /> 
+	<meta property="og:url"             content="<?php echo Router::url( $this->here, true ); ?>" /> 
+	<meta property="og:title"           content="<?php echo $title_for_layout; ?>" /> 
+	<meta property="og:image"           content="" /> 
+	<meta property="og:description"    	content="<?php if(!empty($metadescription) && isset($metadescription)){ echo $metadescription;}?>" />
 	
     <!-- style -->
     <?php
