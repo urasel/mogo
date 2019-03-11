@@ -20,7 +20,7 @@
 	<meta property="og:type"            content="article" /> 
 	<meta property="og:url"             content="<?php echo Router::url( $this->here, true ); ?>" /> 
 	<meta property="og:title"           content="<?php echo $title_for_layout; ?>" /> 
-	<meta property="og:image"           content="" /> 
+	<meta property="og:image"           content="http://infomap24.com/favicon.ico" /> 
 	<meta property="og:description"    	content="<?php if(!empty($metadescription) && isset($metadescription)){ echo $metadescription;}?>" />
 	
     <!-- style -->
