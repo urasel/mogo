@@ -97,7 +97,6 @@
                         <div class="row">
                             <div class="col-xs-6">
                                 <div class="gc_logo logo_hidn">
-                                    <!--<h1><a class="navbar-brand" href="<?php echo $this->webroot;?>">&nbsp;</a></h1>-->
                                     <a class="navbar-brand" href="<?php echo $this->webroot;?>">&nbsp;</a>
                                 </div>
                             </div>
@@ -135,7 +134,7 @@
                         </div>
 
                         <div id="sidebar">
-                            <h1><a class="navbar-brand" href="<?php echo $this->webroot;?>">&nbsp;</a></h1>
+                            <h2><a class="navbar-brand" href="<?php echo $this->webroot;?>">&nbsp;</a></h2>
 							
                             <div id="toggle_close">&times;</div>
                             <div id='cssmenu' class="wd_single_index_menu">

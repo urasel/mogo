@@ -30,7 +30,7 @@
                         <div class="footer_main_wrapper">
                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 gallary_response">
                                 <div class="footer_heading">
-                                    <h1 class="med_bottompadder10"><?php echo __('Popular Categories');?></h1>
+                                    <h2 class="med_bottompadder10"><?php echo __('Popular Categories');?></h2>
                                 </div>
 								<div class="footer_ul_wrapper">
 									<ul class="listArticles">
@@ -54,7 +54,7 @@
                             <!--footer_2-->
                             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 gallary_response">
                                 <div class="footer_heading">
-                                    <h1 class="med_bottompadder10"><?php echo __('Userful Links');?></h1>
+                                    <h2 class="med_bottompadder10"><?php echo __('Userful Links');?></h2>
                                 </div>
                                 <div class="footer_ul_wrapper">
 									<ul class="listArticles">
@@ -76,7 +76,7 @@
                             <!--footer_3-->
                             <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 gallary_response">
                                 <div class="footer_heading">
-                                    <h1 class="med_bottompadder10"><?php echo __('Email Newsletters');?></h1>
+                                    <h2 class="med_bottompadder10"><?php echo __('Email Newsletters');?></h2>
                                 </div>
                                 <div class="footer_cnct">
 								<?php 
