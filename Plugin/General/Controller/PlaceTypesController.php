@@ -140,6 +140,40 @@ class PlaceTypesController extends GeneralAppController {
 		$this->Session->setFlash(__d('croogo', '%s was not deleted', __d('general', 'Place type')), 'default', array('class' => 'error'));
 		return $this->redirect(array('action' => 'index'));
 	}
+	
+	public function recipe_category() {
+		$this->PlaceType->recursive = 0;
+		$searchString = '';
+		
+		if ($this->request->is('post')) {
+			//debug($this->params);exit;
+			if(!empty($this->request->data['PlaceType']['name'])){
+				$searchString[] = array('PlaceType.name LIKE' => "%".$this->request->data['PlaceType']['name']."%");
+			}
+			if(!empty($this->request->data['PlaceType']['bn_name'])){
+				$searchString[] = array('PlaceType.bn_name LIKE' => "%".$this->request->data['PlaceType']['bn_name']."%");
+			}
+			if(!empty($this->request->data['PlaceType']['parentid'])){
+				$searchString[] = array('PlaceType.parentid' => $this->request->data['PlaceType']['parentid']);
+			}
+			
+			$this->paginate = array(
+					'conditions' => $searchString,
+					'limit' => 200,
+					'order' => array(
+						'PlaceType.name' => 'ASC'
+					)
+			);
+			$this->set('placeTypes', $this->paginate());
+			//debug($this->paginate());exit;
+		
+		}else{
+		$this->set('placeTypes', $this->paginate());
+		
+		}
+		$searchFields = array('name','bn_name','parentid');
+		$this->set('searchFields', $searchFields);
+	}
 
 /**
  * admin_index method
@@ -164,7 +198,7 @@ class PlaceTypesController extends GeneralAppController {
 			
 			$this->paginate = array(
 					'conditions' => $searchString,
-					'limit' => 20,
+					'limit' => 200,
 					'order' => array(
 						'PlaceType.name' => 'ASC'
 					)

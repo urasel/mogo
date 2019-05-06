@@ -239,14 +239,14 @@ echo '<h2 class="nino-sectionHeading">'.__('Others %s Information',$place['Place
 									echo '</div>';
 									
 									echo '<div class="blog_txt">';
-										echo '<h1>';
+										echo '<h2>';
 										if($className == 'TopicData'){
 											echo $this->Html->link(mb_substr($nearplacename,0,55), array('controller'=>'siteactions','action'=>'topic','category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $nearplace[$className]['point_id'],'ext' => 'asp'),array('alt' =>$nearplacename,'class' =>$postSeo));
 										}else{
 											echo $this->Html->link(mb_substr($nearplacename,0,55), array('controller'=>'siteactions','action'=>$actionName,'category'=>$nearplace['PlaceType']['seo_name'],'point'=> $postSeo,'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$nearplacename,'class' =>$postSeo));
 										}
 										
-										echo '</h1>';
+										echo '</h2>';
 										echo '<div class="blog_txt_info">';
 											echo '<ul>';
 												echo '<li>BY '.$userName.'</li>';

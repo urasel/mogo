@@ -57,6 +57,45 @@ CroogoNav::add('sidebar', 'content.children.informationupload', array(
 				),
 			),
 		),
+		'recipemanagement' => array(
+			'title' => __d('croogo', 'Recipe Informations'),
+			'url' => array(
+				'admin' => true,
+				'plugin' => 'information',
+				'controller' => 'recipes',
+				'action' => 'index',
+				'Site',
+			),
+			'weight' => 10,
+			'children' => array(
+				'recipes' => array(
+					'title' => __d('croogo', 'Recipes'),
+					'url' => array(
+						'admin' => true,
+						'plugin' => 'information',
+						'controller' => 'recipes',
+						'action' => 'index',
+						'Site',
+					),
+					'weight' => 10,
+					
+					
+				),
+				'recipecategories' => array(
+					'title' => __d('croogo', 'Recipe Categories'),
+					'url' => array(
+						'admin' => true,
+						'plugin' => 'information',
+						'controller' => 'recipe_categories',
+						'action' => 'index',
+						'Site',
+					),
+					'weight' => 10,
+					
+					
+				),
+			),
+		),
 		'transportmanagement' => array(
 			'title' => __d('croogo', 'Transport'),
 			'weight' => 10,

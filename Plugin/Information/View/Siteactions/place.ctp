@@ -121,7 +121,7 @@
 						$adminLink = '';
 					}
 					
-					echo '<h1>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h1>'; 
+					echo '<h2>'.$title.'<span class="admin_edit_link">'.$adminLink.'</span></h2>'; 
 					?>
 					<?php 
 					if(!empty($address)){

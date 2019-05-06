@@ -42,6 +42,15 @@
     <!-- favicon link-->
 	<link rel="shortcut icon" type="image/icon" href="http://infomap24.com/favicon.ico">
 	<link href="https://fonts.googleapis.com/css?family=Lora|Montserrat:400,700,900" rel="stylesheet">
-<script src='../../google_analytics_auto.js'></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-67836284-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-67836284-2');
+</script>
+
 <script src='https://cdn.rawgit.com/OpenShare/openshare/master/dist/openshare.js'></script>
 

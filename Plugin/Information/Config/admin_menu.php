@@ -2,7 +2,7 @@
 
 CroogoNav::add('sidebar', 'content.children.informationupload', array(
 	'icon' => 'cog',
-	'title' => __d('croogo', 'Upload Informations'),
+	'title' => __d('croogo', 'All Uploads'),
 	'url' => array(
 		'admin' => true,
 		'plugin' => 'information',
@@ -41,6 +41,58 @@ CroogoNav::add('sidebar', 'content.children.informationupload', array(
 						'admin' => true,
 						'plugin' => 'information',
 						'controller' => 'home_posts',
+						'action' => 'index',
+						'Site',
+					),
+					'weight' => 10,
+					
+					
+				),
+			),
+		),
+		'recipemanagement' => array(
+			'title' => __d('croogo', 'Recipe Details'),
+			'url' => array(
+				'admin' => true,
+				'plugin' => 'information',
+				'controller' => 'recipes',
+				'action' => 'index',
+				'Site',
+			),
+			'weight' => 10,
+			'children' => array(
+				'recipes' => array(
+					'title' => __d('croogo', 'Recipes'),
+					'url' => array(
+						'admin' => true,
+						'plugin' => 'information',
+						'controller' => 'recipes',
+						'action' => 'index',
+						'Site',
+					),
+					'weight' => 10,
+					
+					
+				),
+				'recipecategories' => array(
+					'title' => __d('croogo', 'Recipe Categories'),
+					'url' => array(
+						'admin' => true,
+						'plugin' => 'general',
+						'controller' => 'place_types',
+						'action' => 'recipe_category',
+						'Site',
+					),
+					'weight' => 10,
+					
+					
+				),
+				'recipecuisines' => array(
+					'title' => __d('croogo', 'Recipe Cuisines'),
+					'url' => array(
+						'admin' => true,
+						'plugin' => 'information',
+						'controller' => 'recipe_cuisines',
 						'action' => 'index',
 						'Site',
 					),
