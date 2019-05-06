@@ -221,7 +221,7 @@ $currentLng = $this->Session->read('Config.language');
                         <div class="cat_txt">
                             <h1>Automobiles & Motorcycles</h1>
                             <p>Motorcycles and automobiles specification and price updates</p>
-                            <a href="#">Read More <i class="fa fa-long-arrow-right"></i></a>
+                            <a href="<?php echo SITEURL;?>/motorcycles">Read More <i class="fa fa-long-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>

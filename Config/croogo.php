@@ -34,6 +34,7 @@
  */
 Configure::write('debug', 2);
 Configure::write('selectedTemplate', 'themeinfo/');
+define('SITEURL', '/mogo');
 define('SITEIMAGE', '/mogo/img/');
 
 /**

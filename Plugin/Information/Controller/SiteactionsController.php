@@ -91,6 +91,7 @@ class SiteactionsController extends InformationAppController {
 		$this->loadModel('Information.Point');
 		$id = substr($combindedID,$cutlength);
 		$id = substr($id,0,-4);
+		//echo $id; exit;
 		$options = array(
 			'conditions' => array('Point.id' => $id),
 			'fields' =>array(
@@ -1018,6 +1019,7 @@ class SiteactionsController extends InformationAppController {
 			$this->layout = $selectedTemplate.$layout;
 			$this -> render($singleName);
 		}else if($typeid == 'motorcycle'){
+			
 			$layout = $pointDetails['PlaceType']['singlename'];
 			$className = ucfirst($pointDetails['PlaceType']['singlename']);
 			$singleName = $pointDetails['PlaceType']['singlename'];
@@ -1051,8 +1053,7 @@ class SiteactionsController extends InformationAppController {
 					),
 				)
 			);
-			//debug($this->Point);
-			//exit;
+			
 			$options = array(
 				'conditions' => array('Point.' . $this->Point->primaryKey => $id),
 				'fields' =>array(
@@ -1074,7 +1075,7 @@ class SiteactionsController extends InformationAppController {
 			);
 			//debug($options);exit;
 			$pointDetails = $this->Point->find('first', $options);
-			//debug($pointDetails);exit;
+			debug($pointDetails);exit;
 			
 			
 			if(!empty($pointDetails[$className]['area1'])){

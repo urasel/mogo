@@ -134,7 +134,24 @@ CroogoRouter::localize();
                      array(
 					 'pass' => array('id','category','page','language','character'),
 					 ));
+					 
+					 
 	/****************************************************************************/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	Router::connect('/:language/subcategories/:country/1/:category/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'subcategories'), 
                      array(
@@ -244,7 +261,32 @@ CroogoRouter::localize();
 	Router::connect('/:language/info_contribution', 
                      array('plugin'=>'information','controller'=>'update_informations', 'action'=>'add'));	
 	Router::connect('/robotchecker', 
-                     array('plugin'=>'information','controller'=>'home_posts', 'action'=>'googlecaptcha'));	
+                     array('plugin'=>'information','controller'=>'subcategories', 'action'=>'subcategories'));	
+					 
+					 
+					 
+	//Business Section Routing Start
+	
+	Router::connect('/motorcycles', 
+                     array('plugin'=>'information','controller' => 'motorcycles', 'action'=>'motorcycles'),
+					 array('pass' => array('id')));	
+					 
+	Router::connect('/:language/:service/:page/:category/:id', 
+                     array('plugin'=>'information','controller' => 'siteactions', 'action'=>'categories'), 
+                     array(
+					 'pass' => array('id','category','page','language','service'),
+					 ));
+					 
+	Router::connect('/:language/:service/:country/:category/:point/:id', 
+                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
+                     array('pass' => array('category', 'point','id','language','couontry','service')));
+				 
+	Router::connect('/:service/:category/:point/:id', 
+                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
+                     array('pass' => array('category', 'point','id','language','couontry')));
+	//Business Section Routing End
+	
+	
 	//CroogoRouter::connect('/login', array('plugin' => 'users', 'controller' => 'users', 'action' => 'login'));
 	CroogoRouter::connect('/login', array('plugin' => 'users', 'controller' => 'users', 'action' => 'login'),array('pass' => 'language'));
 	CroogoRouter::connect('/logout', array('plugin' => 'users', 'controller' => 'users', 'action' => 'logout'),array('pass' => 'language'));
