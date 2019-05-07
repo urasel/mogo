@@ -49,21 +49,27 @@
 			$newID = $stringlength.$category['pl']['id'];
 			$mixedItemArray = array('continents','baby_names','articles','animals');
 			//debug($category);exit;
-			if(in_array($category['pl']['id'],$parentCats)){
-				if($queryCountry == 'all' || in_array($category['pl']['seo_name'],$mixedItemArray)){
-					echo $this->Html->link($category['pl']['name'], array('plugin'=>'information','controller' => 'siteactions','action'=>'subcategories','category'=>$category['pl']['seo_name'],'country'=>$queryCountry,'id'=> $newID,'language'=>$currentLng,'ext' => 'asp'),array('alt' =>$category['pl']['name']));
-				}else{
-					echo $this->Html->link($category['pl']['name'], array('plugin'=>'information','controller' => 'siteactions','action'=>'subcategories','category'=>$category['pl']['seo_name'],'country'=>$queryCountry,'id'=> $newID,'language'=>$currentLng,'ext' => 'asp'),array('alt' =>$category['pl']['name']));
-				}
+			//echo $category['pl']['seo_name'];
+			if($category['pl']['seo_name'] == 'motor-bikes'){
+				echo $this->Html->link($category['pl']['name'], array('plugin'=>'information','controller' => 'motorcycles','action'=>'motorcycles'),array('alt' =>$category['pl']['name']));
 			}else{
-				if($queryCountry == 'all' || in_array($category['pl']['seo_name'],$mixedItemArray)){
-					echo $this->Html->link($category['pl']['name'], array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$category['pl']['seo_name'],'country'=>$queryCountry,'id'=> $newID,'language'=>$currentLng,'page'=>1,'ext' => 'asp'),array('alt' =>$category['pl']['name']));
+				if(in_array($category['pl']['id'],$parentCats)){
+					if($queryCountry == 'all' || in_array($category['pl']['seo_name'],$mixedItemArray)){
+						echo $this->Html->link($category['pl']['name'], array('plugin'=>'information','controller' => 'siteactions','action'=>'subcategories','category'=>$category['pl']['seo_name'],'country'=>$queryCountry,'id'=> $newID,'language'=>$currentLng,'ext' => 'asp'),array('alt' =>$category['pl']['name']));
+					}else{
+						echo $this->Html->link($category['pl']['name'], array('plugin'=>'information','controller' => 'siteactions','action'=>'subcategories','category'=>$category['pl']['seo_name'],'country'=>$queryCountry,'id'=> $newID,'language'=>$currentLng,'ext' => 'asp'),array('alt' =>$category['pl']['name']));
+					}
 				}else{
-					echo $this->Html->link($category['pl']['name'], array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$category['pl']['seo_name'],'country'=>$queryCountry,'id'=> $newID,'language'=>$currentLng,'page'=>1,'ext' => 'asp'),array('alt' =>$category['pl']['name']));
-				}
+					if($queryCountry == 'all' || in_array($category['pl']['seo_name'],$mixedItemArray)){
+						echo $this->Html->link($category['pl']['name'], array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$category['pl']['seo_name'],'country'=>$queryCountry,'id'=> $newID,'language'=>$currentLng,'page'=>1,'ext' => 'asp'),array('alt' =>$category['pl']['name']));
+					}else{
+						echo $this->Html->link($category['pl']['name'], array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$category['pl']['seo_name'],'country'=>$queryCountry,'id'=> $newID,'language'=>$currentLng,'page'=>1,'ext' => 'asp'),array('alt' =>$category['pl']['name']));
+					}
+					
 				
-			
+				}
 			}
+			
 						
 			echo '</td>';
 			echo '<td width="10%" class="categorytotal">';
