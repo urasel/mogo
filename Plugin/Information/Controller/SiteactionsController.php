@@ -1075,29 +1075,8 @@ class SiteactionsController extends InformationAppController {
 			);
 			//debug($options);exit;
 			$pointDetails = $this->Point->find('first', $options);
-			debug($pointDetails);exit;
+			//debug($pointDetails);exit;
 			
-			
-			if(!empty($pointDetails[$className]['area1'])){
-			$area1 = $pointDetails[$className]['area1'].', ';
-			}else{
-			$area1 = '';
-			}
-			if(!empty($pointDetails[$className]['area2'])){
-			$area2 = $pointDetails[$className]['area2'].', ';
-			}else{
-			$area2 = '';
-			}
-			if(!empty($pointDetails[$className]['area3'])){
-			$area3 = $pointDetails[$className]['area3'].', ';
-			}else{
-			$area3 = '';
-			}
-			if(!empty($pointDetails['Point']['address'])){
-				$address = $pointDetails['Point']['address'];
-			}else{
-				$address = $area3.$area2.$area1;
-			}
 			
 			
 			if($currentLng == 'bn' && !empty($pointDetails[$className]['bn_name'])){
@@ -1118,7 +1097,7 @@ class SiteactionsController extends InformationAppController {
 			
 			$this->set('metadescription', $metadescription);
 			$nearbies = $this->__nearbies($className,$pointDetails);	
-			//debug($nearbies);							
+			//debug($nearbies); exit;							
 			$this->set('place', $pointDetails);
 			$selectedTemplate = Configure::read('selectedTemplate');
 			$this->layout = $selectedTemplate.$layout;
@@ -4047,13 +4026,6 @@ class SiteactionsController extends InformationAppController {
 						),
 					'fields' => array(
 						'Point.*',
-						'User.id',
-						'User.name',
-						'User.firstname',
-						'User.lastname',
-						'User.bn_name',
-						'User.bn_firstname',
-						'User.bn_lastname',
 						'PlaceType.id',
 						"PlaceType.$fieldName as name",
 						'PlaceType.icon',
@@ -4069,10 +4041,6 @@ class SiteactionsController extends InformationAppController {
 							'Point' => array(
 								'foreignKey' => false,
 								'conditions' => array("$className.point_id = Point.id")
-							),
-							'User' => array(
-								'foreignKey' => false,
-								'conditions' => array("User.id = $className.user_id")
 							),
 							'PlaceType' => array(
 								'foreignKey' => false,

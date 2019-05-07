@@ -30,7 +30,7 @@ $className = 'Motorcycle';
 	<div class="col-md-8">
 		<div class="col-md-12 sectionblock">
 			<?php 
-			debug($place);exit;
+			//debug($place);exit;
 			$title = '';
 			$shortDescription = '';
 			$detailDescription = '';
@@ -40,127 +40,142 @@ $className = 'Motorcycle';
 				$title = $place['Motorcycle']['name'];
 				$seo_name = $place['Motorcycle']['seo_name'];
 				$metatag = $place['Motorcycle']['metatag'];
+				$mileage = $place['Motorcycle']['mileage'];
+				$engine = $place['Motorcycle']['engine'];
+				$maximum_power = $place['Motorcycle']['maximum_power'];
+				$top_speed = $place['Motorcycle']['top_speed'];
 				
 			}
-			echo '<div class="row">';
-				echo '<div class="col-md-12">';
-						echo '<h1 class="posttitle">'.$title.'</h1>';
-						echo '<p>';
-						echo '&nbsp;&nbsp;<b>'.__('PUBLISHED').'</b>&nbsp;&nbsp;'.$publishdate.'&nbsp;|&nbsp;<b>'.__('UPDATED').'</b>&nbsp;&nbsp;'.$updatedate;
-						echo '</p>';
-				?>
-				</div>
-				</div>
+			?>
 				<div class="col-md-12">
-				<div class="row">
-				<div class="col-md-4 col-sm-4 col-xs-12">
 					<div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12" id="writer-block">
-					<div class="writer-container">
-						<div class="col-md-2  col-sm-2 col-xs-2" id="writer-img">
-						
+						<div class="col-md-5 col-sm-5 col-xs-12">
+							<img src="https://auto.ndtvimg.com/bike-images/big/yamaha/fz-25/yamaha-fz-25.jpg?v=16">
 						</div>
-						<div class="col-md-10  col-sm-10 col-xs-10" class="writer-name">
-						<span></span>
+						<div class="col-md-7 col-sm-7 col-xs-12">
+							<div class="row">
+								<div class="col-md-12">
+								<?php
+								echo '<h1 class="posttitle">'.$title.'</h1>';
+								echo '<p>';
+								echo '<b>'.__('PUBLISHED').'</b>&nbsp;&nbsp;'.$publishdate.'&nbsp;|&nbsp;<b>'.__('UPDATED').'</b>&nbsp;&nbsp;'.$updatedate;
+								echo '</p>';
+								?>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+								Price: 400,000 TK.
+								</div>
+							</div>
 						</div>
 					</div>
-					</div>
-					</div>
-				</div>
-				<div class="col-md-8 col-sm-8 col-xs-12">
-					<div class="row">
-					<div class="col-md-12 col-sm-12  col-xs-12 " id="social-block">
-					
-					<div class="fb-like" data-href="<?php echo 'http://www.infomap24.com/'.$this->params->url;?>" data-width="300" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-					<div class="zoominbutton"></div>
-					<div class="zoomoutbutton"></div>
-					</div>
-				</div>
-				
-				</div>
-				</div>
 				</div>
 				
 				
 				<?php
-			echo '<div class="row">';
-				echo '<div class="col-md-12">';
-						$link = 'topics/large/'.$place[$className]['image'];
-						echo $this->Html->image($link,array('alt'=>$shortDescription,'class'=>"img-responsive"));
-						echo '<h4 class="topic-short targettext">'.$shortDescription.'</h4>';
-				echo '</div>';
-			echo '</div>';
-			
-			echo '<div class="row">';
-				echo '<div class="col-md-3 col-sm-6">';
-					echo '<div class="row">';
-						echo '<div class="col-md-12">';
-						echo 'Engine Capacity';
-						echo '</div>';
-						echo '<div class="col-md-12">';
-						echo '149.0 CC';
-						echo '</div>';
+				echo '<div class="row">';
+					echo '<div class="col-md-12">';
+							//$link = 'topics/large/'.$place[$className]['image'];
+							//echo $this->Html->image($link,array('alt'=>$shortDescription,'class'=>"img-responsive"));
+							echo '<h4 class="topic-short targettext">'.$shortDescription.'</h4>';
 					echo '</div>';
 				echo '</div>';
-				echo '<div class="col-md-3 col-sm-6">';
-					echo '<div class="row">';
-						echo '<div class="col-md-12">';
-						echo 'Max Power';
-						echo '</div>';
-						echo '<div class="col-md-12">';
-						echo '12.90 bhp @ 8000 rpm';
+			
+			echo '<div class="col-md-12">';
+				echo '<div class="row">';
+					echo '<div class="col-md-3 col-sm-6">';
+						echo '<div class="row">';
+							echo '<div class="col-md-12 align-middle text_header_1">';
+							echo 'Engine Capacity';
+							echo '</div>';
+							echo '<div class="col-md-12 align-middle">';
+							echo $engine;
+							echo '</div>';
 						echo '</div>';
 					echo '</div>';
-				echo '</div>';
-				echo '<div class="col-md-3 col-sm-6">';
-					echo '<div class="row">';
-						echo '<div class="col-md-12">';
-						echo 'Mileage';
-						echo '</div>';
-						echo '<div class="col-md-12">';
-						echo '50.00 Kmpl';
-						echo '</div>';
-					echo '</div>';
-				echo '</div>';
-				echo '<div class="col-md-3 col-sm-6">';
-					echo '<div class="row">';
-						echo '<div class="col-md-12">';
-						echo 'Starting Mechanism';
-						echo '</div>';
-						echo '<div class="col-md-12">';
-						echo 'Self Start';
+					echo '<div class="col-md-3 col-sm-6">';
+						echo '<div class="row">';
+							echo '<div class="col-md-12 align-middle text_header_1">';
+							echo 'Max Power';
+							echo '</div>';
+							echo '<div class="col-md-12 align-middle">';
+							echo $maximum_power;
+							echo '</div>';
 						echo '</div>';
 					echo '</div>';
-				echo '</div>';
-			echo '</div>';
+					echo '<div class="col-md-3 col-sm-6">';
+						echo '<div class="row">';
+							echo '<div class="col-md-12 align-middle text_header_1">';
+							echo 'Mileage';
+							echo '</div>';
+							echo '<div class="col-md-12 align-middle">';
+							echo $mileage;
+							echo '</div>';
+						echo '</div>';
+					echo '</div>';
+					echo '<div class="col-md-3 col-sm-6">';
+						echo '<div class="row">';
+							echo '<div class="col-md-12 align-middle text_header_1">';
+							echo 'Top Speed';
+							echo '</div>';
+							echo '<div class="col-md-12 align-middle">';
+							echo $top_speed;
+							echo '</div>';
+						echo '</div>';
+					echo '</div>';
+				
+			?>
+				</div>
+			</div>
+			<br/><br/>
+			<div class="panel-group" id="accordion" style="margin-top:100px;">
+			  <div class="panel panel-default">
+				<div class="panel-heading">
+				  <h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+					<?php echo '<h3 class="posttitle">'.$title.' Specifications</h3>'; ?></a>
+				  </h4>
+				</div>
+				<div id="collapse1" class="panel-collapse collapse in">
+				  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+				  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+				  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+				  commodo consequat.</div>
+				</div>
+			  </div>
+			  <div class="panel panel-default">
+				<div class="panel-heading">
+				  <h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+					<?php echo '<h3 class="posttitle">'.$title.' Specifications</h3>'; ?></a>
+				  </h4>
+				</div>
+				<div id="collapse2" class="panel-collapse collapse">
+				  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+				  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+				  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+				  commodo consequat.</div>
+				</div>
+			  </div>
+			  <div class="panel panel-default">
+				<div class="panel-heading">
+				  <h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+					<?php echo '<h3 class="posttitle">'.$title.' Specifications</h3>'; ?></a>
+				  </h4>
+				</div>
+				<div id="collapse3" class="panel-collapse collapse">
+				  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+				  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+				  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+				  commodo consequat.</div>
+				</div>
+			  </div>
+			</div> 
 			
-			echo '<h2>'.'Yamaha Fazer V2.0 FI Colors'.'</h2>';
-			echo '<div class="row">';
-			
-				echo '<div class="col-md-4 col-sm-4">';
-					echo 'Burning Red';
-				echo '</div>';
-				echo '<div class="col-md-4 col-sm-4">';
-					echo 'Midnight Black';
-				echo '</div>';
-				echo '<div class="col-md-4 col-sm-4">';
-					echo 'Marble White';
-				echo '</div>';
-			echo '</div>';
-			
-			echo '<h2>'.'Yamaha Fazer V2.0 FI Specifications'.'</h2>';
-			echo '<div class="row">';
-			
-				echo '<div class="col-md-4 col-sm-4">';
-					echo 'Burning Red';
-				echo '</div>';
-				echo '<div class="col-md-4 col-sm-4">';
-					echo 'Midnight Black';
-				echo '</div>';
-				echo '<div class="col-md-4 col-sm-4">';
-					echo 'Marble White';
-				echo '</div>';
-			echo '</div>';
+			<?php
+		
 			
 			
 			echo '<div class="row targettext">';

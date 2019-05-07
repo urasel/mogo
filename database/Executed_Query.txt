@@ -1,0 +1,6 @@
+
+#07-05-2019
+
+
+INSERT INTO points (id,NAME,seo_name,place_type_id)
+SELECT point_id,`name`, seo_name,place_type_id FROM motorcycles;

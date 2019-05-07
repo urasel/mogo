@@ -2652,3 +2652,16 @@ blockquote p {
 
 
 /***************** Tab Part CSS End****/
+
+
+.align-middle{
+	text-align:center;
+	border:1px solid #eee;
+	padding:10px 2px;
+}
+.text_header_1{
+	font-size:16px;
+	font-weight:bold;
+	background:#eee;
+	
+}
