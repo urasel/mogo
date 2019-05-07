@@ -16,8 +16,14 @@ $className = 'Motorcycle';
 	  $newID = $stringlength.$place['PlaceType']['id'];
 	  $language = $this->Session->read('Config.language');
       $className = ucfirst($place['PlaceType']['singlename']);
-      $this->Html->addCrumb(__('Sitemap'), array('plugin'=>'information','controller' => 'siteactions','action' => 'sitemap')) ;
-      $this->Html->addCrumb($place['PlaceType']['name'],array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$place['PlaceType']['seo_name'],'id'=> $newID,'page'=>1,'ext' => 'asp') ,array('alt' =>$place['PlaceType']['name']));
+	  $this->Html->addCrumb(__('World'), array('plugin'=>'information','controller' => 'siteactions', 'action' => 'world','language' => $currentLng)) ;
+	  if($passCountryName == '' || is_numeric($passCountryName)){
+		  $this->Html->addCrumb(__('All'), array('plugin'=>'information','controller' => 'siteactions', 'action' => 'sitemap','language' => $currentLng)) ;
+	  }else{
+		  $this->Html->addCrumb($passCountryName, array('plugin'=>'information','controller' => 'siteactions', 'action' => 'sitemap','language' => $currentLng,'?' => array('country' => $queryCountry))) ;
+	  }
+	  $this->Html->addCrumb('Motor Bikes',array('plugin'=>'information','controller' => 'motorcycles','action'=>'motorcycles') ,array('alt' => 'Motor Bikes')); 
+      $this->Html->addCrumb($place['PlaceType']['name'],array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$place['PlaceType']['seo_name'],'id'=> $newID,'page'=>1,'ext' => 'asp','service'=> 'motorcycles') ,array('alt' =>$place['PlaceType']['name']));
 	  $this->Html->addCrumb($place['Point']['name'] ,  '' , array('class' => 'active'));
 ?>
 <style>
@@ -27,8 +33,7 @@ $className = 'Motorcycle';
 </style>
 <div class="container">
 	<div class="row placeview">
-	<div class="col-md-8">
-		<div class="col-md-12 sectionblock">
+	<div class="col-md-9">
 			<?php 
 			//debug($place);exit;
 			$title = '';
@@ -134,7 +139,7 @@ $className = 'Motorcycle';
 				<div class="panel-heading">
 				  <h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-					<?php echo '<h3 class="text_header_1">'.$title.' Specifications</h3>'; ?></a>
+					<?php echo $title.' Specifications'; ?></a>
 				  </h4>
 				</div>
 				<div id="collapse1" class="panel-collapse collapse in">
@@ -142,18 +147,22 @@ $className = 'Motorcycle';
 				  <?php
 					echo '<div class="col-md-12">';
 						echo '<div class="row">';
+						//debug($place['MotorcycleSpecification']);exit;
+						$hideArray = array('id','bike_origin','motorcycle_id');
 						foreach($place['MotorcycleSpecification'] as $k => $v){
 							if($v != ''){
-							echo '<div class="col-md-6 col-sm-6 col-xs-12" style="border:0px solid #333;">';
-								echo '<div class="row">';
-									echo '<div class="col-md-6 col-sm-6 col-xs-6"><b>';
-									echo ucwords(str_replace('_',' ',$k));
-									echo '</b></div>';
-									echo '<div class="col-md-6 col-sm-6 col-xs-6">';
-									echo ': '.$v;
+								if(!in_array($k,$hideArray)){
+								echo '<div class="col-md-6 col-sm-6 col-xs-12" style="border:0px solid #333;">';
+									echo '<div class="row">';
+										echo '<div class="col-md-6 col-sm-6 col-xs-6"><b>';
+										echo ucwords(str_replace('_',' ',$k));
+										echo '</b></div>';
+										echo '<div class="col-md-6 col-sm-6 col-xs-6">';
+										echo ':&nbsp;&nbsp;'.$v;
+										echo '</div>';
 									echo '</div>';
 								echo '</div>';
-							echo '</div>';
+								}
 							}
 						}
 						
@@ -163,34 +172,30 @@ $className = 'Motorcycle';
 				  </div>
 				</div>
 			  </div>
+			  <!--
 			  <div class="panel panel-default">
 				<div class="panel-heading">
 				  <h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-					<?php echo '<h3 class="text_header_1">'.$title.' Specifications</h3>'; ?></a>
+					<?php echo $title.' Specifications'; ?></a>
 				  </h4>
 				</div>
 				<div id="collapse2" class="panel-collapse collapse">
-				  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-				  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-				  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-				  commodo consequat.</div>
+				  <div class="panel-body"></div>
 				</div>
 			  </div>
 			  <div class="panel panel-default">
 				<div class="panel-heading">
 				  <h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-					<?php echo '<h3 class="text_header_1">'.$title.' Specifications</h3>'; ?></a>
+					<?php echo $title.' Specifications'; ?></a>
 				  </h4>
 				</div>
 				<div id="collapse3" class="panel-collapse collapse">
-				  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-				  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-				  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-				  commodo consequat.</div>
+				  <div class="panel-body"></div>
 				</div>
 			  </div>
+			  -->
 			</div> 
 			
 			<?php
@@ -211,104 +216,36 @@ $className = 'Motorcycle';
 			</div>
 		<?php
 	echo '</div>';
-	echo '</div>';
-	echo '<div class="col-md-4">';
-			echo '<div class="col-md-12 sectionblock recentsection">';
+	echo '<div class="col-md-3">';
 			echo 'Top '. $place['PlaceType']['name'].' Bikes';
-			//https://www.zigwheels.com/newbikes/Royal-Enfield/Classic-350/specifications
-			//debug($recentposts);
-			foreach($recentposts as $post){
-			if($post[$className]['image'] != ''){
-			
+			//debug($topRelatedItems);
+			foreach($topRelatedItems as $post){
+				$placename = $post['Motorcycle']['name'];
 			echo '<div class="col-md-12 recentposts">';
 					echo '<div class="row">';
 					echo '<div class="col-md-4 col-sm-4 col-xs-4">';
-					if($post['TopicData'][1]['language_id'] == $languageID && !empty($post['TopicData'][1]['name'])){
-						$placename = $post['TopicData'][1]['name'];
-					}else if($post['TopicData'][0]['language_id'] == $languageID && !empty($post['TopicData'][0]['name'])){
-						$placename = $post['TopicData'][0]['name'];
-					}else if(!empty($post['TopicData'][0]['name'])){
-						$placename = $post['TopicData'][0]['name'];
-					}else if(!empty($post['TopicData'][1]['name'])){
-						$placename = $post['TopicData'][1]['name'];
-					}
-					
-					$placeSeoName = $post['PlaceType']['seo_name'];
-					$pointSeoName = $post['Point']['seo_name'];
-					if(isset($post[$className]['image'])){
-					$file = $post[$className]['image'];
-					echo $this->Html->image("topics/medium/$file",array('url'=> array('controller'=>'siteactions','action'=>'topic','category'=>$post['PlaceType']['seo_name'],'point'=> $post['Point']['seo_name'],'id'=> $post['Point']['id'],'ext' => 'asp')),array('alt'=>"$placename napshot"));
+					if(isset($post['Motorcycle']['image'])){
+					$file = $post['Motorcycle']['image'];
+					echo $this->Html->image("motorcycles/medium/$file",array('url'=> array('controller'=>'siteactions','action'=>'topic','category'=>$post['Motorcycle']['seo_name'],'point'=> $post['Point']['seo_name'],'id'=> $post['Point']['id'],'ext' => 'asp')),array('alt'=>"$placename napshot"));
 					}else{
-					echo $this->Html->link('<div class="defaultcaticon"><span><i class="inn '.$post['PlaceType']['icon'].'"></i></span></div>', array('controller'=>'siteactions','action'=>'topic','category'=>$post['PlaceType']['seo_name'],'point'=> $post['Point']['seo_name'],'id'=> $post['Point']['id'],'ext' => 'asp'),array('escape'=>false,'alt' =>$placename));
+					echo $this->Html->link('<div class="defaultcaticon"><span><i class="inn '.$place['Motorcycle']['name'].'"></i></span></div>', array('controller'=>'siteactions','action'=>'topic','category'=>$post['Motorcycle']['seo_name'],'point'=> $post['Point']['seo_name'],'id'=> $post['Point']['id'],'ext' => 'asp'),array('escape'=>false,'alt' =>$placename));
 					
 					}
 					echo '</div>';
 					
 					echo '<div class="col-md-8 col-sm-8 col-xs-8">';
-					echo $this->Html->link(mb_substr($placename,0,54).'..',array('controller'=>'siteactions','action'=>'topic','category'=>$post['PlaceType']['seo_name'],'point'=> $post['Point']['seo_name'],'id'=> $post['Point']['id'],'ext' => 'asp'),array('class'=>'placename','alt'=>"$placename"));
+					echo $this->Html->link(mb_substr($post['Motorcycle']['name'],0,54).'..',array('controller'=>'siteactions','action'=>'topic','category'=>$post['Motorcycle']['seo_name'],'point'=> $post['Motorcycle']['seo_name'],'id'=> $post['Motorcycle']['id'],'ext' => 'asp'),array('class'=>'placename','alt'=>"$placename"));
 					echo '</div>';
 				echo '</div>';
 			echo '</div>';
-			}
-			
 			}
 			echo '</div>';
 			
 	echo '</div>';
 echo '</div>';
-echo '</div>';
 	
 	?>
-<div class="row top-buffer">
-	<div class="col-md-12">
-		<div class="col-md-12 sectionblock otherblock">
-		<?php
-		//debug($nearbies);
-				echo '<h3>'.__('Other').' '.$place['PlaceType']['name'].__(' Informations').'</h3>';
-				echo '<div class="row nearPlace">';
-				foreach($nearbies as $nearby){
-				//debug($nearby);
-				echo '<div class="col-xs-12 col-sm-6 col-md-3 placecontianer">';
-				echo '<div class="relatedblock">';
-					echo '<div class="row">';
-					echo '<div class="col-md-12">';
-					//debug($place['TopicData']);
-					if($nearby['TopicData'][1]['language_id'] == $languageID && !empty($nearby['TopicData'][1]['name'])){
-						$placename = $nearby['TopicData'][1]['name'];
-					}else if($nearby['TopicData'][0]['language_id'] == $languageID && !empty($nearby['TopicData'][0]['name'])){
-						$placename = $nearby['TopicData'][0]['name'];
-					}else if(!empty($nearby['TopicData'][0]['name'])){
-						$placename = $nearby['TopicData'][0]['name'];
-					}else if(!empty($nearby['TopicData'][1]['name'])){
-						$placename = $nearby['TopicData'][1]['name'];
-					}
-					
-					$placeSeoName = $nearby['PlaceType']['seo_name'];
-					$pointSeoName = $nearby['Point']['seo_name'];
-					if(isset($nearby[$className]['image'])){
-					$file = $nearby[$className]['image'];
-					echo $this->Html->image("topics/medium/$file",array('url'=> array('controller'=>'siteactions','action'=>'topic','category'=>$nearby['PlaceType']['seo_name'],'point'=> $nearby['Point']['seo_name'],'id'=> $nearby['Point']['id'],'ext' => 'asp')),array('alt'=>"$placename napshot"));
-					}else{
-					echo $this->Html->link('<div class="defaultcaticon"><span><i class="inn '.$nearby['PlaceType']['icon'].'"></i></span></div>', array('controller'=>'siteactions','action'=>'topic','category'=>$nearby['PlaceType']['seo_name'],'point'=> $nearby['Point']['seo_name'],'id'=> $nearby['Point']['id'],'ext' => 'asp'),array('escape'=>false,'alt' =>$placename));
-					
-					}
-					echo '</div>';
-					echo '<div class="col-md-12">';
-					echo $this->Html->link(mb_substr($placename,0,24).'..',array('controller'=>'siteactions','action'=>'topic','category'=>$nearby['PlaceType']['seo_name'],'point'=> $nearby['Point']['seo_name'],'id'=> $nearby['Point']['id'],'ext' => 'asp'),array('class'=>'placename','alt'=>"$placename"));
-					echo '</div>';
-					echo '</div>';
-				echo '</div>';
-				echo '</div>';
-				
-				//debug($nearby);
-				}
-				echo '</div>';
-				
-		?>
-		
-	</div>
-</div>	
-</div>	
+
 <script>
 $(document).ready(function(){
     $(".zoominbutton").click(function() {

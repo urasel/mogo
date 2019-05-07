@@ -16,7 +16,12 @@
 		  if($categoryName != $breadcumb['PlaceType']['name']){
 			 $stringlength = strlen($breadcumb['PlaceType']['seo_name']);
 			$newID = $stringlength.$breadcumb['PlaceType']['id'];
-			$this->Html->addCrumb($breadcumb['PlaceType']['name'],array('plugin'=>'information','controller' => 'siteactions','action'=>'subcategories','country'=>$queryCountry,'category'=>$breadcumb['PlaceType']['seo_name'],'id'=> $newID,'language'=>$currentLng,'ext' => 'asp') ,array('alt' =>$breadcumb['PlaceType']['name'])); 
+			if($breadcumb['PlaceType']['name'] == 'Motor Bikes'){	
+				$this->Html->addCrumb($breadcumb['PlaceType']['name'],array('plugin'=>'information','controller' => 'motorcycles','action'=>'motorcycles') ,array('alt' =>$breadcumb['PlaceType']['name'])); 
+			}else{
+				$this->Html->addCrumb($breadcumb['PlaceType']['name'],array('plugin'=>'information','controller' => 'siteactions','action'=>'subcategories','country'=>$queryCountry,'category'=>$breadcumb['PlaceType']['seo_name'],'id'=> $newID,'language'=>$currentLng,'ext' => 'asp') ,array('alt' =>$breadcumb['PlaceType']['name'])); 
+			}
+			
 		  }else{
 			$this->Html->addCrumb($breadcumb['PlaceType']['name'] ,  '' , array('class' => 'active'));  
 		  }

@@ -1557,8 +1557,8 @@ h4.panel-title {
     transition: all 0.5s;
 }
 .panel-body {
-	font-size: 17px;
-	line-height: 29px;
+	font-size: 14px;
+	line-height: 27px;
 	color: #000;
 	font-weight: 400;
 }
@@ -1617,4 +1617,16 @@ blockquote {
 }
 .node-body{
 	text-align:left;
+}
+
+.align-middle{
+	text-align:center;
+	border:1px solid #eee;
+	padding:10px 2px;
+}
+.text_header_1{
+	font-size:16px;
+	font-weight:bold;
+	background:#eee;
+	
 }

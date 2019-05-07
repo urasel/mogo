@@ -1092,12 +1092,32 @@ class SiteactionsController extends InformationAppController {
 			$name = $pointDetails[$className]['name'];
 			$placeType = $pointDetails['PlaceType']['name'];
 			//$motorCycleCat = $pointDetails[$className]['family'];
+			$this->loadModel('Motorcycle');
+			$this->Motorcycle->bindModel(array(
+					'hasOne' => array(
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array('Motorcycle.point_id = Point.id')
+						),
+					),
+				)
+			);
+			$options = array(
+				'conditions' => array('Motorcycle.place_type_id' => $pointDetails['PlaceType']['id'],'Motorcycle.price >' => $pointDetails['Motorcycle']['price']),
+				'fields' =>array(
+					'Motorcycle.*',
+					'Point.*',
+				),
+				'limit' => 4,
+			);
 			
+			$topRelatedItems = $this->Motorcycle->find('all', $options);
+			//debug($topRelatedItems);exit;
 			$metadescription = "$name listed in $placeType category.";
-			
 			$this->set('metadescription', $metadescription);
 			$nearbies = $this->__nearbies($className,$pointDetails);	
 			//debug($nearbies); exit;							
+			$this->set('topRelatedItems', $topRelatedItems);
 			$this->set('place', $pointDetails);
 			$selectedTemplate = Configure::read('selectedTemplate');
 			$this->layout = $selectedTemplate.$layout;
