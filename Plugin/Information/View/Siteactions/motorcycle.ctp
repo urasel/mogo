@@ -144,13 +144,13 @@ $className = 'Motorcycle';
 						echo '<div class="row">';
 						foreach($place['MotorcycleSpecification'] as $k => $v){
 							if($v != ''){
-							echo '<div class="col-md-6 col-sm-6 col-xs-12">';
+							echo '<div class="col-md-6 col-sm-6 col-xs-12" style="border:0px solid #333;">';
 								echo '<div class="row">';
-									echo '<div class="col-md-6 col-sm-6 col-xs-6" style="background:#eee;">';
-									echo $k;
-									echo '</div>';
+									echo '<div class="col-md-6 col-sm-6 col-xs-6"><b>';
+									echo ucwords(str_replace('_',' ',$k));
+									echo '</b></div>';
 									echo '<div class="col-md-6 col-sm-6 col-xs-6">';
-									echo $v;
+									echo ': '.$v;
 									echo '</div>';
 								echo '</div>';
 							echo '</div>';
