@@ -214,6 +214,8 @@ $className = 'Motorcycle';
 	echo '</div>';
 	echo '<div class="col-md-4">';
 			echo '<div class="col-md-12 sectionblock recentsection">';
+			echo 'Top '. $place['PlaceType']['name'].' Bikes';
+			//https://www.zigwheels.com/newbikes/Royal-Enfield/Classic-350/specifications
 			//debug($recentposts);
 			foreach($recentposts as $post){
 			if($post[$className]['image'] != ''){
