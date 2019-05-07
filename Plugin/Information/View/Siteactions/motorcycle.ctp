@@ -134,21 +134,40 @@ $className = 'Motorcycle';
 				<div class="panel-heading">
 				  <h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-					<?php echo '<h3 class="posttitle">'.$title.' Specifications</h3>'; ?></a>
+					<?php echo '<h3 class="text_header_1">'.$title.' Specifications</h3>'; ?></a>
 				  </h4>
 				</div>
 				<div id="collapse1" class="panel-collapse collapse in">
-				  <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-				  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-				  minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-				  commodo consequat.</div>
+				  <div class="panel-body">
+				  <?php
+					echo '<div class="col-md-12">';
+						echo '<div class="row">';
+						foreach($place['MotorcycleSpecification'] as $k => $v){
+							if($v != ''){
+							echo '<div class="col-md-6 col-sm-6 col-xs-12">';
+								echo '<div class="row">';
+									echo '<div class="col-md-6 col-sm-6 col-xs-6" style="background:#eee;">';
+									echo $k;
+									echo '</div>';
+									echo '<div class="col-md-6 col-sm-6 col-xs-6">';
+									echo $v;
+									echo '</div>';
+								echo '</div>';
+							echo '</div>';
+							}
+						}
+						
+						echo '</div>';
+					echo '</div>';
+				  ?>
+				  </div>
 				</div>
 			  </div>
 			  <div class="panel panel-default">
 				<div class="panel-heading">
 				  <h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-					<?php echo '<h3 class="posttitle">'.$title.' Specifications</h3>'; ?></a>
+					<?php echo '<h3 class="text_header_1">'.$title.' Specifications</h3>'; ?></a>
 				  </h4>
 				</div>
 				<div id="collapse2" class="panel-collapse collapse">
@@ -162,7 +181,7 @@ $className = 'Motorcycle';
 				<div class="panel-heading">
 				  <h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-					<?php echo '<h3 class="posttitle">'.$title.' Specifications</h3>'; ?></a>
+					<?php echo '<h3 class="text_header_1">'.$title.' Specifications</h3>'; ?></a>
 				  </h4>
 				</div>
 				<div id="collapse3" class="panel-collapse collapse">
