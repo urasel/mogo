@@ -2490,6 +2490,7 @@ class SiteactionsController extends InformationAppController {
 			$passCountryName  = $this->params['country'];
 			$catname = $this->params['category'];
 			$passID = $this->params['id'];
+			//echo $passID;exit;
 			if(isset($this->params['page'])){
 				$this->request->params['named']['page'] = $this->params['page']?$this->params['page']:1;
 			}

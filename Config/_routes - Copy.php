@@ -271,10 +271,10 @@ CroogoRouter::localize();
                      array('plugin'=>'information','controller' => 'motorcycles', 'action'=>'motorcycles'),
 					 array('pass' => array('id')));	
 					 
-	Router::connect('/:service/:category/:page/:id', 
+	Router::connect('/:language/:service/:page/:category/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'categories'), 
                      array(
-					 'pass' => array('id','category','page','service'),
+					 'pass' => array('id','category','page','language','service'),
 					 ));
 					 
 	Router::connect('/:language/:service/:country/:category/:point/:id', 

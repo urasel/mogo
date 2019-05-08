@@ -14,11 +14,9 @@ CroogoRouter::localize();
 	Router::connect('/forgot-password', array('plugin'=>'users','controller' => 'users', 'action' => 'forgot'),array('pass' => 'language'));
 	Router::connect('/reset-password', array('plugin'=>'users','controller' => 'users', 'action' => 'reset'),array('pass' => 'language'));
 	Router::connect('/logout', array('plugin'=>'users','controller' => 'users', 'action' => 'logout'));
+	Router::connect('/:language/login', array('plugin'=>'information','controller' => 'users', 'action' => 'login'));
 	Router::connect('/fbcallback', array('controller' => 'users', 'action' => 'fbcallback'));
-	
 	Router::connect('/:language/sitemap.asp', array('plugin'=>'information','controller' => 'siteactions', 'action' => 'sitemap'),array('pass' => 'language'));
-	Router::connect('/sitemap.asp', array('plugin'=>'information','controller' => 'siteactions', 'action' => 'sitemap'),array('pass' => 'language'));
-	Router::connect('/:language/:country/sitemap.asp', array('plugin'=>'information','controller' => 'siteactions', 'action' => 'sitemap'),array('pass' => array('language','country')));
 	
 	Router::connect('/:language/searchitem', array('plugin'=>'information','controller' => 'siteactions', 'action' => 'searchitem'),array('pass' => array('language')));
 	Router::connect('/:language/searchitem/1/:string', 
@@ -52,30 +50,14 @@ CroogoRouter::localize();
 	Router::connect('/currentplace', array('controller' => 'places', 'action' => 'myside'));
 	Router::connect('/savedplaces', array('controller' => 'places', 'action' => 'savedplaces'));
 	Router::connect('/changelanguage/:language', array('plugin'=>'information','controller' => 'siteactions', 'action' => 'changeLanguage'),array('pass'=> array('language')));
-	Router::connect('/locate/:catname', 
-                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'locate'),
-					 array('pass' => array('catname')));
-	
+			 
 	Router::connect('/:language/point/:country/:category/:point/:id', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
                      array('pass' => array('category', 'point','id','language','couontry')));
-	Router::connect('/point/:country/:category/:point/:id', 
-                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
-                     array('pass' => array('category', 'point','id','language','couontry')));
-	Router::connect('/:language/point/:category/:point/:id', 
-                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
-                     array('pass' => array('category', 'point','id','language','couontry')));
-					 
-	/*
-	Router::connect('/:language/:category/:point/:id', 
-                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
-                     array('pass' => array('category', 'point','id','language','couontry')));
-	*/
 	Router::connect('/:language/section/:category/:itemgroup/:point/:id', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'bucket'), 
                      array('pass' => array('category', 'point','id','language','itemgroup')));
-	Router::connect('/:language/world', 
-                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'world'));				 
+					 
 	Router::connect('/:language/continents/:category/:point/:id', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'countries'), 
                      array('pass' => array('category', 'point','id','language')));
@@ -134,24 +116,7 @@ CroogoRouter::localize();
                      array(
 					 'pass' => array('id','category','page','language','character'),
 					 ));
-					 
-					 
 	/****************************************************************************/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	Router::connect('/:language/subcategories/:country/1/:category/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'subcategories'), 
                      array(
@@ -251,47 +216,17 @@ CroogoRouter::localize();
 
 	Router::connect('/likeplace', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'getPlaces'));
-	Router::connect('/locate', 
-                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'locate'));
-	Router::connect('/path', 
-                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'direction')
-					 ,array('lat' => 'lat','lng' => 'lng','plat' => 'plat','plng' => 'plng','record' => 'record','addr' => 'addr'));
 	Router::connect('/getlocation', 
                      array('plugin'=>'general','controller'=>'bd_thanas', 'action'=>'getLocation'));				 
 	Router::connect('/:language/info_contribution', 
                      array('plugin'=>'information','controller'=>'update_informations', 'action'=>'add'));	
 	Router::connect('/robotchecker', 
-                     array('plugin'=>'information','controller'=>'subcategories', 'action'=>'subcategories'));	
-					 
-					 
-					 
-	//Business Section Routing Start
-	
-	Router::connect('/motorcycles', 
-                     array('plugin'=>'information','controller' => 'motorcycles', 'action'=>'motorcycles'),
-					 array('pass' => array('id')));	
-					 
-	Router::connect('/:service/:category/:page/:id', 
-                     array('plugin'=>'information','controller' => 'siteactions', 'action'=>'categories'), 
-                     array(
-					 'pass' => array('id','category','page','service'),
-					 ));
-					 
-	Router::connect('/:language/:service/:country/:category/:point/:id', 
-                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
-                     array('pass' => array('category', 'point','id','language','couontry','service')));
-				 
-	Router::connect('/:service/:category/:point/:id', 
-                     array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
-                     array('pass' => array('category', 'point','id','language','couontry')));
-	//Business Section Routing End
-	
-	
+                     array('plugin'=>'information','controller'=>'home_posts', 'action'=>'googlecaptcha'));	
 	//CroogoRouter::connect('/login', array('plugin' => 'users', 'controller' => 'users', 'action' => 'login'));
 	CroogoRouter::connect('/login', array('plugin' => 'users', 'controller' => 'users', 'action' => 'login'),array('pass' => 'language'));
 	CroogoRouter::connect('/logout', array('plugin' => 'users', 'controller' => 'users', 'action' => 'logout'),array('pass' => 'language'));
 	CroogoRouter::connect('/admin_login', array('admin' => true,'plugin' => 'users', 'controller' => 'users', 'action' => 'login'));
-	CroogoRouter::connect('/admin_logout', array('admin' => true,'plugin' => 'users', 'controller' => 'users', 'action' => 'logout'),array('pass' => 'language'));
-CroogoRouter::connect('/register', array('plugin' => 'users', 'controller' => 'users', 'action' => 'add'));
+	CroogoRouter::connect('/admin_logout', array('admin' => true,'plugin' => 'users', 'controller' => 'users', 'action' => 'logout'));
+CroogoRouter::connect('/:language/register', array('plugin' => 'users', 'controller' => 'users', 'action' => 'add'),array('pass' => 'language'));
 CroogoRouter::connect('/:language/reset', array('plugin' => 'users', 'controller' => 'users', 'action' => 'reset'),array('pass' => 'language'));
 require CAKE . 'Config' . DS . 'routes.php';
