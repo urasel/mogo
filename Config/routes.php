@@ -271,6 +271,11 @@ CroogoRouter::localize();
                      array('plugin'=>'information','controller' => 'motorcycles', 'action'=>'motorcycles'),
 					 array('pass' => array('id')));	
 					 
+	Router::connect('/:service/:category/1/:id', 
+                     array('plugin'=>'information','controller' => 'siteactions', 'action'=>'categories'), 
+                     array(
+					 'pass' => array('id','category','service'),
+					 ));				 
 	Router::connect('/:service/:category/:page/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'categories'), 
                      array(
@@ -281,7 +286,7 @@ CroogoRouter::localize();
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
                      array('pass' => array('category', 'point','id','language','couontry','service')));
 				 
-	Router::connect('/:service/:category/:point/:id', 
+	Router::connect('/:service/:category/bike/:point/:id', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
                      array('pass' => array('category', 'point','id','language','couontry')));
 	//Business Section Routing End

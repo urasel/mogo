@@ -23,7 +23,7 @@ $className = 'Motorcycle';
 		  $this->Html->addCrumb($passCountryName, array('plugin'=>'information','controller' => 'siteactions', 'action' => 'sitemap','language' => $currentLng,'?' => array('country' => $queryCountry))) ;
 	  }
 	  $this->Html->addCrumb('Motor Bikes',array('plugin'=>'information','controller' => 'motorcycles','action'=>'motorcycles') ,array('alt' => 'Motor Bikes')); 
-      $this->Html->addCrumb($place['PlaceType']['name'],array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$place['PlaceType']['seo_name'],'id'=> $newID,'page'=>1,'language'=>$currentLng,'ext' => 'asp','service'=> 'motorcycles') ,array('alt' =>$place['PlaceType']['name']));
+      $this->Html->addCrumb($place['PlaceType']['name'],array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$place['PlaceType']['seo_name'],'id'=> $newID,'page'=>1,'ext' => 'asp','service'=> 'motorcycles') ,array('alt' =>$place['PlaceType']['name']));
 	  $this->Html->addCrumb($place['Point']['name'] ,  '' , array('class' => 'active'));
 	  
 	

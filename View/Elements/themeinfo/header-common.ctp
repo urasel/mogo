@@ -54,4 +54,5 @@
 </script>
 
 <script src='https://cdn.rawgit.com/OpenShare/openshare/master/dist/openshare.js'></script>
+<script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
 
