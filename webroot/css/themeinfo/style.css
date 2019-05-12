@@ -5440,3 +5440,6 @@ p.reference-txt {
     padding: 0px 15px 12px;
     vertical-align: top;
 }
+.sortingblockContainer{
+	text-align:match-parent;
+}
