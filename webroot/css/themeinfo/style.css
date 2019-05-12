@@ -5422,3 +5422,21 @@ p.reference-txt {
 .fa-youtube-square, .fa-youtube-play{
 	color:#cd201f;
 }
+.panel-collapse ul li {
+    border-top: 1px solid #fff;
+    width: 100%;
+    float: left;
+    display: table;
+}
+.panel-collapse ul li span:first-child {
+    border-right: 1px solid #f2f2f2;
+    padding-left: 15px;
+    font-weight: 450;
+	width: 35%;
+}
+.panel-collapse ul li span {
+    color: #333;
+    display: table-cell;
+    padding: 0px 15px 12px;
+    vertical-align: top;
+}

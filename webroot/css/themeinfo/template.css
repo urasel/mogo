@@ -1423,16 +1423,14 @@ td.placeaddress{
 
 
 /*******************************Animated Button**********************/
-h4.panel-title {
-	border-bottom: 1px solid rgb(230, 231, 230);
-}
 
 .panel-info > .panel-heading, .panel-heading h4.panel-title {
 	font-size: 18px;
-	font-weight: 600;
+	font-weight: 400;
 	color: #333;
 	line-height: 28px;
 	margin-top: 0px;
+	margin-left: 15px;
 	letter-spacing: 0px;
 	word-wrap: normal;
 	word-spacing: 0px;
@@ -1480,11 +1478,16 @@ h4.panel-title {
 	margin-left:8px;
 }
 .sortlink {
-	padding: 4px 6.49px;
+	padding: 0px 0px 0px 6px;
 	border: 1px solid #ccc;
 	float: left;
 	color: #000;
 	font-weight: bold;
+	border-radius: 50%;
+	width: 22px;
+	height: 22px;
+	line-height: 21px;
+	margin-right: 4px;
 }
 .pagination > li > a, .pagination > li > span {
 	position: relative;
@@ -1558,7 +1561,7 @@ h4.panel-title {
 }
 .panel-body {
 	font-size: 14px;
-	line-height: 27px;
+	line-height: 21px;
 	color: #000;
 	font-weight: 400;
 }

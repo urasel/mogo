@@ -53,11 +53,20 @@ echo '<div class="col-md-8 leftbody">';
 				$newID = $stringlength.$PlaceTypeID;
 				foreach(range('A','Z') as $string){
 					//echo $queryCountry.'rrrr';exit;
-					if(!empty($queryCountry)){
-						echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=>$queryCountry,'category'=>$parent_seo_name,'id'=> $newID,'language'=>$currentLng,'page'=>1,'character'=>$string,'ext' => 'asp'),array('alt' =>$parent_seo_name,'class' => 'sortlink'));
+					if(isset($this->params['service'])){
+						if(!empty($queryCountry)){
+							echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=>$queryCountry,'category'=>$parent_seo_name,'id'=> $newID,'page'=>1,'character'=>$string,'ext' => 'asp','service' => $this->params['service']),array('alt' =>$parent_seo_name,'class' => 'sortlink'));
+						}else{
+							echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=> null,'category'=>$parent_seo_name,'id'=> $newID,'page'=>1,'character'=>$string,'ext' => 'asp','service' => $this->params['service']),array('alt' =>$parent_seo_name,'class' => 'sortlink'));
+						}
 					}else{
-						echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=> null,'category'=>$parent_seo_name,'id'=> $newID,'language'=>$currentLng,'page'=>1,'character'=>$string,'ext' => 'asp'),array('alt' =>$parent_seo_name,'class' => 'sortlink'));
+						if(!empty($queryCountry)){
+							echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=>$queryCountry,'category'=>$parent_seo_name,'id'=> $newID,'language'=>$currentLng,'page'=>1,'character'=>$string,'ext' => 'asp'),array('alt' =>$parent_seo_name,'class' => 'sortlink'));
+						}else{
+							echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=> null,'category'=>$parent_seo_name,'id'=> $newID,'language'=>$currentLng,'page'=>1,'character'=>$string,'ext' => 'asp'),array('alt' =>$parent_seo_name,'class' => 'sortlink'));
+						}
 					}
+					
 					
 				}
 			echo '</div>';
@@ -218,9 +227,9 @@ echo '<div class="col-md-8 leftbody">';
 		
 		if(isset($this->params['service'])){
 			if(!empty($character)){
-			$this->Paginator->options['url'] = array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$catname,'character' => $character,'id'=> $passID, 'page' => 1,'service'=>'motorcycles');
+			$this->Paginator->options['url'] = array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$catname,'character' => $character,'id'=> $passID, 'page' => 1,'service'=>$this->params['service']);
 			}else{
-				$this->Paginator->options['url'] = array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$catname,'id'=> $passID, 'page' => 1,'service'=>'motorcycles');
+				$this->Paginator->options['url'] = array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','category'=>$catname,'id'=> $passID, 'page' => 1,'service'=>$this->params['service']);
 			}
 		}else{
 			if(!empty($character)){
