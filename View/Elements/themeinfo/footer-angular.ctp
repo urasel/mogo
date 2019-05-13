@@ -9,6 +9,14 @@
 	echo $this->Html->script('themeinfo/echo.min'); 
 	echo $this->Html->script('themeinfo/custom'); 
 	?>
+	<!-- Angular JS Resource  Start-->
+	<?php 
+		echo $this->Html->script('angularjs/angular.min'); 
+		echo $this->Html->script('angularjs/ng-infinite-scroll.min'); 
+		echo $this->Html->script('angularjs/script'); 
+		
+	?>
+	<!-- Angular JS Resource  End-->
 	<script>
 		echo.init({
 		offset: 250,
@@ -18,12 +26,5 @@
 		  console.log(element, 'has been', op + 'ed')
 		}
 		});
-	</script>
-	<script>
-	$(document).ready(function(){
-		$('.showmore').click(function(){
-			$('.morecountry').toggle;
-		}
-	});
 	</script>
 <!--js code-->

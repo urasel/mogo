@@ -33,7 +33,7 @@ class SiteactionsController extends InformationAppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Security->unlockedActions = array('searchitem','findplace','direction');
+		$this->Security->unlockedActions = array('searchitem','findplace','direction','category_angular');
 		if ($this->action == 'searchitem') {
 			$this->Security->csrfCheck = false;
 			$this->Security->validatePost = false;
@@ -47,6 +47,10 @@ class SiteactionsController extends InformationAppController {
 			$this->Security->validatePost = false;
 		}
 		if ($this->action == 'direction') {
+			$this->Security->csrfCheck = false;
+			$this->Security->validatePost = false;
+		}
+		if ($this->action == 'category_angular') {
 			$this->Security->csrfCheck = false;
 			$this->Security->validatePost = false;
 		}
@@ -2438,6 +2442,35 @@ class SiteactionsController extends InformationAppController {
 		//debug($array);exit;
 		return $array;
 	}
+	public function category_angular(){
+		//debug($this->params);exit;
+		$this->loadModel('Motorcycle');
+		$this->layout = 'ajax';
+		$this->autoRender = false;
+		$data = json_decode(file_get_contents("php://input"));
+
+		$row = $data->row;
+		$rowperpage = $data->rowperpage;
+
+		// Fetch data
+		$query = 'SELECT * FROM motorcycles limit '.$row.','.$rowperpage;
+
+		$result = $this->Motorcycle->query($query);
+		debug($result);
+		$data = array();
+		while($row = mysqli_fetch_assoc($result)){
+			$id = $row['id'];
+			$title = $row['name'];
+			$content = $row['engine'];
+			$shortcontent = substr($content, 0, 160)."...";
+			$link = $row['link'];
+
+			$data[] = array("id"=>$id,"title"=>$title,"shortcontent"=>$shortcontent,"link"=>$link,"content"=>$content);
+		   
+		}
+
+		echo json_encode($data);
+	}
 	
 	public function categories(){
 		//debug($this->params);exit;
@@ -2445,7 +2478,7 @@ class SiteactionsController extends InformationAppController {
 		$this->request->params['named']['page'] = $this->params['page']?$this->params['page']:1;
 		}
 		$selectedTemplate = Configure::read('selectedTemplate');
-		$this->layout = $selectedTemplate.'bootstrap';
+		$this->layout = $selectedTemplate.'bootstrap_angular';
 		unset($this->params['language']);
 		$currentLng = $this->Session->read('Config.language');
 		
