@@ -8,6 +8,12 @@ fetch.controller('fetchCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.posts = [];
     $scope.busy = false;
     $scope.loading = false;
+	
+	$scope.init = function(name, id)
+	  {
+		$scope.id = id;
+		$scope.name = name; 
+	  };
         
     // Fetch data
     $scope.getPosts = function(){
