@@ -84,14 +84,19 @@ echo '<div class="col-md-8 leftbody">';
 		$queryCountry = $queryCountry;
 		$countryId = $countryId;
 		?>
+		<p class="id hidden"><?php echo $id;?></p>
+		<p class="singleName hidden"><?php echo $singleName;?></p>
+		<p class="childs hidden"><?php echo implode(", ", $childs );?></p>
+		<p class="character hidden"><?php echo $character;?></p>
+		<p class="queryCountry hidden"><?php echo $queryCountry;?></p>
+		<p class="countryId hidden"><?php echo $countryId;?></p>
 		
-	<div  ng-app='myapp' ng-controller='fetchCtrl' ng-init="init('<?php echo $id;?>','<?php echo $singleName;?>','<?php print_r($childs);?>','<?php echo $character;?>','<?php echo $queryCountry;?>','<?php echo $countryId;?>')">
+	<div  ng-app='myapp' ng-controller='fetchCtrl'>
 		<div class="container" infinite-scroll="getPosts()">
-
-			<div class="post" ng-repeat='post in posts'>
-				<h1 ng-bind='post.title'></h1>
-				<p ng-bind='post.shortcontent'></p>
-				<a ng-href="{{ post.link }}" class="more" target="_blank">More</a>
+			<div class="post" ng-repeat="post in posts track by $index">
+				<h1 ng-bind='post.class_name'></h1>
+				<p ng-bind='post.class_name'></p>
+				<a ng-href="{{ post.class_seo_name }}" class="more" target="_blank">More</a>
 			</div>
 
 			<div ng-show='loading' class='loading'>Loading...</div>

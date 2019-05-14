@@ -5,28 +5,22 @@ fetch.controller('fetchCtrl', ['$scope', '$http', function ($scope, $http) {
     // Variables
     $scope.row = 0;
     $scope.rowperpage = 10;
-    $scope.rowid = '';
-    $scope.rowsingleName = '';
-    $scope.rowchilds = '';
-    $scope.rowcharacter = '';
-    $scope.rowqueryCountry = '';
-    $scope.rowcountryId = '';
+    $scope.rowid = $('.id').text();
+    $scope.rowsingleName = $('.singleName').text();
+    $scope.rowchilds = $('.childs').text();
+    $scope.rowcharacter = $('.character').text();
+    $scope.rowqueryCountry = $('.queryCountry').text();
+    $scope.rowcountryId = $('.countryId').text();
     $scope.posts = [];
     $scope.busy = false;
     $scope.loading = false;
 	
-		$scope.init = function(id,singleName,childs,character,queryCountry,countryId)
-		  {
-			$scope.rowid = id;
-			$scope.rowsingleName = singleName; 
-			$scope.rowchilds = childs; 
-			$scope.rowcharacter = character; 
-			$scope.rowqueryCountry = queryCountry; 
-			$scope.rowcountryId = countryId; 
-		  };
-      
+	
     // Fetch data
     $scope.getPosts = function(){
+		
+		
+		
         if ($scope.busy) return;
         $scope.busy = true;
                 

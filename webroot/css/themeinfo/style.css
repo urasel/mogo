@@ -5443,3 +5443,6 @@ p.reference-txt {
 .sortingblockContainer{
 	text-align:match-parent;
 }
+.hidden{
+	visibility:hiddden;
+}

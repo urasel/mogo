@@ -2494,7 +2494,7 @@ class SiteactionsController extends InformationAppController {
 		if(!empty($character)){
 			$searchString[] = array("$className.name LIKE " => $character.'%');
 		}
-		
+		//debug($childs);
 		if(!empty($singleName)){
 			if($singleName == 'topicData'){
 			$searchString[] = array("TopicData.place_type_id" => $childs);
@@ -2962,7 +2962,8 @@ class SiteactionsController extends InformationAppController {
 					"$className.name",
 					"$className.seo_name",
 					),
-				'limit' => 10,
+				'limit' => $rowperpage,
+				'offset' => $row,
 				'order' => "$className.name ASC",
 			);
 		
@@ -2983,7 +2984,7 @@ class SiteactionsController extends InformationAppController {
 			//$log = $this->$className->getDataSource()->getLog(false, false);
 			//debug($log);
 			
-			debug($entries);exit;
+			//debug($entries);exit;
 			
 			/*
 			while($row = mysqli_fetch_assoc($result)){
@@ -2997,7 +2998,30 @@ class SiteactionsController extends InformationAppController {
 			   
 			}
 			*/
-			echo json_encode($entries);
+			foreach($entries as $row){
+				$place_type_id = $row['PlaceType']['id'];
+				$place_type_name = $row['PlaceType']['name'];
+				$place_type_seo_name = $row['PlaceType']['seo_name'];
+				
+				
+				$class_id = $row[$className]['id'];
+				$class_point_id = $row[$className]['point_id'];
+				$class_name = $row[$className]['name'];
+				$class_seo_name = $row[$className]['seo_name'];
+				
+				$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"class_name" => $class_name,
+								"class_seo_name" => $class_seo_name
+								);
+				
+			}
+			//debug($data);
+			echo json_encode($data);
 	}
 	
 	public function categories(){
