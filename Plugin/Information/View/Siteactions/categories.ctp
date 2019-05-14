@@ -56,9 +56,9 @@ echo '<div class="col-md-8 leftbody">';
 					$altText = $parent_seo_name. ' Name Start with '.$string;
 					if(isset($this->params['service'])){
 						if(!empty($queryCountry)){
-							echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=>$queryCountry,'category'=>$parent_seo_name,'id'=> $newID,'page'=>1,'character'=>$string,'ext' => 'asp','service' => $this->params['service']),array('alt' =>$altText,'class' => 'sortlink'));
+							echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=>$queryCountry,'category'=>$parent_seo_name,'id'=> $newID,'page'=>1,'character'=>$string,'ext' => 'asp'),array('alt' =>$altText,'class' => 'sortlink'));
 						}else{
-							echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=> null,'category'=>$parent_seo_name,'id'=> $newID,'page'=>1,'character'=>$string,'ext' => 'asp','service' => $this->params['service']),array('alt' =>$altText,'class' => 'sortlink'));
+							echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=> null,'category'=>$parent_seo_name,'id'=> $newID,'page'=>1,'character'=>$string,'ext' => 'asp'),array('alt' =>$altText,'class' => 'sortlink'));
 						}
 					}else{
 						if(!empty($queryCountry)){
