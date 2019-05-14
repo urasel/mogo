@@ -362,6 +362,19 @@ echo '<div class="col-md-8 leftbody">';
 		?>
 		</ul> 
 	</div>
+	
+	<div class="container" infinite-scroll="getPosts()"   >
+
+		<div class="post" ng-repeat='post in posts'>
+			<h1 ng-bind='post.title'></h1>
+			<p ng-bind='post.shortcontent'></p>
+			<a ng-href="{{ post.link }}" class="more" target="_blank">More</a>
+		</div>
+
+		<div ng-show='loading' class='loading'>Loading...</div>
+	</div>
+	
+	
 	<p>
 	<?php
 	
