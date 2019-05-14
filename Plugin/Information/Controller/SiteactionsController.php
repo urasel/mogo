@@ -2970,7 +2970,7 @@ class SiteactionsController extends InformationAppController {
 			
 		}
 			
-			debug($searchOptions);
+			//debug($searchOptions);
 			
 			
 			
@@ -2979,7 +2979,12 @@ class SiteactionsController extends InformationAppController {
 			
 			
 			$entries = $this->paginate($className);
+			
+			//$log = $this->$className->getDataSource()->getLog(false, false);
+			//debug($log);
+			
 			debug($entries);exit;
+			
 			/*
 			while($row = mysqli_fetch_assoc($result)){
 				$id = $row['id'];
