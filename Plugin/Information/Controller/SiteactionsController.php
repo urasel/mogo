@@ -2442,34 +2442,557 @@ class SiteactionsController extends InformationAppController {
 		//debug($array);exit;
 		return $array;
 	}
+	
 	public function category_angular(){
 		//debug($this->params);exit;
 		$this->loadModel('Motorcycle');
 		$this->layout = 'ajax';
 		$this->autoRender = false;
 		$data = json_decode(file_get_contents("php://input"));
-
-		$row = $data->row;
-		$rowperpage = $data->rowperpage;
-
+		$searchString = '';
 		// Fetch data
-		$query = 'SELECT * FROM motorcycles limit '.$row.','.$rowperpage;
+		//$query = 'SELECT * FROM motorcycles limit '.$row.','.$rowperpage;
 
-		$result = $this->Motorcycle->query($query);
-		debug($result);
+		$result = '';
+		//debug($result);
 		$data = array();
-		while($row = mysqli_fetch_assoc($result)){
-			$id = $row['id'];
-			$title = $row['name'];
-			$content = $row['engine'];
-			$shortcontent = substr($content, 0, 160)."...";
-			$link = $row['link'];
+		$searchOptions = array();
+		
+		$row 			= $this->data['row'];
+		$rowperpage 	= $this->data['rowperpage'];
+		$id				= $this->data['rowid'];
+		$singleName 	= $this->data['rowsingleName'];
+		$childs 		= $this->data['rowchilds'];
+		$character 		= $this->data['rowcharacter'];
+		$queryCountry	= $this->data['rowqueryCountry']; 
+		$countryId 		= $this->data['rowcountryId'];
+		
 
-			$data[] = array("id"=>$id,"title"=>$title,"shortcontent"=>$shortcontent,"link"=>$link,"content"=>$content);
-		   
+		$this->loadModel('Information.PlaceType');
+		$currentLng = $this->Session->read('Config.language');
+		
+		if($currentLng == 'bn'){
+			if(!in_array($singleName ,array('motorcycle'))){
+				$fieldName = 'bn_name';
+				$fieldAddress = 'bn_address';
+			}
+			else{
+				$fieldName = 'name';
+			}
+			
+		}else{
+			$fieldName = 'name';
+			$fieldAddress = 'address';
 		}
+		
+		
+		
+		$className = ucfirst($singleName);
+		$loadModelName = 'Information.'.ucfirst($singleName);
+		
+		//$this->loadModel($loadModelName);
+		if(!empty($character)){
+			$searchString[] = array("$className.name LIKE " => $character.'%');
+		}
+		
+		if(!empty($singleName)){
+			if($singleName == 'topicData'){
+			$searchString[] = array("TopicData.place_type_id" => $childs);
+			$searchString[] = array("Point.active " => 1);
+			}else if($singleName == 'recipe'){
+			$searchString[] = array("Recipe.place_type_id" => $childs);
+			}else if($singleName == 'animal'){
+			$searchString[] = array("Animal.place_type_id" => $childs);
+			}else if($singleName == 'doctor'){
+			$searchString[] = array("Doctor.place_type_id" => $childs);
+			}else if($singleName == 'continent'){
+			$searchString[] = array("Continent.place_type_id" => $childs);
+			}else if($singleName == 'medicine'){
+			$searchString[] = array("Medicine.place_type_id" => $childs);
+			}else if($singleName == 'motorcycle'){
+			$searchString[] = array("Motorcycle.place_type_id" => $childs);
+			}else if($singleName == 'babyName'){
+			$searchString[] = array("BabyName.place_type_id" => $childs);
+			}else{
+				//echo $queryCountry.'rrr';exit;
+				if($queryCountry == 'all'){
+					$searchString[] = array("$className.place_type_id" => $childs);
+				}else if($queryCountry == ''){
+					$searchString[] = array("$className.place_type_id" => $childs);
+				}else{
+					
+					$this->loadModel('Country');
+					//$countryId = $this->Country->find('first',array('conditions'=>array('Country.seo_name' => $queryCountry),'fields'=>array('Country.id')));
+					//$countryId = $countryId['Country']['id'];
+					$countryId = $countryId;
+					$searchString[] = array("$className.place_type_id" => $childs,"$className.country_id" => $countryId);
+				}
+			
+			}
+		
+		}
+		
+		if($singleName == 'topicData'){
+			$className = 'TopicData';
+			$this->loadModel($className);
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+					
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					
+						'Country' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.country_id = Country.id')
+						),
+						'Zone' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = Zone.id')
+						)
+					
+					)
+				)
+			);
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					'PlaceType.type_image',
+					"$className.id",
+					"$className.point_id",
+					"$className.name",
+					"$className.bn_name",
+					"$className.short_description",
+					"$className.bn_short_description",
+					"$className.details",
+					"$className.bn_details",
+					"$className.image",
+					"Country.$fieldName as name",
+					"Country.seo_name",
+					"Country.id",
+					"Zone.$fieldName as name",
+					"Zone.seo_name",
+					"Zone.id",
+					),
+					'limit' => 10,
+					'order' => "Point.name ASC",
+			);
+		
+		}else if($singleName == 'recipe'){
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					)
+				)
+			);
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					"$className.id",
+					"$className.point_id",
+					"$className.title as name",
+					"$className.seo_name",
+					),
+					'limit' => 10,
+					'order' => "$className.title ASC",
+			);
+		
+		}else if($singleName == 'animal'){
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+					/*
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id","Point.place_type_id = $PlaceTypeID")
+						),
+					*/
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					/*
+						'BdDivision' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = BdDivision.id')
+						),
+						'BdDistrict' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_district_id = BdDistrict.id')
+						),
+						'BdThanas' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
+						)
+					*/
+					)
+				)
+			);
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					"$className.id",
+					"$className.point_id",
+					"$className.full_name as name",
+					"$className.seo_name",
+					"$className.bn_name",
+					),
+					'limit' => 10,
+					'order' => "$className.full_name ASC",
+			);
+		
+		}else if($singleName == 'doctor'){
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+				
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+				
+					)
+				)
+			);
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					"$className.id",
+					"$className.point_id",
+					"$className.name",
+					"$className.seo_name",
+					"$className.bn_name",
+					),
+					'limit' => 10,
+					'order' => "$className.name ASC",
+			);
+		
+		}else if($singleName == 'continent'){
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+					/*
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id","Point.place_type_id = $PlaceTypeID")
+						),
+					*/
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					/*
+						'BdDivision' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = BdDivision.id')
+						),
+						'BdDistrict' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_district_id = BdDistrict.id')
+						),
+						'BdThanas' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
+						)
+					*/
+					)
+				)
+			);
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					"$className.id",
+					"$className.point_id",
+					"$className.name",
+					"$className.seo_name",
+					"$className.bn_name",
+					"$className.seo_name",
+					),
+					'limit' => 10,
+					'order' => "$className.name ASC",
+			);
+		
+		}else if($singleName == 'bloodNews'){
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+					/*
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id","Point.place_type_id = $PlaceTypeID")
+						),
+					*/
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					/*
+						'BdDivision' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = BdDivision.id')
+						),
+						'BdDistrict' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_district_id = BdDistrict.id')
+						),
+						'BdThanas' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
+						)
+					*/
+					)
+				)
+			);
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					"$className.id",
+					"$className.name",
+					"$className.seo_name",
+					"$className.bn_name",
+					),
+					'limit' => 10,
+					'order' => "$className.name ASC",
+			);
+		
+		}else if($singleName == 'medicine'){
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+					/*
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id","Point.place_type_id = $PlaceTypeID")
+						),
+					*/
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					/*
+						'BdDivision' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = BdDivision.id')
+						),
+						'BdDistrict' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_district_id = BdDistrict.id')
+						),
+						'BdThanas' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
+						)
+					*/
+					)
+				)
+			);
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					"$className.id",
+					"$className.name"
+					),
+					'limit' => 10,
+					'order' => "$className.name ASC",
+			);
+		
+		}else if($singleName == 'onlinetest'){
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+					/*
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id","Point.place_type_id = $PlaceTypeID")
+						),
+					*/
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					/*
+						'BdDivision' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = BdDivision.id')
+						),
+						'BdDistrict' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_district_id = BdDistrict.id')
+						),
+						'BdThanas' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
+						)
+					*/
+					)
+				)
+			);
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					"$className.id",
+					"$className.name"
+					),
+					'limit' => 10,
+					'order' => "$className.name ASC",
+			);
+		
+		}else if(in_array($singleName,array('babyName'))){
+			
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+					/*
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id","Point.place_type_id = $PlaceTypeID")
+						),
+					*/
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					/*
+						'BdDivision' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = BdDivision.id')
+						),
+						'BdDistrict' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_district_id = BdDistrict.id')
+						),
+						'BdThanas' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
+						)
+					*/
+					)
+				)
+			);
+			
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.pluralname',
+					'PlaceType.seo_name',
+					"$className.id",
+					"$className.name",
+					"$className.seo_name",
+					"$className.sex_id",
+					"$className.bn_name",
+					"$className.meaning",
+					),
+					'limit' => 10,
+					'order' => "$className.name ASC",
+			);
+		
+		}else if(in_array($singleName,array('motorcycle'))){
+			
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+					/*
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id","Point.place_type_id = $PlaceTypeID")
+						),
+					*/
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					/*
+						'BdDivision' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = BdDivision.id')
+						),
+						'BdDistrict' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_district_id = BdDistrict.id')
+						),
+						'BdThanas' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
+						)
+					*/
+					)
+				)
+			);
+			
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					"$className.id",
+					"$className.point_id",
+					"$className.name",
+					"$className.seo_name",
+					),
+				'limit' => 10,
+				'order' => "$className.name ASC",
+			);
+		
+		}else{
+			
+		}
+			
+			debug($searchOptions);
+			
+			
+			
+			$this->$className->recursive = 1;
+			$this->paginate = $searchOptions;
+			
+			
+			$entries = $this->paginate($className);
+			debug($entries);exit;
+			/*
+			while($row = mysqli_fetch_assoc($result)){
+				$id = $row['id'];
+				$title = $row['name'];
+				$content = $row['engine'];
+				$shortcontent = substr($content, 0, 160)."...";
+				$link = $row['link'];
 
-		echo json_encode($data);
+				$data[] = array("id"=>$id,"title"=>$title,"shortcontent"=>$shortcontent,"link"=>$link,"content"=>$content);
+			   
+			}
+			*/
+			echo json_encode($entries);
 	}
 	
 	public function categories(){
@@ -2594,6 +3117,10 @@ class SiteactionsController extends InformationAppController {
 				$title_for_layout = $categoryName. __(' Informations');
 			}
 		//debug($entries);exit;
+		//$this->set(compact('title_for_layout','entries','passID','catname','categoryName','breadcumpArray','parent_seo_name','PlaceTypeID','character','queryCountry','countryId','passCountryName','countryName'));
+		
+		$this->set(compact('id','singleName','childs','character','queryCountry','countryId'));
+		
 		$this->set(compact('title_for_layout','entries','passID','catname','categoryName','breadcumpArray','parent_seo_name','PlaceTypeID','character','queryCountry','countryId','passCountryName','countryName'));
 	}
 	public function _allcatitems($id,$singleName,$childs,$character,$queryCountry,$countryId){
@@ -2789,30 +3316,12 @@ class SiteactionsController extends InformationAppController {
 		}else if($singleName == 'doctor'){
 			$this->$className->bindModel(array(
 					'hasOne' => array(
-					/*
-						'Point' => array(
-							'foreignKey' => false,
-							'conditions' => array("$className.point_id = Point.id","Point.place_type_id = $PlaceTypeID")
-						),
-					*/
+				
 						'PlaceType' => array(
 							'foreignKey' => false,
 							'conditions' => array("$className.place_type_id = PlaceType.id")
 						),
-					/*
-						'BdDivision' => array(
-							'foreignKey' => false,
-							'conditions' => array('Point.zone_id = BdDivision.id')
-						),
-						'BdDistrict' => array(
-							'foreignKey' => false,
-							'conditions' => array('Point.bd_district_id = BdDistrict.id')
-						),
-						'BdThanas' => array(
-							'foreignKey' => false,
-							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
-						)
-					*/
+				
 					)
 				)
 			);

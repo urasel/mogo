@@ -5,8 +5,8 @@
 <!-- css -->
 
 </head>
-<body  ng-app='myapp' ng-controller='fetchCtrl' ng-init="init('James Bond','007')">
-<?php debug($this->params);exit;?>
+<body>
+<?php //debug($this->params);exit;?>
 <?php if (substr_count($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip')) ob_start("ob_gzhandler"); else ob_start(); ?>
     <!--/HEADER SECTION -->
     <?php echo $this->element('themeinfo/top-header'); ?>
