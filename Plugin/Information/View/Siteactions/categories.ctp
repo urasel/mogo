@@ -83,6 +83,14 @@ echo '<div class="col-md-8 leftbody">';
 		$character = $character;
 		$queryCountry = $queryCountry;
 		$countryId = $countryId;
+		
+		
+		echo '<div class="row">';
+		echo '<div class="col-md-12">';
+		if(sizeof($entries) < 1){
+			echo '<br/><span>No Item Found</span>';
+		}
+		//debug($this->params);
 		?>
 		<p class="id hidden"><?php echo $id;?></p>
 		<p class="singleName hidden"><?php echo $singleName;?></p>
@@ -90,7 +98,46 @@ echo '<div class="col-md-8 leftbody">';
 		<p class="character hidden"><?php echo $character;?></p>
 		<p class="queryCountry hidden"><?php echo $queryCountry;?></p>
 		<p class="countryId hidden"><?php echo $countryId;?></p>
+		<!--
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"class_name" => $class_name,
+								"class_seo_name" => $class_seo_name,
+								"titleHtml" => $titleHtml,
+								"address" => $address,
+								"imageHtml" => $imageHtml,
+								"shartContentHtml" => $shartContentHtml,
+		-->
 		
+		<div  ng-app='myapp' ng-controller='fetchCtrl'>
+			<div class="container" infinite-scroll="getPosts()">
+				<div class="post" ng-repeat="post in posts track by $index">
+					<div class="row">
+						<div class="col-md-12">
+						<h1 ng-bind='post.class_name'></h1>
+						
+							<div class="blog_img">{{post.imageHtml}}</div>
+							<div class="blog_txt">{{post.titleHtml}}</div>
+							<div class="blog_address">{{post.address}}</div>
+							<div class="blog_description">{{post.shartContentHtml}}</div>
+						</div>
+					</div>
+				
+					
+				</div>
+				<div ng-show='loading' class='loading'>Loading...</div>
+			</div>
+		</div>
+		<?php
+		echo '</div>';
+		echo '</div>';
+	?>
+		
+	<!--
 	<div  ng-app='myapp' ng-controller='fetchCtrl'>
 		<div class="container" infinite-scroll="getPosts()">
 			<div class="post" ng-repeat="post in posts track by $index">
@@ -98,10 +145,10 @@ echo '<div class="col-md-8 leftbody">';
 				<p ng-bind='post.class_name'></p>
 				<a ng-href="{{ post.class_seo_name }}" class="more" target="_blank">More</a>
 			</div>
-
 			<div ng-show='loading' class='loading'>Loading...</div>
 		</div>
 	</div>
+	-->
 	<?php
 	echo '</div>';
 	echo '<div class="col-md-4">';

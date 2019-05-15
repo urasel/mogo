@@ -159,7 +159,7 @@ echo '<div class="col-md-8 leftbody">';
 			
 			echo '<div class="blog_txt">';
 			
-			echo $this->Html->link('<h1>hello'.$placename.'</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'id'=> $newID,'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
+			echo $this->Html->link('<h1>'.$placename.'</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'id'=> $newID,'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
 			
 			
 			echo '</div>';

@@ -2968,7 +2968,60 @@ class SiteactionsController extends InformationAppController {
 			);
 		
 		}else{
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+					/*
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id","Point.place_type_id = $PlaceTypeID")
+						),
+					*/
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+						'Country' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.country_id = Country.id")
+						),
+					/*
+						'BdDivision' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = BdDivision.id')
+						),
+						'BdDistrict' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_district_id = BdDistrict.id')
+						),
+						'BdThanas' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
+						)
+					*/
+					)
+				)
+			);
 			
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					'Country.seo_name',
+					"$className.id",
+					"$className.point_id",
+					"$className.name",
+					"$className.seo_name",
+					"$className.bn_name",
+					"$className.address",
+					"$className.bn_address",
+					),
+				'limit' => 10,
+				'order' => "$className.name ASC",
+			);
+		
 		}
 			
 			//debug($searchOptions);
@@ -2981,26 +3034,34 @@ class SiteactionsController extends InformationAppController {
 			
 			$entries = $this->paginate($className);
 			
-			//$log = $this->$className->getDataSource()->getLog(false, false);
-			//debug($log);
 			
 			//debug($entries);exit;
 			
-			/*
-			while($row = mysqli_fetch_assoc($result)){
-				$id = $row['id'];
-				$title = $row['name'];
-				$content = $row['engine'];
-				$shortcontent = substr($content, 0, 160)."...";
-				$link = $row['link'];
-
-				$data[] = array("id"=>$id,"title"=>$title,"shortcontent"=>$shortcontent,"link"=>$link,"content"=>$content);
-			   
-			}
-			*/
+			/***********Data Process Start*******************/
+			
+				if(isset($entries[0]['Country']['seo_name']) && !empty($entries[0]['Country']['seo_name'])){
+					$countryname = $entries[0]['Country']['seo_name'];
+				}else{
+					$countryname = '';
+				}
+				
+				$modelName = $className;
+				
+				if($currentLng == 'bn'){
+						$languageID = 2;
+				}else{
+					$languageID = 1;
+				}
+				
+				
+				
+			/***********Data Process End*******************/
+			
 			foreach($entries as $row){
+				
 				$place_type_id = $row['PlaceType']['id'];
 				$place_type_name = $row['PlaceType']['name'];
+				$place_type_singlename = $row['PlaceType']['singlename'];
 				$place_type_seo_name = $row['PlaceType']['seo_name'];
 				
 				
@@ -3009,16 +3070,91 @@ class SiteactionsController extends InformationAppController {
 				$class_name = $row[$className]['name'];
 				$class_seo_name = $row[$className]['seo_name'];
 				
+				
+				/***********Loop Data Process Start*******************/
+				$placename = '';
+				if($className == 'Location'){
+					$placename = $row[$className]['name'].' details facts';
+				}else if($className == 'TopicData'){
+					if($currentLng == 'bn' && !empty($row[$className]['bn_name'])){
+						$placename = $row[$className]['bn_name'];
+						$shortContent = $row[$className]['bn_short_description'].' '.$row[$className]['bn_details'];
+					}else if($currentLng == 'en' && empty($row[$className]['bn_name'])){
+						$placename = $row[$className]['name'];
+						$shortContent = $row[$className]['short_description'].' '.$row[$className]['details'];
+					}else if($currentLng == 'en' && empty($row[$className]['name'])){
+						$placename = $row[$className]['bn_name'];
+						$shortContent = $row[$className]['bn_short_description'].' '.$row[$className]['bn_details'];
+					}else{
+						$placename = $row[$className]['name'];
+						$shortContent = $row[$className]['short_description'].' '.$row[$className]['details'];
+					}
+				}else{
+						if($currentLng == 'bn' && !empty($row[$className]['bn_name'])){
+						$placename = $row[$className]['bn_name'];	
+						}else{
+						$placename = $row[$className]['name'];
+						}
+				}
+				
+				$address = '';
+				if($row['PlaceType']['singlename'] == 'topicData'){
+					$address = '';
+				}else if($row['PlaceType']['singlename'] == 'motorcycle'){
+					$address = '';
+				}else if($row['PlaceType']['singlename'] == 'animal'){
+					$address = '';
+				}else if($row['PlaceType']['singlename'] == 'continent'){
+					$address = '';
+				}else if($row['PlaceType']['singlename'] == 'recipe'){
+					$address = '';
+				}else if($row['PlaceType']['singlename'] == 'babyName'){
+					$address = $row[$className]['meaning'];
+				}else{
+					if($currentLng == 'bn' && !empty($row[$className]['bn_address'])){
+						$address = $row[$className]['bn_address'];	
+					}else{
+						$address = $row[$className]['address'];
+					}
+				}
+				
+				$stringlength = '';
+				$newID = '';
+				if(in_array($className,array('BabyName'))){
+					$stringlength = strlen($row[$className]['seo_name']);
+					$newID = $stringlength.$row[$className]['id'];
+				}else if(in_array($className,array('TopicData'))){
+					$stringlength = strlen($row['Point']['seo_name']);
+					$newID = $stringlength.$row['Point']['id'];
+				}else{
+					$stringlength = strlen($row[$className]['seo_name']);
+					$newID = $stringlength.$row[$className]['point_id'];
+				}
+				
+				
+				$titleHtml = '';
+				$imglink = '';
+				$shartContentHtml = '';
+				
+				
+				
+				
+			/***********Loop Data Process End*******************/
+				
 				$data[] = array(
 								"place_type_id"=>$place_type_id,
 								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
 								"place_type_seo_name"=>$place_type_seo_name,
 								"class_id" => $class_id,
 								"class_point_id" => $class_point_id,
 								"class_name" => $class_name,
-								"class_seo_name" => $class_seo_name
+								"class_seo_name" => $class_seo_name,
+								"titleHtml" => $titleHtml,
+								"address" => $address,
+								"shartContentHtml" => $shartContentHtml,
 								);
-				
+			
 			}
 			//debug($data);
 			echo json_encode($data);
