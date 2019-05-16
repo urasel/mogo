@@ -5446,3 +5446,6 @@ p.reference-txt {
 .hidden{
 	visibility:hiddden;
 }
+.itemblock{
+	border:1px solid #333;
+}

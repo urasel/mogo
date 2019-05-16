@@ -298,9 +298,7 @@ echo '<div class="col-md-8 leftbody">';
 			}
 			else if(in_array($modelName,array('Motorcycle'))){
 			echo $this->Html->link('<h1>'.$placename.'</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'point'=> $place[$modelName]['seo_name'],'id'=> $newID,'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
-			}
-			
-			else{
+			}else{
 			echo $this->Html->link('<h1>'.$placename.'</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>$place['PlaceType']['seo_name'],'country'=>$countryname,'point'=> $place[$modelName]['seo_name'],'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>$placename,'escape'=>false,'class' => 'infositelink'));
 			}
 			

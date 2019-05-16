@@ -291,10 +291,11 @@ CroogoRouter::localize();
 	Router::connect('/:language/:service/:country/:category/:point/:id', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
                      array('pass' => array('category', 'point','id','language','couontry','service')));
-				 
+			 
 	Router::connect('/:service/:category/bike/:point/:id', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
                      array('pass' => array('category', 'point','id','couontry')));
+					 
 	//Business Section Routing End
 	
 	

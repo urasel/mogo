@@ -117,6 +117,66 @@ echo '<div class="col-md-8 leftbody">';
 			<div class="container" infinite-scroll="getPosts()">
 				<div class="post" ng-repeat="post in posts track by $index">
 					<div class="row">
+					
+						<div class="itemblock" ng-if="post.place_type_singlename == 'motorcycle'">
+							<div class="row">
+								<div class="col-md-2 col-xs-4">
+									<?php
+										if(!"{{post.imglink}}"){
+											$imglink = "motorcycles/small/{{post.imglink}}";
+											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+										}else{
+											$imglink = "motorcycles/default.jpg";
+											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+										}
+									?>
+								</div>
+								<div class="col-md-10 col-xs-8">
+									<?php
+										echo $this->Html->link('<h1>{{post.placename}}</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.class_seo_name}}",'id'=> $newID,'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+									?>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div ng-else-if="'{{post.place_type_singlename}}' == 'topicData'">
+							<div class="row">
+								<div class="col-md-2 col-xs-4">
+									<?php
+										if(!"{{post.imglink}}"){
+											$imglink = "motorcycles/small/{{post.imglink}}";
+											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+										}else{
+											$imglink = "motorcycles/default.jpg";
+											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+										}
+									?>
+								</div>
+								<div class="col-md-10 col-xs-8">
+									<?php
+										echo $this->Html->link('<h1>{{post.placename}}</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.class_seo_name}}",'id'=> $newID,'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+									?>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div ng-else-if="post.place_type_singlename == 'continent'">
+							
+						</div>
+					</div>
+						<div ng-else-if="post.place_type_singlename == 'babyName'">
+							
+						</div>
+						<div ng-else-if="post.place_type_singlename == 'animal'">
+							
+						</div>
+						<div ng-else>
+							
+						</div>
+						
+						
 						<div class="col-md-12">
 						<h1 ng-bind='post.class_name'></h1>
 						
@@ -125,7 +185,7 @@ echo '<div class="col-md-8 leftbody">';
 							<div class="blog_address">{{post.address}}</div>
 							<div class="blog_description">{{post.shartContentHtml}}</div>
 						</div>
-					</div>
+					
 				
 					
 				</div>

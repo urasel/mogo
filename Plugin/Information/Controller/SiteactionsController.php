@@ -3132,9 +3132,53 @@ class SiteactionsController extends InformationAppController {
 				}
 				
 				
-				$titleHtml = '';
 				$imglink = '';
 				$shartContentHtml = '';
+				
+				
+				
+				if($row['PlaceType']['singlename'] == 'topicData'){
+						if(!empty($row[$modelName]['image'])){
+							$imglink = "topics/medium/".$row[$modelName]['image'];
+						}else{
+							$imglink = '';
+						}
+						
+						$shartContentHtml = mb_substr($shortContent,0,120);
+					
+				}else if($row['PlaceType']['singlename'] == 'continent'){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+				}else if($modelName == 'Location'){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+				}else if(in_array($modelName,array('BabyName'))){
+					$genderId = $row[$modelName]['sex_id'];
+					if($genderId == 1){
+						$genderIcon = '<i class="fa fa-male" aria-hidden="true"></i>';
+					}else{
+						$genderIcon = '<i class="fa fa-female" aria-hidden="true"></i>';
+					}
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+				}else if(in_array($modelName,array('Animal'))){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+				}
+				else if(in_array($modelName,array('Motorcycle'))){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+				}else{
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+				}
+			
 				
 				
 				
@@ -3148,10 +3192,12 @@ class SiteactionsController extends InformationAppController {
 								"place_type_seo_name"=>$place_type_seo_name,
 								"class_id" => $class_id,
 								"class_point_id" => $class_point_id,
-								"class_name" => $class_name,
+								"className" => $className,
 								"class_seo_name" => $class_seo_name,
-								"titleHtml" => $titleHtml,
+								"newID" => $newID,
+								"placename" => $placename,
 								"address" => $address,
+								"imglink" => $imglink,
 								"shartContentHtml" => $shartContentHtml,
 								);
 			
