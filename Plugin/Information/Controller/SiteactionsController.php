@@ -2454,7 +2454,6 @@ class SiteactionsController extends InformationAppController {
 		//$query = 'SELECT * FROM motorcycles limit '.$row.','.$rowperpage;
 
 		$result = '';
-		//debug($result);
 		$data = array();
 		$searchOptions = array();
 		
@@ -2490,7 +2489,7 @@ class SiteactionsController extends InformationAppController {
 		$className = ucfirst($singleName);
 		$loadModelName = 'Information.'.ucfirst($singleName);
 		
-		//$this->loadModel($loadModelName);
+		$this->loadModel($className);
 		if(!empty($character)){
 			$searchString[] = array("$className.name LIKE " => $character.'%');
 		}
@@ -2515,6 +2514,7 @@ class SiteactionsController extends InformationAppController {
 			$searchString[] = array("BabyName.place_type_id" => $childs);
 			}else{
 				//echo $queryCountry.'rrr';exit;
+
 				if($queryCountry == 'all'){
 					$searchString[] = array("$className.place_type_id" => $childs);
 				}else if($queryCountry == ''){
@@ -2968,6 +2968,7 @@ class SiteactionsController extends InformationAppController {
 			);
 		
 		}else{
+			
 			$this->$className->bindModel(array(
 					'hasOne' => array(
 					/*
@@ -2980,6 +2981,7 @@ class SiteactionsController extends InformationAppController {
 							'foreignKey' => false,
 							'conditions' => array("$className.place_type_id = PlaceType.id")
 						),
+					
 						'Country' => array(
 							'foreignKey' => false,
 							'conditions' => array("$className.country_id = Country.id")
@@ -3010,31 +3012,22 @@ class SiteactionsController extends InformationAppController {
 					'PlaceType.singlename',
 					'PlaceType.seo_name',
 					'Country.seo_name',
-					"$className.id",
-					"$className.point_id",
-					"$className.name",
-					"$className.seo_name",
-					"$className.bn_name",
-					"$className.address",
-					"$className.bn_address",
+					"$className.*",
 					),
-				'limit' => 10,
-				'order' => "$className.name ASC",
+				'limit' => $rowperpage,
+				'offset' => $row,
+				'order' => "$className.name ASC"
 			);
+			
 		
 		}
 			
 			//debug($searchOptions);
-			
-			
-			
 			$this->$className->recursive = 1;
 			$this->paginate = $searchOptions;
 			
 			
 			$entries = $this->paginate($className);
-			
-			
 			//debug($entries);exit;
 			
 			/***********Data Process Start*******************/
@@ -3202,7 +3195,7 @@ class SiteactionsController extends InformationAppController {
 								);
 			
 			}
-			//debug($data);
+			//debug($data);exit;
 			echo json_encode($data);
 	}
 	

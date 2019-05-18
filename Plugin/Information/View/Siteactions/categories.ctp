@@ -32,190 +32,202 @@
 	  $address = '';
 ?>
 <div class="container">
-	<div class="row placeview">
-		<div class="col-md-12">			
-			<div class="col-md-12 posttitleblock zeropadding">
-				<div class="col-sm-112 col-xs-12 col-md-12 zeropadding">
-				<?php 
-						echo '<h1>'.$title_for_layout.'</h1>'; 
-						
-				?>
-				</div>
-			</div>
-		</div>
-<?php
-
-echo '<div class="col-md-8 leftbody">';
-		echo '<div class="sortingblock">';
-			echo '<div class="row">';
-			echo '<div class="col-md-12 sortingblockContainer">';
-				$stringlength = strlen($parent_seo_name);
-				$newID = $stringlength.$PlaceTypeID;
-				foreach(range('A','Z') as $string){
-					//echo $queryCountry.'rrrr';exit;
-					$altText = $parent_seo_name. ' Name Start with '.$string;
-					if(isset($this->params['service'])){
-						if(!empty($queryCountry)){
-							echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=>$queryCountry,'category'=>$parent_seo_name,'id'=> $newID,'page'=>1,'character'=>$string,'ext' => 'asp'),array('alt' =>$altText,'class' => 'sortlink'));
-						}else{
-							echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=> null,'category'=>$parent_seo_name,'id'=> $newID,'page'=>1,'character'=>$string,'ext' => 'asp'),array('alt' =>$altText,'class' => 'sortlink'));
-						}
-					}else{
-						if(!empty($queryCountry)){
-							echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=>$queryCountry,'category'=>$parent_seo_name,'id'=> $newID,'language'=>$currentLng,'page'=>1,'character'=>$string,'ext' => 'asp'),array('alt' =>$altText,'class' => 'sortlink'));
-						}else{
-							echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=> null,'category'=>$parent_seo_name,'id'=> $newID,'language'=>$currentLng,'page'=>1,'character'=>$string,'ext' => 'asp'),array('alt' =>$altText,'class' => 'sortlink'));
-						}
-					}
-					
-					
-				}
-			echo '</div>';
-			echo '</div>';
-		echo '</div>';
-		
-		$userData = $this->Session->read('Auth.User');
-		$userID = $userData['id'];
-		//debug($this->params);
-		$id = $id;
-		$singleName = $singleName;
-		$childs = $childs;
-		$character = $character;
-		$queryCountry = $queryCountry;
-		$countryId = $countryId;
-		
-		
-		echo '<div class="row">';
-		echo '<div class="col-md-12">';
-		if(sizeof($entries) < 1){
-			echo '<br/><span>No Item Found</span>';
-		}
-		//debug($this->params);
-		?>
-		<p class="id hidden"><?php echo $id;?></p>
-		<p class="singleName hidden"><?php echo $singleName;?></p>
-		<p class="childs hidden"><?php echo implode(", ", $childs );?></p>
-		<p class="character hidden"><?php echo $character;?></p>
-		<p class="queryCountry hidden"><?php echo $queryCountry;?></p>
-		<p class="countryId hidden"><?php echo $countryId;?></p>
-		<!--
-								"place_type_id"=>$place_type_id,
-								"place_type_name"=>$place_type_name,
-								"place_type_singlename"=>$place_type_singlename,
-								"place_type_seo_name"=>$place_type_seo_name,
-								"class_id" => $class_id,
-								"class_point_id" => $class_point_id,
-								"class_name" => $class_name,
-								"class_seo_name" => $class_seo_name,
-								"titleHtml" => $titleHtml,
-								"address" => $address,
-								"imageHtml" => $imageHtml,
-								"shartContentHtml" => $shartContentHtml,
-		-->
-		
-		<div  ng-app='myapp' ng-controller='fetchCtrl'>
-			<div class="container" infinite-scroll="getPosts()">
-				<div class="post" ng-repeat="post in posts track by $index">
-					<div class="row">
-					
-						<div class="itemblock" ng-if="post.place_type_singlename == 'motorcycle'">
-							<div class="row">
-								<div class="col-md-2 col-xs-4">
-									<?php
-										if(!"{{post.imglink}}"){
-											$imglink = "motorcycles/small/{{post.imglink}}";
-											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
-										}else{
-											$imglink = "motorcycles/default.jpg";
-											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
-										}
-									?>
-								</div>
-								<div class="col-md-10 col-xs-8">
-									<?php
-										echo $this->Html->link('<h1>{{post.placename}}</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.class_seo_name}}",'id'=> $newID,'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
-									?>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div ng-else-if="'{{post.place_type_singlename}}' == 'topicData'">
-							<div class="row">
-								<div class="col-md-2 col-xs-4">
-									<?php
-										if(!"{{post.imglink}}"){
-											$imglink = "motorcycles/small/{{post.imglink}}";
-											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
-										}else{
-											$imglink = "motorcycles/default.jpg";
-											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
-										}
-									?>
-								</div>
-								<div class="col-md-10 col-xs-8">
-									<?php
-										echo $this->Html->link('<h1>{{post.placename}}</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.class_seo_name}}",'id'=> $newID,'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
-									?>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div ng-else-if="post.place_type_singlename == 'continent'">
-							
-						</div>
-					</div>
-						<div ng-else-if="post.place_type_singlename == 'babyName'">
-							
-						</div>
-						<div ng-else-if="post.place_type_singlename == 'animal'">
-							
-						</div>
-						<div ng-else>
-							
-						</div>
-						
-						
-						<div class="col-md-12">
-						<h1 ng-bind='post.class_name'></h1>
-						
-							<div class="blog_img">{{post.imageHtml}}</div>
-							<div class="blog_txt">{{post.titleHtml}}</div>
-							<div class="blog_address">{{post.address}}</div>
-							<div class="blog_description">{{post.shartContentHtml}}</div>
-						</div>
-					
-				
-					
-				</div>
-				<div ng-show='loading' class='loading'>Loading...</div>
-			</div>
-		</div>
-		<?php
-		echo '</div>';
-		echo '</div>';
-	?>
-		
-	<!--
-	<div  ng-app='myapp' ng-controller='fetchCtrl'>
-		<div class="container" infinite-scroll="getPosts()">
-			<div class="post" ng-repeat="post in posts track by $index">
-				<h1 ng-bind='post.class_name'></h1>
-				<p ng-bind='post.class_name'></p>
-				<a ng-href="{{ post.class_seo_name }}" class="more" target="_blank">More</a>
-			</div>
-			<div ng-show='loading' class='loading'>Loading...</div>
-		</div>
-	</div>
-	-->
-	<?php
-	echo '</div>';
-	echo '<div class="col-md-4">';
 	
-	echo '</div>';
-echo '</div>';
+		<div class="row">
+			<div class="col-md-12">			
+				<div class="col-md-12 posttitleblock zeropadding">
+					<div class="col-sm-112 col-xs-12 col-md-12 zeropadding">
+					<?php 
+							echo '<h1>'.$title_for_layout.'</h1>'; 
+							
+					?>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row placeview">
+			<div class="col-md-8 leftbody">
+				<div class="sortingblock">
+					<div class="row">
+					<div class="col-md-12 sortingblockContainer">
+					<?php
+						$stringlength = strlen($parent_seo_name);
+						$newID = $stringlength.$PlaceTypeID;
+						foreach(range('A','Z') as $string){
+							//echo $queryCountry.'rrrr';exit;
+							$altText = $parent_seo_name. ' Name Start with '.$string;
+							if(isset($this->params['service'])){
+								if(!empty($queryCountry)){
+									echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=>$queryCountry,'category'=>$parent_seo_name,'id'=> $newID,'page'=>1,'character'=>$string,'ext' => 'asp'),array('alt' =>$altText,'class' => 'sortlink'));
+								}else{
+									echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=> null,'category'=>$parent_seo_name,'id'=> $newID,'page'=>1,'character'=>$string,'ext' => 'asp'),array('alt' =>$altText,'class' => 'sortlink'));
+								}
+							}else{
+								if(!empty($queryCountry)){
+									echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=>$queryCountry,'category'=>$parent_seo_name,'id'=> $newID,'language'=>$currentLng,'page'=>1,'character'=>$string,'ext' => 'asp'),array('alt' =>$altText,'class' => 'sortlink'));
+								}else{
+									echo $this->Html->link($string, array('plugin'=>'information','controller' => 'siteactions','action'=>'categories','country'=> null,'category'=>$parent_seo_name,'id'=> $newID,'language'=>$currentLng,'page'=>1,'character'=>$string,'ext' => 'asp'),array('alt' =>$altText,'class' => 'sortlink'));
+								}
+							}
+							
+							
+						}
+					echo '</div>';
+					echo '</div>';
+				echo '</div>';
 				
-?>
-<div class="row"><div class="col-md-12">&nbsp;</div></div>
+				$userData = $this->Session->read('Auth.User');
+				$userID = $userData['id'];
+				//debug($this->params);
+				$id = $id;
+				$singleName = $singleName;
+				$childs = $childs;
+				$character = $character;
+				$queryCountry = $queryCountry;
+				$countryId = $countryId;
+				
+				
+				echo '<div class="row">';
+				echo '<div class="col-md-12">';
+				if(sizeof($entries) < 1){
+					echo '<br/><span>No Item Found</span>';
+				}
+				//debug($this->params);
+				?>
+				<p class="id hidden"><?php echo $id;?></p>
+				<p class="singleName hidden"><?php echo $singleName;?></p>
+				<p class="childs hidden"><?php echo implode(", ", $childs );?></p>
+				<p class="character hidden"><?php echo $character;?></p>
+				<p class="queryCountry hidden"><?php echo $queryCountry;?></p>
+				<p class="countryId hidden"><?php echo $countryId;?></p>
+			
+				<div  ng-app='myapp' ng-controller='fetchCtrl'>
+					<div class="container" infinite-scroll="getPosts()">
+					
+						<div class="post" ng-repeat="post in posts track by $index">
+							
+								<!--{{post.place_type_singlename}}-->
+								<div class="itemblock" ng-if="post.place_type_singlename == 'motorcycle'">
+									<div class="row">
+										<div class="col-md-12 zeropadding">
+											<div class="itemblock_image">
+												<?php
+													if(!"{{post.imglink}}"){
+														$imglink = "motorcycles/small/{{post.imglink}}";
+														echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+													}else{
+														$imglink = "icon.png";
+														echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+													}
+												?>
+											</div>
+											<div class="itemblock_details">
+												<?php
+													echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.class_seo_name}}",'id'=> $newID,'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+													
+												?>
+												<div class="metadata_block">
+													<div class="metadata">
+														<span>Max Speed:</span> {{post.seo_name}} Price:
+													</div>
+													<div class="add_metadata">
+														<span>Max Speed:</span> {{post.seo_name}} Price:
+													</div>
+													
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							
+							
+								<div class="itemblock" ng-if="'{{post.place_type_singlename}}' == 'topicData'">
+								<div class="row">
+									<div class="row">
+										<div class="col-md-2 col-xs-4">
+											<?php
+												if(!"{{post.imglink}}"){
+													$imglink = "motorcycles/small/{{post.imglink}}";
+													echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+												}else{
+													$imglink = "motorcycles/default.jpg";
+													echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+												}
+											?>
+										</div>
+										<div class="col-md-10 col-xs-8">
+											<?php
+												echo $this->Html->link('<h1>{{post.placename}}</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.class_seo_name}}",'id'=> $newID,'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+											?>
+										</div>
+									</div>
+								</div>
+								</div>
+							
+							<div class="row">
+								<div ng-if="post.place_type_singlename == 'continent'">
+									
+								</div>
+							</div>
+							<div ng-if="post.place_type_singlename == 'babyName'">
+								
+							</div>
+							<div ng-if="post.place_type_singlename == 'animal'">
+								{{post.place_type_singlename}}
+							</div>
+							<div ng-else>
+								<div class="row">
+									<div class="col-md-12 zeropadding">
+										<div class="itemblock_image">
+											<?php
+												if(!"{{post.imglink}}"){
+													$imglink = "{{post.place_type_singlename}}/small/{{post.imglink}}";
+													echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+												}else{
+													$imglink = "icon.png";
+													echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+												}
+											?>
+										</div>
+										<div class="itemblock_details">
+										
+											<?php
+												echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'country'=>"{{post.place_type_seo_name}}",'point'=> "{{post.class_seo_name}}",'language'=>$currentLng,'id'=> $newID,'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+			
+											?>
+											<div class="metadata_block">
+												<div class="metadata">
+													<span><b>EIN Number:</b> </span> {{post.seo_name}}
+												</div>
+												<div class="add_metadata">
+													<span><b>Address:</b> </span> {{post.address}}
+												</div>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+								
+							
+						</div>
+						<div ng-show='loading' class='loading'>Loading...</div>
+					</div>
+				</div>
+				<?php
+				echo '</div>';
+				echo '</div>';
+			?>
+			
+
+			</div>
+			<div class="col-md-4">
+			
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">&nbsp;</div>
+		</div>
 </div>

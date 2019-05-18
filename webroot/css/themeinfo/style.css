@@ -5446,6 +5446,55 @@ p.reference-txt {
 .hidden{
 	visibility:hiddden;
 }
-.itemblock{
-	border:1px solid #333;
+.sortingblock{
+	margin-bottom:20px;
 }
+.itemblock{
+	float:left;
+	margin-top:15px;
+}
+.itemblock_image{
+	width:110px;
+	height:70px;
+	float:left;
+	margin-right:10px;
+	overflow:hidden;
+	background-color: rgba(234, 228, 228, 0.5);
+}
+.itemblock_image img{
+	max-width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top:10%;
+	max-height: 80%;
+	
+}
+.itemblock_details{
+	width:auto;
+	height:80px;
+	float:left;
+}
+.itemblock_details h4{
+	font-size: 1.4rem;
+	font-weight: normal;
+	line-height: 1.6rem;
+	text-overflow: ellipsis;
+	white-space: normal;
+	font-family: Roboto, Arial, sans-serif;
+	color:#333;
+	
+}
+.metadata_block{
+	
+}
+.metadata{
+	padding:0px;
+	line-height:18px;
+	color:#666;
+}
+.add_metadata{
+	padding:0px;
+	line-height:18px;
+	color:#555;
+}
+	
