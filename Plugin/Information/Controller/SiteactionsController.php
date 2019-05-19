@@ -2967,6 +2967,59 @@ class SiteactionsController extends InformationAppController {
 				'order' => "$className.name ASC",
 			);
 		
+		}else if(in_array($singleName,array('institute'))){
+			
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+					/*
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id","Point.place_type_id = $PlaceTypeID")
+						),
+					*/
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					
+						'Country' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.country_id = Country.id")
+						),
+					/*
+						'BdDivision' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = BdDivision.id')
+						),
+						'BdDistrict' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_district_id = BdDistrict.id')
+						),
+						'BdThanas' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
+						)
+					*/
+					)
+				)
+			);
+			
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					'Country.seo_name',
+					"$className.*",
+					),
+				'limit' => $rowperpage,
+				'offset' => $row,
+				'order' => "$className.name ASC"
+			);
+			
+		
 		}else{
 			
 			$this->$className->bindModel(array(
@@ -3136,49 +3189,9 @@ class SiteactionsController extends InformationAppController {
 						}else{
 							$imglink = '';
 						}
-						
 						$shartContentHtml = mb_substr($shortContent,0,120);
-					
-				}else if($row['PlaceType']['singlename'] == 'continent'){
-						$titleHtml = '';
-						$imglink = '';
-						$shartContentHtml = '';
-				}else if($modelName == 'Location'){
-						$titleHtml = '';
-						$imglink = '';
-						$shartContentHtml = '';
-				}else if(in_array($modelName,array('BabyName'))){
-					$genderId = $row[$modelName]['sex_id'];
-					if($genderId == 1){
-						$genderIcon = '<i class="fa fa-male" aria-hidden="true"></i>';
-					}else{
-						$genderIcon = '<i class="fa fa-female" aria-hidden="true"></i>';
-					}
-						$titleHtml = '';
-						$imglink = '';
-						$shartContentHtml = '';
-				}else if(in_array($modelName,array('Animal'))){
-						$titleHtml = '';
-						$imglink = '';
-						$shartContentHtml = '';
-				}
-				else if(in_array($modelName,array('Motorcycle'))){
-						$titleHtml = '';
-						$imglink = '';
-						$shartContentHtml = '';
-				}else{
-						$titleHtml = '';
-						$imglink = '';
-						$shartContentHtml = '';
-				}
-			
-				
-				
-				
-				
-			/***********Loop Data Process End*******************/
-				
-				$data[] = array(
+						
+						$data[] = array(
 								"place_type_id"=>$place_type_id,
 								"place_type_name"=>$place_type_name,
 								"place_type_singlename"=>$place_type_singlename,
@@ -3193,6 +3206,162 @@ class SiteactionsController extends InformationAppController {
 								"imglink" => $imglink,
 								"shartContentHtml" => $shartContentHtml,
 								);
+					
+				}else if($row['PlaceType']['singlename'] == 'continent'){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}else if($modelName == 'Location'){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}else if(in_array($modelName,array('BabyName'))){
+					$genderId = $row[$modelName]['sex_id'];
+					if($genderId == 1){
+						$genderIcon = '<i class="fa fa-male" aria-hidden="true"></i>';
+					}else{
+						$genderIcon = '<i class="fa fa-female" aria-hidden="true"></i>';
+					}
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}else if(in_array($modelName,array('Animal'))){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}else if(in_array($modelName,array('Motorcycle'))){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}else if(in_array($modelName,array('Institute'))){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}else{
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}
+			
+				
+				
+				
+				
+			/***********Loop Data Process End*******************/
+				
+				
 			
 			}
 			//debug($data);exit;
