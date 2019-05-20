@@ -107,44 +107,44 @@
 					
 						<div class="post" ng-repeat="post in posts track by $index">
 							
-								<!--{{post.place_type_singlename}}-->
-								<div class="itemblock" ng-if="post.place_type_singlename == 'motorcycle'">
-									<div class="row">
-										<div class="col-md-12 zeropadding">
-											<div class="itemblock_image">
-												<?php
-													if(!"{{post.imglink}}"){
-														$imglink = "motorcycles/small/{{post.imglink}}";
-														echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
-													}else{
-														$imglink = "icon.png";
-														echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
-													}
-												?>
-											</div>
-											<div class="itemblock_details">
-												<?php
-													echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.class_seo_name}}",'id'=> $newID,'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
-													
-												?>
-												<div class="metadata_block">
-													<div class="metadata">
-														<span>Max Speed:</span> {{post.seo_name}} Price:
-													</div>
-													<div class="add_metadata">
-														<span>Max Speed:</span> {{post.seo_name}} Price:
-													</div>
-													
+							<!--{{post.place_type_singlename}}-->
+							<div ng-if="post.place_type_singlename == 'motorcycle'">
+								<div class="row">
+									<div class="col-md-12 zeropadding">
+										<div class="itemblock_image">
+											<?php
+												if(!"{{post.imglink}}"){
+													$imglink = "{{post.place_type_singlename}}/small/{{post.imglink}}";
+													echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+												}else{
+													$imglink = "icon.png";
+													echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+												}
+											?>
+										</div>
+										<div class="itemblock_details">
+										
+											<?php
+												echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.class_seo_name}}",'id'=> $newID,'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+												
+											?>
+											<div class="metadata_block">
+												<div class="metadata">
+													<span><b>Mileage:</b> </span> {{post.mileage}}
 												</div>
+												<div class="add_metadata">
+													<span><b>Max Power:</b> </span> {{post.maximum_power}}
+												</div>
+												
 											</div>
 										</div>
 									</div>
 								</div>
+							</div>
+					
 							
-							
-								<div class="itemblock" ng-if="'{{post.place_type_singlename}}' == 'topicData'">
+							<div class="itemblock" ng-if="'{{post.place_type_singlename}}' == 'topicData'">
 								<div class="row">
-									<div class="row">
 										<div class="col-md-2 col-xs-4">
 											<?php
 												if(!"{{post.imglink}}"){
@@ -161,14 +161,11 @@
 												echo $this->Html->link('<h1>{{post.placename}}</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.class_seo_name}}",'id'=> $newID,'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
 											?>
 										</div>
-									</div>
 								</div>
-								</div>
+							</div>
 							
-							<div class="row">
-								<div ng-if="post.place_type_singlename == 'continent'">
-									
-								</div>
+							<div ng-if="post.place_type_singlename == 'continent'">
+								
 							</div>
 							<div ng-if="post.place_type_singlename == 'babyName'">
 								
@@ -176,7 +173,7 @@
 							<div ng-if="post.place_type_singlename == 'animal'">
 								{{post.place_type_singlename}}
 							</div>
-							<div ng-else>
+							<div ng-if="post.place_type_singlename == 'institute'">
 								<div class="row">
 									<div class="col-md-12 zeropadding">
 										<div class="itemblock_image">
@@ -198,7 +195,7 @@
 											?>
 											<div class="metadata_block">
 												<div class="metadata">
-													<span><b>EIN Number:</b> </span> {{post.seo_name}}
+													<span><b>EIN Number:</b> </span> {{post.eiin_no}}
 												</div>
 												<div class="add_metadata">
 													<span><b>Address:</b> </span> {{post.address}}
@@ -209,6 +206,11 @@
 									</div>
 								</div>
 							</div>
+							
+							<div ng-else>
+								
+							</div>
+						
 								
 							
 						</div>

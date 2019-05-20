@@ -287,7 +287,7 @@ CroogoRouter::localize();
                      array(
 					 'pass' => array('id','category','page','service','character'),
 					 ));
-					
+				
 	Router::connect('/:language/:service/:country/:category/:point/:id', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
                      array('pass' => array('category', 'point','id','language','couontry','service')));

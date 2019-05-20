@@ -2471,6 +2471,7 @@ class SiteactionsController extends InformationAppController {
 		$currentLng = $this->Session->read('Config.language');
 		
 		if($currentLng == 'bn'){
+			$this->loadHelpers(array('Language'));
 			if(!in_array($singleName ,array('motorcycle'))){
 				$fieldName = 'bn_name';
 				$fieldAddress = 'bn_address';
@@ -2961,6 +2962,8 @@ class SiteactionsController extends InformationAppController {
 					"$className.point_id",
 					"$className.name",
 					"$className.seo_name",
+					"$className.mileage",
+					"$className.maximum_power",
 					),
 				'limit' => $rowperpage,
 				'offset' => $row,
@@ -3011,8 +3014,20 @@ class SiteactionsController extends InformationAppController {
 					"PlaceType.$fieldName as name",
 					'PlaceType.singlename',
 					'PlaceType.seo_name',
+					'Country.id',
+					"Country.name",
+					"Country.bn_name",
 					'Country.seo_name',
-					"$className.*",
+					"$className.id",
+					"$className.point_id",
+					"$className.name",
+					"$className.bn_name",
+					"$className.details",
+					"$className.bn_details",
+					"$className.seo_name",
+					"$className.eiin_no",
+					"$className.address",
+					"$className.bn_address",
 					),
 				'limit' => $rowperpage,
 				'offset' => $row,
@@ -3125,16 +3140,61 @@ class SiteactionsController extends InformationAppController {
 					if($currentLng == 'bn' && !empty($row[$className]['bn_name'])){
 						$placename = $row[$className]['bn_name'];
 						$shortContent = $row[$className]['bn_short_description'].' '.$row[$className]['bn_details'];
+						$place_type_name = $row['PlaceType']['bn_name'];
+						$country_name = $row['Country']['bn_name'];
+						$zone_name = $row['Zone']['bn_name'];
+					
 					}else if($currentLng == 'en' && empty($row[$className]['bn_name'])){
 						$placename = $row[$className]['name'];
 						$shortContent = $row[$className]['short_description'].' '.$row[$className]['details'];
+						$place_type_name = $row['PlaceType']['name'];
+						$country_name = $row['Country']['name'];
+						$zone_name = $row['Zone']['name'];
 					}else if($currentLng == 'en' && empty($row[$className]['name'])){
 						$placename = $row[$className]['bn_name'];
 						$shortContent = $row[$className]['bn_short_description'].' '.$row[$className]['bn_details'];
+						$place_type_name = $row['PlaceType']['bn_name'];
+						$country_name = $row['Country']['bn_name'];
+						$zone_name = $row['Zone']['bn_name'];
 					}else{
 						$placename = $row[$className]['name'];
 						$shortContent = $row[$className]['short_description'].' '.$row[$className]['details'];
+						$place_type_name = $row['PlaceType']['name'];
+						$country_name = $row['Country']['name'];
+						$zone_name = $row['Zone']['name'];
 					}
+				}else if($className == 'Institute'){
+					if($currentLng == 'bn' && !empty($row[$className]['bn_name'])){
+						$placename = $row[$className]['bn_name'];
+						$eiin_no = $this->Language->banglanumber($row[$className]['eiin_no']);
+						$shortContent = $row[$className]['bn_details'];
+						$place_type_name = $row['PlaceType']['bn_name'];
+						$country_name = $row['Country']['bn_name'];
+					
+					}else if($currentLng == 'en' && empty($row[$className]['bn_name'])){
+						$placename = $row[$className]['name'];
+						$eiin_no = $row[$className]['eiin_no'];
+						$shortContent = $row[$className]['details'];
+						$place_type_name = $row['PlaceType']['name'];
+						$country_name = $row['Country']['name'];
+					}else if($currentLng == 'en' && empty($row[$className]['name'])){
+						$placename = $row[$className]['bn_name'];
+						$eiin_no = $this->Language->banglanumber($row[$className]['eiin_no']);
+						$shortContent = $row[$className]['bn_details'];
+						$place_type_name = $row['PlaceType']['bn_name'];
+						$country_name = $row['Country']['bn_name'];
+					}else{
+						$placename = $row[$className]['name'];
+						$eiin_no = $row[$className]['eiin_no'];
+						$shortContent = $row[$className]['details'];
+						$place_type_name = $row['PlaceType']['name'];
+						$country_name = $row['Country']['name'];
+					}
+				}else if($className == 'Motorcycle'){
+						$placename = $row[$className]['name'];
+						$mileage = $row[$className]['mileage'];
+						$maximum_power = $row[$className]['maximum_power'];
+						$place_type_name = $row['PlaceType']['name'];
 				}else{
 						if($currentLng == 'bn' && !empty($row[$className]['bn_name'])){
 						$placename = $row[$className]['bn_name'];	
@@ -3190,7 +3250,7 @@ class SiteactionsController extends InformationAppController {
 							$imglink = '';
 						}
 						$shartContentHtml = mb_substr($shortContent,0,120);
-						
+
 						$data[] = array(
 								"place_type_id"=>$place_type_id,
 								"place_type_name"=>$place_type_name,
@@ -3200,6 +3260,14 @@ class SiteactionsController extends InformationAppController {
 								"class_point_id" => $class_point_id,
 								"className" => $className,
 								"class_seo_name" => $class_seo_name,
+								"class_short_description" => $class_short_description,
+								"class_image" => $class_image,
+								"country_id" => $country_id,
+								"country_name" => $country_name,
+								"country_seo_name" => $country_seo_name,
+								"zone_id" => $zone_id,
+								"zone_name" => $zone_name,
+								"zone_seo_name" => $zone_seo_name,
 								"newID" => $newID,
 								"placename" => $placename,
 								"address" => $address,
@@ -3309,14 +3377,15 @@ class SiteactionsController extends InformationAppController {
 								"class_seo_name" => $class_seo_name,
 								"newID" => $newID,
 								"placename" => $placename,
-								"address" => $address,
+								"mileage" => $mileage,
+								"maximum_power" => $maximum_power,
 								"imglink" => $imglink,
-								"shartContentHtml" => $shartContentHtml,
 								);
 				}else if(in_array($modelName,array('Institute'))){
 						$titleHtml = '';
 						$imglink = '';
 						$shartContentHtml = '';
+					
 						
 						$data[] = array(
 								"place_type_id"=>$place_type_id,
@@ -3329,9 +3398,10 @@ class SiteactionsController extends InformationAppController {
 								"class_seo_name" => $class_seo_name,
 								"newID" => $newID,
 								"placename" => $placename,
+								"eiin_no" => $eiin_no,
 								"address" => $address,
+								"country_name" => $country_name,
 								"imglink" => $imglink,
-								"shartContentHtml" => $shartContentHtml,
 								);
 				}else{
 						$titleHtml = '';
