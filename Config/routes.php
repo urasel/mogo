@@ -93,16 +93,14 @@ CroogoRouter::localize();
 	Router::connect('/:language/pathdirection/:class/:point/:id', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'mappath'), 
                      array('pass' => array('class', 'point','id','language')));
-	Router::connect('/:language/category/:country/1/:category/:id', 
+	
+	Router::connect('/:language/category/:country/:category/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'categories'), 
                      array(
 					 'pass' => array('id','category','language','country'),	
 					 ));
-	Router::connect('/:language/category/:country/:page/:category/:id', 
-                     array('plugin'=>'information','controller' => 'siteactions', 'action'=>'categories'), 
-                     array(
-					 'pass' => array('id','category','page','language','country'),
-					 ));
+	
+					 /*
 	Router::connect('/:language/category/:country/1/:category/:character/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'categories'), 
                      array(
@@ -113,6 +111,7 @@ CroogoRouter::localize();
                      array(
 					 'pass' => array('id','category','page','language','character','country'),
 					 ));
+	*/
 	/****************************************************************************/
 	Router::connect('/:language/category/1/:category/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'categories'), 
@@ -139,20 +138,7 @@ CroogoRouter::localize();
 	/****************************************************************************/
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	Router::connect('/:language/subcategories/:country/1/:category/:id', 
+	Router::connect('/:language/subcategories/:country/:category/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'subcategories'), 
                      array(
 					 'pass' => array('id','category','language','country'),	
@@ -271,17 +257,18 @@ CroogoRouter::localize();
                      array('plugin'=>'information','controller' => 'motorcycles', 'action'=>'motorcycles'),
 					 array('pass' => array('id')));	
 					 
-	Router::connect('/:service/:category/1/:id', 
+	Router::connect('/:service/:category/info/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'categories'), 
                      array(
 					 'pass' => array('id','category','service'),
-					 ));				 
+					 ));	
+	/*
 	Router::connect('/:service/:category/:page/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'categories'), 
                      array(
 					 'pass' => array('id','category','page','service'),
 					 ));
-					
+	*/				
 	Router::connect('/sort/:category/:page/:character/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'categories'), 
                      array(
@@ -292,7 +279,7 @@ CroogoRouter::localize();
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
                      array('pass' => array('category', 'point','id','language','couontry','service')));
 			 
-	Router::connect('/:service/:category/bike/:point/:id', 
+	Router::connect('/:service/:category/:point/:id', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
                      array('pass' => array('category', 'point','id','couontry')));
 					 

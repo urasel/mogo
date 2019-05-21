@@ -2495,6 +2495,7 @@ class SiteactionsController extends InformationAppController {
 			$searchString[] = array("$className.name LIKE " => $character.'%');
 		}
 		//debug($childs);
+		//echo $singleName;exit;
 		if(!empty($singleName)){
 			if($singleName == 'topicData'){
 			$searchString[] = array("TopicData.place_type_id" => $childs);
@@ -3035,6 +3036,191 @@ class SiteactionsController extends InformationAppController {
 			);
 			
 		
+		}else if(in_array($singleName,array('place'))){
+			
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+					/*
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id","Point.place_type_id = $PlaceTypeID")
+						),
+					*/
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					
+						'Country' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.country_id = Country.id")
+						),
+					/*
+						'BdDivision' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = BdDivision.id')
+						),
+						'BdDistrict' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_district_id = BdDistrict.id')
+						),
+						'BdThanas' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
+						)
+					*/
+					)
+				)
+			);
+			
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					'Country.id',
+					"Country.name",
+					"Country.bn_name",
+					'Country.seo_name',
+					"$className.id",
+					"$className.point_id",
+					"$className.name",
+					"$className.bn_name",
+					"$className.details",
+					"$className.bn_details",
+					"$className.seo_name",
+					"$className.mobile",
+					"$className.email",
+					"$className.web",
+					"$className.address",
+					"$className.bn_address",
+					),
+				'limit' => $rowperpage,
+				'offset' => $row,
+				'order' => "$className.name ASC"
+			);
+			
+		
+		}else if(in_array($singleName,array('location'))){
+			
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+					/*
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id","Point.place_type_id = $PlaceTypeID")
+						),
+					*/
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					
+						'Country' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.country_id = Country.id")
+						),
+					/*
+						'BdDivision' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = BdDivision.id')
+						),
+						'BdDistrict' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_district_id = BdDistrict.id')
+						),
+						'BdThanas' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
+						)
+					*/
+					)
+				)
+			);
+			
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					'Country.id',
+					"Country.name",
+					"Country.bn_name",
+					'Country.seo_name',
+					"$className.id",
+					"$className.point_id",
+					"$className.name",
+					"$className.bn_name",
+					"$className.seo_name",
+					"$className.address",
+					"$className.bn_address",
+					),
+				'limit' => $rowperpage,
+				'offset' => $row,
+				'order' => "$className.name ASC"
+			);
+			
+		
+		}else if(in_array($singleName,array('airport'))){
+			$this->$className->bindModel(array(
+					'hasOne' => array(
+					/*
+						'Point' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.point_id = Point.id","Point.place_type_id = $PlaceTypeID")
+						),
+					*/
+						'PlaceType' => array(
+							'foreignKey' => false,
+							'conditions' => array("$className.place_type_id = PlaceType.id")
+						),
+					
+					/*
+						'BdDivision' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.zone_id = BdDivision.id')
+						),
+						'BdDistrict' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_district_id = BdDistrict.id')
+						),
+						'BdThanas' => array(
+							'foreignKey' => false,
+							'conditions' => array('Point.bd_thanas_id = BdThanas.id')
+						)
+					*/
+					)
+				)
+			);
+			
+			$searchOptions = array(
+				'conditions' => $searchString,
+				'fields' => array(
+					'PlaceType.id',
+					"PlaceType.$fieldName as name",
+					'PlaceType.singlename',
+					'PlaceType.seo_name',
+					"$className.id",
+					"$className.point_id",
+					"$className.name",
+					"$className.bn_name",
+					"$className.seo_name",
+					"$className.elevation_ft",
+					"$className.gps_code",
+					"$className.iata_code",
+					"$className.address",
+					"$className.bn_address",
+					),
+				'limit' => $rowperpage,
+				'offset' => $row,
+				'order' => "$className.name ASC"
+			);
+			//debug($searchOptions);exit; 
+		
 		}else{
 			
 			$this->$className->bindModel(array(
@@ -3195,6 +3381,26 @@ class SiteactionsController extends InformationAppController {
 						$mileage = $row[$className]['mileage'];
 						$maximum_power = $row[$className]['maximum_power'];
 						$place_type_name = $row['PlaceType']['name'];
+				}else if($className == 'Place'){
+						if($currentLng == 'bn' && !empty($row[$className]['bn_name'])){
+						$placename = $row[$className]['bn_name'];	
+						}else{
+						$placename = $row[$className]['name'];
+						}
+						$mobile = $row[$className]['mobile'];
+						$email = $row[$className]['email'];
+						$web = $row[$className]['web'];
+						$place_type_name = $row['PlaceType']['name'];
+				}else if($className == 'Airport'){
+						if($currentLng == 'bn' && !empty($row[$className]['bn_name'])){
+						$placename = $row[$className]['bn_name'];	
+						}else{
+						$placename = $row[$className]['name'];
+						}
+						$elevation_ft = $row[$className]['elevation_ft'];
+						$gps_code = $row[$className]['gps_code'];
+						$iata_code = $row[$className]['iata_code'];
+						$place_type_name = $row['PlaceType']['name'];
 				}else{
 						if($currentLng == 'bn' && !empty($row[$className]['bn_name'])){
 						$placename = $row[$className]['bn_name'];	
@@ -3236,7 +3442,7 @@ class SiteactionsController extends InformationAppController {
 					$stringlength = strlen($row[$className]['seo_name']);
 					$newID = $stringlength.$row[$className]['point_id'];
 				}
-				
+				//echo $newID.'<br/>';
 				
 				$imglink = '';
 				$shartContentHtml = '';
@@ -3401,6 +3607,52 @@ class SiteactionsController extends InformationAppController {
 								"eiin_no" => $eiin_no,
 								"address" => $address,
 								"country_name" => $country_name,
+								"imglink" => $imglink,
+								);
+				}else if(in_array($modelName,array('Place'))){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+					
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"mobile" => $mobile,
+								"email" => $email,
+								"web" => $web,
+								"address" => $address,
+								"imglink" => $imglink,
+								);
+				}else if(in_array($modelName,array('Airport'))){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+					
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"elevation_ft" => $elevation_ft,
+								"gps_code" => $gps_code,
+								"iata_code" => $iata_code,
+								"address" => $address,
 								"imglink" => $imglink,
 								);
 				}else{

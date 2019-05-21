@@ -20,7 +20,6 @@ fetch.controller('fetchCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.getPosts = function(){
 		
 		
-		
         if ($scope.busy) return;
         $scope.busy = true;
                 
