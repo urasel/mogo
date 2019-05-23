@@ -33,7 +33,7 @@ class SiteactionsController extends InformationAppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Security->unlockedActions = array('searchitem','findplace','direction','category_angular');
+		$this->Security->unlockedActions = array('searchitem','findplace','direction','category_angular','tags_angular');
 		if ($this->action == 'searchitem') {
 			$this->Security->csrfCheck = false;
 			$this->Security->validatePost = false;
@@ -51,6 +51,10 @@ class SiteactionsController extends InformationAppController {
 			$this->Security->validatePost = false;
 		}
 		if ($this->action == 'category_angular') {
+			$this->Security->csrfCheck = false;
+			$this->Security->validatePost = false;
+		}
+		if ($this->action == 'tags_angular') {
 			$this->Security->csrfCheck = false;
 			$this->Security->validatePost = false;
 		}
@@ -3471,6 +3475,7 @@ class SiteactionsController extends InformationAppController {
 								"country_id" => $country_id,
 								"country_name" => $country_name,
 								"country_seo_name" => $country_seo_name,
+								"countrySeoName" => $queryCountry,
 								"zone_id" => $zone_id,
 								"zone_name" => $zone_name,
 								"zone_seo_name" => $zone_seo_name,
@@ -3495,6 +3500,7 @@ class SiteactionsController extends InformationAppController {
 								"class_point_id" => $class_point_id,
 								"className" => $className,
 								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
 								"newID" => $newID,
 								"placename" => $placename,
 								"address" => $address,
@@ -3515,6 +3521,7 @@ class SiteactionsController extends InformationAppController {
 								"class_point_id" => $class_point_id,
 								"className" => $className,
 								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
 								"newID" => $newID,
 								"placename" => $placename,
 								"address" => $address,
@@ -3602,6 +3609,7 @@ class SiteactionsController extends InformationAppController {
 								"class_point_id" => $class_point_id,
 								"className" => $className,
 								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
 								"newID" => $newID,
 								"placename" => $placename,
 								"eiin_no" => $eiin_no,
@@ -3624,6 +3632,7 @@ class SiteactionsController extends InformationAppController {
 								"class_point_id" => $class_point_id,
 								"className" => $className,
 								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
 								"newID" => $newID,
 								"placename" => $placename,
 								"mobile" => $mobile,
@@ -3649,6 +3658,7 @@ class SiteactionsController extends InformationAppController {
 								"class_seo_name" => $class_seo_name,
 								"newID" => $newID,
 								"placename" => $placename,
+								"countrySeoName" => $queryCountry,
 								"elevation_ft" => $elevation_ft,
 								"gps_code" => $gps_code,
 								"iata_code" => $iata_code,
@@ -3669,6 +3679,7 @@ class SiteactionsController extends InformationAppController {
 								"class_point_id" => $class_point_id,
 								"className" => $className,
 								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
 								"newID" => $newID,
 								"placename" => $placename,
 								"address" => $address,
@@ -6125,8 +6136,10 @@ class SiteactionsController extends InformationAppController {
 	}
 	
 	public function tags(){
+		//debug($this->params);exit;
+		
 		$selectedTemplate = Configure::read('selectedTemplate');
-		$this->layout = $selectedTemplate.'bootstrap';
+		$this->layout = $selectedTemplate.'bootstrap_angular';
 		unset($this->params['language']);
 		$currentLng = $this->Session->read('Config.language');
 		if($currentLng == 'bn'){
@@ -6149,9 +6162,6 @@ class SiteactionsController extends InformationAppController {
 		
 		$this->set(compact('queryCountry','passCountryName','passCountryId'));
 		
-		if(isset($this->params['page'])){
-		$this->request->params['named']['page'] = $this->params['page']?$this->params['page']:1;
-		}
 		//debug($this->params);exit;
 		$passData = $this->params->pass;
 		$passID = substr($passData[0],0,-4);
@@ -6179,6 +6189,7 @@ class SiteactionsController extends InformationAppController {
 			$division = '';
 			$passdivision = '';
 		}
+		
 		if(isset($passData[5]) && !empty($passData[5])){
 			$district = $passData[5];
 			$passdistrict = $passData[5];
@@ -6206,6 +6217,34 @@ class SiteactionsController extends InformationAppController {
 		$placeTypeID = $TagDetails['PlaceType']['id'];
 		$contentTitle = $TagDetails['PlaceTypeSlug']['title'];
 		$loadModelName = 'Information.'.$className;
+		
+		$this->set(compact('currentLng','passtype','passseotitle','country','passcountry','division','passdivision','district','passdistrict','thana','passthana','slugid','params','className','placeTypeID','contentTitle','loadModelName'));
+	}
+	
+	public function tags_angular(){
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = 'ajax';
+		
+		$row 					= $this->data['row'];
+		$rowperpage 			= $this->data['rowperpage'];
+		$currentLng				= $this->data['currentLng'];
+		$passtype 				= $this->data['passtype'];
+		$passseotitle 			= $this->data['passseotitle'];
+		$country 				= $this->data['country'];
+		$passcountry 			= $this->data['passcountry'];
+		$division 				= $this->data['division'];
+		$passdivision 			= $this->data['passdivision'];
+		$district 				= $this->data['district'];
+		$passdistrict 			= $this->data['passdistrict'];
+		$thana 					= $this->data['thana'];
+		$passthana 				= $this->data['passthana'];
+		$slugid 				= $this->data['slugid'];
+		$params 				= $this->data['params'];
+		$className 				= $this->data['className'];
+		$placeTypeID 			= $this->data['placeTypeID'];
+		$contentTitle 			= $this->data['contentTitle'];
+		$loadModelName 			= $this->data['loadModelName'];
+		
 		
 		if($className == 'Stadium'){
 		
@@ -6418,7 +6457,8 @@ class SiteactionsController extends InformationAppController {
 					"$className.seo_name",
 					"$className.bn_name",
 					),
-					'limit' => 10,
+					'limit' => $rowperpage,
+					'offset' => $row,
 			);
 		
 		}else if($className == 'Animal'){
@@ -6435,7 +6475,8 @@ class SiteactionsController extends InformationAppController {
 					"$className.seo_name",
 					"$className.bn_name",
 					),
-					'limit' => 10,
+					'limit' => $rowperpage,
+					'offset' => $row,
 			);
 		
 		}else if($className == 'Institute'){
@@ -6455,7 +6496,8 @@ class SiteactionsController extends InformationAppController {
 					"$className.address",
 					"$className.bn_address",
 					),
-					'limit' => 10,
+					'limit' => $rowperpage,
+					'offset' => $row,
 			);
 			
 		}else if($className == 'Postcode'){
@@ -6475,7 +6517,8 @@ class SiteactionsController extends InformationAppController {
 					"$className.address",
 					"$className.bn_address",
 					),
-					'limit' => 10,
+					'limit' => $rowperpage,
+					'offset' => $row,
 			);
 			
 		}else if($className == 'Stadium'){
@@ -6495,7 +6538,8 @@ class SiteactionsController extends InformationAppController {
 					"$className.address",
 					"$className.bn_address",
 					),
-					'limit' => 10,
+					'limit' => $rowperpage,
+					'offset' => $row,
 			);
 			
 		}else if($className == 'Continent'){
@@ -6512,7 +6556,8 @@ class SiteactionsController extends InformationAppController {
 					"$className.seo_name",
 					"$className.bn_name",
 					),
-					'limit' => 10,
+					'limit' => $rowperpage,
+					'offset' => $row,
 			);
 		
 		}else if($className == 'Place'){
@@ -6530,7 +6575,8 @@ class SiteactionsController extends InformationAppController {
 					"$className.address",
 					"$className.bn_address",
 					),
-					'limit' => 10,
+					'limit' => $rowperpage,
+					'offset' => $row,
 			);
 		}else if($className == 'Airport'){
 			$searchOptions = array(
@@ -6547,7 +6593,8 @@ class SiteactionsController extends InformationAppController {
 					"$className.address",
 					"$className.bn_address",
 					),
-					'limit' => 10,
+					'limit' => $rowperpage,
+					'offset' => $row,
 			);
 		}else{
 			$searchOptions = array(
@@ -6565,7 +6612,8 @@ class SiteactionsController extends InformationAppController {
 					"$className.address",
 					"$className.bn_address",
 					),
-					'limit' => 10,
+					'limit' => $rowperpage,
+					'offset' => $row,
 			);
 			$title_for_layout = __($contentTitle,$country['Country']['name']);
 		}
@@ -6607,12 +6655,399 @@ class SiteactionsController extends InformationAppController {
 			
 			
 			$entries = $this->paginate($className);
-			if(isset($entries[0]['PlaceType']['name'])){
-				$categoryName = $entries[0]['PlaceType']['name'];
-				//$title_for_layout = $categoryName. __(' Informations');
-			}
-		//debug($entries);exit;
-		$this->set(compact('title_for_layout','entries','slugid','passtype','passcountry','passdivision','passdistrict','passthana','passseotitle'));
+			//debug($entries);exit;
+			
+			
+			$modelName = $className;
+				
+			/***********Data Process End*******************/
+			
+			foreach($entries as $row){
+				
+				$place_type_id = $row['PlaceType']['id'];
+				$place_type_name = $row['PlaceType']['name'];
+				$place_type_singlename = $row['PlaceType']['singlename'];
+				$place_type_seo_name = $row['PlaceType']['seo_name'];
+				
+				
+				$class_id = $row[$className]['id'];
+				$class_point_id = $row[$className]['point_id'];
+				$class_name = $row[$className]['name'];
+				$class_seo_name = $row[$className]['seo_name'];
+				
+				
+				/***********Loop Data Process Start*******************/
+				$placename = '';
+				if($className == 'Location'){
+					$placename = $row[$className]['name'].' details facts';
+				}else if($className == 'TopicData'){
+					if($currentLng == 'bn' && !empty($row[$className]['bn_name'])){
+						$placename = $row[$className]['bn_name'];
+						$shortContent = $row[$className]['bn_short_description'].' '.$row[$className]['bn_details'];
+						$place_type_name = $row['PlaceType']['bn_name'];
+						$country_name = $row['Country']['bn_name'];
+						$zone_name = $row['Zone']['bn_name'];
+					
+					}else if($currentLng == 'en' && empty($row[$className]['bn_name'])){
+						$placename = $row[$className]['name'];
+						$shortContent = $row[$className]['short_description'].' '.$row[$className]['details'];
+						$place_type_name = $row['PlaceType']['name'];
+						$country_name = $row['Country']['name'];
+						$zone_name = $row['Zone']['name'];
+					}else if($currentLng == 'en' && empty($row[$className]['name'])){
+						$placename = $row[$className]['bn_name'];
+						$shortContent = $row[$className]['bn_short_description'].' '.$row[$className]['bn_details'];
+						$place_type_name = $row['PlaceType']['bn_name'];
+						$country_name = $row['Country']['bn_name'];
+						$zone_name = $row['Zone']['bn_name'];
+					}else{
+						$placename = $row[$className]['name'];
+						$shortContent = $row[$className]['short_description'].' '.$row[$className]['details'];
+						$place_type_name = $row['PlaceType']['name'];
+						$country_name = $row['Country']['name'];
+						$zone_name = $row['Zone']['name'];
+					}
+				}else if($className == 'Institute'){
+					if($currentLng == 'bn' && !empty($row[$className]['bn_name'])){
+						$placename = $row[$className]['bn_name'];
+						$eiin_no = $this->Language->banglanumber($row[$className]['eiin_no']);
+						$shortContent = $row[$className]['bn_details'];
+						$place_type_name = $row['PlaceType']['bn_name'];
+						$country_name = $row['Country']['bn_name'];
+					
+					}else if($currentLng == 'en' && empty($row[$className]['bn_name'])){
+						$placename = $row[$className]['name'];
+						$eiin_no = $row[$className]['eiin_no'];
+						$shortContent = $row[$className]['details'];
+						$place_type_name = $row['PlaceType']['name'];
+						$country_name = $row['Country']['name'];
+					}else if($currentLng == 'en' && empty($row[$className]['name'])){
+						$placename = $row[$className]['bn_name'];
+						$eiin_no = $this->Language->banglanumber($row[$className]['eiin_no']);
+						$shortContent = $row[$className]['bn_details'];
+						$place_type_name = $row['PlaceType']['bn_name'];
+						$country_name = $row['Country']['bn_name'];
+					}else{
+						$placename = $row[$className]['name'];
+						$eiin_no = $row[$className]['eiin_no'];
+						$shortContent = $row[$className]['details'];
+						$place_type_name = $row['PlaceType']['name'];
+						$country_name = $row['Country']['name'];
+					}
+				}else if($className == 'Motorcycle'){
+						$placename = $row[$className]['name'];
+						$mileage = $row[$className]['mileage'];
+						$maximum_power = $row[$className]['maximum_power'];
+						$place_type_name = $row['PlaceType']['name'];
+				}else if($className == 'Place'){
+						if($currentLng == 'bn' && !empty($row[$className]['bn_name'])){
+						$placename = $row[$className]['bn_name'];	
+						}else{
+						$placename = $row[$className]['name'];
+						}
+						$mobile = $row[$className]['mobile'];
+						$email = $row[$className]['email'];
+						$web = $row[$className]['web'];
+						$place_type_name = $row['PlaceType']['name'];
+				}else if($className == 'Airport'){
+						if($currentLng == 'bn' && !empty($row[$className]['bn_name'])){
+						$placename = $row[$className]['bn_name'];	
+						}else{
+						$placename = $row[$className]['name'];
+						}
+						$elevation_ft = $row[$className]['elevation_ft'];
+						$gps_code = $row[$className]['gps_code'];
+						$iata_code = $row[$className]['iata_code'];
+						$place_type_name = $row['PlaceType']['name'];
+				}else{
+						if($currentLng == 'bn' && !empty($row[$className]['bn_name'])){
+						$placename = $row[$className]['bn_name'];	
+						}else{
+						$placename = $row[$className]['name'];
+						}
+				}
+				
+				$address = '';
+				if($row['PlaceType']['singlename'] == 'topicData'){
+					$address = '';
+				}else if($row['PlaceType']['singlename'] == 'motorcycle'){
+					$address = '';
+				}else if($row['PlaceType']['singlename'] == 'animal'){
+					$address = '';
+				}else if($row['PlaceType']['singlename'] == 'continent'){
+					$address = '';
+				}else if($row['PlaceType']['singlename'] == 'recipe'){
+					$address = '';
+				}else if($row['PlaceType']['singlename'] == 'babyName'){
+					$address = $row[$className]['meaning'];
+				}else{
+					if($currentLng == 'bn' && !empty($row[$className]['bn_address'])){
+						$address = $row[$className]['bn_address'];	
+					}else{
+						$address = $row[$className]['address'];
+					}
+				}
+				
+				$stringlength = '';
+				$newID = '';
+				if(in_array($className,array('BabyName'))){
+					$stringlength = strlen($row[$className]['seo_name']);
+					$newID = $stringlength.$row[$className]['id'];
+				}else if(in_array($className,array('TopicData'))){
+					$stringlength = strlen($row['Point']['seo_name']);
+					$newID = $stringlength.$row['Point']['id'];
+				}else{
+					$stringlength = strlen($row[$className]['seo_name']);
+					$newID = $stringlength.$row[$className]['point_id'];
+				}
+				//echo $newID.'<br/>';
+				
+				$imglink = '';
+				$shartContentHtml = '';
+				
+				
+				
+				if($row['PlaceType']['singlename'] == 'topicData'){
+						if(!empty($row[$modelName]['image'])){
+							$imglink = "topics/medium/".$row[$modelName]['image'];
+						}else{
+							$imglink = '';
+						}
+						$shartContentHtml = mb_substr($shortContent,0,120);
+
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"class_short_description" => $class_short_description,
+								"class_image" => $class_image,
+								"country_id" => $country_id,
+								"country_name" => $country_name,
+								"country_seo_name" => $country_seo_name,
+								"countrySeoName" => $queryCountry,
+								"zone_id" => $zone_id,
+								"zone_name" => $zone_name,
+								"zone_seo_name" => $zone_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+					
+				}else if($row['PlaceType']['singlename'] == 'continent'){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}else if($modelName == 'Location'){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}else if(in_array($modelName,array('BabyName'))){
+					$genderId = $row[$modelName]['sex_id'];
+					if($genderId == 1){
+						$genderIcon = '<i class="fa fa-male" aria-hidden="true"></i>';
+					}else{
+						$genderIcon = '<i class="fa fa-female" aria-hidden="true"></i>';
+					}
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}else if(in_array($modelName,array('Animal'))){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}else if(in_array($modelName,array('Motorcycle'))){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"mileage" => $mileage,
+								"maximum_power" => $maximum_power,
+								"imglink" => $imglink,
+								);
+				}else if(in_array($modelName,array('Institute'))){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+					
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
+								"newID" => $newID,
+								"placename" => $placename,
+								"eiin_no" => $eiin_no,
+								"address" => $address,
+								"country_name" => $country_name,
+								"imglink" => $imglink,
+								);
+				}else if(in_array($modelName,array('Place'))){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+					
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
+								"newID" => $newID,
+								"placename" => $placename,
+								"mobile" => $mobile,
+								"email" => $email,
+								"web" => $web,
+								"address" => $address,
+								"imglink" => $imglink,
+								);
+				}else if(in_array($modelName,array('Airport'))){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+					
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"countrySeoName" => $queryCountry,
+								"elevation_ft" => $elevation_ft,
+								"gps_code" => $gps_code,
+								"iata_code" => $iata_code,
+								"address" => $address,
+								"imglink" => $imglink,
+								);
+				}else{
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}
+			
+			}	
+				
+				debug($data);exit;
+				
+			/***********Loop Data Process End*******************/
+				
 	}
 	
 	public function generatebreadcump($id, &$arraynew = null){

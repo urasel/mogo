@@ -14,6 +14,7 @@
 		echo $this->Html->script('angularjs/angular.min'); 
 		echo $this->Html->script('angularjs/ng-infinite-scroll.min'); 
 		echo $this->Html->script('angularjs/script'); 
+		echo $this->Html->script('angularjs/tag_script'); 
 		
 	?>
 	<!-- Angular JS Resource  End-->

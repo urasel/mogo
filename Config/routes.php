@@ -180,46 +180,55 @@ CroogoRouter::localize();
 					 'pass' => array('id','category','page','language','character'),
 					 ));
 	/********************************************************************/
+	
 	Router::connect('/:language/tags/:country/:institutetype/:seotitle/:page/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'tags'), 
                      array(
 					 'pass' => array('id','institutetype','seotitle','country'),
 					 ));
+					 
 	Router::connect('/:language/tags/:country/:institutetype/:seotitle/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'tags'), 
                      array(
 					 'pass' => array('id','institutetype','seotitle','country'),
 					 ));
+	
 	Router::connect('/:language/tags/:country/:division/:institutetype/:seotitle/:page/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'tags'), 
                      array(
 					 'pass' => array('id','institutetype','seotitle','country','division'),
 					 ));
+	
 	Router::connect('/:language/tags/:country/:division/:institutetype/:seotitle/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'tags'), 
                      array(
 					 'pass' => array('id','institutetype','seotitle','country','division'),
 					 ));
+					 
 	Router::connect('/:language/tags/:country/:division/:district/:institutetype/:seotitle/:page/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'tags'), 
                      array(
 					 'pass' => array('id','institutetype','seotitle','country','division','district'),
 					 ));
+					
 	Router::connect('/:language/tags/:country/:division/:district/:institutetype/:seotitle/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'tags'), 
                      array(
 					 'pass' => array('id','institutetype','seotitle','country','division','district'),
 					 ));
+					 
 	Router::connect('/:language/tags/:country/:division/:district/:thana/:institutetype/:seotitle/:page/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'tags'), 
                      array(
 					 'pass' => array('id','institutetype','seotitle','country','division','district','thana'),
 					 ));	
+					 
 	Router::connect('/:language/tags/:country/:division/:district/:thana/:institutetype/:seotitle/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'tags'), 
                      array(
 					 'pass' => array('id','institutetype','seotitle','country','division','district','thana'),
 					 ));
+					 
 	Router::connect('/en/page/:category/:id', 
                      array('controller'=>'pages', 'action'=>'categories'), 
                      array('pass' => array('id')));
