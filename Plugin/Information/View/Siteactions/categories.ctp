@@ -90,9 +90,7 @@
 				
 				echo '<div class="row">';
 				echo '<div class="col-md-12">';
-				if(sizeof($entries) < 1){
-					echo '<br/><span>No Item Found</span>';
-				}
+				
 				//debug($this->params);
 				?>
 				<p class="id hidden"><?php echo $id;?></p>

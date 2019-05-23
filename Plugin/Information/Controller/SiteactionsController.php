@@ -3814,7 +3814,7 @@ class SiteactionsController extends InformationAppController {
 		$PlaceTypeID = $pointDetails['PlaceType']['id'];
 		
 		
-		$entries = $this->_allcatitems($id,$singleName,$childs,$character,$queryCountry,$countryId);
+		//$entries = $this->_allcatitems($id,$singleName,$childs,$character,$queryCountry,$countryId);
 		//debug($entries);exit;
 		$breadcumpArray = $this->generatebreadcump($PlaceTypeID,$breadCumb);
 		
@@ -3827,7 +3827,7 @@ class SiteactionsController extends InformationAppController {
 		
 		$this->set(compact('id','singleName','childs','character','queryCountry','countryId'));
 		
-		$this->set(compact('title_for_layout','entries','passID','catname','categoryName','breadcumpArray','parent_seo_name','PlaceTypeID','character','queryCountry','countryId','passCountryName','countryName'));
+		$this->set(compact('title_for_layout','passID','catname','categoryName','breadcumpArray','parent_seo_name','PlaceTypeID','character','queryCountry','countryId','passCountryName','countryName'));
 	}
 	public function _allcatitems($id,$singleName,$childs,$character,$queryCountry,$countryId){
 		$this->loadModel('Information.PlaceType');
