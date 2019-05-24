@@ -1,3 +1,4 @@
+<div  ng-app='tagapp' ng-controller='fetchCtrlTag'>
 <?php
 	  //debug($entries);exit;
 	  $this->loadHelpers(array('Language'));
@@ -17,7 +18,7 @@
 <div class="row placeview">
 			<div class="col-md-12 posttitleblock zeropadding">
 			<div class="col-md-12">
-			<h1>{{Title For Layout}}</h1>
+			<h1>{{posts.extra.title_for_layout}}</h1>
 			</div>
 			</div>
 		
@@ -33,11 +34,13 @@
 			<p class="thana hidden"><?php echo $thana;?></p>
 			<p class="passthana hidden"><?php echo $passthana;?></p>
 			<p class="slugid hidden"><?php echo $slugid;?></p>
+			<p class="singleName hidden"><?php echo $singleName;?></p>
 			<p class="className hidden"><?php echo $className;?></p>
 			<p class="placeTypeID hidden"><?php echo $placeTypeID;?></p>
 			<p class="contentTitle hidden"><?php echo $contentTitle;?></p>
 			<p class="loadModelName hidden"><?php echo $loadModelName;?></p>
 			<p class="params hidden"><?php echo $params ;?></p>
+			<p class="queryCountry hidden"><?php echo $queryCountry ;?></p>
 			
 			
 <?php
@@ -50,11 +53,11 @@ echo '<div class="col-md-8">';
 		echo "<tbody id='posts-list'>";
 		
 		?>
-		<div  ng-app='tagapp' ng-controller='fetchCtrlTag'>
+		<div>
 			<div class="container" infinite-scroll="getPosts()">
 			
 				<div class="post" ng-repeat="post in posts track by $index">
-					
+				
 					<!--{{post.place_type_singlename}}-->
 					<div ng-if="post.place_type_singlename == 'motorcycle'">
 						<div class="row">
@@ -225,6 +228,7 @@ echo '<div class="col-md-8">';
 					</div>
 					<div ng-if="post.place_type_singlename == 'institute'">
 						<div class="row">
+						{{posts.extra}}
 							<div class="col-md-12 zeropadding">
 								<div class="itemblock_image">
 									<?php
@@ -273,38 +277,7 @@ echo '<div class="col-md-8">';
 		echo '</table>';
 		echo '</div>';
 	?>
-	<div class="paging">
-		<ul class="pagination">
-		<?php
-		//debug($passcountry);
-		if (!empty($passcountry) && empty($passdivision) && empty($passdistrict) && empty($passthana)) {
-			$this->Paginator->options['url'] = array('plugin'=>'information','controller' => 'siteactions','action'=>'tags','language'=>$currentLng,'institutetype'=> $passtype,'country'=> $passcountry,'page' => 1,'seotitle' => $passseotitle,'id'=> $slugid,'ext' => 'asp' );
-		}else if (!empty($passdivision) && empty($passdistrict) && empty($passthana)) {
-			$this->Paginator->options['url'] = array('plugin'=>'information','controller' => 'siteactions','action'=>'tags','language'=>$currentLng,'institutetype'=> $passtype,'country'=> $passcountry,'division'=> $passdivision,'page' => 1,'seotitle' => $passseotitle,'id'=> $slugid,'ext' => 'asp' );
-		}else if (!empty($passdistrict) && empty($passthana)) {
-			$this->Paginator->options['url'] = array('plugin'=>'information','controller' => 'siteactions','action'=>'tags','language'=>$currentLng,'institutetype'=> $passtype,'country'=> $passcountry,'division'=> $passdivision,'district'=> $passdistrict,'page' => 1,'seotitle' => $passseotitle,'id'=> $slugid,'ext' => 'asp' );
-		}else{
-			$this->Paginator->options['url'] = array('plugin'=>'information','controller' => 'siteactions','action'=>'tags','language'=>$currentLng,'institutetype'=> $passtype,'country'=> $passcountry,'division'=> $passdivision,'district'=> $passdistrict,'thana'=>$passthana,'page' => 1,'seotitle' => $passseotitle,'id'=> $slugid,'ext' => 'asp' );
-		}
-		echo $this->Paginator->prev(__('&laquo;'), array('tag' => 'li', 'escape' => false), '<a href="#">&laquo;</a>', array('class' => 'prev disabled', 'tag' => 'li', 'escape' => false));
-		echo $this->Paginator->numbers(array('separator' => '','modulus'=>'4','tag' => 'li', 'currentLink' => true, 'currentClass' => 'active', 'currentTag' => 'a'));
-		echo $this->Paginator->next(__('&raquo;'), array('tag' => 'li', 'escape' => false), '<a href="#">&raquo;</a>', array('class' => 'prev disabled', 'tag' => 'li', 'escape' => false));
-		?>
-		</ul> 
-	</div>
-	<p>
-	<?php
-	
-	if($currentLng == 'bn'){
-		echo $this->Language->banglanumber($this->Paginator->counter(array('format' => __('Showing {:start}-{:end} records out of {:count} Total'))));
-	}else{
-		echo $this->Paginator->counter(array(
-		'format' => __('Showing {:start}-{:end} records out of {:count} Total')
-		));
-	}
-	
-	?>	
-	</p>
+
 	<?php
 	echo '</div>';
 	echo '<div class="col-md-4">';
@@ -312,5 +285,6 @@ echo '<div class="col-md-8">';
 	echo '</div>';
 				
 ?>
+</div>
 </div>
 </div>

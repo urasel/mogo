@@ -17,10 +17,12 @@ fetch.controller('fetchCtrlTag', ['$scope', '$http', function ($scope, $http) {
     $scope.thana = $('.thana').text();
     $scope.passthana = $('.passthana').text();
     $scope.slugid = $('.slugid').text();
+    $scope.singleName = $('.singleName').text();
     $scope.className = $('.className').text();
     $scope.placeTypeID = $('.placeTypeID').text();
     $scope.contentTitle = $('.contentTitle').text();
     $scope.loadModelName = $('.loadModelName').text();
+    $scope.queryCountry = $('.queryCountry').text();
     $scope.params = $('.params').text();
 
     $scope.posts = [];
@@ -40,7 +42,7 @@ fetch.controller('fetchCtrlTag', ['$scope', '$http', function ($scope, $http) {
             method: 'post',
             //url: 'ajaxfile.php',
 			url: 'http://localhost/mogo/information/siteactions/tags_angular',
-            data: {row:$scope.row,rowperpage:$scope.rowperpage,currentLng:$scope.currentLng,passtype:$scope.passtype,passseotitle:$scope.passseotitle,country:$scope.country,passcountry:$scope.passcountry,division:$scope.division,passdivision:$scope.passdivision,district:$scope.district,passdistrict:$scope.passdistrict,thana:$scope.thana,passthana:$scope.passthana,slugid:$scope.slugid,params:$scope.params,className:$scope.className,placeTypeID:$scope.placeTypeID,contentTitle:$scope.contentTitle,loadModelName:$scope.loadModelName}
+            data: {row:$scope.row,rowperpage:$scope.rowperpage,currentLng:$scope.currentLng,passtype:$scope.passtype,passseotitle:$scope.passseotitle,country:$scope.country,passcountry:$scope.passcountry,division:$scope.division,passdivision:$scope.passdivision,district:$scope.district,passdistrict:$scope.passdistrict,thana:$scope.thana,passthana:$scope.passthana,slugid:$scope.slugid,params:$scope.params,className:$scope.className,singleName:$scope.singleName,placeTypeID:$scope.placeTypeID,contentTitle:$scope.contentTitle,loadModelName:$scope.loadModelName,queryCountry:$scope.queryCountry}
         }).then(function successCallback(response) {
                     
             if(response.data !='' ){
