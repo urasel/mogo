@@ -6137,7 +6137,6 @@ class SiteactionsController extends InformationAppController {
 	
 	public function tags(){
 		//debug($this->params);exit;
-		
 		$selectedTemplate = Configure::read('selectedTemplate');
 		$this->layout = $selectedTemplate.'bootstrap_angular';
 		unset($this->params['language']);
@@ -6218,8 +6217,8 @@ class SiteactionsController extends InformationAppController {
 		$placeTypeID = $TagDetails['PlaceType']['id'];
 		$contentTitle = $TagDetails['PlaceTypeSlug']['title'];
 		$loadModelName = 'Information.'.$className;
-		
-		$this->set(compact('currentLng','passtype','passseotitle','country','passcountry','division','passdivision','district','passdistrict','thana','passthana','slugid','params','singleName','className','placeTypeID','contentTitle','loadModelName'));
+		$title_for_layout = ucwords(str_replace('-',' ',$passseotitle));
+		$this->set(compact('currentLng','passtype','title_for_layout','passseotitle','country','passcountry','division','passdivision','district','passdistrict','thana','passthana','slugid','params','singleName','className','placeTypeID','contentTitle','loadModelName'));
 	}
 	
 	public function tags_angular(){

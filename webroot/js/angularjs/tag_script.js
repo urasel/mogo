@@ -32,7 +32,7 @@ fetch.controller('fetchCtrlTag', ['$scope', '$http', function ($scope, $http) {
 	
     // Fetch data
     $scope.getPosts = function(){
-		
+		$scope.loading = true;   
 		
         if ($scope.busy) return;
         $scope.busy = true;
@@ -44,12 +44,12 @@ fetch.controller('fetchCtrlTag', ['$scope', '$http', function ($scope, $http) {
 			url: 'http://localhost/mogo/information/siteactions/tags_angular',
             data: {row:$scope.row,rowperpage:$scope.rowperpage,currentLng:$scope.currentLng,passtype:$scope.passtype,passseotitle:$scope.passseotitle,country:$scope.country,passcountry:$scope.passcountry,division:$scope.division,passdivision:$scope.passdivision,district:$scope.district,passdistrict:$scope.passdistrict,thana:$scope.thana,passthana:$scope.passthana,slugid:$scope.slugid,params:$scope.params,className:$scope.className,singleName:$scope.singleName,placeTypeID:$scope.placeTypeID,contentTitle:$scope.contentTitle,loadModelName:$scope.loadModelName,queryCountry:$scope.queryCountry}
         }).then(function successCallback(response) {
-                    
+                 
             if(response.data !='' ){
                 // New row value       
                 $scope.row+=$scope.rowperpage;
                         
-                $scope.loading = true;
+                
                 setTimeout(function() {
                     $scope.$apply(function(){
                         
