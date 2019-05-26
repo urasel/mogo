@@ -149,41 +149,7 @@ echo '<div class="col-md-8">';
 		}else{
 			$matchTerm = '';
 		}
-	//echo '</div>';
-	?>
-	<div class="paging">
-		<ul class="pagination">
-		<?php
-		//if (isset($page)) {
-		$this->Paginator->options['url'] = array(
-		'plugin'=>'information',
-		'controller' => 'siteactions',
-		'action'=>'searchitem',
-		'language'=>$currentLng,
-		'string' => $matchTerm
-		);
-		//}
 
-		echo $this->Paginator->prev(__('&laquo;'), array('tag' => 'li', 'escape' => false), '<a href="#">&laquo;</a>', array('class' => 'prev disabled', 'tag' => 'li', 'escape' => false));
-		echo $this->Paginator->numbers(array('separator' => '','modulus'=>'5', 'tag' => 'li', 'currentLink' => true, 'currentClass' => 'active', 'currentTag' => 'a'));
-		echo $this->Paginator->next(__('&raquo;'), array('tag' => 'li', 'escape' => false), '<a href="#">&raquo;</a>', array('class' => 'prev disabled', 'tag' => 'li', 'escape' => false));
-		?>
-		</ul> 
-	</div>
-	<p>
-	<?php
-	
-	if($currentLng == 'bn'){
-		echo $this->Language->banglanumber($this->Paginator->counter(array('format' => __('Showing {:start}-{:end} records out of {:count} Total'))));
-	}else{
-		echo $this->Paginator->counter(array(
-		'format' => __('Showing {:start}-{:end} records out of {:count} Total')
-		));
-	}
-	
-	?>	
-	</p>
-	<?php
 	echo '</div>';
 	echo '<div class="col-md-4">';
 	

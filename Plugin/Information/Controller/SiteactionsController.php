@@ -33,8 +33,12 @@ class SiteactionsController extends InformationAppController {
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Security->unlockedActions = array('searchitem','findplace','direction','category_angular','tags_angular');
+		$this->Security->unlockedActions = array('searchitem','searchitem_angular','findplace','direction','category_angular','tags_angular');
 		if ($this->action == 'searchitem') {
+			$this->Security->csrfCheck = false;
+			$this->Security->validatePost = false;
+		}
+		if ($this->action == 'searchitem_angular') {
 			$this->Security->csrfCheck = false;
 			$this->Security->validatePost = false;
 		}
@@ -4787,12 +4791,10 @@ class SiteactionsController extends InformationAppController {
 	
 	public function searchitem(){
 		$selectedTemplate = Configure::read('selectedTemplate');
-		$this->layout = $selectedTemplate.'bootstrap';
+		$this->layout = $selectedTemplate.'bootstrap_angular';
 		unset($this->params['language']);
 		$currentLng = $this->Session->read('Config.language');
-		if(isset($this->params['page'])){
-		$this->request->params['named']['page'] = $this->params['page']?$this->params['page']:1;
-		}
+		
 		$searchString = '';
 		$selectFirst = 	'';
 		//debug($this->params);exit;
@@ -4867,19 +4869,22 @@ class SiteactionsController extends InformationAppController {
 			$searchString[] = array('Point.active' => 1);
 		}
 		$title_for_layout = __('Your Search Results');
-		$this->loadModel('Information.Point');
-		/*
-		$this->Point->bindModel(array(
-					'hasOne' => array(
-						'BdDivision' => array(
-							'foreignKey' => false,
-							'conditions' => array('Point.zone_id = BdDivision.id')
-						),
-					)
-				)
-		);
-		*/
-		//debug($searchString);exit;
+		
+		$this->set(compact('title_for_layout','searchString','fieldName'));
+	}
+	public function searchitem_angular(){
+		$selectedTemplate = Configure::read('selectedTemplate');
+		$this->layout = 'ajax';
+		$this->autoRender = false;
+		$currentLng = $this->Session->read('Config.language');
+		
+		$row 					= $this->data['row'];
+		$rowperpage 			= $this->data['rowperpage'];
+		$currentLng				= $this->data['currentLng'];
+		$searchString			= $this->data['searchString'];
+		$selectFirst			= $this->data['selectFirst'];
+		$fieldName				= $this->data['fieldName'];
+		
 		$this->paginate = array(
 				'conditions' => $searchString,
 				'fields' => array('Point.id',"Point.name","Point.bn_name","Point.address",'Point.seo_name',"PlaceType.$fieldName as name",'PlaceType.icon','PlaceType.seo_name','PlaceType.singlename'),
