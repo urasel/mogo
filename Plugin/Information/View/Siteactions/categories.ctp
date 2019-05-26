@@ -101,14 +101,14 @@
 				<p class="countryId hidden"><?php echo $countryId;?></p>
 			
 				<div  ng-app='myapp' ng-controller='fetchCtrl'>
-					<div class="container" infinite-scroll="getPosts()">
+					<div infinite-scroll="getPosts()">
 					
 						<div class="post" ng-repeat="post in posts track by $index">
 							
 							<!--{{post.place_type_singlename}}-->
 							<div ng-if="post.place_type_singlename == 'motorcycle'">
 								<div class="row">
-									<div class="col-md-12 zeropadding">
+									<div class="col-md-12">
 										<div class="itemblock_image">
 											<?php
 												if(!"{{post.imglink}}"){
@@ -174,7 +174,7 @@
 							<div ng-if="post.place_type_singlename == 'place'">
 							
 								<div class="row">
-									<div class="col-md-12 zeropadding">
+									<div class="col-md-12">
 										<div class="itemblock_image">
 											<?php
 												if(!"{{post.imglink}}"){
@@ -208,7 +208,7 @@
 							<div ng-if="post.place_type_singlename == 'airport'">
 							
 								<div class="row">
-									<div class="col-md-12 zeropadding">
+									<div class="col-md-12">
 										<div class="itemblock_image">
 											<?php
 												if(!"{{post.imglink}}"){
@@ -243,7 +243,7 @@
 							<div ng-if="post.place_type_singlename == 'location'">
 							
 								<div class="row">
-									<div class="col-md-12 zeropadding">
+									<div class="col-md-12">
 										<div class="itemblock_image">
 											<?php
 												if(!"{{post.imglink}}"){
@@ -275,7 +275,7 @@
 							</div>
 							<div ng-if="post.place_type_singlename == 'institute'">
 								<div class="row">
-									<div class="col-md-12 zeropadding">
+									<div class="col-md-12">
 										<div class="itemblock_image">
 											<?php
 												if(!"{{post.imglink}}"){
@@ -314,7 +314,7 @@
 								
 							
 						</div>
-						<div ng-show='loading' class='loading'>Loading...</div>
+						<div ng-show='loading' class='loader'></div>
 					</div>
 				</div>
 				<?php

@@ -32,7 +32,7 @@ fetch.controller('fetchCtrlTag', ['$scope', '$http', function ($scope, $http) {
 	
     // Fetch data
     $scope.getPosts = function(){
-		$scope.loading = true;   
+		
 		
         if ($scope.busy) return;
         $scope.busy = true;
@@ -48,7 +48,7 @@ fetch.controller('fetchCtrlTag', ['$scope', '$http', function ($scope, $http) {
             if(response.data !='' ){
                 // New row value       
                 $scope.row+=$scope.rowperpage;
-                        
+                $scope.loading = true;           
                 
                 setTimeout(function() {
                     $scope.$apply(function(){
