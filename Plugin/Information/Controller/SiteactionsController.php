@@ -4879,19 +4879,448 @@ class SiteactionsController extends InformationAppController {
 		$searchString[] = array('Point.active' => 1);
 		
 		
-		debug($searchString);exit;
+		//debug($searchString);
 		$this->loadModel('Point');
+		/*
 		$this->paginate = array(
 				'conditions' => $searchString,
 				'fields' => array('Point.id',"Point.name","Point.bn_name","Point.address",'Point.seo_name',"PlaceType.$fieldName as name",'PlaceType.icon','PlaceType.seo_name','PlaceType.singlename'),
 				'order' => array("CASE WHEN `Point`.`name` LIKE '$selectFirst' THEN 0 WHEN `Point`.`name` LIKE '$selectFirst%' THEN 1  WHEN `Point`.`name` LIKE '%$selectFirst%' THEN 2  ELSE 3  END , `Point`.`name` DESC")
 		);
+		*/
+		$query = "Select points.id,points.name,points.bn_name,points.address,points.seo_name,place_types.id,place_types.".$fieldName." as name,place_types.icon,place_types.seo_name,place_types.singlename from Points LEFT JOIN place_types ON points.place_type_id = place_types.id WHERE points.name like '%".$matchTerm."%' OR points.bn_name like '%".$matchTerm."%' ORDER BY CASE WHEN `points`.`name` LIKE '".$selectFirst."' THEN 0 WHEN `points`.`name` LIKE '".$selectFirst."%' THEN 1  WHEN `points`.`name` LIKE '%".$selectFirst."%' THEN 2  ELSE 3  END , `points`.`name` DESC limit ".$row.", ".$rowperpage;
 		
-		$places = $this->paginate('Point');
-		debug($places);exit;
-		
-		
-		$this->set(compact('title_for_layout','places','matchTerm'));
+		$entries = $this->Point->query($query);
+		//debug($places);exit;
+		foreach($entries as $row){
+				$place_type_id = $row['place_types']['id'];
+				$place_type_name = $row['place_types']['name'];
+				$place_type_singlename = $row['place_types']['singlename'];
+				$place_type_seo_name = $row['place_types']['seo_name'];
+				
+				
+				$point_id = $row['Points']['id'];
+				$point_name = $row['Points']['name'];
+				$point_bn_name = $row['Points']['bn_name'];
+				$point_seo_name = $row['Points']['seo_name'];
+				$point_address = $row['Points']['address'];
+				$point_bn_address = $row['Points']['bn_address'];
+				
+				
+				/***********Loop Data Process Start*******************/
+				$placename = '';
+				if($place_type_singlename == 'Location'){
+					$placename = $point_name.' details facts';
+				}else if($place_type_singlename == 'TopicData'){
+					if($currentLng == 'bn' && !empty($point_bn_name)){
+						$placename = $point_bn_name;
+						$shortContent = $point_bn_name;
+						$place_type_name = $place_type_name;
+						$country_name = '';
+						$zone_name = '';
+					
+					}else if($currentLng == 'en' && empty($point_bn_name)){
+						$placename = $point_name;
+						$shortContent = '';
+						$place_type_name = $place_type_name;
+						$country_name = '';
+						$zone_name = '';
+					}else if($currentLng == 'en' && empty($point_name)){
+						$placename = $point_bn_name;
+						$shortContent = '';
+						$place_type_name = $place_type_name;
+						$country_name = '';
+						$zone_name = '';
+					}else{
+						$placename = $point_name;
+						$shortContent = '';
+						$place_type_name = $place_type_name;
+						$country_name = '';
+						$zone_name = '';
+					}
+				}else if($place_type_singlename == 'Institute'){
+					if($currentLng == 'bn' && !empty($point_bn_name)){
+						$placename = $point_bn_name;
+						$shortContent = '';
+						$place_type_name = $place_type_name;
+						$country_name = '';
+						$zone_name = '';
+					
+					}else if($currentLng == 'en' && empty($point_bn_name)){
+						$placename = $point_name;
+						$shortContent = '';
+						$place_type_name = $place_type_name;
+						$country_name = '';
+						$zone_name = '';
+					}else if($currentLng == 'en' && empty($point_name)){
+						$placename = $point_bn_name;
+						$shortContent = '';
+						$place_type_name = $place_type_name;
+						$country_name = '';
+						$zone_name = '';
+					}else{
+						$placename = $point_name;
+						$shortContent = '';
+						$place_type_name = $place_type_name;
+						$country_name = '';
+						$zone_name = '';
+					}
+				}else if($place_type_singlename == 'Motorcycle'){
+						$placename = $point_name;
+						$mileage = '';
+						$maximum_power = '';
+						$place_type_name = $place_type_name;
+				}else if($place_type_singlename == 'Place'){
+						if($currentLng == 'bn' && !empty($point_bn_name)){
+							$placename = $point_bn_name;
+							$place_type_name = $place_type_name;
+							$country_name = '';
+							$zone_name = '';
+						
+						}else if($currentLng == 'en' && empty($point_bn_name)){
+							$placename = $point_name;
+							$place_type_name = $place_type_name;
+							$country_name = '';
+							$zone_name = '';
+						}else if($currentLng == 'en' && empty($point_name)){
+							$placename = $point_bn_name;
+							$place_type_name = $place_type_name;
+							$country_name = '';
+							$zone_name = '';
+						}else{
+							$placename = $point_name;
+							$place_type_name = $place_type_name;
+							$country_name = '';
+							$zone_name = '';
+						}
+						$mobile = '';
+						$email = '';
+						$web = '';
+				}else if($place_type_singlename == 'Airport'){
+						if($currentLng == 'bn' && !empty($point_bn_name)){
+							$placename = $point_bn_name;
+							$place_type_name = $place_type_name;
+							$country_name = '';
+							$zone_name = '';
+						
+						}else if($currentLng == 'en' && empty($point_bn_name)){
+							$placename = $point_name;
+							$place_type_name = $place_type_name;
+							$country_name = '';
+							$zone_name = '';
+						}else if($currentLng == 'en' && empty($point_name)){
+							$placename = $point_bn_name;
+							$place_type_name = $place_type_name;
+							$country_name = '';
+							$zone_name = '';
+						}else{
+							$placename = $point_name;
+							$place_type_name = $place_type_name;
+							$country_name = '';
+							$zone_name = '';
+						}
+						$elevation_ft = '';
+						$gps_code = '';
+						$iata_code = '';
+				}else{
+						if($currentLng == 'bn' && !empty($point_bn_name)){
+							$placename = $point_bn_name;
+							$place_type_name = $place_type_name;
+						
+						}else if($currentLng == 'en' && empty($point_bn_name)){
+							$placename = $point_name;
+							$place_type_name = $place_type_name;
+						}else if($currentLng == 'en' && empty($point_name)){
+							$placename = $point_bn_name;
+							$place_type_name = $place_type_name;
+						}else{
+							$placename = $point_name;
+							$place_type_name = $place_type_name;
+						}
+				}
+				
+				$address = '';
+				if($point_seo_name == 'topicData'){
+					$address = '';
+				}else if($point_seo_name == 'motorcycle'){
+					$address = '';
+				}else if($point_seo_name == 'animal'){
+					$address = '';
+				}else if($point_seo_name == 'continent'){
+					$address = '';
+				}else if($point_seo_name == 'recipe'){
+					$address = '';
+				}else if($point_seo_name == 'babyName'){
+					$address = '';
+				}else{
+					if($currentLng == 'bn' && !empty($point_bn_address)){
+						$address = $point_bn_address;	
+					}else if($currentLng == 'en' && empty($point_bn_address)){
+						$address = $point_address;
+					}else if($currentLng == 'en' && empty($point_address)){
+						$address = $point_bn_address;
+					}else{
+						$address = $point_address;
+					}
+				}
+				
+				$stringlength = '';
+				$newID = '';
+				if(in_array($place_type_singlename,array('BabyName'))){
+					$stringlength = strlen($point_seo_name);
+					$newID = $stringlength.$point_id;
+				}else if(in_array($place_type_singlename,array('topicData'))){
+					$stringlength = strlen($point_seo_name);
+					$newID = $stringlength.$point_id;
+				}else{
+					$stringlength = strlen($point_seo_name);
+					$newID = $stringlength.$point_id;
+				}
+				//echo $newID.'<br/>';
+				
+				$imglink = '';
+				$shartContentHtml = '';
+				
+				
+				
+				if($place_type_singlename == 'topicData'){
+						if(!empty($row[$modelName]['image'])){
+							$imglink = '';
+						}else{
+							$imglink = '';
+						}
+						$shartContentHtml = '';
+
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"class_short_description" => $class_short_description,
+								"class_image" => $class_image,
+								"country_id" => $country_id,
+								"country_name" => $country_name,
+								"country_seo_name" => $country_seo_name,
+								"countrySeoName" => $queryCountry,
+								"zone_id" => $zone_id,
+								"zone_name" => $zone_name,
+								"zone_seo_name" => $zone_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+					
+				}else if($place_type_singlename == 'continent'){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}else if($place_type_singlename == 'Location'){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}else if($place_type_singlename == 'BabyName'){
+					
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						$genderIcon = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}else if( $place_type_singlename == 'Animal'){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}else if($place_type_singlename == 'Motorcycle'){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"mileage" => $mileage,
+								"maximum_power" => $maximum_power,
+								"imglink" => $imglink,
+								);
+				}else if($place_type_singlename == 'Institute'){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+					
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
+								"newID" => $newID,
+								"placename" => $placename,
+								"eiin_no" => $eiin_no,
+								"address" => $address,
+								"country_name" => $country_name,
+								"imglink" => $imglink,
+								);
+				}else if($place_type_singlename == 'Place'){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+					
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
+								"newID" => $newID,
+								"placename" => $placename,
+								"mobile" => $mobile,
+								"email" => $email,
+								"web" => $web,
+								"address" => $address,
+								"imglink" => $imglink,
+								);
+				}else if($place_type_singlename == 'Airport'){
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+					
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"newID" => $newID,
+								"placename" => $placename,
+								"countrySeoName" => $queryCountry,
+								"elevation_ft" => $elevation_ft,
+								"gps_code" => $gps_code,
+								"iata_code" => $iata_code,
+								"address" => $address,
+								"imglink" => $imglink,
+								);
+				}else{
+						$titleHtml = '';
+						$imglink = '';
+						$shartContentHtml = '';
+						
+						$data[] = array(
+								"place_type_id"=>$place_type_id,
+								"place_type_name"=>$place_type_name,
+								"place_type_singlename"=>$place_type_singlename,
+								"place_type_seo_name"=>$place_type_seo_name,
+								"class_id" => $class_id,
+								"class_point_id" => $class_point_id,
+								"className" => $className,
+								"class_seo_name" => $class_seo_name,
+								"countrySeoName" => $queryCountry,
+								"newID" => $newID,
+								"placename" => $placename,
+								"address" => $address,
+								"imglink" => $imglink,
+								"shartContentHtml" => $shartContentHtml,
+								);
+				}
+			
+			}	
+				
+				//debug($data);exit;
+				
+			/***********Loop Data Process End*******************/
+			
+		}
 	}
 	
 	public function map($category = 'default', $subcategory = null,$id = null) {
