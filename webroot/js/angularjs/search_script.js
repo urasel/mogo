@@ -5,25 +5,9 @@ fetch.controller('fetchCtrlSearch', ['$scope', '$http', function ($scope, $http)
     // Variables
     $scope.row = 0;
     $scope.rowperpage = 10;
-    $scope.currentLng = $('.currentLng').text();
-    $scope.passtype = $('.passtype').text();
-    $scope.passseotitle = $('.passseotitle').text();
-    $scope.country = $('.country').text();
-    $scope.passcountry = $('.passcountry').text();
-    $scope.division = $('.division').text();
-    $scope.passdivision = $('.passdivision').text();
-    $scope.district = $('.district').text();
-    $scope.passdistrict = $('.passdistrict').text();
-    $scope.thana = $('.thana').text();
-    $scope.passthana = $('.passthana').text();
-    $scope.slugid = $('.slugid').text();
-    $scope.singleName = $('.singleName').text();
-    $scope.className = $('.className').text();
-    $scope.placeTypeID = $('.placeTypeID').text();
-    $scope.contentTitle = $('.contentTitle').text();
-    $scope.loadModelName = $('.loadModelName').text();
-    $scope.queryCountry = $('.queryCountry').text();
-    $scope.params = $('.params').text();
+    $scope.searchName = $('.searchName').text();
+    $scope.searchStringParams = $('.searchStringParams').text();
+    $scope.fieldName = $('.fieldName').text();
 
     $scope.posts = [];
     $scope.busy = false;
@@ -33,7 +17,6 @@ fetch.controller('fetchCtrlSearch', ['$scope', '$http', function ($scope, $http)
     // Fetch data
     $scope.getPosts = function(){
 		
-		
         if ($scope.busy) return;
         $scope.busy = true;
                 
@@ -42,7 +25,7 @@ fetch.controller('fetchCtrlSearch', ['$scope', '$http', function ($scope, $http)
             method: 'post',
             //url: 'ajaxfile.php',
 			url: 'http://localhost/mogo/information/siteactions/searchitem_angular',
-            data: {row:$scope.row,rowperpage:$scope.rowperpage,currentLng:$scope.currentLng,passtype:$scope.passtype,passseotitle:$scope.passseotitle,country:$scope.country,passcountry:$scope.passcountry,division:$scope.division,passdivision:$scope.passdivision,district:$scope.district,passdistrict:$scope.passdistrict,thana:$scope.thana,passthana:$scope.passthana,slugid:$scope.slugid,params:$scope.params,className:$scope.className,singleName:$scope.singleName,placeTypeID:$scope.placeTypeID,contentTitle:$scope.contentTitle,loadModelName:$scope.loadModelName,queryCountry:$scope.queryCountry}
+            data: {row:$scope.row,rowperpage:$scope.rowperpage,searchName:$scope.searchName,searchStringParams:$scope.searchStringParams,fieldName:$scope.fieldName}
         }).then(function successCallback(response) {
                  
             if(response.data !='' ){

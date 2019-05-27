@@ -389,6 +389,7 @@ textarea:focus {
 .nav .navbar-nav{
 	float:left;
 	width:100%;
+	margin-right: 20px;
 }
 .navbar-nav{
 	float:right;
@@ -691,7 +692,7 @@ textarea:focus {
 	top:5px;
 }
 .et_navbar_search_wrapper{
-	padding-top:20px;
+	padding-top:15px;
 	padding-bottom:20px;
 	float:right;
 }

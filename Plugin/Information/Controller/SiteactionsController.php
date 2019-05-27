@@ -4803,57 +4803,22 @@ class SiteactionsController extends InformationAppController {
 			}else{
 				$fieldName = 'name';
 			}
+		$searchName = '';
 		if ($this->request->is('post')) {
 			//debug($this->request->data);exit;
-			if(!empty($this->request->data['Siteaction']['searchname'])){
-				$matchTerm = str_replace(' ','%',$this->request->data['Siteaction']['searchname']);
-				$selectFirst = explode(' ',$this->request->data['Siteaction']['searchname']);
-				$selectFirst = $selectFirst[0];
-				
-			}
-			$locaTionMatchString = '';
-			if(!empty($matchTerm)){
-				$searchString[] = array(
-										"OR" => array(
-										"Point.name LIKE" => "%".$matchTerm."%",
-										"Point.bn_name LIKE" => "%".$matchTerm."%"
-										)
-										);
-			}else{
-			}
+			$searchName = $this->request->data['Siteaction']['searchname'];
 			
-			if(!empty($this->request->data['Siteaction']['locationTypes'])){
-				if(!empty($this->request->data['Siteaction']['locationId'])){
-					$location = $this->request->data['Siteaction']['location'];
-					$locationId = $this->request->data['Siteaction']['locationId'];
-					$locationType = $this->request->data['Siteaction']['locationTypes'];
-					
-					$this->Session->write('searchCountryName',$location);
-					$this->Session->write('searchCountryId',$locationId);
-				}else{
-					$locationId = 18;
-					$locationType = 'c';
-				}
-				
-				if($locationType == 'd'){
-					$searchString[] = array("Point.bd_district_id" => $locationId);
-				}else if($locationType == 'c'){
-					$searchString[] = array("Point.country_id" => $locationId);
-				}
-				
-			}
-			
-			
-			//$itemid = $this->request->data['Siteaction']['place_id'];
-			
-			
-			$searchString[] = array('Point.private' => 0);
-			$searchString[] = array('Point.active' => 1);
 		}
 		//debug($searchString);exit;
+		$searchStringParams = '';
 		if(!empty($this->params['string'])){
-			$matchTerm = str_replace(' ','%',$this->params['string']);
-			$selectFirst = explode('%',$this->params['string']);
+			$searchStringParams = $this->params['string'];
+		}
+		/*
+		if(!empty($this->params['string'])){
+			$searchStringParams = $this->params['string'];
+			$matchTerm = str_replace(' ','%',$searchStringParams);
+			$selectFirst = explode('%',$searchStringParams);
 			$selectFirst = $selectFirst[0];
 			
 			if(!empty($matchTerm)){
@@ -4868,9 +4833,10 @@ class SiteactionsController extends InformationAppController {
 			$searchString[] = array('Point.private' => 0);
 			$searchString[] = array('Point.active' => 1);
 		}
+		*/
 		$title_for_layout = __('Your Search Results');
 		
-		$this->set(compact('title_for_layout','searchString','fieldName'));
+		$this->set(compact('title_for_layout','searchName','searchStringParams','fieldName'));
 	}
 	public function searchitem_angular(){
 		$selectedTemplate = Configure::read('selectedTemplate');
@@ -4880,18 +4846,51 @@ class SiteactionsController extends InformationAppController {
 		
 		$row 					= $this->data['row'];
 		$rowperpage 			= $this->data['rowperpage'];
-		$currentLng				= $this->data['currentLng'];
-		$searchString			= $this->data['searchString'];
-		$selectFirst			= $this->data['selectFirst'];
+		$searchName				= $this->data['searchName'];
+		$searchStringParams		= $this->data['searchStringParams'];
 		$fieldName				= $this->data['fieldName'];
 		
+		$matchTerm = '';
+		$selectFirst = '';
+		if(!empty($searchName)){
+			$matchTerm = str_replace(' ','%',$searchName);
+			$selectFirst = explode(' ',$searchName);
+			$selectFirst = $selectFirst[0];
+			
+		}	
+		if(!empty($searchStringParams)){
+			$matchTerm = str_replace(' ','%',$searchStringParams);
+			$selectFirst = explode(' ',$searchStringParams);
+			$selectFirst = $selectFirst[0];
+			
+		}
+		
+		if(!empty($matchTerm)){
+			$searchString[] = array(
+									"OR" => array(
+									"Point.name LIKE" => "%".$matchTerm."%",
+									"Point.bn_name LIKE" => "%".$matchTerm."%"
+									)
+									);
+		}else{
+		}
+	
+		$searchString[] = array('Point.private' => 0);
+		$searchString[] = array('Point.active' => 1);
+		
+		
+		debug($searchString);exit;
+		$this->loadModel('Point');
 		$this->paginate = array(
 				'conditions' => $searchString,
 				'fields' => array('Point.id',"Point.name","Point.bn_name","Point.address",'Point.seo_name',"PlaceType.$fieldName as name",'PlaceType.icon','PlaceType.seo_name','PlaceType.singlename'),
 				'order' => array("CASE WHEN `Point`.`name` LIKE '$selectFirst' THEN 0 WHEN `Point`.`name` LIKE '$selectFirst%' THEN 1  WHEN `Point`.`name` LIKE '%$selectFirst%' THEN 2  ELSE 3  END , `Point`.`name` DESC")
 		);
+		
 		$places = $this->paginate('Point');
-		//debug($places);exit;
+		debug($places);exit;
+		
+		
 		$this->set(compact('title_for_layout','places','matchTerm'));
 	}
 	
