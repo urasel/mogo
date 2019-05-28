@@ -277,7 +277,7 @@ CroogoRouter::localize();
                      array(
 					 'pass' => array('id','category','page','service'),
 					 ));
-	*/				
+	*/			
 	Router::connect('/sort/:category/:page/:character/:id', 
                      array('plugin'=>'information','controller' => 'siteactions', 'action'=>'categories'), 
                      array(
@@ -291,7 +291,7 @@ CroogoRouter::localize();
 	Router::connect('/:service/:category/:point/:id', 
                      array('plugin'=>'information','controller'=>'siteactions', 'action'=>'infos'), 
                      array('pass' => array('category', 'point','id','couontry')));
-					 
+						 
 	//Business Section Routing End
 	
 	

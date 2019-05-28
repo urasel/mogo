@@ -5455,7 +5455,7 @@ p.reference-txt {
 	margin-top:15px;
 }
 .itemblock_image{
-	width:110px;
+	width:15%;
 	height:70px;
 	float:left;
 	margin-right:10px;
@@ -5471,7 +5471,7 @@ p.reference-txt {
 	
 }
 .itemblock_details{
-	width:auto;
+	width:83%;
 	height:80px;
 	float:left;
 }

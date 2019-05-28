@@ -23,7 +23,6 @@
 			
 				<div class="post" ng-repeat="post in posts track by $index">
 				
-					<!--{{post.place_type_singlename}}-->
 					<div ng-if="post.place_type_singlename == 'motorcycle'">
 						<div class="row">
 							<div class="col-md-12">
@@ -57,6 +56,39 @@
 							</div>
 						</div>
 					</div>
+					<div ng-if="post.place_type_singlename == 'location'">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="itemblock_image">
+									<?php
+										if(!"{{post.imglink}}"){
+											$imglink = "{{post.place_type_singlename}}/small/{{post.imglink}}";
+											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+										}else{
+											$imglink = "icon.png";
+											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+										}
+									?>
+								</div>
+								<div class="itemblock_details">
+								
+									<?php
+										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'country'=>"{{post.countrySeoName}}",'point'=> "{{post.class_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+	
+									?>
+									<div class="metadata_block">
+										<div class="metadata">
+											<span><b>Category:</b> </span> {{post.place_type_name}}
+										</div>
+										<div class="add_metadata">
+											<span><b>Address:</b> </span> {{post.address}}
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 			
 					
 					<div class="itemblock" ng-if="'{{post.place_type_singlename}}' == 'topicData'">
@@ -81,6 +113,41 @@
 					</div>
 					
 					<div ng-if="post.place_type_singlename == 'continent'">
+						
+					</div>
+					<div ng-if="post.place_type_singlename == 'yellowPage'">
+					
+						<div class="row">
+							<div class="col-md-12">
+								<div class="itemblock_image">
+									<?php
+										if(!"{{post.imglink}}"){
+											$imglink = "{{post.place_type_singlename}}/small/{{post.imglink}}";
+											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+										}else{
+											$imglink = "icon.png";
+											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+										}
+									?>
+								</div>
+								<div class="itemblock_details">
+								
+									<?php
+										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'country'=>"{{post.countrySeoName}}",'point'=> "{{post.class_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+	
+									?>
+									<div class="metadata_block">
+										<div class="metadata">
+											<span><b>Mobile:</b> </span> {{post.mobile}}
+										</div>
+										<div class="add_metadata">
+											<span><b>Address:</b> </span> {{post.address}}
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
 						
 					</div>
 					<div ng-if="post.place_type_singlename == 'babyName'">
@@ -158,8 +225,7 @@
 							</div>
 						</div>
 					</div>
-					<div ng-if="post.place_type_singlename == 'location'">
-					
+					<div ng-if="post.place_type_singlename == 'institute'">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="itemblock_image">
@@ -176,14 +242,15 @@
 								<div class="itemblock_details">
 								
 									<?php
-										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'country'=>"{{post.{{post.countrySeoName}}}}",'point'=> "{{post.class_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'country'=>"{{post.countrySeoName}}",'point'=> "{{post.class_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
 	
 									?>
 									<div class="metadata_block">
 										<div class="metadata">
-											<span><b>Address:</b> </span> {{post.address}}
+											<span><b>EIN Number:</b> </span> {{post.eiin_no}}
 										</div>
 										<div class="add_metadata">
+											<span><b>Address:</b> </span> {{post.address}}
 										</div>
 										
 									</div>
@@ -191,7 +258,8 @@
 							</div>
 						</div>
 					</div>
-					<div ng-if="post.place_type_singlename == 'institute'">
+					
+					<div ng-if="post.place_type_singlename == 'recipe'">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="itemblock_image">
