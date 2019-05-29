@@ -40,7 +40,7 @@
 								<div class="itemblock_details">
 								
 									<?php
-										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.class_seo_name}}",'id'=> "{{post.newID}}",'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.point_seo_name}}",'id'=> "{{post.newID}}",'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
 										
 									?>
 									<div class="metadata_block">
@@ -57,6 +57,7 @@
 						</div>
 					</div>
 					<div ng-if="post.place_type_singlename == 'location'">
+					
 						<div class="row">
 							<div class="col-md-12">
 								<div class="itemblock_image">
@@ -73,7 +74,7 @@
 								<div class="itemblock_details">
 								
 									<?php
-										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'country'=>"{{post.countrySeoName}}",'point'=> "{{post.class_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.point_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
 	
 									?>
 									<div class="metadata_block">
@@ -106,7 +107,7 @@
 								</div>
 								<div class="col-md-10 col-xs-8">
 									<?php
-										echo $this->Html->link('<h1>{{post.placename}}</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.class_seo_name}}",'id'=> "{{post.newID}}",'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+										echo $this->Html->link('<h1>{{post.placename}}</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.point_seo_name}}",'id'=> "{{post.newID}}",'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
 									?>
 								</div>
 						</div>
@@ -133,12 +134,12 @@
 								<div class="itemblock_details">
 								
 									<?php
-										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'country'=>"{{post.countrySeoName}}",'point'=> "{{post.class_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.point_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
 	
 									?>
 									<div class="metadata_block">
 										<div class="metadata">
-											<span><b>Mobile:</b> </span> {{post.mobile}}
+											<span><b>Category:</b> </span> {{post.place_type_name}}
 										</div>
 										<div class="add_metadata">
 											<span><b>Address:</b> </span> {{post.address}}
@@ -174,7 +175,7 @@
 								<div class="itemblock_details">
 								
 									<?php
-										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'country'=>"{{post.countrySeoName}}",'point'=> "{{post.class_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.point_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
 	
 									?>
 									<div class="metadata_block">
@@ -208,7 +209,42 @@
 								<div class="itemblock_details">
 								
 									<?php
-										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'country'=>"{{post.countrySeoName}}",'point'=> "{{post.class_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.point_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+	
+									?>
+									<div class="metadata_block">
+										<div class="metadata">
+											<span><b>Elevation ft:</b> </span> {{post.elevation_ft}}
+										</div>
+										<div class="add_metadata">
+											<span><b>GPS code:</b> </span> {{post.gps_code}}
+											&nbsp;&nbsp;<span><b>IATA code:</b> </span> {{post.iata_code}}
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div ng-if="post.place_type_singlename == 'stadium'">
+					
+						<div class="row">
+							<div class="col-md-12">
+								<div class="itemblock_image">
+									<?php
+										if(!"{{post.imglink}}"){
+											$imglink = "{{post.place_type_singlename}}/small/{{post.imglink}}";
+											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+										}else{
+											$imglink = "icon.png";
+											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+										}
+									?>
+								</div>
+								<div class="itemblock_details">
+								
+									<?php
+										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.point_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
 	
 									?>
 									<div class="metadata_block">
@@ -242,12 +278,11 @@
 								<div class="itemblock_details">
 								
 									<?php
-										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'country'=>"{{post.countrySeoName}}",'point'=> "{{post.class_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.point_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
 	
 									?>
 									<div class="metadata_block">
 										<div class="metadata">
-											<span><b>EIN Number:</b> </span> {{post.eiin_no}}
 										</div>
 										<div class="add_metadata">
 											<span><b>Address:</b> </span> {{post.address}}
@@ -258,7 +293,38 @@
 							</div>
 						</div>
 					</div>
-					
+					<div ng-if="post.place_type_singlename == 'hospital'">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="itemblock_image">
+									<?php
+										if(!"{{post.imglink}}"){
+											$imglink = "{{post.place_type_singlename}}/small/{{post.imglink}}";
+											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+										}else{
+											$imglink = "icon.png";
+											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+										}
+									?>
+								</div>
+								<div class="itemblock_details">
+								
+									<?php
+										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.point_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+	
+									?>
+									<div class="metadata_block">
+										<div class="metadata">
+										</div>
+										<div class="add_metadata">
+											<span><b>Address:</b> </span> {{post.address}}
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 					<div ng-if="post.place_type_singlename == 'recipe'">
 						<div class="row">
 							<div class="col-md-12">
@@ -276,15 +342,15 @@
 								<div class="itemblock_details">
 								
 									<?php
-										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'country'=>"{{post.countrySeoName}}",'point'=> "{{post.class_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.point_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
 	
 									?>
 									<div class="metadata_block">
 										<div class="metadata">
-											<span><b>EIN Number:</b> </span> {{post.eiin_no}}
+											
 										</div>
 										<div class="add_metadata">
-											<span><b>Address:</b> </span> {{post.address}}
+											
 										</div>
 										
 									</div>
