@@ -4888,7 +4888,7 @@ class SiteactionsController extends InformationAppController {
 				'order' => array("CASE WHEN `Point`.`name` LIKE '$selectFirst' THEN 0 WHEN `Point`.`name` LIKE '$selectFirst%' THEN 1  WHEN `Point`.`name` LIKE '%$selectFirst%' THEN 2  ELSE 3  END , `Point`.`name` DESC")
 		);
 		*/
-		$query = "Select points.id,points.name,points.bn_name,points.address,points.seo_name,place_types.id,place_types.".$fieldName." as name,place_types.icon,place_types.seo_name,place_types.singlename from Points LEFT JOIN place_types ON points.place_type_id = place_types.id WHERE points.name like '%".$matchTerm."%' OR points.bn_name like '%".$matchTerm."%' ORDER BY CASE WHEN `points`.`name` LIKE '".$selectFirst."' THEN 0 WHEN `points`.`name` LIKE '".$selectFirst."%' THEN 1  WHEN `points`.`name` LIKE '%".$selectFirst."%' THEN 2  ELSE 3  END , `points`.`name` DESC limit ".$row.", ".$rowperpage;
+		$query = "Select points.id,points.name,points.bn_name,points.address,points.seo_name,points.param1,points.param2,place_types.id,place_types.".$fieldName." as name,place_types.icon,place_types.seo_name,place_types.singlename from Points LEFT JOIN place_types ON points.place_type_id = place_types.id WHERE points.name like '%".$matchTerm."%' OR points.bn_name like '%".$matchTerm."%' ORDER BY CASE WHEN `points`.`name` LIKE '".$selectFirst."' THEN 0 WHEN `points`.`name` LIKE '".$selectFirst."%' THEN 1  WHEN `points`.`name` LIKE '%".$selectFirst."%' THEN 2  ELSE 3  END , `points`.`name` DESC limit ".$row.", ".$rowperpage;
 		
 		$entries = $this->Point->query($query);
 		//debug($entries);exit;
@@ -4904,6 +4904,8 @@ class SiteactionsController extends InformationAppController {
 				$point_bn_name = $row['Points']['bn_name'];
 				$point_seo_name = $row['Points']['seo_name'];
 				$point_address = $row['Points']['address'];
+				$point_param1 = $row['Points']['param1'];
+				$point_param2 = $row['Points']['param2'];
 				$country_name = '';
 				
 				/***********Loop Data Process Start*******************/
@@ -5151,6 +5153,8 @@ class SiteactionsController extends InformationAppController {
 								"point_id" => $point_id,
 								"placename" => $placename,
 								"point_seo_name" => $point_seo_name,
+								"point_param1" => $point_param1,
+								"point_param2" => $point_param2,
 								"country_name" => $country_name,
 								"newID" => $newID,
 								"address" => $address,
@@ -5189,6 +5193,8 @@ class SiteactionsController extends InformationAppController {
 								"point_id" => $point_id,
 								"placename" => $placename,
 								"point_seo_name" => $point_seo_name,
+								"point_param1" => $point_param1,
+								"point_param2" => $point_param2,
 								"country_name" => $country_name,
 								"newID" => $newID,
 								"address" => $address,
@@ -5209,6 +5215,8 @@ class SiteactionsController extends InformationAppController {
 								"point_id" => $point_id,
 								"placename" => $placename,
 								"point_seo_name" => $point_seo_name,
+								"point_param1" => $point_param1,
+								"point_param2" => $point_param2,
 								"country_name" => $country_name,
 								"newID" => $newID,
 								"address" => $address,
@@ -5229,6 +5237,8 @@ class SiteactionsController extends InformationAppController {
 								"point_id" => $point_id,
 								"placename" => $placename,
 								"point_seo_name" => $point_seo_name,
+								"point_param1" => $point_param1,
+								"point_param2" => $point_param2,
 								"country_name" => $country_name,
 								"newID" => $newID,
 								"address" => $address,
@@ -5249,6 +5259,8 @@ class SiteactionsController extends InformationAppController {
 								"point_id" => $point_id,
 								"placename" => $placename,
 								"point_seo_name" => $point_seo_name,
+								"point_param1" => $point_param1,
+								"point_param2" => $point_param2,
 								"country_name" => $country_name,
 								"newID" => $newID,
 								"address" => $address,
@@ -5268,6 +5280,8 @@ class SiteactionsController extends InformationAppController {
 								"point_id" => $point_id,
 								"placename" => $placename,
 								"point_seo_name" => $point_seo_name,
+								"point_param1" => $point_param1,
+								"point_param2" => $point_param2,
 								"country_name" => $country_name,
 								"newID" => $newID,
 								"address" => $address,

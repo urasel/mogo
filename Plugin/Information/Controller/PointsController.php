@@ -1779,6 +1779,8 @@ class PointsController extends InformationAppController {
 			$this->request->data['Point']['bn_name'] 			= $this->request->data[$modelName]['bn_name'];
 			$this->request->data['Point']['active'] 			= $this->request->data['Point']['active'];
 			$this->request->data['Point']['datachange'] 		= date('Y-m-d H:i:s');
+			$this->request->data['Point']['param1'] 		= $this->request->data[$modelName]['family'];
+			$this->request->data['Point']['param2'] 		= $this->request->data[$modelName]['species'];
 			$this->request->data[$modelName]['point_id'] 		= $this->request->data['Point']['id'];
 			
 			/**************************SEO_URL*****************************/
@@ -1950,6 +1952,8 @@ class PointsController extends InformationAppController {
 			$this->request->data['Point']['name'] 				= $this->request->data[$modelName]['name'];
 			$this->request->data['Point']['bn_name'] 			= $this->request->data[$modelName]['bn_name'];
 			$this->request->data['Point']['active'] 			= $this->request->data['Point']['active'];
+			$this->request->data['Point']['param1'] 			= $this->request->data[$modelName]['address'];
+			$this->request->data['Point']['param2'] 			= $this->request->data[$modelName]['location'];
 			$this->request->data['Point']['datachange'] 		= date('Y-m-d H:i:s');
 			$this->request->data[$modelName]['point_id'] 		= $this->request->data['Point']['id'];
 			if(!empty($this->request->data['Location']['maplocation'])){
@@ -2687,6 +2691,8 @@ class PointsController extends InformationAppController {
 			$this->request->data['Point']['name'] 				= $this->request->data[$modelName]['name'];
 			$this->request->data['Point']['bn_name'] 			= $this->request->data[$modelName]['bn_name'];
 			$this->request->data['Point']['active'] 			= $this->request->data['Point']['active'];
+			$this->request->data['Point']['param1'] 			= $this->request->data[$modelName]['elevation_ft'];
+			$this->request->data['Point']['param2'] 			= $this->request->data[$modelName]['gps_code'];
 			$this->request->data[$modelName]['point_id'] 		= $this->request->data['Point']['id'];
 			if(!empty($this->request->data['Location']['maplocation'])){
 			//debug($this->request->data['Location']['maplocation']);exit;
@@ -2913,6 +2919,8 @@ class PointsController extends InformationAppController {
 			$this->request->data['Point']['name'] 				= $this->request->data[$modelName]['name'];
 			$this->request->data['Point']['bn_name'] 			= $this->request->data[$modelName]['bn_name'];
 			$this->request->data['Point']['active'] 			= $this->request->data['Point']['active'];
+			$this->request->data['Point']['param1'] 			= $this->request->data[$modelName]['capacity'];
+			$this->request->data['Point']['param2'] 			= $this->request->data[$modelName]['address'];
 			$this->request->data[$modelName]['point_id'] 		= $this->request->data['Point']['id'];
 			if(!empty($this->request->data['Location']['maplocation'])){
 			//debug($this->request->data['Location']['maplocation']);exit;
@@ -3293,7 +3301,8 @@ class PointsController extends InformationAppController {
 		$placeTypes = $this->Point->PlaceType->find('list',array('order' => array('PlaceType.name ASC')));
 		$this->set(compact('countries', 'zones', 'bdDistricts','bdDivisions', 'bdThanas','points', 'modelName','placeTypes','transportTypes','transportServiceProviders'));
 		
-	}public function admin_transportStopageedit($id = null) {
+	}
+	public function admin_transportStopageedit($id = null) {
 		$this->layout = 'adminpoint';
 		$this->set('title_for_layout','Edit Transport Service Information');
 		$modelName = 'TransportStopage';
@@ -3688,6 +3697,8 @@ class PointsController extends InformationAppController {
 			$this->request->data['Point']['parent'] 			= $this->request->data['Point']['parent'];
 			$this->request->data['Point']['parentname'] 		= $this->request->data['Point']['parentname'];
 			$this->request->data['Point']['active'] 			= $this->request->data['Point']['active'];
+			$this->request->data['Point']['param1'] 			= $this->request->data[$modelName]['eiin_no'];
+			$this->request->data['Point']['param2'] 			= $this->request->data[$modelName]['address'];
 			$this->request->data[$modelName]['point_id'] 		= $this->request->data['Point']['id'];
 			if(!empty($this->request->data['Location']['maplocation'])){
 			//debug($this->request->data['Location']['maplocation']);exit;

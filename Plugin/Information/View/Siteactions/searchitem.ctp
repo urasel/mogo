@@ -44,11 +44,12 @@
 										
 									?>
 									<div class="metadata_block">
-										<div class="metadata">
-											<span><b>Mileage:</b> </span> {{post.mileage}}
-										</div>
+										
 										<div class="add_metadata">
-											<span><b>Max Power:</b> </span> {{post.maximum_power}}
+											<span><b>Max Power:</b> </span> {{post.point_param1}}
+										</div>
+										<div class="metadata">
+											<span><b>Top Speed:</b> </span> {{post.point_param2}}
 										</div>
 										
 									</div>
@@ -92,25 +93,41 @@
 					</div>
 			
 					
-					<div class="itemblock" ng-if="'{{post.place_type_singlename}}' == 'topicData'">
+					
+					<div ng-if="post.place_type_singlename == 'topicData'">
+					
 						<div class="row">
-								<div class="col-md-2 col-xs-4">
+							<div class="col-md-12">
+								<div class="itemblock_image">
 									<?php
 										if(!"{{post.imglink}}"){
-											$imglink = "motorcycles/small/{{post.imglink}}";
+											$imglink = "{{post.place_type_singlename}}/small/{{post.imglink}}";
 											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
 										}else{
-											$imglink = "motorcycles/default.jpg";
+											$imglink = "icon.png";
 											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
 										}
 									?>
 								</div>
-								<div class="col-md-10 col-xs-8">
+								<div class="itemblock_details">
+								
 									<?php
-										echo $this->Html->link('<h1>{{post.placename}}</h1>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.point_seo_name}}",'id'=> "{{post.newID}}",'ext' => 'asp','service'=> 'motorcycles'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.point_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+	
 									?>
+									<div class="metadata_block">
+										<div class="metadata">
+											<span><b>Topic Category:</b> </span> {{post.place_type_name}}
+										</div>
+										<div class="add_metadata">
+											<span><b>Writer:</b> </span> {{post.address}}
+										</div>
+										
+									</div>
 								</div>
+							</div>
 						</div>
+						
 					</div>
 					
 					<div ng-if="post.place_type_singlename == 'continent'">
@@ -155,9 +172,6 @@
 						
 					</div>
 					<div ng-if="post.place_type_singlename == 'animal'">
-						{{post.place_type_singlename}}
-					</div>
-					<div ng-if="post.place_type_singlename == 'place'">
 					
 						<div class="row">
 							<div class="col-md-12">
@@ -180,10 +194,45 @@
 									?>
 									<div class="metadata_block">
 										<div class="metadata">
-											<span><b>Mobile:</b> </span> {{post.mobile}}
+											<span><b>Family:</b> </span> {{post.point_param1}}
 										</div>
 										<div class="add_metadata">
-											<span><b>Address:</b> </span> {{post.address}}
+											<span><b>Species:</b> </span> {{post.point_param2}}
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div ng-if="post.place_type_singlename == 'place'">
+					
+						<div class="row">
+							<div class="col-md-12">
+								<div class="itemblock_image">
+									<?php
+										if(!"{{post.imglink}}"){
+											$imglink = "{{post.place_type_singlename}}/small/{{post.imglink}}";
+											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+										}else{
+											$imglink = "icon.png";
+											echo $this->Html->image($imglink,array('id'=>'preview','class'=>'img-responsive'));
+										}
+									?>
+								</div>
+								<div class="itemblock_details">
+								
+									<?php
+										echo $this->Html->link('<h4>{{post.placename}}</h4>', array('controller'=>'siteactions','action'=>'infos','category'=>"{{post.place_type_seo_name}}",'point'=> "{{post.point_seo_name}}",'language'=>$currentLng,'id'=> "{{post.newID}}",'ext' => 'asp'),array('alt' =>"{{post.placename}}",'escape'=>false,'class' => 'infositelink'));
+	
+									?>
+									
+									<div class="metadata_block">
+										<div class="metadata">
+											<span><b>Mobile:</b> </span> {{post.point_param1}}
+										</div>
+										<div class="add_metadata">
+											<span><b>Address:</b> </span> {{post.point_param2}}
 										</div>
 										
 									</div>
@@ -214,11 +263,10 @@
 									?>
 									<div class="metadata_block">
 										<div class="metadata">
-											<span><b>Elevation ft:</b> </span> {{post.elevation_ft}}
+											<span><b>Elevation ft:</b> </span> {{post.point_param1}}
 										</div>
 										<div class="add_metadata">
-											<span><b>GPS code:</b> </span> {{post.gps_code}}
-											&nbsp;&nbsp;<span><b>IATA code:</b> </span> {{post.iata_code}}
+											<span><b>GPS code:</b> </span> {{post.point_param2}}
 										</div>
 										
 									</div>
@@ -249,11 +297,10 @@
 									?>
 									<div class="metadata_block">
 										<div class="metadata">
-											<span><b>Elevation ft:</b> </span> {{post.elevation_ft}}
+											<span><b>Capacity:</b> </span> {{post.point_param1}}
 										</div>
 										<div class="add_metadata">
-											<span><b>GPS code:</b> </span> {{post.gps_code}}
-											&nbsp;&nbsp;<span><b>IATA code:</b> </span> {{post.iata_code}}
+											<span><b>Built On:</b> </span> {{post.point_param2}}
 										</div>
 										
 									</div>
@@ -283,9 +330,10 @@
 									?>
 									<div class="metadata_block">
 										<div class="metadata">
+											<span><b>EIIN Number:</b> </span> {{post.point_param1}}
 										</div>
 										<div class="add_metadata">
-											<span><b>Address:</b> </span> {{post.address}}
+											<span><b>Level:</b> </span> {{post.point_param2}}
 										</div>
 										
 									</div>
@@ -315,9 +363,10 @@
 									?>
 									<div class="metadata_block">
 										<div class="metadata">
+											<span><b>EIIN Number:</b> </span> {{post.point_param1}}
 										</div>
 										<div class="add_metadata">
-											<span><b>Address:</b> </span> {{post.address}}
+											<span><b>Address:</b> </span> {{post.point_param2}}
 										</div>
 										
 									</div>

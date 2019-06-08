@@ -3024,7 +3024,7 @@ abbr[title] {
 
 b,
 strong {
-	font-weight: bold;
+	font-weight: 500;
 }
 
 mark {
@@ -5490,13 +5490,16 @@ p.reference-txt {
 }
 .metadata{
 	padding:0px;
-	line-height:18px;
+	line-height:27px;
 	color:#666;
 }
 .add_metadata{
 	padding:0px;
 	line-height:18px;
 	color:#555;
+}
+.metadata span, .add_metadata span{
+	font-size:14px;
 }
 .loader{
 	background: #fff url('../../img/loading.gif') no-repeat;
